@@ -1,15 +1,17 @@
 <template>
 
+    <v-container style="margin-top: 20px;height: 100%" class="grey lighten-4" height="100%" >
 
-    <v-sheet height="95%" width="100%" padding-top="10%">
+    <v-sheet height="100%">
         <v-calendar
+            color="red"
             type="month"
             now="2019-01-08"
             value="2019-01-08"
             :events="events"
         ></v-calendar>
     </v-sheet>
-
+</v-container>
 
 </template>
 <script>

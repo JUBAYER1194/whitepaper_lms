@@ -1,7 +1,7 @@
 <template>
-    <v-container class="grey lighten-5">
+    <v-container style="margin-top: 10px" class="grey lighten-4">
         <!-- Stack the columns on mobile by making one full-width and the other half-width -->
-        <v-row>
+        <v-row >
             <v-col
                 cols="12"
                 md="4"
@@ -10,6 +10,7 @@
                     class="mx-auto"
                     max-width="434"
                     tile
+
                 >
                     <v-img
                         height="100%"
@@ -39,8 +40,8 @@
                                     dark
                                 >
                                     <v-list-item-content>
-                                        <v-list-item-title class="title">Marcus Obrien</v-list-item-title>
-                                        <v-list-item-subtitle>Network Engineer</v-list-item-subtitle>
+                                        <v-list-item-title class="title">Jubayer Ahmed</v-list-item-title>
+                                        <v-list-item-subtitle>Teacher</v-list-item-subtitle>
                                     </v-list-item-content>
                                 </v-list-item>
                             </v-col>
@@ -52,27 +53,35 @@
             <v-col
                 cols="6"
                 md="8"
+
             >
 
                     <v-card
                         class="mx-auto"
-                        max-width="100%"
+                        max-width="50%"
                     >
                         <v-card-text>
-                            <div class="display-0 text--primary">FullName:    </div>
-                            <br>
-                            <div class="display-0 text--primary">Email:    </div>
-                            <br>
-                            <div class="display-0 text--primary">Phone No:    </div>
-                            <br>
-                            <div class="display-0 text--primary">Address:    </div>
-                            <br>
-                            <div class="display-0 text--primary">NID:    </div>
-                            <br>
-                            <div class="display-0 text--primary">FullName:    </div>
-                            <br>
-                            <div class="display-0 text--primary">FullName:    </div>
-                            <br>
+                            <v-simple-table>
+                                <thead>
+                                <tr>
+                                    <th style="background-color: #9652ff"></th>
+                                    <th
+                                        class="white--text"
+                                        style="font-size: large;padding-left: 0px;background-color: #9652ff;"
+
+                                    >
+                                        Profile Information </th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr v-for="item in desserts" :key="item.name">
+                                    <td class="font-weight-black">{{ item.name }}</td>
+                                    <td class="black--text" >{{ item.calories }}</td>
+
+                                </tr>
+                                </tbody>
+                            </v-simple-table>
 
                         </v-card-text>
 
@@ -80,37 +89,186 @@
 
             </v-col>
         </v-row>
+        <br>
+        <br>
 
-        <v-row>
+        <v-row style="padding: 23px">
             <v-col
                 cols="12"
-                md="12"
+                md="4"
             >
-                <v-layout row wrap>
-                    <v-flex xs12 sm6 md4 lg3 v-for="person in team" :key="person.name">
-                        <v-card flat class="text-xs-center ma-3">
-                            <v-responsive class="pt-4">
-                                <v-avatar size="100" class="grey lighten-2">
-                                    <img :src="person.avatar">
-                                </v-avatar>
-                            </v-responsive>
-                            <v-card-text>
-                                <div class="subheading">{{ person.name }}</div>
-                                <div class="grey--text">{{ person.role }}</div>
-                            </v-card-text>
-                            <v-card-actions>
-                                <v-btn flat color="grey">
-                                    <v-icon small left>message</v-icon>
-                                    <span class="">Message</span>
-                                </v-btn>
-                            </v-card-actions>
-                        </v-card>
-                    </v-flex>
-                </v-layout>
+                <v-card
+                    class="mx-auto"
+                    max-width="344"
+                    outlined
+                >
+                    <v-list-item three-line>
+                        <v-list-item-content>
+                            <div class="overline mb-4">Class</div>
+                            <v-list-item-title class="headline mb-1">Physics</v-list-item-title>
+                            <v-list-item-subtitle>section:10</v-list-item-subtitle>
+                        </v-list-item-content>
 
+                        <v-list-item-avatar
+                            tile
+                            size="80"
+                            color="#9652ff"
+                        ></v-list-item-avatar>
+                    </v-list-item>
+
+                    <v-card-actions>
+                        <v-btn style="color: white;background-color:#9652ff">go to the class</v-btn>
+                    </v-card-actions>
+                </v-card>
             </v-col>
+            <v-col
+                cols="12"
+                md="4"
+            >
+                <v-card
+                    class="mx-auto"
+                    max-width="344"
+                    outlined
+                >
+                    <v-list-item three-line>
+                        <v-list-item-content>
+                            <div class="overline mb-4">Class</div>
+                            <v-list-item-title class="headline mb-1">Biology</v-list-item-title>
+                            <v-list-item-subtitle>section:1</v-list-item-subtitle>
+                        </v-list-item-content>
 
+                        <v-list-item-avatar
+                            tile
+                            size="80"
+                            color="#9652ff"
+                        ></v-list-item-avatar>
+                    </v-list-item>
+
+                    <v-card-actions >
+                        <v-btn style="color: white;background-color:#9652ff">go to the class</v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-col>
+            <v-col
+                cols="12"
+                md="4"
+            >
+                <v-card
+                    class="mx-auto"
+                    max-width="344"
+                    outlined
+                >
+                    <v-list-item three-line>
+                        <v-list-item-content>
+                            <div class="overline mb-4">Class</div>
+                            <v-list-item-title class="headline mb-1">Chemistry</v-list-item-title>
+                            <v-list-item-subtitle>section:5</v-list-item-subtitle>
+                        </v-list-item-content>
+
+                        <v-list-item-avatar
+                            tile
+                            size="80"
+                            color="#9652ff"
+                        ></v-list-item-avatar>
+                    </v-list-item>
+
+                    <v-card-actions>
+                        <v-btn style="color: white;background-color:#9652ff">go to the class</v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-col>
         </v-row>
+        <v-row style="padding: 23px">
+            <v-col
+                cols="12"
+                md="4"
+            >
+                <v-card
+                    class="mx-auto"
+                    max-width="344"
+                    outlined
+                >
+                    <v-list-item three-line>
+                        <v-list-item-content>
+                            <div class="overline mb-4">Class</div>
+                            <v-list-item-title class="headline mb-1">Physics</v-list-item-title>
+                            <v-list-item-subtitle>section:10</v-list-item-subtitle>
+                        </v-list-item-content>
+
+                        <v-list-item-avatar
+                            tile
+                            size="80"
+                            color="#9652ff"
+                        ></v-list-item-avatar>
+                    </v-list-item>
+
+                    <v-card-actions>
+                        <v-btn style="color: white;background-color:#9652ff">go to the class</v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-col>
+            <v-col
+                cols="12"
+                md="4"
+            >
+                <v-card
+                    class="mx-auto"
+                    max-width="344"
+                    outlined
+                >
+                    <v-list-item three-line>
+                        <v-list-item-content>
+                            <div class="overline mb-4">Class</div>
+                            <v-list-item-title class="headline mb-1">Biology</v-list-item-title>
+                            <v-list-item-subtitle>section:1</v-list-item-subtitle>
+                        </v-list-item-content>
+
+                        <v-list-item-avatar
+                            tile
+                            size="80"
+                            color="#9652ff"
+                        ></v-list-item-avatar>
+                    </v-list-item>
+
+                    <v-card-actions >
+                        <v-btn style="color: white;background-color:#9652ff">go to the class</v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-col>
+            <v-col
+                cols="12"
+                md="4"
+            >
+                <v-card
+                    class="mx-auto"
+                    max-width="344"
+                    outlined
+                >
+                    <v-list-item three-line>
+                        <v-list-item-content>
+                            <div class="overline mb-4">Class</div>
+                            <v-list-item-title class="headline mb-1">Chemistry</v-list-item-title>
+                            <v-list-item-subtitle>section:5</v-list-item-subtitle>
+                        </v-list-item-content>
+
+                        <v-list-item-avatar
+                            tile
+                            size="80"
+                            color="#9652ff"
+                        ></v-list-item-avatar>
+                    </v-list-item>
+
+                    <v-card-actions>
+                        <v-btn style="color: white;background-color:#9652ff">go to the class</v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-col>
+        </v-row>
+
+
+
+
+
     </v-container>
 </template>
 <script>
@@ -124,8 +282,37 @@
                     { name: 'Gouken', role: 'Social media maverick', avatar: '/avatar-4.png' },
                     { name: 'Yoshi', role: 'Sales guru', avatar: '/avatar-5.png'}
 
-                ]
+                ],
+                desserts: [
+                    {
+                        name: 'Full Name:',
+                        calories: 'Jubayer Ahmed',
+                    },
+                    {
+                        name: 'Email:',
+                        calories: 'jubayer@whitepaper.tech',
+                    },
+                    {
+                        name: 'Phone_no:',
+                        calories: '0181215641',
+                    },
+                    {
+                        name: 'Address:',
+                        calories: 'c block,bashundhara',
+                    },
+
+
+                ],
+
             }
         }
     }
 </script>
+<style>
+    td {
+        padding:0;
+    }
+    thead {  text-decoration: none;
+          font-size:10000px;
+        }
+</style>
