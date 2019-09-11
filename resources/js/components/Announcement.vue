@@ -4,11 +4,16 @@
         max-width="100%"
         flat
         style="padding: 50px;margin-top: 50px">
-        <v-card-title
-        style="margin-left:600px;margin-right:600px;background-color:#9652ff;color: white;padding: 25px">
+        <v-container>
+       <dilog></dilog>
+
+        <H2
+            style="text-align:center;color: white;background-color: #9652ff;margin-left: 30%;margin-right: 30%"
+       >
             All Announcement
-        </v-card-title>
-        <v-row style="padding: 23px">
+        </H2>
+
+        <v-row style="padding: 23px;margin-top:5%;">
             <v-col
                 cols="12"
                 md="4"
@@ -149,6 +154,13 @@
             </v-col>
 
         </v-row>
-
+        </v-container>
     </v-card>
 </template>
+<script>
+    import dilog from './Announcement_dilog.vue'
+    export default {
+       components:{dilog}
+    }
+
+</script>

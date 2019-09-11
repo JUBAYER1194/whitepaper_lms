@@ -1,7 +1,7 @@
 <template>
-    <v-container style="margin-top: 10px" class="grey lighten-4">
+    <v-container class="grey lighten-4" style="padding-bottom:15%;">
         <!-- Stack the columns on mobile by making one full-width and the other half-width -->
-        <v-row >
+        <v-row class="d-flex" style="margin-bottom: 5%">
             <v-col
                 cols="12"
                 md="4"
@@ -14,7 +14,7 @@
                 >
                     <v-img
                         height="100%"
-                        src="https://cdn.vuetifyjs.com/images/cards/server-room.jpg"
+
                     >
                         <v-row
                             align="end"
@@ -36,12 +36,12 @@
                             </v-col>
                             <v-col class="py-0">
                                 <v-list-item
-                                    color="rgba(0, 0, 0, .4)"
-                                    dark
+                                    style="color: #0d47a1"
                                 >
                                     <v-list-item-content>
                                         <v-list-item-title class="title">Jubayer Ahmed</v-list-item-title>
-                                        <v-list-item-subtitle>Teacher</v-list-item-subtitle>
+                                        <v-list-item-subtitle style="padding-bottom:5%">Teacher</v-list-item-subtitle>
+                                        <dilog></dilog>
                                     </v-list-item-content>
                                 </v-list-item>
                             </v-col>
@@ -53,46 +53,44 @@
             <v-col
                 cols="6"
                 md="8"
-
             >
 
-                    <v-card
-                        class="mx-auto"
-                        max-width="50%"
-                    >
-                        <v-card-text>
-                            <v-simple-table>
-                                <thead>
-                                <tr>
-                                    <th style="background-color: #9652ff"></th>
-                                    <th
-                                        class="white--text"
-                                        style="font-size: large;padding-left: 0px;background-color: #9652ff;"
+                <v-card
+                    class="mx-auto"
+                    max-width="800"
+                    tile
+                >
+                    <v-card-text>
+                        <v-simple-table>
+                            <thead>
+                            <tr>
+                                <th style="background-color: #9652ff"></th>
+                                <th
+                                    class="white--text"
+                                    style="font-size: large;padding-left: 0%;background-color: #9652ff;"
 
-                                    >
-                                        Profile Information </th>
+                                >
+                                    Profile Information
+                                </th>
 
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr v-for="item in desserts" :key="item.name">
-                                    <td class="font-weight-black">{{ item.name }}</td>
-                                    <td class="black--text" >{{ item.calories }}</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr :key="item.name" v-for="item in desserts">
+                                <td class="font-weight-black">{{ item.name }}</td>
+                                <td class="black--text">{{ item.calories }}</td>
 
-                                </tr>
-                                </tbody>
-                            </v-simple-table>
+                            </tr>
+                            </tbody>
+                        </v-simple-table>
 
-                        </v-card-text>
+                    </v-card-text>
 
-                    </v-card>
+                </v-card>
 
             </v-col>
         </v-row>
-        <br>
-        <br>
-
-        <v-row style="padding: 23px">
+        <v-row class="d-flex">
             <v-col
                 cols="12"
                 md="4"
@@ -110,9 +108,9 @@
                         </v-list-item-content>
 
                         <v-list-item-avatar
-                            tile
-                            size="80"
                             color="#9652ff"
+                            size="80"
+                            tile
                         ></v-list-item-avatar>
                     </v-list-item>
 
@@ -138,13 +136,13 @@
                         </v-list-item-content>
 
                         <v-list-item-avatar
-                            tile
-                            size="80"
                             color="#9652ff"
+                            size="80"
+                            tile
                         ></v-list-item-avatar>
                     </v-list-item>
 
-                    <v-card-actions >
+                    <v-card-actions>
                         <v-btn style="color: white;background-color:#9652ff">go to the class</v-btn>
                     </v-card-actions>
                 </v-card>
@@ -166,9 +164,9 @@
                         </v-list-item-content>
 
                         <v-list-item-avatar
-                            tile
-                            size="80"
                             color="#9652ff"
+                            size="80"
+                            tile
                         ></v-list-item-avatar>
                     </v-list-item>
 
@@ -178,7 +176,7 @@
                 </v-card>
             </v-col>
         </v-row>
-        <v-row style="padding: 23px">
+        <v-row class="d-flex">
             <v-col
                 cols="12"
                 md="4"
@@ -196,9 +194,9 @@
                         </v-list-item-content>
 
                         <v-list-item-avatar
-                            tile
-                            size="80"
                             color="#9652ff"
+                            size="80"
+                            tile
                         ></v-list-item-avatar>
                     </v-list-item>
 
@@ -224,13 +222,13 @@
                         </v-list-item-content>
 
                         <v-list-item-avatar
-                            tile
-                            size="80"
                             color="#9652ff"
+                            size="80"
+                            tile
                         ></v-list-item-avatar>
                     </v-list-item>
 
-                    <v-card-actions >
+                    <v-card-actions>
                         <v-btn style="color: white;background-color:#9652ff">go to the class</v-btn>
                     </v-card-actions>
                 </v-card>
@@ -252,9 +250,9 @@
                         </v-list-item-content>
 
                         <v-list-item-avatar
-                            tile
-                            size="80"
                             color="#9652ff"
+                            size="80"
+                            tile
                         ></v-list-item-avatar>
                     </v-list-item>
 
@@ -264,25 +262,102 @@
                 </v-card>
             </v-col>
         </v-row>
+        <v-row class="d-flex">
+            <v-col
+                cols="12"
+                md="4"
+            >
+                <v-card
+                    class="mx-auto"
+                    max-width="344"
+                    outlined
+                >
+                    <v-list-item three-line>
+                        <v-list-item-content>
+                            <div class="overline mb-4">Class</div>
+                            <v-list-item-title class="headline mb-1">Physics</v-list-item-title>
+                            <v-list-item-subtitle>section:10</v-list-item-subtitle>
+                        </v-list-item-content>
 
+                        <v-list-item-avatar
+                            color="#9652ff"
+                            size="80"
+                            tile
+                        ></v-list-item-avatar>
+                    </v-list-item>
 
+                    <v-card-actions>
+                        <v-btn style="color: white;background-color:#9652ff">go to the class</v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-col>
+            <v-col
+                cols="12"
+                md="4"
+            >
+                <v-card
+                    class="mx-auto"
+                    max-width="344"
+                    outlined
+                >
+                    <v-list-item three-line>
+                        <v-list-item-content>
+                            <div class="overline mb-4">Class</div>
+                            <v-list-item-title class="headline mb-1">Biology</v-list-item-title>
+                            <v-list-item-subtitle>section:1</v-list-item-subtitle>
+                        </v-list-item-content>
 
+                        <v-list-item-avatar
+                            color="#9652ff"
+                            size="80"
+                            tile
+                        ></v-list-item-avatar>
+                    </v-list-item>
 
+                    <v-card-actions>
+                        <v-btn style="color: white;background-color:#9652ff">go to the class</v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-col>
+            <v-col
+                cols="12"
+                md="4"
+            >
+                <v-card
+                    class="mx-auto"
+                    max-width="344"
+                    outlined
+                >
+                    <v-list-item three-line>
+                        <v-list-item-content>
+                            <div class="overline mb-4">Class</div>
+                            <v-list-item-title class="headline mb-1">Chemistry</v-list-item-title>
+                            <v-list-item-subtitle>section:5</v-list-item-subtitle>
+                        </v-list-item-content>
 
+                        <v-list-item-avatar
+                            color="#9652ff"
+                            size="80"
+                            tile
+                        ></v-list-item-avatar>
+                    </v-list-item>
+
+                    <v-card-actions>
+                        <v-btn style="color: white;background-color:#9652ff">go to the class</v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-col>
+        </v-row>
     </v-container>
 </template>
 <script>
+    import dilog from "./updateprofile_dilog";
+
     export default {
+        components: {dilog},
         data() {
             return {
-                team: [
-                    { name: 'The Net Ninja', role: 'Web developer', avatar: '/avatar-1.png' },
-                    { name: 'Ryu', role: 'Graphic designer', avatar: '/avatar-2.png' },
-                    { name: 'Chun Li', role: 'Web developer', avatar: '/avatar-3.png' },
-                    { name: 'Gouken', role: 'Social media maverick', avatar: '/avatar-4.png' },
-                    { name: 'Yoshi', role: 'Sales guru', avatar: '/avatar-5.png'}
 
-                ],
                 desserts: [
                     {
                         name: 'Full Name:',
@@ -310,9 +385,11 @@
 </script>
 <style>
     td {
-        padding:0;
+        padding: 0;
     }
-    thead {  text-decoration: none;
-          font-size:10000px;
-        }
+
+    thead {
+        text-decoration: none;
+        font-size: 10000px;
+    }
 </style>

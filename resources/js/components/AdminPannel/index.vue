@@ -12,13 +12,13 @@
             >
                 <v-tab
 
-                    style="color:white;font-size: 100%"
+                    style="color:white;font-size: 15px"
                     :key="item.name"
                     v-for="item in items"
 
                 >
 
-                        {{ item.name }}
+                    {{ item.name }}
 
 
                 </v-tab>
@@ -26,28 +26,18 @@
 
             <v-tabs-items v-model="tab">
                 <v-tab-item>
-                    <v-card style="padding-bottom: 10%;padding-top:5%">
-                        <Information></Information>
+                    <v-card style="padding-bottom: 1000%;padding-top:5%">
+                        <AllStudent></AllStudent>
                     </v-card>
                 </v-tab-item>
                 <v-tab-item>
-                    <v-card style="padding: 10%;padding-top:0%">
-                        <Announcement></Announcement >
+                    <v-card style="padding-bottom: 1000%;padding-top:5%">
+                        <AllTeacher></AllTeacher >
                     </v-card>
                 </v-tab-item>
                 <v-tab-item>
-                    <v-card style="padding: 10%;padding-top:0%">
-                        <Assaignment></Assaignment>
-                    </v-card>
-                </v-tab-item>
-                <v-tab-item>
-                    <v-card style="padding: 10%;padding-top:5%;padding-bottom: 1000%">
-                        <Student></Student>
-                    </v-card>
-                </v-tab-item>
-                <v-tab-item>
-                    <v-card style="padding: 10%;padding-top:5%;padding-bottom: 1000%">
-                        <Exam></Exam>
+                    <v-card style="padding-bottom: 1000%;padding-top:5%">
+                        <Request></Request>
                     </v-card>
                 </v-tab-item>
             </v-tabs-items>
@@ -58,43 +48,32 @@
 
 </template>
 <script>
-    import invite_dilog from "./invite_dilog";
-    import dilog from './Material_dilog.vue';
-    import Information from "./Information.vue";
-    import Announcement from "./Announcement.vue";
-    import Assaignment from "./Assaignment.vue";
-    import Student from "./Student.vue";
-    import Exam from "./Exam.vue";
+    import invite_dilog from "../invite_dilog";
+    import dilog from '../Material_dilog.vue';
+    import AllStudent from "./AllStudent.vue";
+    import AllTeacher from "./AllTeacher.vue";
+    import Request from "./Request.vue";
 
     export default {
 
-        components: {dilog, invite_dilog,Information,Announcement,Assaignment,Student,Exam},
+        components: {dilog, invite_dilog,AllStudent,AllTeacher,Request},
         data() {
             return {
                 tab: null,
                 items: [
                     {
-                        name: 'INFORMATION',
+                        name: 'All Student',
                         to: '/information',
                     },
                     {
-                        name: 'ANNOUNCEMENTS',
+                        name: 'All Teacher',
                         to: '/announcement',
 
                     },
                     {
-                        name: 'ASSIGNMENTS',
+                        name: 'Request',
                         to: '/assignment',
 
-                    },
-                    {
-                        name: 'STUDENTS',
-                        to: '/student',
-
-                    },
-                    {
-                        name: 'Exam',
-                        to: '/discussion'
                     },
 
                 ],

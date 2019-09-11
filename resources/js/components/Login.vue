@@ -31,7 +31,7 @@
                             <v-card-text>
                                 <v-form>
                                     <v-text-field
-                                        label="Login"
+                                        label="UserName"
                                         name="login"
                                         prepend-icon="person"
                                         type="text"
@@ -48,7 +48,7 @@
                             </v-card-text>
                             <v-card-actions>
                                 <v-spacer></v-spacer>
-                                <v-btn color="#9652ff">Login</v-btn>
+                                <v-btn style="background-color:#9652ff;color: white;" >Login</v-btn>
                             </v-card-actions>
                         </v-card>
                     </v-flex>

@@ -190,8 +190,8 @@
                 dialog: false,
                 drawer: null,
                 items: [
-                    {icon: 'contacts', text: 'profile',to:"/profile"},
-                    {icon: 'contacts', text: 'login',to:"/login"},
+                    {icon: 'account_circle', text: 'profile',to:"/profile"},
+                    {icon: 'exit_to_app', text: 'login',to:"/login"},
                     {icon: 'contacts', text: 'Sign Up',to:"/signup"},
 
                     {
@@ -214,6 +214,7 @@
                         ],
                     },
                     {icon: 'border_all', text: 'Calender View',to:'/calender'},
+                    {icon: 'dashboard', text: 'Admin DashBoard',to:"/admin/dashboard"},
                 ],
             }
         }

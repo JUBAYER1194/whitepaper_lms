@@ -61,7 +61,7 @@
     </v-container>
 </template>
 <script>
-    import details_dilog from "../components/AdminPannel/details_dilog.vue";
+    import details_dilog from "./details_dilog.vue";
     export default {
         components:{details_dilog},
         data () {

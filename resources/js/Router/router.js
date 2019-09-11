@@ -3,15 +3,16 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 import Login from'../components/Login.vue'
-import SignUp from'../components/Signup.vue'
-import Calender from'../components/Calender.vue'
-import Profile from'../components/Profile.vue'
-import Class from'../components/Class.vue'
-import Announcement from '../components/Announcement.vue'
-import Discussion from '../components/Discussion.vue'
-import Assignment from '../components/Assaignment.vue'
-import Student from '../components/Student.vue'
+import SignUp from'../components/Signup.vue';
+import Calender from'../components/Calender.vue';
+import Profile from'../components/Profile.vue';
+import Class from'../components/Class.vue';
+import Announcement from '../components/Announcement.vue';
+import Discussion from '../components/Discussion.vue';
+import Assignment from '../components/Assaignment.vue';
+import Student from '../components/Student.vue';
 import Information from "../components/Information.vue";
+import Admin from "../components/AdminPannel/index.vue"
 
 
 const routes = [
@@ -26,6 +27,7 @@ const routes = [
     { path: '/discussion', component: Discussion },
     { path: '/student', component: Student },
     { path: '/information', component: Information},
+    { path: '/admin/dashboard', component: Admin},
 
 
 ]

@@ -46,22 +46,25 @@
                         </v-card>
                     </v-tab-item>
                     <v-tab-item>
-                        <v-card flat>
-                            <v-card-text style="margin-left: 750px">
+                        <v-card
+                                class="mx-auto"
+                                flat
+                                max-width="100%">
+                            <v-card-text style="float: right">
                                 <dilog></dilog>
                             </v-card-text>
 
                             <v-card-text>
 
-                                <v-row style="padding: 23px">
+                                <v-row >
                                     <v-col
                                         cols="12"
                                         md="4"
                                     >
                                         <v-card
                                             class="mx-auto"
-                                            max-width="344"
-                                            outlined
+                                            max-width="100%"
+
                                         >
                                             <v-list-item three-line>
                                                 <v-list-item-content>
@@ -71,12 +74,6 @@
                                                     <v-list-item-subtitle>some description</v-list-item-subtitle>
                                                     <v-list-item-subtitle>10th August 2019</v-list-item-subtitle>
                                                 </v-list-item-content>
-
-                                                <v-list-item-avatar
-                                                    color="#9652ff"
-                                                    size="80"
-                                                    tile
-                                                ></v-list-item-avatar>
                                             </v-list-item>
 
                                             <v-card-actions>
@@ -90,8 +87,8 @@
                                     >
                                         <v-card
                                             class="mx-auto"
-                                            max-width="344"
-                                            outlined
+                                            max-width="100%"
+
                                         >
                                             <v-list-item three-line>
                                                 <v-list-item-content>
@@ -102,11 +99,6 @@
                                                     <v-list-item-subtitle>10th August 2019</v-list-item-subtitle>
                                                 </v-list-item-content>
 
-                                                <v-list-item-avatar
-                                                    color="#9652ff"
-                                                    size="80"
-                                                    tile
-                                                ></v-list-item-avatar>
                                             </v-list-item>
 
                                             <v-card-actions>
@@ -120,8 +112,8 @@
                                     >
                                         <v-card
                                             class="mx-auto"
-                                            max-width="344"
-                                            outlined
+                                            max-width="100%"
+
                                         >
                                             <v-list-item three-line>
                                                 <v-list-item-content>
@@ -132,11 +124,6 @@
                                                     <v-list-item-subtitle>10th August 2019</v-list-item-subtitle>
                                                 </v-list-item-content>
 
-                                                <v-list-item-avatar
-                                                    color="#9652ff"
-                                                    size="80"
-                                                    tile
-                                                ></v-list-item-avatar>
                                             </v-list-item>
 
                                             <v-card-actions>
