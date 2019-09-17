@@ -1,28 +1,26 @@
 <template>
-    <v-container>
-        <v-card color="basil" style="margin-bottom: 20px;">
-            <v-card-title class="text-center justify-center py-6">
-            </v-card-title>
-
+    <div>
+        <div >
             <v-tabs
-                background-color="transparent"
-                color="white"
+                color="grey lighten-2"
+                flat
                 grow
                 v-model="tab"
+
+
+
             >
                 <v-tab
-
-                    style="color:white;font-size: 100%"
                     :key="item.name"
                     v-for="item in items"
-
+                    outlined
+                    tile
+                    style="font-size: 100%"
                 >
-
-                        {{ item.name }}
-
-
+                    {{ item.name }}
                 </v-tab>
             </v-tabs>
+        </div>
 
             <v-tabs-items v-model="tab">
                 <v-tab-item>
@@ -51,10 +49,10 @@
                     </v-card>
                 </v-tab-item>
             </v-tabs-items>
-        </v-card>
 
 
-    </v-container>
+
+    </div>
 
 </template>
 <script>
@@ -125,11 +123,12 @@
 </script>
 <style>
     /* Helper classes */
-    .basil {
+    #basil {
         background-color: #b380ff !important;
     }
 
     .basil--text {
         color: white !important;
     }
+
 </style>

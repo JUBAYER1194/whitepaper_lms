@@ -15,7 +15,7 @@
 <div id="app">
 
     <v-app>
-        <home></home>
+        <signup></signup>
     </v-app>
 
 </div>

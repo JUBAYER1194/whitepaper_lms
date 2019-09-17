@@ -13,6 +13,9 @@ import Assignment from '../components/Assaignment.vue';
 import Student from '../components/Student.vue';
 import Information from "../components/Information.vue";
 import Admin from "../components/AdminPannel/index.vue"
+import lms from "../components/AppHome.vue";
+import AppHome from "../components/AppHome";
+import Logout from "../components/Logout";
 
 
 const routes = [
@@ -20,14 +23,18 @@ const routes = [
      { path: '/login', component: Login },
      { path: '/signup', component: SignUp },
     { path: '/calender', component: Calender },
-    { path: '/profile', component: Profile },
-    { path: '/class', component: Class },
+    { path: '/profile', component: Profile,name:'profile'},
+    { path: '/class', component: Class,name:'class'},
     { path: '/announcement', component: Announcement },
     { path: '/assignment', component: Assignment },
     { path: '/discussion', component: Discussion },
     { path: '/student', component: Student },
     { path: '/information', component: Information},
     { path: '/admin/dashboard', component: Admin},
+    { path: '/lms', component: lms},
+    { path: '/home', component: AppHome,name:'home'},
+    { path: '/logout', component: Logout,name:'logout'},
+
 
 
 ]

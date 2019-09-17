@@ -29,11 +29,13 @@
                                 <v-spacer></v-spacer>
                             </v-toolbar>
                             <v-card-text>
-                                <v-form>
+                                <v-form
+                                >
                                     <v-text-field
                                         label="UserName"
                                         name="login"
                                         prepend-icon="person"
+                                        v-model="form.email"
                                         type="text"
                                     ></v-text-field>
 
@@ -41,6 +43,7 @@
                                         id="password"
                                         label="Password"
                                         name="password"
+                                        v-model="form.password"
                                         prepend-icon="lock"
                                         type="password"
                                     ></v-text-field>
@@ -48,7 +51,8 @@
                             </v-card-text>
                             <v-card-actions>
                                 <v-spacer></v-spacer>
-                                <v-btn style="background-color:#9652ff;color: white;" >Login</v-btn>
+                                <v-btn style="background-color:#9652ff;color: white;" type="submit" @click="login">Login</v-btn>
+                                <v-btn style="background-color:#9652ff;color: white;" type="submit" @click="signup" >Signup</v-btn>
                             </v-card-actions>
                         </v-card>
                     </v-flex>
@@ -62,11 +66,32 @@
     export default {
         data ()  {
             return{
-                drawer: null,
+                form:{
+                    email:null,
+                    password:null,
+                },
+
 
             }
 
-        }
+        },
+        created(){
+            if(User.loggedIn()){
+                this.$router.push({name:'home'})
+                // window.location = '/'
+            }
+
+        },
+        methods:{
+            login(){
+               User.login(this.form)
+                //this.$router.push({name:'home'})
+            },
+            signup(){
+                window.location = '/signups'
+            }
+
+        },
     }
 
 

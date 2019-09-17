@@ -13,7 +13,10 @@
 
         <v-card-text>
             <v-card>
-                <v-tabs vertical>
+                <v-tabs
+                    flat
+                    grow
+                >
                     <v-tab>
                         <v-icon left>mdi-account</v-icon>
                         Class Information
@@ -30,7 +33,7 @@
                     <v-tab-item>
                         <v-card class="mx-auto"
                                 flat
-                                max-width="50%"
+                                max-width="100%"
                         >
                             <v-card-text>
                                 <v-simple-table>
@@ -140,11 +143,11 @@
                     </v-tab-item>
                     <v-tab-item>
                         <v-card class="mx-auto" flat
-                                max-width="50%"
+                                max-width="100%"
 
                         >
                             <v-card-text>
-                                <v-col>
+
                                     <v-card
                                         color="white"
                                         dark
@@ -167,7 +170,7 @@
                                             <invite_dilog></invite_dilog>
                                         </v-card-actions>
                                     </v-card>
-                                </v-col>
+
 
                             </v-card-text>
                         </v-card>

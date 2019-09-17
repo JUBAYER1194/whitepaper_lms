@@ -1,38 +1,25 @@
 <template>
-    <v-container>
+
         <v-card
-            max-width="1000"
-            class="mx-auto"
-            height="750"
-            width="700"
-            style="float: left;"
+            class="mx-auto d-flex flex-wrap"
+            max-width="100%"
             flat
+            style="padding-top: 5%"
 
         >
-            <v-toolbar
-                color="#9652ff"
-                dark
-            >
-                <v-toolbar-title>All Student</v-toolbar-title>
-                <v-toolbar-title style="padding-left: 60%">Action</v-toolbar-title>
 
-                <div class="flex-grow-1"></div>
 
-            </v-toolbar>
-            <v-list>
-                <v-list-item
+                <div
                     v-for="item in items"
                     :key="item.title"
                     @click=""
+                    style="padding:4% "
                 >
-                    <v-list-item-avatar>
-                        <v-img :src="item.avatar"></v-img>
-                    </v-list-item-avatar>
-                    <v-list-item-content>
-                        <v-list-item-title v-text="item.title"></v-list-item-title>
-                    </v-list-item-content>
+                    <div>
 
-                    <v-list-item-content>
+                        <v-img style="height:80%;width: 80%" :src="item.avatar"></v-img>
+                        {{item.title}}
+
                         <v-row>
                             <v-col
                                 cols="12"
@@ -47,18 +34,18 @@
                                 cols="12"
                                 md="6"
                             >
-                                <v-list-item-title>
+
                                     <v-btn
-                                        style="float: right;background-color:darkred;color: white;display: inline"
+                                        style="float: right;background-color:darkred;color: white;width:100%;"
                                     >Remove</v-btn>
-                                </v-list-item-title>
+
                             </v-col>
                         </v-row>
-                    </v-list-item-content>
-                </v-list-item>
-            </v-list>
+                </div>
+                </div>
+
         </v-card>
-    </v-container>
+
 </template>
 <script>
     import details_dilog from "../components/AdminPannel/details_dilog.vue";

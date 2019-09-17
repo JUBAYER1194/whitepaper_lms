@@ -15,6 +15,13 @@ import router from './Router/router.js'
 import '@mdi/font/css/materialdesignicons.css'
 Vue.use(Vuetify)
 const vuetifyOptions = {}
+import  User from './Helpers/User'
+window.User =User
+import  Exception from './Helpers/Exception'
+window.Exception =Exception
+window.EventBus = new Vue();
+
+
 
 
 // const files = require.context('./', true, /\.vue$/i)
@@ -22,8 +29,9 @@ const vuetifyOptions = {}
 
 
 
-Vue.component('AppHome', require('./components/AppHome.vue').default);
-
+Vue.component('home', require('./components/AppHome.vue').default);
+Vue.component('login', require('./components/Login.vue').default);
+Vue.component('signup', require('./components/Signup.vue').default);
 
 
 const app = new Vue({

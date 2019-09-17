@@ -5,8 +5,8 @@
             <template v-slot:activator="{ on }">
                 <v-btn
                     v-on="on"
-                    style="float: right;background-color: #9652ff;color: white"
-                >View Profile</v-btn>
+                    style="float: right;background-color: #9652ff;color: white;width: 100%"
+                >Profile</v-btn>
             </template>
             <v-card>
                 <v-card-title>
@@ -80,7 +80,7 @@
                                                 <th style="background-color: #9652ff"></th>
                                                 <th
                                                     class="white--text"
-                                                    style="font-size: large;padding-left: 0px;background-color: #9652ff;"
+                                                    style="font-size: large;background-color: #9652ff;"
 
                                                 >
                                                     Profile Information </th>

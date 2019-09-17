@@ -1,19 +1,41 @@
 <template>
     <v-card
-        class="mx-auto"
+        class="mx-auto d-flex flex-wrap"
         max-width="100%"
         flat
-        style="padding: 50px;margin-top: 50px">
-        <v-container>
+        style="padding-top: 5%"
+
+        >
+
        <dilog></dilog>
+        <v-row class="d-flex">
+            <v-col
+                cols="12"
+                md="3"
+            >
 
-        <H2
-            style="text-align:center;color: white;background-color: #9652ff;margin-left: 30%;margin-right: 30%"
-       >
-            All Announcement
-        </H2>
+                </v-col>
+            <v-col
+                cols="12"
+                md="6"
+            >
+                <h1
+                    class="sidebar"
+                    style="text-align:center;font-size:140%;background-color:#9652ff;color: white"
+                >
+                    Announcements
+                </h1>
+            </v-col>
+            <v-col
+                cols="12"
+                md="4"
+            >
 
-        <v-row style="padding: 23px;margin-top:5%;">
+            </v-col>
+        </v-row>
+
+
+        <v-row style="margin-top:5%;">
             <v-col
                 cols="12"
                 md="4"
@@ -22,7 +44,7 @@
                     class="mx-auto"
                     color="#9652ff"
                     dark
-                    max-width="400"
+                    max-width="100%"
 
                 >
                     <v-card-title>
@@ -32,9 +54,9 @@
                         >
                             mdi-twitter
                         </v-icon>
-                        <span class="title font-weight-white">Exam on 10th</span>
+                        <span class="title font-weight " style="color:darkred;">vacation will start</span>
                     </v-card-title>
-                    <v-card-text style="padding-left: 50px">
+                    <v-card-text style="padding-left: 10%">
                    20th August 2019
                    </v-card-text>
 
@@ -68,7 +90,7 @@
                     class="mx-auto"
                     color="#9652ff"
                     dark
-                    max-width="400"
+                    max-width="100%"
 
                 >
                     <v-card-title>
@@ -78,9 +100,9 @@
                         >
                             mdi-twitter
                         </v-icon>
-                        <span class="title font-weight-white">Exam on 10th</span>
+                        <span class="title font-weight " style="color:darkred;">vacation will start</span>
                     </v-card-title>
-                    <v-card-text style="padding-left: 50px">
+                    <v-card-text style="padding-left: 10%">
                         20th August 2019
                     </v-card-text>
 
@@ -114,7 +136,7 @@
                     class="mx-auto"
                     color="#9652ff"
                     dark
-                    max-width="400"
+                    max-width="100%"
 
                 >
                     <v-card-title>
@@ -124,9 +146,9 @@
                         >
                             mdi-twitter
                         </v-icon>
-                        <span class="title font-weight-white">Exam on 10th</span>
+                        <span class="title font-weight " style="color:darkred;">vacation will start</span>
                     </v-card-title>
-                    <v-card-text style="padding-left: 50px">
+                    <v-card-text style="padding-left: 10%">
                         20th August 2019
                     </v-card-text>
 
@@ -153,8 +175,10 @@
                 </v-card>
             </v-col>
 
+
+
         </v-row>
-        </v-container>
+
     </v-card>
 </template>
 <script>
@@ -164,3 +188,11 @@
     }
 
 </script>
+<style>
+    /*@media screen and (max-width: 400px) {*/
+    /*    .sidebar{*/
+    /*        font-size:200%*/
+    /*    }*/
+    /*}*/
+
+</style>

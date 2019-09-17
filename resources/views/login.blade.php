@@ -15,7 +15,7 @@
 <div id="app">
 
     <v-app>
-        <home></home>
+        <login></login>
     </v-app>
 
 </div>

@@ -94,6 +94,7 @@
                      :key="item.text"
                      @click=""
                      v-else
+                     v-show="item.show"
                  >
                      <v-list-item-action>
                          <v-icon>{{ item.icon }}</v-icon>
@@ -102,7 +103,7 @@
                          <v-list-item-title>
                              <div class="hidden-sm-and-down">
                              <router-link class="white--text"
-                              :to="item.to">
+                              :to="item.to" >
                                  {{item.text}}
                              </router-link>
                              </div>
@@ -171,6 +172,7 @@
              color="grey lighten-2"
              depressed
              class="text-uppercase grey--text"
+             href="/logout"
 
          >
              <span>Sign Out</span>
@@ -186,13 +188,16 @@
     {
         components: { dilog },
         data(){
+
             return {
+                loggedIn: User.loggedIn(),
                 dialog: false,
                 drawer: null,
                 items: [
-                    {icon: 'account_circle', text: 'profile',to:"/profile"},
-                    {icon: 'exit_to_app', text: 'login',to:"/login"},
-                    {icon: 'contacts', text: 'Sign Up',to:"/signup"},
+                    {icon: 'account_circle', text: 'profile',to:"/profile",show: true },
+                    {icon: 'exit_to_app', text: 'login',to:"/login",show: !User.loggedIn()},
+                    {icon: 'contacts', text: 'Sign Up',to:"/signup",show: !User.loggedIn()},
+                    //{icon: 'contacts', text: 'Logout',to:"/logout",show: User.loggedIn()},
 
                     {
                         icon: 'keyboard_arrow_up',
@@ -200,7 +205,7 @@
                         text: 'ClassRoom',
                         model: false,
                         children: [
-                            {icon: 'public', text: 'Physics',to:'/class'},
+                            {icon: 'public', text: 'Physics',to:'/class',show: true },
                         ],
                     },
                     {
@@ -209,15 +214,23 @@
                         text: 'Exam Result',
                         model: false,
                         children: [
-                            {icon: 'public', text: 'Physics',to:'/login'},
+                            {icon: 'public', text: 'Physics',to:'/login',show: true },
 
                         ],
                     },
-                    {icon: 'border_all', text: 'Calender View',to:'/calender'},
-                    {icon: 'dashboard', text: 'Admin DashBoard',to:"/admin/dashboard"},
+                    {icon: 'border_all', text: 'Calender View',to:'/calender',show: true },
+                    {icon: 'dashboard', text: 'Admin DashBoard',to:"/admin/dashboard",show: true },
                 ],
             }
-        }
+        },
+        created() {
+            EventBus.$on("logout", () => {
+                User.logout();
+            });
+        },
+        methods:{
+
+        },
     }
 
 </script>

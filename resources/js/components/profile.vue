@@ -1,4 +1,5 @@
 <template>
+
     <v-container class="grey lighten-4" style="padding-bottom:15%;">
         <!-- Stack the columns on mobile by making one full-width and the other half-width -->
         <v-row class="d-flex" style="margin-bottom: 5%">
@@ -51,14 +52,14 @@
 
             </v-col>
             <v-col
-                cols="6"
+                cols="12"
                 md="8"
             >
 
                 <v-card
                     class="mx-auto"
                     max-width="800"
-                    tile
+                    til
                 >
                     <v-card-text>
                         <v-simple-table>
@@ -67,7 +68,8 @@
                                 <th style="background-color: #9652ff"></th>
                                 <th
                                     class="white--text"
-                                    style="font-size: large;padding-left: 0%;background-color: #9652ff;"
+                                    style="font-size: large;background-color: #9652ff;"
+
 
                                 >
                                     Profile Information
@@ -103,7 +105,8 @@
                     <v-list-item three-line>
                         <v-list-item-content>
                             <div class="overline mb-4">Class</div>
-                            <v-list-item-title class="headline mb-1">Physics</v-list-item-title>
+                            <v-list-item-title class="headline mb-1">
+                                Physics</v-list-item-title>
                             <v-list-item-subtitle>section:10</v-list-item-subtitle>
                         </v-list-item-content>
 
@@ -115,7 +118,10 @@
                     </v-list-item>
 
                     <v-card-actions>
-                        <v-btn style="color: white;background-color:#9652ff">go to the class</v-btn>
+                        <v-btn style="color: white;background-color:#9652ff" href="/class">
+                            go to the class
+
+                        </v-btn>
                     </v-card-actions>
                 </v-card>
             </v-col>
@@ -352,16 +358,18 @@
 </template>
 <script>
     import dilog from "./updateprofile_dilog";
+    import Class from "./Class.vue";
 
     export default {
-        components: {dilog},
+        components: {dilog,Class},
         data() {
             return {
 
                 desserts: [
                     {
-                        name: 'Full Name:',
+                        name: 'Name:',
                         calories: 'Jubayer Ahmed',
+                        to:'/class'
                     },
                     {
                         name: 'Email:',
