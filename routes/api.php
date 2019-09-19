@@ -1,6 +1,10 @@
 <?php
 
 
+Route::get('/role','ApiRoleController@index')->name('role');
+route::get('/information/{id}','ApiUserController@index');
+route::patch('/information/{id}','ApiUserController@update');
+
 Route::group([
 
     'middleware' => 'api',
@@ -15,3 +19,4 @@ Route::group([
     Route::post('signup', 'AuthController@signup');
 
 });
+

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,6 +12,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\User::class,10)->create();
+        //factory(App\User::class,10)->create();
+       Role::create([
+           'name'=>'Super Admin'
+       ]);
+        Role::create([
+            'name'=>'Admin'
+        ]);
+        Role::create([
+            'name'=>'Teacher'
+        ]);
+        Role::create([
+            'name'=>'Student'
+        ]);
     }
 }

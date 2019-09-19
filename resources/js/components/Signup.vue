@@ -27,9 +27,16 @@
                             <v-card-text>
                                 <v-form @submit.prevent="signup">
                                     <v-text-field
-                                        label="Name"
-                                        name="name"
-                                        v-model="form.name"
+                                        label="First Name"
+                                        name="first_name"
+                                        v-model="form.first_name"
+                                        prepend-icon="person"
+                                        type="text"
+                                    ></v-text-field>
+                                    <v-text-field
+                                        label="Last Name"
+                                        name="last_name"
+                                        v-model="form.last_name"
                                         prepend-icon="person"
                                         type="text"
                                     ></v-text-field>
@@ -37,15 +44,8 @@
                                         label="Email"
                                         name="email"
                                         v-model="form.email"
-                                        prepend-icon="person"
+                                        prepend-icon="email"
                                         type="email"
-                                    ></v-text-field>
-                                    <v-text-field
-                                        label="NID No"
-                                        name="nid"
-                                        v-model="form.nid"
-                                        prepend-icon="person"
-                                        type="number"
                                     ></v-text-field>
                                     <v-text-field
                                         id="password"
@@ -63,13 +63,14 @@
                                         prepend-icon="lock"
                                         type="password"
                                     ></v-text-field>
-                                    <v-text-field
-                                        label=""
-                                        name="login"
-                                        prepend-icon="person"
-                                        type="file"
-                                        v-model="form.file"
-                                    ></v-text-field>
+                                    <v-select
+                                        :items="roles"
+                                        item-text="name"
+                                        item-value="id"
+                                        label="Select your Role"
+                                        prepend-icon="supervisor_account"
+
+                                    ></v-select>
                                 </v-form>
                             </v-card-text>
                             <v-card-actions>
@@ -96,33 +97,42 @@
         data ()  {
             return{
                 form:{
+                    first_name:null,
+                    last_name:null,
                     email:null,
                     password:null,
-                    name:null,
-                    password_confirmation:null,
-                    file:null,
-                    nid:null,
-
+                    role_id:null,
+                    password_confirmation: null,
 
                 },
-                errors:{}
+                roles:{},
+                errors:{},
+
 
             }
 
             },
+        created(){
+
+            if(User.loggedIn()){
+                window.location = '/home'
+            }
+
+          axios.get('/api/role')
+              .then(res =>this.roles=res.data.data)
+              .catch(error =>console.log(error.response.data))
+        },
 
         methods:
             {
-                signup(){
-                    axios.post('/api/auth/signup',this.form)
-                        .then(res=> {
-                            User.responseAfterLogin(res)
-                            this.$router.push({name:'forum'})})
-                        .catch(error =>this.errors = error.response.data.errors)
+                signup() {
+                    axios.post('/api/auth/signup', this.form)
+                        .then(res => window.location = '/')
                 },
                 login(){
                     window.location = '/'
-                }
+                },
+
             }
 
         }

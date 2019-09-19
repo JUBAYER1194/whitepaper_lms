@@ -12,11 +12,14 @@
 */
 
 
+
+Route::get('/dummy','DummyController@dummy');
 Route::view('/home','home');
 Route::view('/','login');
 Route::view('/signups','Signup');
 Route::view('/{any}','home');
 Route::view('/{any}/{any1}','home');
+
 
 Auth::routes();
 

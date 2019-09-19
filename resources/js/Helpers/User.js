@@ -46,7 +46,7 @@ login(data){
 
  logout(){
     AppStorage.clear()
-     window.location='/login'
+     window.location='/'
 
  }
 name(){

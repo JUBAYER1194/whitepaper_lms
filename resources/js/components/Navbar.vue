@@ -1,4 +1,5 @@
 <template>
+    <div>
  <nav color="grey lighten-3">
      <v-navigation-drawer
          :clipped="$vuetify.breakpoint.lgAndUp"
@@ -10,8 +11,6 @@
          fixed
          width="300"
          flat
-
-
 
      >
          <v-list dense
@@ -172,21 +171,23 @@
              color="grey lighten-2"
              depressed
              class="text-uppercase grey--text"
-             href="/logout"
+
 
          >
-             <span>Sign Out</span>
+             <span @click="created">Sign Out</span>
              <v-icon right>exit_to_app</v-icon>
          </v-btn>
 
      </v-app-bar>
  </nav>
+    </div>
 </template>
 <script>
-    import dilog from './Dilog.vue'
+    import dilog from './Dilog.vue';
+
     export default
     {
-        components: { dilog },
+        components: { dilog},
         data(){
 
             return {
@@ -223,13 +224,11 @@
                 ],
             }
         },
-        created() {
-            EventBus.$on("logout", () => {
-                User.logout();
-            });
-        },
-        methods:{
 
+        methods:{
+            created() {
+                    User.logout();
+            },
         },
     }
 

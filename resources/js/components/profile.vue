@@ -40,9 +40,9 @@
                                     style="color: #0d47a1"
                                 >
                                     <v-list-item-content>
-                                        <v-list-item-title class="title">Jubayer Ahmed</v-list-item-title>
-                                        <v-list-item-subtitle style="padding-bottom:5%">Teacher</v-list-item-subtitle>
-                                        <dilog></dilog>
+                                        <v-list-item-title class="title text-capitalize">{{form.first_name}}  {{form.last_name}}</v-list-item-title>
+                                        <v-list-item-subtitle style="padding-bottom:5%">{{form.role}}</v-list-item-subtitle>
+                                        <dilog :data="form"></dilog>
                                     </v-list-item-content>
                                 </v-list-item>
                             </v-col>
@@ -78,10 +78,45 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr :key="item.name" v-for="item in desserts">
-                                <td class="font-weight-black">{{ item.name }}</td>
-                                <td class="black--text">{{ item.calories }}</td>
-
+                            <tr>
+                                <td class="font-weight-black">Name:</td>
+                                <td class="black--text text-capitalize">{{form.first_name}} {{form.last_name}}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-black ">Father’s Name:</td>
+                                <td class="black--text text-capitalize">{{form.father_name}}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-black">Mother’s Name:</td>
+                                <td class="black--text text-capitalize">{{form.mother_name}}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-black">Address:</td>
+                                <td class="black--text  text-capitalize">{{form.Address}}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-black">Email:</td>
+                                <td class="black--text">{{form.email}}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-black">Phone:</td>
+                                <td class="black--text text-capitalize">{{form.phone}}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-black">Class Teacher’s Name:</td>
+                                <td class="black--text text-capitalize">{{form.class_teacher_name}}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-black">Parent’s Contact:</td>
+                                <td class="black--text text-capitalize">{{form.parents_contact}}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-black">Nid:</td>
+                                <td class="black--text text-capitalize">{{form.nid}}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-black">Role:</td>
+                                <td class="black--text text-capitalize">{{form.role}}</td>
                             </tr>
                             </tbody>
                         </v-simple-table>
@@ -106,7 +141,8 @@
                         <v-list-item-content>
                             <div class="overline mb-4">Class</div>
                             <v-list-item-title class="headline mb-1">
-                                Physics</v-list-item-title>
+                                Physics
+                            </v-list-item-title>
                             <v-list-item-subtitle>section:10</v-list-item-subtitle>
                         </v-list-item-content>
 
@@ -118,7 +154,7 @@
                     </v-list-item>
 
                     <v-card-actions>
-                        <v-btn style="color: white;background-color:#9652ff" href="/class">
+                        <v-btn href="/class" style="color: white;background-color:#9652ff">
                             go to the class
 
                         </v-btn>
@@ -361,34 +397,19 @@
     import Class from "./Class.vue";
 
     export default {
-        components: {dilog,Class},
+        components: {dilog, Class},
         data() {
             return {
-
-                desserts: [
-                    {
-                        name: 'Name:',
-                        calories: 'Jubayer Ahmed',
-                        to:'/class'
-                    },
-                    {
-                        name: 'Email:',
-                        calories: 'jubayer@whitepaper.tech',
-                    },
-                    {
-                        name: 'Phone_no:',
-                        calories: '0181215641',
-                    },
-                    {
-                        name: 'Address:',
-                        calories: 'c block,bashundhara',
-                    },
-
-
-                ],
+                form:{},
 
             }
+        },
+        created() {
+            axios.get(`/api/information/1`)
+                .then(res=>this.form =res.data.data)
         }
+
+
     }
 </script>
 <style>

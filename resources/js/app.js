@@ -22,6 +22,9 @@ window.Exception =Exception
 window.EventBus = new Vue();
 
 
+import Toasted from 'vue-toasted';
+
+Vue.use(Toasted)
 
 
 // const files = require.context('./', true, /\.vue$/i)
