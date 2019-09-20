@@ -22,7 +22,7 @@
                         <v-textarea label="Address:*"  required v-model="form.Address" ></v-textarea>
                         <div class="form-group">
                             <h4>update your profile Picture:</h4>
-                            <input type="file" @change="GetImage" accept="image/*" name="image" class="form-control form-control-lg" placeholder="Large form control">
+                            <input type="file" @change="imageChanged"   class="form-control form-control-lg" placeholder="Large form control">
                         </div>
                     </v-container>
 
@@ -64,24 +64,18 @@
         },
         methods: {
             update() {
-                axios.patch(`/api/information/1`, this.form)
+                axios.put(`/api/information/1`, this.form)
                     .then(res => this.dialog = false,this.$toasted.show('profile Updated',{type:'success'}))
             },
-            GetImage(e) {
-                let image = e.target.files[0];
-
-               let form = new FormData();
-               form.append('image',image);
-               this.form.image=form;
+            imageChanged(e){
+                var fileReader=new FileReader()
+                fileReader.readAsDataURL(e.target.files[0])
+                fileReader.onload = (e) => {
+                    this.form.image=e.target.result
+                }
+                console.log(this.form.image)
 
             },
-            read(image){
-                let render = new FileReader();
-                render.readAsDataURL(image);
-                render.onload = e => {
-
-                }
-            }
 
         }
 

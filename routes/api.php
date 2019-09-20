@@ -3,7 +3,7 @@
 
 Route::get('/role','ApiRoleController@index')->name('role');
 route::get('/information/{id}','ApiUserController@index');
-route::patch('/information/{id}','ApiUserController@update');
+route::put('/information/{id}','ApiUserController@update');
 
 Route::group([
 

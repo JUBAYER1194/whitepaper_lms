@@ -32,7 +32,7 @@
                                     size="164"
                                     tile
                                 >
-                                    <v-img src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"></v-img>
+                                    <v-img :src="'http://localhost:8000/uploads/profile/'+ form.image"></v-img>
                                 </v-avatar>
                             </v-col>
                             <v-col class="py-0">

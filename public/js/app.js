@@ -4881,23 +4881,23 @@ __webpack_require__.r(__webpack_exports__);
     update: function update() {
       var _this = this;
 
-      axios.patch("/api/information/1", this.form).then(function (res) {
+      axios.put("/api/information/1", this.form).then(function (res) {
         return _this.dialog = false;
       }, this.$toasted.show('profile Updated', {
         type: 'success'
       }));
     },
-    GetImage: function GetImage(e) {
-      var image = e.target.files[0];
-      var form = new FormData();
-      form.append('image', image);
-      this.form.image = form;
-    },
-    read: function read(image) {
-      var render = new FileReader();
-      render.readAsDataURL(image);
+    imageChanged: function imageChanged(e) {
+      var _this2 = this;
 
-      render.onload = function (e) {};
+      var fileReader = new FileReader();
+      fileReader.readAsDataURL(e.target.files[0]);
+
+      fileReader.onload = function (e) {
+        _this2.form.image = e.target.result;
+      };
+
+      console.log(this.form.image);
     }
   }
 });
@@ -44967,7 +44967,8 @@ var render = function() {
                                   _c("v-img", {
                                     attrs: {
                                       src:
-                                        "https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"
+                                        "http://localhost:8000/uploads/profile/" +
+                                        _vm.form.image
                                     }
                                   })
                                 ],
@@ -46460,11 +46461,9 @@ var render = function() {
                           staticClass: "form-control form-control-lg",
                           attrs: {
                             type: "file",
-                            accept: "image/*",
-                            name: "image",
                             placeholder: "Large form control"
                           },
-                          on: { change: _vm.GetImage }
+                          on: { change: _vm.imageChanged }
                         })
                       ])
                     ],
@@ -100367,8 +100366,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\Xampp\htdocs\lms\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\Xampp\htdocs\lms\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\3rd september 2019\lms\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\3rd september 2019\lms\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

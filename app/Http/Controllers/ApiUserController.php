@@ -16,19 +16,22 @@ class ApiUserController extends Controller
 
     }
     public function update(Request $request,User $id){
+//        \Log::info($request->all());
+        $exploded=explode(',',$request->image);
+        $decoded=base64_decode($exploded[1]);
+        if (str_contains($exploded[0],'jpeg'))
+            $extension='jpg';
+        else
+            $extension='png';
+        $fileName=str_random().'.'.$extension;
+        $path=public_path().'/uploads/profile/'.$fileName;
+        file_put_contents($path,$decoded);
 
 
-        if($request->hasFile('image'))
-        {
-//            $profile_image=$request->image;
-//            $profile_image_new_name=time().$profile_image->getClientOriginalName();
-//            $profile_image->move('uploads/profile',$profile_image_new_name);
-//            $abc=$id->update(['image'=>$profile_image_new_name]);
-//            dd($abc);
-        }
-//        $id->update($request->all());
-//
-//        return response('Update',Response::HTTP_ACCEPTED);
+
+        $id->update($request->except('image')+['image'=>$fileName]);
+
+        return response('Update',Response::HTTP_ACCEPTED);
 
     }
 }
