@@ -2,8 +2,11 @@
 
 
 Route::get('/role','ApiRoleController@index')->name('role');
-route::get('/information/{id}','ApiUserController@index');
-route::put('/information/{id}','ApiUserController@update');
+Route::get('/information/{id}','ApiUserController@index');
+Route::put('/information/{id}','ApiUserController@update');
+Route::Resource('announcement', 'AnnouncementController');
+Route::Resource('assignment','AssaignmentController');
+
 
 Route::group([
 

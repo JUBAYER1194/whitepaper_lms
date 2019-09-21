@@ -2,11 +2,11 @@
     <div>
         <v-dialog v-model="dialog" persistent max-width="600px">
             <template v-slot:activator="{ on }">
-                <v-btn v-on="on" style="float: right;margin-right:5%;color: white;background-color: #9652ff;"><v-icon>add</v-icon></v-btn>
+                <v-btn v-on="on" color="primary" depressed>Edit</v-btn>
             </template>
             <v-card>
                 <v-card-title>
-                    <span class="headline" style="color:#9652ff;">Create Announcement</span>
+                    <h3 class="headline" style="color:#9652ff;">Edit Announcement</h3>
                 </v-card-title>
                 <v-card-text>
                     <v-container>
@@ -25,40 +25,31 @@
                 <v-card-actions>
                     <div class="flex-grow-1"></div>
                     <v-btn style="background-color:#9652ff;color:white"  text @click="dialog = false">Close</v-btn>
-                    <v-btn style="background-color:#9652ff;color:white" text @click="save">Save</v-btn>
+                    <v-btn style="background-color:#9652ff;color:white" text @click="update">Save</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
-        {{user}}
+        {{getting}}
     </div>
 </template>
 
 <script>
     export default {
-
-
+        props:['data'],
         data: () => ({
             dialog: false,
-            announcement:{
-                title:null,
-                body:null,
-                user_id:null,
-
-            },
+            announcement:{},
 
         }),
         computed:{
-            user(){
-                this.announcement.user_id=User.id();
-
+            getting(){
+                this.announcement=this.data;
             }
         },
         methods:{
-            save(){
-                axios.post('/api/announcement',this.announcement)
-                    .then(res =>this.dialog=false,this.$toasted.show('Announcement Created',{type:'success'}),
-                        EventBus.$emit('newAnn',this.announcement)
-                    )
+            update(){
+                axios.patch(`/api/announcement/${this.announcement.id}`,this.announcement)
+                    .then(res=> this.dialog=false,this.$toasted.show('Announcement Updated',{type:'success'}))
             }
         }
     }

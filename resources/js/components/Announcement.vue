@@ -39,6 +39,7 @@
             <v-col
                 cols="12"
                 md="4"
+                v-for="(announcement,index) in announcements" :key="announcement.id"
             >
                 <v-card
                     class="mx-auto"
@@ -54,15 +55,15 @@
                         >
                             mdi-twitter
                         </v-icon>
-                        <span class="title font-weight " style="color:darkred;">vacation will start</span>
+                        <span class="title font-weight " style="color:darkred;">{{announcement.title}}</span>
                     </v-card-title>
                     <v-card-text style="padding-left: 10%">
-                   20th August 2019
+                   {{announcement.created_at}}
                    </v-card-text>
 
 
                     <v-card-text class="headline font-weight-bold">
-                        "Turns out semicolon-less style is easier and safer in TS because most gotcha edge cases are type invalid as well."
+                        "{{announcement.body}}"
                     </v-card-text>
 
                     <v-card-actions>
@@ -70,121 +71,77 @@
                             <v-list-item-avatar color="grey darken-3">
                                 <v-img
                                     class="elevation-6"
-                                    src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
+                                    :src="'http://localhost:8000/uploads/profile/'+ announcement.image"
                                 ></v-img>
                             </v-list-item-avatar>
 
                             <v-list-item-content>
-                                <v-list-item-title>Jubayer Ahmed</v-list-item-title>
+                                <v-list-item-title class="title text-capitalize">{{announcement.first_name}} {{announcement.last_name}}</v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>
 
                     </v-card-actions>
                 </v-card>
-            </v-col>
-            <v-col
-                cols="12"
-                md="4"
-            >
-                <v-card
-                    class="mx-auto"
-                    color="#9652ff"
-                    dark
-                    max-width="100%"
-
-                >
+                <v-card flat>
                     <v-card-title>
-                        <v-icon
-                            large
-                            left
-                        >
-                            mdi-twitter
-                        </v-icon>
-                        <span class="title font-weight " style="color:darkred;">vacation will start</span>
+                        <v-row>
+                            <v-col
+                                md="6"
+                            >
+                                <div class="my-2">
+                                    <VEditDialog :data="announcement"></VEditDialog>
+                                </div>
+                            </v-col>
+                            <v-col
+                                md="6"
+                            >
+                                <div class="my-2">
+                                    <v-btn color="error" @click="DeleteAnnouncement(index,announcement.id)" depressed>Delete</v-btn>
+                                </div>
+                            </v-col>
+                        </v-row>
                     </v-card-title>
-                    <v-card-text style="padding-left: 10%">
-                        20th August 2019
-                    </v-card-text>
-
-
-                    <v-card-text class="headline font-weight-bold">
-                        "Turns out semicolon-less style is easier and safer in TS because most gotcha edge cases are type invalid as well."
-                    </v-card-text>
-
-                    <v-card-actions>
-                        <v-list-item class="grow">
-                            <v-list-item-avatar color="grey darken-3">
-                                <v-img
-                                    class="elevation-6"
-                                    src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
-                                ></v-img>
-                            </v-list-item-avatar>
-
-                            <v-list-item-content>
-                                <v-list-item-title>Jubayer Ahmed</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-
-                    </v-card-actions>
                 </v-card>
             </v-col>
-            <v-col
-                cols="12"
-                md="4"
-            >
-                <v-card
-                    class="mx-auto"
-                    color="#9652ff"
-                    dark
-                    max-width="100%"
-
-                >
-                    <v-card-title>
-                        <v-icon
-                            large
-                            left
-                        >
-                            mdi-twitter
-                        </v-icon>
-                        <span class="title font-weight " style="color:darkred;">vacation will start</span>
-                    </v-card-title>
-                    <v-card-text style="padding-left: 10%">
-                        20th August 2019
-                    </v-card-text>
-
-
-                    <v-card-text class="headline font-weight-bold">
-                        "Turns out semicolon-less style is easier and safer in TS because most gotcha edge cases are type invalid as well."
-                    </v-card-text>
-
-                    <v-card-actions>
-                        <v-list-item class="grow">
-                            <v-list-item-avatar color="grey darken-3">
-                                <v-img
-                                    class="elevation-6"
-                                    src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
-                                ></v-img>
-                            </v-list-item-avatar>
-
-                            <v-list-item-content>
-                                <v-list-item-title>Jubayer Ahmed</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-
-                    </v-card-actions>
-                </v-card>
-            </v-col>
-
-
-
         </v-row>
 
     </v-card>
 </template>
 <script>
-    import dilog from './Announcement_dilog.vue'
+    import dilog from './Announcement_dilog.vue';
+    import VEditDialog from './EditAnnouncements_dilog.vue';
+
     export default {
-       components:{dilog}
+        components: {dilog,VEditDialog},
+        data() {
+            return {
+                announcements: {},
+                user_id:null,
+
+            }
+        },
+        created() {
+
+            this.user_id=User.id();
+            axios.get(`/api/announcement/${this.user_id}`)
+                .then(res => this.announcements = res.data.data);
+            this.listen()
+
+        },
+        methods:{
+            DeleteAnnouncement(index,x){
+                axios.delete(`/api/announcement/${x}`)
+                    .then(res =>this.announcements.splice(index, 1))
+
+            },
+            listen(){
+                EventBus.$on('newAnn',(ann) =>{
+                    this.announcements.unshift(ann)
+                })
+            },
+
+        },
+
     }
 
 </script>

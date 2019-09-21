@@ -1,5 +1,7 @@
 <?php
 
+use App\Announcement;
+use App\Assaignment;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 use Spatie\Permission\Models\Role;
@@ -27,6 +29,23 @@ $factory->define(App\User::class, function (Faker $faker) {
 $factory->define(Role::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
+
+    ];
+});
+$factory->define(Announcement::class, function (Faker $faker) {
+    return [
+        'title' => $faker->title,
+        'user_id'=>1,
+        'body'=>$faker->text,
+
+    ];
+});
+$factory->define(Assaignment::class, function (Faker $faker) {
+    return [
+        'title' => $faker->title,
+        'user_id'=>1,
+        'body'=>$faker->text,
+         'deadline'=>$faker->date(),
 
     ];
 });

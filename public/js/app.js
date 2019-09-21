@@ -2439,80 +2439,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Announcement_dilog_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Announcement_dilog.vue */ "./resources/js/components/Announcement_dilog.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var _EditAnnouncements_dilog_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditAnnouncements_dilog.vue */ "./resources/js/components/EditAnnouncements_dilog.vue");
 //
 //
 //
@@ -2623,9 +2550,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    dilog: _Announcement_dilog_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    dilog: _Announcement_dilog_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    VEditDialog: _EditAnnouncements_dilog_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return {
+      announcements: {},
+      user_id: null
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    this.user_id = User.id();
+    axios.get("/api/announcement/".concat(this.user_id)).then(function (res) {
+      return _this.announcements = res.data.data;
+    });
+    this.listen();
+  },
+  methods: {
+    DeleteAnnouncement: function DeleteAnnouncement(index, x) {
+      var _this2 = this;
+
+      axios["delete"]("/api/announcement/".concat(x)).then(function (res) {
+        return _this2.announcements.splice(index, 1);
+      });
+    },
+    listen: function listen() {
+      var _this3 = this;
+
+      EventBus.$on('newAnn', function (ann) {
+        _this3.announcements.unshift(ann);
+      });
+    }
   }
 });
 
@@ -2675,33 +2635,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       dialog: false,
-      date: new Date().toISOString().substr(0, 10),
-      menu: false,
-      modal: false,
-      menu2: false
+      announcement: {
+        title: null,
+        body: null,
+        user_id: null
+      }
     };
+  },
+  computed: {
+    user: function user() {
+      this.announcement.user_id = User.id();
+    }
+  },
+  methods: {
+    save: function save() {
+      var _this = this;
+
+      axios.post('/api/announcement', this.announcement).then(function (res) {
+        return _this.dialog = false;
+      }, this.$toasted.show('Announcement Created', {
+        type: 'success'
+      }), EventBus.$emit('newAnn', this.announcement));
+    }
   }
 });
 
@@ -2757,80 +2716,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Assignment_dilog__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Assignment_dilog */ "./resources/js/components/Assignment_dilog.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var _EditAssignments_dilog_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditAssignments_dilog.vue */ "./resources/js/components/EditAssignments_dilog.vue");
 //
 //
 //
@@ -2941,9 +2827,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    dilog: _Assignment_dilog__WEBPACK_IMPORTED_MODULE_0__["default"]
+    dilog: _Assignment_dilog__WEBPACK_IMPORTED_MODULE_0__["default"],
+    VEditDialog: _EditAssignments_dilog_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return {
+      assignments: {}
+    };
+  },
+  created: function created() {//axios.get()
   }
 });
 
@@ -3291,6 +3186,150 @@ __webpack_require__.r(__webpack_exports__);
       modal: false,
       menu2: false
     };
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EditAnnouncements_dilog.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/EditAnnouncements_dilog.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['data'],
+  data: function data() {
+    return {
+      dialog: false,
+      announcement: {}
+    };
+  },
+  computed: {
+    getting: function getting() {
+      this.announcement = this.data;
+    }
+  },
+  methods: {
+    update: function update() {
+      var _this = this;
+
+      axios.patch("/api/announcement/".concat(this.announcement.id), this.announcement).then(function (res) {
+        return _this.dialog = false;
+      }, this.$toasted.show('Announcement Updated', {
+        type: 'success'
+      }));
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EditAssignments_dilog.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/EditAssignments_dilog.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['data'],
+  data: function data() {
+    return {
+      dialog: false,
+      announcement: {}
+    };
+  },
+  computed: {
+    getting: function getting() {
+      this.announcement = this.data;
+    }
+  },
+  methods: {
+    update: function update() {
+      var _this = this;
+
+      axios.patch("/api/announcement/".concat(this.announcement.id), this.announcement).then(function (res) {
+        return _this.dialog = false;
+      }, this.$toasted.show('Announcement Updated', {
+        type: 'success'
+      }));
+    }
   }
 });
 
@@ -9419,7 +9458,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*@media screen and (max-width: 400px) {*/\n/*    .sidebar{*/\n/*        font-size:200%*/\n/*    }*/\n/*}*/\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*@media screen and (max-width: 400px) {*/\n/*    .sidebar{*/\n/*        font-size:200%*/\n/*    }*/\n/*}*/\n\n", ""]);
 
 // exports
 
@@ -42060,10 +42099,10 @@ var render = function() {
       _c(
         "v-row",
         { staticStyle: { "margin-top": "5%" } },
-        [
-          _c(
+        _vm._l(_vm.announcements, function(announcement, index) {
+          return _c(
             "v-col",
-            { attrs: { cols: "12", md: "4" } },
+            { key: announcement.id, attrs: { cols: "12", md: "4" } },
             [
               _c(
                 "v-card",
@@ -42087,7 +42126,7 @@ var render = function() {
                           staticClass: "title font-weight ",
                           staticStyle: { color: "darkred" }
                         },
-                        [_vm._v("vacation will start")]
+                        [_vm._v(_vm._s(announcement.title))]
                       )
                     ],
                     1
@@ -42098,7 +42137,9 @@ var render = function() {
                     { staticStyle: { "padding-left": "10%" } },
                     [
                       _vm._v(
-                        "\n               20th August 2019\n               "
+                        "\n               " +
+                          _vm._s(announcement.created_at) +
+                          "\n               "
                       )
                     ]
                   ),
@@ -42108,7 +42149,9 @@ var render = function() {
                     { staticClass: "headline font-weight-bold" },
                     [
                       _vm._v(
-                        '\n                    "Turns out semicolon-less style is easier and safer in TS because most gotcha edge cases are type invalid as well."\n                '
+                        '\n                    "' +
+                          _vm._s(announcement.body) +
+                          '"\n                '
                       )
                     ]
                   ),
@@ -42128,7 +42171,8 @@ var render = function() {
                                 staticClass: "elevation-6",
                                 attrs: {
                                   src:
-                                    "https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
+                                    "http://localhost:8000/uploads/profile/" +
+                                    announcement.image
                                 }
                               })
                             ],
@@ -42138,7 +42182,17 @@ var render = function() {
                           _c(
                             "v-list-item-content",
                             [
-                              _c("v-list-item-title", [_vm._v("Jubayer Ahmed")])
+                              _c(
+                                "v-list-item-title",
+                                { staticClass: "title text-capitalize" },
+                                [
+                                  _vm._v(
+                                    _vm._s(announcement.first_name) +
+                                      " " +
+                                      _vm._s(announcement.last_name)
+                                  )
+                                ]
+                              )
                             ],
                             1
                           )
@@ -42150,186 +42204,55 @@ var render = function() {
                   )
                 ],
                 1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-col",
-            { attrs: { cols: "12", md: "4" } },
-            [
+              ),
+              _vm._v(" "),
               _c(
                 "v-card",
-                {
-                  staticClass: "mx-auto",
-                  attrs: { color: "#9652ff", dark: "", "max-width": "100%" }
-                },
+                { attrs: { flat: "" } },
                 [
                   _c(
                     "v-card-title",
                     [
-                      _c("v-icon", { attrs: { large: "", left: "" } }, [
-                        _vm._v(
-                          "\n                        mdi-twitter\n                    "
-                        )
-                      ]),
-                      _vm._v(" "),
                       _c(
-                        "span",
-                        {
-                          staticClass: "title font-weight ",
-                          staticStyle: { color: "darkred" }
-                        },
-                        [_vm._v("vacation will start")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-card-text",
-                    { staticStyle: { "padding-left": "10%" } },
-                    [
-                      _vm._v(
-                        "\n                    20th August 2019\n                "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-card-text",
-                    { staticClass: "headline font-weight-bold" },
-                    [
-                      _vm._v(
-                        '\n                    "Turns out semicolon-less style is easier and safer in TS because most gotcha edge cases are type invalid as well."\n                '
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-card-actions",
-                    [
-                      _c(
-                        "v-list-item",
-                        { staticClass: "grow" },
+                        "v-row",
                         [
-                          _c(
-                            "v-list-item-avatar",
-                            { attrs: { color: "grey darken-3" } },
-                            [
-                              _c("v-img", {
-                                staticClass: "elevation-6",
-                                attrs: {
-                                  src:
-                                    "https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
-                                }
-                              })
-                            ],
-                            1
-                          ),
+                          _c("v-col", { attrs: { md: "6" } }, [
+                            _c(
+                              "div",
+                              { staticClass: "my-2" },
+                              [
+                                _c("VEditDialog", {
+                                  attrs: { data: announcement }
+                                })
+                              ],
+                              1
+                            )
+                          ]),
                           _vm._v(" "),
-                          _c(
-                            "v-list-item-content",
-                            [
-                              _c("v-list-item-title", [_vm._v("Jubayer Ahmed")])
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-col",
-            { attrs: { cols: "12", md: "4" } },
-            [
-              _c(
-                "v-card",
-                {
-                  staticClass: "mx-auto",
-                  attrs: { color: "#9652ff", dark: "", "max-width": "100%" }
-                },
-                [
-                  _c(
-                    "v-card-title",
-                    [
-                      _c("v-icon", { attrs: { large: "", left: "" } }, [
-                        _vm._v(
-                          "\n                        mdi-twitter\n                    "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "span",
-                        {
-                          staticClass: "title font-weight ",
-                          staticStyle: { color: "darkred" }
-                        },
-                        [_vm._v("vacation will start")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-card-text",
-                    { staticStyle: { "padding-left": "10%" } },
-                    [
-                      _vm._v(
-                        "\n                    20th August 2019\n                "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-card-text",
-                    { staticClass: "headline font-weight-bold" },
-                    [
-                      _vm._v(
-                        '\n                    "Turns out semicolon-less style is easier and safer in TS because most gotcha edge cases are type invalid as well."\n                '
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-card-actions",
-                    [
-                      _c(
-                        "v-list-item",
-                        { staticClass: "grow" },
-                        [
-                          _c(
-                            "v-list-item-avatar",
-                            { attrs: { color: "grey darken-3" } },
-                            [
-                              _c("v-img", {
-                                staticClass: "elevation-6",
-                                attrs: {
-                                  src:
-                                    "https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-list-item-content",
-                            [
-                              _c("v-list-item-title", [_vm._v("Jubayer Ahmed")])
-                            ],
-                            1
-                          )
+                          _c("v-col", { attrs: { md: "6" } }, [
+                            _c(
+                              "div",
+                              { staticClass: "my-2" },
+                              [
+                                _c(
+                                  "v-btn",
+                                  {
+                                    attrs: { color: "error", depressed: "" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.DeleteAnnouncement(
+                                          index,
+                                          announcement.id
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Delete")]
+                                )
+                              ],
+                              1
+                            )
+                          ])
                         ],
                         1
                       )
@@ -42342,7 +42265,7 @@ var render = function() {
             ],
             1
           )
-        ],
+        }),
         1
       )
     ],
@@ -42422,10 +42345,7 @@ var render = function() {
                   "span",
                   {
                     staticClass: "headline",
-                    staticStyle: {
-                      color: "white",
-                      "background-color": "#9652ff"
-                    }
+                    staticStyle: { color: "#9652ff" }
                   },
                   [_vm._v("Create Announcement")]
                 )
@@ -42438,80 +42358,26 @@ var render = function() {
                     "v-container",
                     [
                       _c("v-text-field", {
-                        attrs: { label: "Title:*", required: "" }
+                        attrs: { label: "Title:*", required: "" },
+                        model: {
+                          value: _vm.announcement.title,
+                          callback: function($$v) {
+                            _vm.$set(_vm.announcement, "title", $$v)
+                          },
+                          expression: "announcement.title"
+                        }
                       }),
                       _vm._v(" "),
-                      _c("v-textarea", { attrs: { label: "Description" } }),
-                      _vm._v(" "),
-                      _c(
-                        "v-menu",
-                        {
-                          attrs: {
-                            "close-on-content-click": false,
-                            "nudge-right": 40,
-                            transition: "scale-transition",
-                            "offset-y": "",
-                            "full-width": "",
-                            "min-width": "240px"
+                      _c("v-textarea", {
+                        attrs: { label: "Description" },
+                        model: {
+                          value: _vm.announcement.body,
+                          callback: function($$v) {
+                            _vm.$set(_vm.announcement, "body", $$v)
                           },
-                          scopedSlots: _vm._u([
-                            {
-                              key: "activator",
-                              fn: function(ref) {
-                                var on = ref.on
-                                return [
-                                  _c(
-                                    "v-text-field",
-                                    _vm._g(
-                                      {
-                                        attrs: {
-                                          label: "start date",
-                                          "prepend-icon": "event",
-                                          readonly: ""
-                                        },
-                                        model: {
-                                          value: _vm.date,
-                                          callback: function($$v) {
-                                            _vm.date = $$v
-                                          },
-                                          expression: "date"
-                                        }
-                                      },
-                                      on
-                                    )
-                                  )
-                                ]
-                              }
-                            }
-                          ]),
-                          model: {
-                            value: _vm.menu2,
-                            callback: function($$v) {
-                              _vm.menu2 = $$v
-                            },
-                            expression: "menu2"
-                          }
-                        },
-                        [
-                          _vm._v(" "),
-                          _c("v-date-picker", {
-                            attrs: { color: "#9652ff" },
-                            on: {
-                              input: function($event) {
-                                _vm.menu2 = false
-                              }
-                            },
-                            model: {
-                              value: _vm.date,
-                              callback: function($$v) {
-                                _vm.date = $$v
-                              },
-                              expression: "date"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                          expression: "announcement.body"
+                        }
+                      })
                     ],
                     1
                   )
@@ -42549,13 +42415,9 @@ var render = function() {
                         color: "white"
                       },
                       attrs: { text: "" },
-                      on: {
-                        click: function($event) {
-                          _vm.dialog = false
-                        }
-                      }
+                      on: { click: _vm.save }
                     },
-                    [_vm._v("Send")]
+                    [_vm._v("Save")]
                   )
                 ],
                 1
@@ -42565,7 +42427,8 @@ var render = function() {
           )
         ],
         1
-      )
+      ),
+      _vm._v("\n    " + _vm._s(_vm.user) + "\n")
     ],
     1
   )
@@ -42655,8 +42518,7 @@ var render = function() {
                 staticStyle: {
                   "text-align": "center",
                   "font-size": "140%",
-                  "background-color": "#9652ff",
-                  color: "white"
+                  color: "#9652ff"
                 }
               },
               [_vm._v("\n                Assignments\n            ")]
@@ -42761,186 +42623,41 @@ var render = function() {
                   )
                 ],
                 1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-col",
-            { attrs: { cols: "12", md: "4" } },
-            [
+              ),
+              _vm._v(" "),
               _c(
                 "v-card",
-                {
-                  staticClass: "mx-auto",
-                  attrs: { color: "#9652ff", dark: "", "max-width": "100%" }
-                },
+                { attrs: { flat: "" } },
                 [
                   _c(
                     "v-card-title",
                     [
-                      _c("v-icon", { attrs: { large: "", left: "" } }, [
-                        _vm._v(
-                          "\n                        mdi-twitter\n                    "
-                        )
-                      ]),
-                      _vm._v(" "),
                       _c(
-                        "span",
-                        {
-                          staticClass: "title font-weight ",
-                          staticStyle: { color: "darkred" }
-                        },
-                        [_vm._v("vacation will start")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-card-text",
-                    { staticStyle: { "padding-left": "10%" } },
-                    [
-                      _vm._v(
-                        "\n                    20th August 2019\n                "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-card-text",
-                    { staticClass: "headline font-weight-bold" },
-                    [
-                      _vm._v(
-                        '\n                    "Turns out semicolon-less style is easier and safer in TS because most gotcha edge cases are type invalid as well."\n                '
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-card-actions",
-                    [
-                      _c(
-                        "v-list-item",
-                        { staticClass: "grow" },
+                        "v-row",
                         [
-                          _c(
-                            "v-list-item-avatar",
-                            { attrs: { color: "grey darken-3" } },
-                            [
-                              _c("v-img", {
-                                staticClass: "elevation-6",
-                                attrs: {
-                                  src:
-                                    "https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
-                                }
-                              })
-                            ],
-                            1
-                          ),
+                          _c("v-col", { attrs: { md: "6" } }, [
+                            _c(
+                              "div",
+                              { staticClass: "my-2" },
+                              [_c("VEditDialog")],
+                              1
+                            )
+                          ]),
                           _vm._v(" "),
-                          _c(
-                            "v-list-item-content",
-                            [
-                              _c("v-list-item-title", [_vm._v("Jubayer Ahmed")])
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-col",
-            { attrs: { cols: "12", md: "4" } },
-            [
-              _c(
-                "v-card",
-                {
-                  staticClass: "mx-auto",
-                  attrs: { color: "#9652ff", dark: "", "max-width": "100%" }
-                },
-                [
-                  _c(
-                    "v-card-title",
-                    [
-                      _c("v-icon", { attrs: { large: "", left: "" } }, [
-                        _vm._v(
-                          "\n                        mdi-twitter\n                    "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "span",
-                        {
-                          staticClass: "title font-weight ",
-                          staticStyle: { color: "darkred" }
-                        },
-                        [_vm._v("vacation will start")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-card-text",
-                    { staticStyle: { "padding-left": "10%" } },
-                    [
-                      _vm._v(
-                        "\n                    20th August 2019\n                "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-card-text",
-                    { staticClass: "headline font-weight-bold" },
-                    [
-                      _vm._v(
-                        '\n                    "Turns out semicolon-less style is easier and safer in TS because most gotcha edge cases are type invalid as well."\n                '
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-card-actions",
-                    [
-                      _c(
-                        "v-list-item",
-                        { staticClass: "grow" },
-                        [
-                          _c(
-                            "v-list-item-avatar",
-                            { attrs: { color: "grey darken-3" } },
-                            [
-                              _c("v-img", {
-                                staticClass: "elevation-6",
-                                attrs: {
-                                  src:
-                                    "https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-list-item-content",
-                            [
-                              _c("v-list-item-title", [_vm._v("Jubayer Ahmed")])
-                            ],
-                            1
-                          )
+                          _c("v-col", { attrs: { md: "6" } }, [
+                            _c(
+                              "div",
+                              { staticClass: "my-2" },
+                              [
+                                _c(
+                                  "v-btn",
+                                  { attrs: { color: "error", depressed: "" } },
+                                  [_vm._v("Delete")]
+                                )
+                              ],
+                              1
+                            )
+                          ])
                         ],
                         1
                       )
@@ -43603,6 +43320,306 @@ var render = function() {
         ],
         1
       )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EditAnnouncements_dilog.vue?vue&type=template&id=3d260aa7&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/EditAnnouncements_dilog.vue?vue&type=template&id=3d260aa7& ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "v-dialog",
+        {
+          attrs: { persistent: "", "max-width": "600px" },
+          scopedSlots: _vm._u([
+            {
+              key: "activator",
+              fn: function(ref) {
+                var on = ref.on
+                return [
+                  _c(
+                    "v-btn",
+                    _vm._g({ attrs: { color: "primary", depressed: "" } }, on),
+                    [_vm._v("Edit")]
+                  )
+                ]
+              }
+            }
+          ]),
+          model: {
+            value: _vm.dialog,
+            callback: function($$v) {
+              _vm.dialog = $$v
+            },
+            expression: "dialog"
+          }
+        },
+        [
+          _vm._v(" "),
+          _c(
+            "v-card",
+            [
+              _c("v-card-title", [
+                _c(
+                  "h3",
+                  {
+                    staticClass: "headline",
+                    staticStyle: { color: "#9652ff" }
+                  },
+                  [_vm._v("Edit Announcement")]
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "v-card-text",
+                [
+                  _c(
+                    "v-container",
+                    [
+                      _c("v-text-field", {
+                        attrs: { label: "Title:*", required: "" },
+                        model: {
+                          value: _vm.announcement.title,
+                          callback: function($$v) {
+                            _vm.$set(_vm.announcement, "title", $$v)
+                          },
+                          expression: "announcement.title"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("v-textarea", {
+                        attrs: { label: "Description" },
+                        model: {
+                          value: _vm.announcement.body,
+                          callback: function($$v) {
+                            _vm.$set(_vm.announcement, "body", $$v)
+                          },
+                          expression: "announcement.body"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
+                [
+                  _c("div", { staticClass: "flex-grow-1" }),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      staticStyle: {
+                        "background-color": "#9652ff",
+                        color: "white"
+                      },
+                      attrs: { text: "" },
+                      on: {
+                        click: function($event) {
+                          _vm.dialog = false
+                        }
+                      }
+                    },
+                    [_vm._v("Close")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      staticStyle: {
+                        "background-color": "#9652ff",
+                        color: "white"
+                      },
+                      attrs: { text: "" },
+                      on: { click: _vm.update }
+                    },
+                    [_vm._v("Save")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v("\n    " + _vm._s(_vm.getting) + "\n")
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EditAssignments_dilog.vue?vue&type=template&id=8b4183be&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/EditAssignments_dilog.vue?vue&type=template&id=8b4183be& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "v-dialog",
+        {
+          attrs: { persistent: "", "max-width": "600px" },
+          scopedSlots: _vm._u([
+            {
+              key: "activator",
+              fn: function(ref) {
+                var on = ref.on
+                return [
+                  _c(
+                    "v-btn",
+                    _vm._g({ attrs: { color: "primary", depressed: "" } }, on),
+                    [_vm._v("Edit")]
+                  )
+                ]
+              }
+            }
+          ]),
+          model: {
+            value: _vm.dialog,
+            callback: function($$v) {
+              _vm.dialog = $$v
+            },
+            expression: "dialog"
+          }
+        },
+        [
+          _vm._v(" "),
+          _c(
+            "v-card",
+            [
+              _c("v-card-title", [
+                _c(
+                  "h3",
+                  {
+                    staticClass: "headline",
+                    staticStyle: { color: "#9652ff" }
+                  },
+                  [_vm._v("Edit Announcement")]
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "v-card-text",
+                [
+                  _c(
+                    "v-container",
+                    [
+                      _c("v-text-field", {
+                        attrs: { label: "Title:*", required: "" },
+                        model: {
+                          value: _vm.announcement.title,
+                          callback: function($$v) {
+                            _vm.$set(_vm.announcement, "title", $$v)
+                          },
+                          expression: "announcement.title"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("v-textarea", {
+                        attrs: { label: "Description" },
+                        model: {
+                          value: _vm.announcement.body,
+                          callback: function($$v) {
+                            _vm.$set(_vm.announcement, "body", $$v)
+                          },
+                          expression: "announcement.body"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
+                [
+                  _c("div", { staticClass: "flex-grow-1" }),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      staticStyle: {
+                        "background-color": "#9652ff",
+                        color: "white"
+                      },
+                      attrs: { text: "" },
+                      on: {
+                        click: function($event) {
+                          _vm.dialog = false
+                        }
+                      }
+                    },
+                    [_vm._v("Close")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      staticStyle: {
+                        "background-color": "#9652ff",
+                        color: "white"
+                      },
+                      attrs: { text: "" },
+                      on: { click: _vm.update }
+                    },
+                    [_vm._v("Save")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v("\n    " + _vm._s(_vm.getting) + "\n")
     ],
     1
   )
@@ -99535,6 +99552,144 @@ component.options.__file = "resources/js/components/Discussion.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/EditAnnouncements_dilog.vue":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/EditAnnouncements_dilog.vue ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _EditAnnouncements_dilog_vue_vue_type_template_id_3d260aa7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditAnnouncements_dilog.vue?vue&type=template&id=3d260aa7& */ "./resources/js/components/EditAnnouncements_dilog.vue?vue&type=template&id=3d260aa7&");
+/* harmony import */ var _EditAnnouncements_dilog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditAnnouncements_dilog.vue?vue&type=script&lang=js& */ "./resources/js/components/EditAnnouncements_dilog.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _EditAnnouncements_dilog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EditAnnouncements_dilog_vue_vue_type_template_id_3d260aa7___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _EditAnnouncements_dilog_vue_vue_type_template_id_3d260aa7___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/EditAnnouncements_dilog.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/EditAnnouncements_dilog.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/EditAnnouncements_dilog.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditAnnouncements_dilog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./EditAnnouncements_dilog.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EditAnnouncements_dilog.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditAnnouncements_dilog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/EditAnnouncements_dilog.vue?vue&type=template&id=3d260aa7&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/EditAnnouncements_dilog.vue?vue&type=template&id=3d260aa7& ***!
+  \********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditAnnouncements_dilog_vue_vue_type_template_id_3d260aa7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./EditAnnouncements_dilog.vue?vue&type=template&id=3d260aa7& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EditAnnouncements_dilog.vue?vue&type=template&id=3d260aa7&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditAnnouncements_dilog_vue_vue_type_template_id_3d260aa7___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditAnnouncements_dilog_vue_vue_type_template_id_3d260aa7___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/EditAssignments_dilog.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/EditAssignments_dilog.vue ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _EditAssignments_dilog_vue_vue_type_template_id_8b4183be___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditAssignments_dilog.vue?vue&type=template&id=8b4183be& */ "./resources/js/components/EditAssignments_dilog.vue?vue&type=template&id=8b4183be&");
+/* harmony import */ var _EditAssignments_dilog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditAssignments_dilog.vue?vue&type=script&lang=js& */ "./resources/js/components/EditAssignments_dilog.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _EditAssignments_dilog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EditAssignments_dilog_vue_vue_type_template_id_8b4183be___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _EditAssignments_dilog_vue_vue_type_template_id_8b4183be___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/EditAssignments_dilog.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/EditAssignments_dilog.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/EditAssignments_dilog.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditAssignments_dilog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./EditAssignments_dilog.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EditAssignments_dilog.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditAssignments_dilog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/EditAssignments_dilog.vue?vue&type=template&id=8b4183be&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/EditAssignments_dilog.vue?vue&type=template&id=8b4183be& ***!
+  \******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditAssignments_dilog_vue_vue_type_template_id_8b4183be___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./EditAssignments_dilog.vue?vue&type=template&id=8b4183be& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/EditAssignments_dilog.vue?vue&type=template&id=8b4183be&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditAssignments_dilog_vue_vue_type_template_id_8b4183be___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditAssignments_dilog_vue_vue_type_template_id_8b4183be___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Exam.vue":
 /*!******************************************!*\
   !*** ./resources/js/components/Exam.vue ***!
@@ -100366,8 +100521,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\3rd september 2019\lms\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\3rd september 2019\lms\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\New folder\htdocs\lms\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\New folder\htdocs\lms\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
