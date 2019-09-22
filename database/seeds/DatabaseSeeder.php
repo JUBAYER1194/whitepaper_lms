@@ -2,6 +2,7 @@
 
 use App\Lmsclass;
 use App\Material;
+use App\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 
@@ -30,6 +31,13 @@ class DatabaseSeeder extends Seeder
         ]);
         Role::create([
             'name'=>'Student'
+        ]);
+        User::create([
+            'first_name'=>'Whitepaper',
+            'email'=>'admin@whitepaper.tech',
+            'password'=>'whitepaper'
+
+
         ]);
 
    }

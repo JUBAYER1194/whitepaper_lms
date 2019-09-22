@@ -32,7 +32,7 @@
                                     size="164"
                                     tile
                                 >
-                                    <v-img :src="'http://localhost:8000/uploads/profile/'+ form.image"></v-img>
+                                    <v-img :src="'http://127.0.0.1:8000/uploads/profile/'+ form.image"></v-img>
                                 </v-avatar>
                             </v-col>
                             <v-col class="py-0">
@@ -92,7 +92,7 @@
                             </tr>
                             <tr>
                                 <td class="font-weight-black">Address:</td>
-                                <td class="black--text  text-capitalize">{{form.Address}}</td>
+                                <td class="black--text  text-capitalize">{{form.address}}</td>
                             </tr>
                             <tr>
                                 <td class="font-weight-black">Email:</td>
@@ -405,7 +405,7 @@
             }
         },
         created() {
-            axios.get(`/api/information/1`)
+            axios.get(`/lms/api/information/1`)
                 .then(res=>this.form =res.data.data)
         }
 

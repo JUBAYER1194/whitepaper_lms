@@ -71,7 +71,7 @@
                             <v-list-item-avatar color="grey darken-3">
                                 <v-img
                                     class="elevation-6"
-                                    :src="'http://localhost:8000/uploads/profile/'+ announcement.image"
+                                    :src="'http://faisalsarker.com/lms/uploads/profile/'+ announcement.image"
                                 ></v-img>
                             </v-list-item-avatar>
 
@@ -123,14 +123,14 @@
         created() {
 
             this.user_id=User.id();
-            axios.get(`/api/announcement/${this.user_id}`)
+            axios.get(`/lms/api/announcement/${this.user_id}`)
                 .then(res => this.announcements = res.data.data);
             this.listen()
 
         },
         methods:{
             DeleteAnnouncement(index,x){
-                axios.delete(`/api/announcement/${x}`)
+                axios.delete(`/lms/api/announcement/${x}`)
                     .then(res =>this.announcements.splice(index, 1))
 
             },

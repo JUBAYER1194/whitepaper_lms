@@ -55,7 +55,7 @@
         },
         methods:{
             save(){
-                axios.post('/api/announcement',this.announcement)
+                axios.post('/lms/api/announcement',this.announcement)
                     .then(res =>this.dialog=false,this.$toasted.show('Announcement Created',{type:'success'}),
                         EventBus.$emit('newAnn',this.announcement)
                     )

@@ -71,7 +71,7 @@
                 }
             },
             send(){
-              axios.post('/api/material',this.material)
+              axios.post('/lms/api/material',this.material)
                   .then(res =>this.dialog=false,this.$toasted.show('Material Created',{type:'success'}),
                       EventBus.$emit('newMaterial',this.material)
                   )

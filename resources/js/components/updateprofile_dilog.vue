@@ -19,7 +19,7 @@
                         <v-text-field label="Parents Contact No:*"  required v-model="form.parents_contact" ></v-text-field>
                         <v-text-field label="NId No:*"  required v-model="form.nid" ></v-text-field>
                         <v-text-field label="Email:*"  required v-model="form.email" ></v-text-field>
-                        <v-textarea label="Address:*"  required v-model="form.Address" ></v-textarea>
+                        <v-textarea label="Address:*"  required v-model="form.address" ></v-textarea>
                         <div class="form-group">
                             <h4>update your profile Picture:</h4>
                             <input type="file" @change="imageChanged"   class="form-control form-control-lg" placeholder="Large form control">
@@ -64,7 +64,7 @@
         },
         methods: {
             update() {
-                axios.put(`/api/information/1`, this.form)
+                axios.put(`/lms/api/information/1`, this.form)
                     .then(res => this.dialog = false,this.$toasted.show('profile Updated',{type:'success'}))
             },
             imageChanged(e){

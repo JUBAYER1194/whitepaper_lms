@@ -2566,7 +2566,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     this.user_id = User.id();
-    axios.get("/api/announcement/".concat(this.user_id)).then(function (res) {
+    axios.get("/lms/api/announcement/".concat(this.user_id)).then(function (res) {
       return _this.announcements = res.data.data;
     });
     this.listen();
@@ -2575,7 +2575,7 @@ __webpack_require__.r(__webpack_exports__);
     DeleteAnnouncement: function DeleteAnnouncement(index, x) {
       var _this2 = this;
 
-      axios["delete"]("/api/announcement/".concat(x)).then(function (res) {
+      axios["delete"]("/lms/api/announcement/".concat(x)).then(function (res) {
         return _this2.announcements.splice(index, 1);
       });
     },
@@ -2655,7 +2655,7 @@ __webpack_require__.r(__webpack_exports__);
     save: function save() {
       var _this = this;
 
-      axios.post('/api/announcement', this.announcement).then(function (res) {
+      axios.post('/lms/api/announcement', this.announcement).then(function (res) {
         return _this.dialog = false;
       }, this.$toasted.show('Announcement Created', {
         type: 'success'
@@ -3049,6 +3049,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -3109,7 +3110,7 @@ __webpack_require__.r(__webpack_exports__);
     getclass: function getclass() {
       var _this = this;
 
-      axios.get("/api/class/about/".concat(this.$route.params.name)).then(function (res) {
+      axios.get("/lms/api/class/about/".concat(this.$route.params.name)).then(function (res) {
         return _this.classes = res.data.data;
       });
     }
@@ -3118,7 +3119,7 @@ __webpack_require__.r(__webpack_exports__);
     getmaterial: function getmaterial() {
       var _this2 = this;
 
-      axios.get("/api/material/".concat(this.classes.id)).then(function (res) {
+      axios.get("/lms/api/material/".concat(this.classes.id)).then(function (res) {
         return _this2.material = res.data.data;
       });
     }
@@ -3206,7 +3207,7 @@ __webpack_require__.r(__webpack_exports__);
     create: function create() {
       var _this = this;
 
-      axios.post("/api/class/", this.classes).then(function (res) {
+      axios.post("/lms/api/class/", this.classes).then(function (res) {
         return _this.dialog = false;
       }, this.$toasted.show('Class Created', {
         type: 'success'
@@ -3278,7 +3279,7 @@ __webpack_require__.r(__webpack_exports__);
     update: function update() {
       var _this = this;
 
-      axios.patch("/api/announcement/".concat(this.announcement.id), this.announcement).then(function (res) {
+      axios.patch("/lms/api/announcement/".concat(this.announcement.id), this.announcement).then(function (res) {
         return _this.dialog = false;
       }, this.$toasted.show('Announcement Updated', {
         type: 'success'
@@ -3350,7 +3351,7 @@ __webpack_require__.r(__webpack_exports__);
     update: function update() {
       var _this = this;
 
-      axios.patch("/api/announcement/".concat(this.announcement.id), this.announcement).then(function (res) {
+      axios.patch("/lms/api/announcement/".concat(this.announcement.id), this.announcement).then(function (res) {
         return _this.dialog = false;
       }, this.$toasted.show('Announcement Updated', {
         type: 'success'
@@ -3444,7 +3445,8 @@ __webpack_require__.r(__webpack_exports__);
         _this.form.image = e.target.result;
       };
     }
-  }
+  },
+  update: function update() {}
 });
 
 /***/ }),
@@ -3671,6 +3673,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -3705,6 +3710,9 @@ __webpack_require__.r(__webpack_exports__);
       }]
     };
   },
+  created: function created() {
+    this.listen();
+  },
   computed: {
     created: function created() {
       this.classes = this.data;
@@ -3713,7 +3721,15 @@ __webpack_require__.r(__webpack_exports__);
       this.materials = this.datas;
     }
   },
-  methods: {}
+  methods: {
+    listen: function listen() {
+      var _this = this;
+
+      EventBus.$on('newMaterial', function (ann) {
+        _this.materials.unshift(ann);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -3812,7 +3828,7 @@ __webpack_require__.r(__webpack_exports__);
       User.login(this.form); //this.$router.push({name:'home'})
     },
     signup: function signup() {
-      window.location = '/signups';
+      window.location = '/lms/signups';
     }
   }
 });
@@ -3927,7 +3943,7 @@ __webpack_require__.r(__webpack_exports__);
     send: function send() {
       var _this2 = this;
 
-      axios.post('/api/material', this.material).then(function (res) {
+      axios.post('/lms/api/material', this.material).then(function (res) {
         return _this2.dialog = false;
       }, this.$toasted.show('Material Created', {
         type: 'success'
@@ -4103,15 +4119,15 @@ __webpack_require__.r(__webpack_exports__);
       items: [{
         icon: 'account_circle',
         text: 'profile',
-        to: "/profile"
+        to: "/lms/profile"
       }, {
         icon: 'border_all',
         text: 'Calender View',
-        to: '/calender'
+        to: '/lms/calender'
       }, {
         icon: 'dashboard',
         text: 'Admin DashBoard',
-        to: "/admin/dashboard"
+        to: "/lms/admin/dashboard"
       }],
       classes: {},
       user_id: null
@@ -4121,7 +4137,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     this.user_id = User.id();
-    axios.get("/api/class/".concat(this.user_id)).then(function (res) {
+    axios.get("/lms/api/class/".concat(this.user_id)).then(function (res) {
       return _this.classes = res.data;
     });
     this.listen();
@@ -4562,7 +4578,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    axios.get("/api/information/1").then(function (res) {
+    axios.get("/lms/api/information/1").then(function (res) {
       return _this.form = res.data.data;
     });
   }
@@ -4692,10 +4708,10 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     if (User.loggedIn()) {
-      window.location = '/home';
+      window.location = '/lms/home';
     }
 
-    axios.get('/api/role').then(function (res) {
+    axios.get('/lms/api/role').then(function (res) {
       return _this.roles = res.data.data;
     })["catch"](function (error) {
       return console.log(error.response.data);
@@ -4703,12 +4719,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     signup: function signup() {
-      axios.post('/api/auth/signup', this.form).then(function (res) {
+      axios.post('/lms/api/auth/signup', this.form).then(function (res) {
         return window.location = '/';
       });
     },
     login: function login() {
-      window.location = '/';
+      window.location = '/lms/';
     }
   }
 });
@@ -4979,7 +4995,7 @@ __webpack_require__.r(__webpack_exports__);
     update: function update() {
       var _this = this;
 
-      axios.put("/api/information/1", this.form).then(function (res) {
+      axios.put("/lms/api/information/1", this.form).then(function (res) {
         return _this.dialog = false;
       }, this.$toasted.show('profile Updated', {
         type: 'success'
@@ -9534,7 +9550,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Helper classes */\n#basil {\n    background-color: #b380ff !important;\n}\n.basil--text {\n    color: white !important;\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Helper classes */\n#basil {\n    background-color: #b380ff !important;\n}\n.basil--text {\n    color: white !important;\n}\n\n", ""]);
 
 // exports
 
@@ -9553,7 +9569,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Helper classes */\n.basil {\n    background-color: #b380ff !important;\n}\n.basil--text {\n    color: white !important;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Helper classes */\n.basil {\n    background-color: #b380ff !important;\n}\n.basil--text {\n    color: white !important;\n}\n", ""]);
 
 // exports
 
@@ -42179,7 +42195,7 @@ var render = function() {
                                 staticClass: "elevation-6",
                                 attrs: {
                                   src:
-                                    "http://localhost:8000/uploads/profile/" +
+                                    "http://faisalsarker.com/lms/uploads/profile/" +
                                     announcement.image
                                 }
                               })
@@ -43010,7 +43026,11 @@ var render = function() {
                 "v-tab",
                 {
                   key: item.name,
-                  staticStyle: { "font-size": "100%" },
+                  staticStyle: {
+                    "font-size": "100%",
+                    "background-color": "#9652ff",
+                    color: "white"
+                  },
                   attrs: { outlined: "", tile: "" }
                 },
                 [
@@ -43735,11 +43755,7 @@ var render = function() {
                         color: "white"
                       },
                       attrs: { text: "" },
-                      on: {
-                        click: function($event) {
-                          _vm.dialog = false
-                        }
-                      }
+                      on: { click: _vm.update }
                     },
                     [_vm._v("Close")]
                   ),
@@ -44109,6 +44125,44 @@ var render = function() {
                                                       _vm._v(
                                                         _vm._s(material.title) +
                                                           "\n                                                "
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "v-list-item-title",
+                                                    {
+                                                      staticClass:
+                                                        "headline mb-1"
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "a",
+                                                        {
+                                                          attrs: {
+                                                            href:
+                                                              "http://localhost:8000/uploads/x/material/" +
+                                                              material.file,
+                                                            target: "_blank"
+                                                          }
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "button",
+                                                            {
+                                                              staticClass:
+                                                                "btn btn-sm",
+                                                              attrs: {
+                                                                type: "button"
+                                                              }
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                "Read File"
+                                                              )
+                                                            ]
+                                                          )
+                                                        ]
                                                       )
                                                     ]
                                                   ),
@@ -44824,7 +44878,7 @@ var render = function() {
                                   "text-decoration": "none",
                                   "font-size": "120%"
                                 },
-                                attrs: { href: "/class/" + classs.name }
+                                attrs: { href: "/lms/class/" + classs.name }
                               },
                               [_vm._v(_vm._s(classs.name))]
                             )
@@ -45009,7 +45063,7 @@ var render = function() {
                                   _c("v-img", {
                                     attrs: {
                                       src:
-                                        "http://localhost:8000/uploads/profile/" +
+                                        "http://127.0.0.1:8000/uploads/profile/" +
                                         _vm.form.image
                                     }
                                   })
@@ -45168,7 +45222,7 @@ var render = function() {
                             _c(
                               "td",
                               { staticClass: "black--text  text-capitalize" },
-                              [_vm._v(_vm._s(_vm.form.Address))]
+                              [_vm._v(_vm._s(_vm.form.address))]
                             )
                           ]),
                           _vm._v(" "),
@@ -46488,11 +46542,11 @@ var render = function() {
                       _c("v-textarea", {
                         attrs: { label: "Address:*", required: "" },
                         model: {
-                          value: _vm.form.Address,
+                          value: _vm.form.address,
                           callback: function($$v) {
-                            _vm.$set(_vm.form, "Address", $$v)
+                            _vm.$set(_vm.form, "address", $$v)
                           },
-                          expression: "form.Address"
+                          expression: "form.address"
                         }
                       }),
                       _vm._v(" "),
@@ -98299,7 +98353,7 @@ function () {
     value: function login(data) {
       var _this = this;
 
-      axios.post('/api/auth/login', data).then(function (res) {
+      axios.post('/lms/api/auth/login', data).then(function (res) {
         return _this.responseAfterLogin(res);
       }) // .then(res =>{
       //
@@ -98317,7 +98371,7 @@ function () {
 
       if (_Token__WEBPACK_IMPORTED_MODULE_0__["default"].isValid(access_token)) {
         _AppStorage__WEBPACK_IMPORTED_MODULE_1__["default"].store(username, access_token);
-        window.location = '/home';
+        window.location = '/lms/home';
       }
     }
   }, {
@@ -98340,7 +98394,7 @@ function () {
     key: "logout",
     value: function logout() {
       _AppStorage__WEBPACK_IMPORTED_MODULE_1__["default"].clear();
-      window.location = '/';
+      window.location = '/lms/';
     }
   }, {
     key: "name",
@@ -98419,49 +98473,49 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 
 
 var routes = [{
-  path: '/login',
+  path: '/lms/login',
   component: _components_Login_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
 }, {
-  path: '/signup',
+  path: '/lms/signup',
   component: _components_Signup_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
 }, {
-  path: '/calender',
+  path: '/lms/calender',
   component: _components_Calender_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, {
-  path: '/profile',
+  path: '/lms/profile',
   component: _components_Profile_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
   name: 'profile'
 }, {
-  path: '/class/:name',
+  path: '/lms/class/:name',
   component: _components_Class_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
   name: 'class'
 }, {
-  path: '/announcement',
+  path: '/lms/announcement',
   component: _components_Announcement_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
 }, {
-  path: '/assignment',
+  path: '/lms/assignment',
   component: _components_Assaignment_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
 }, {
-  path: '/discussion',
+  path: '/lms/discussion',
   component: _components_Discussion_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
 }, {
-  path: '/student',
+  path: '/lms/student',
   component: _components_Student_vue__WEBPACK_IMPORTED_MODULE_10__["default"]
 }, {
-  path: '/information',
+  path: '/lms/information',
   component: _components_Information_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
 }, {
-  path: '/admin/dashboard',
+  path: '/lms/admin/dashboard',
   component: _components_AdminPannel_index_vue__WEBPACK_IMPORTED_MODULE_12__["default"]
 }, {
-  path: '/lms',
+  path: '/lms/lms',
   component: _components_AppHome_vue__WEBPACK_IMPORTED_MODULE_13__["default"]
 }, {
-  path: '/home',
+  path: '/lms/home',
   component: _components_AppHome_vue__WEBPACK_IMPORTED_MODULE_13__["default"],
   name: 'home'
 }, {
-  path: '/logout',
+  path: '/lms/logout',
   component: _components_Logout__WEBPACK_IMPORTED_MODULE_14__["default"],
   name: 'logout'
 }];
@@ -100597,8 +100651,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\New folder\htdocs\lms\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\New folder\htdocs\lms\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! E:\Xampp\htdocs\lms\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\Xampp\htdocs\lms\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

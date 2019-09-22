@@ -48,7 +48,7 @@
         },
         methods:{
             update(){
-                axios.patch(`/api/announcement/${this.announcement.id}`,this.announcement)
+                axios.patch(`/lms/api/announcement/${this.announcement.id}`,this.announcement)
                     .then(res=> this.dialog=false,this.$toasted.show('Announcement Updated',{type:'success'}))
             }
         }

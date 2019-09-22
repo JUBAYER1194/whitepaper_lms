@@ -115,10 +115,10 @@
         created(){
 
             if(User.loggedIn()){
-                window.location = '/home'
+                window.location = '/lms/home'
             }
 
-          axios.get('/api/role')
+          axios.get('/lms/api/role')
               .then(res =>this.roles=res.data.data)
               .catch(error =>console.log(error.response.data))
         },
@@ -126,11 +126,11 @@
         methods:
             {
                 signup() {
-                    axios.post('/api/auth/signup', this.form)
+                    axios.post('/lms/api/auth/signup', this.form)
                         .then(res => window.location = '/')
                 },
                 login(){
-                    window.location = '/'
+                    window.location = '/lms/'
                 },
 
             }

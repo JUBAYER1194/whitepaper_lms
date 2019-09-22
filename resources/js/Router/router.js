@@ -20,20 +20,20 @@ import Logout from "../components/Logout";
 
 const routes = [
 
-     { path: '/login', component: Login },
-     { path: '/signup', component: SignUp },
-    { path: '/calender', component: Calender },
-    { path: '/profile', component: Profile,name:'profile'},
-    { path: '/class/:name', component: Class,name:'class'},
-    { path: '/announcement', component: Announcement },
-    { path: '/assignment', component: Assignment },
-    { path: '/discussion', component: Discussion },
-    { path: '/student', component: Student },
-    { path: '/information', component: Information},
-    { path: '/admin/dashboard', component: Admin},
-    { path: '/lms', component: lms},
-    { path: '/home', component: AppHome,name:'home'},
-    { path: '/logout', component: Logout,name:'logout'},
+     { path: '/lms/login', component: Login },
+     { path: '/lms/signup', component: SignUp },
+    { path: '/lms/calender', component: Calender },
+    { path: '/lms/profile', component: Profile,name:'profile'},
+    { path: '/lms/class/:name', component: Class,name:'class'},
+    { path: '/lms/announcement', component: Announcement },
+    { path: '/lms/assignment', component: Assignment },
+    { path: '/lms/discussion', component: Discussion },
+    { path: '/lms/student', component: Student },
+    { path: '/lms/information', component: Information},
+    { path: '/lms/admin/dashboard', component: Admin},
+    { path: '/lms/lms', component: lms},
+    { path: '/lms/home', component: AppHome,name:'home'},
+    { path: '/lms/logout', component: Logout,name:'logout'},
 
 
 

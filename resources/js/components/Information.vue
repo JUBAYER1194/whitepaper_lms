@@ -96,6 +96,9 @@
                                                     <div class="overline mb-4">{{material.option}}</div>
                                                     <v-list-item-title class="headline mb-1">{{material.title}}
                                                     </v-list-item-title>
+                                                    <v-list-item-title class="headline mb-1">
+                                                        <a :href="'http://localhost:8000/uploads/x/material/'+material.file" target="_blank"><button type="button" class="btn btn-sm">Read File</button></a>
+                                                    </v-list-item-title>
                                                     <v-list-item-subtitle>{{material.body}}</v-list-item-subtitle>
                                                     <v-list-item-subtitle>{{material.created_at}}</v-list-item-subtitle>
                                                 </v-list-item-content>
@@ -217,6 +220,9 @@
 
             }
         },
+        created(){
+          this.listen();
+        },
 
         computed:{
             created() {
@@ -227,6 +233,12 @@
             }
         },
         methods:{
+            listen(){
+                EventBus.$on('newMaterial',(ann) =>{
+                    this.materials.unshift(ann)
+                })
+
+            },
 
         },
 

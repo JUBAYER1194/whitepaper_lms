@@ -88,7 +88,7 @@
                 //this.$router.push({name:'home'})
             },
             signup(){
-                window.location = '/signups'
+                window.location = '/lms/signups'
             }
 
         },

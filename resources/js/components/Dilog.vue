@@ -67,7 +67,7 @@
         },
         methods:{
           create(){
-              axios.post(`/api/class/`,this.classes)
+              axios.post(`/lms/api/class/`,this.classes)
                   .then(res =>this.dialog=false,this.$toasted.show('Class Created',{type:'success'}),
                       EventBus.$emit('newClass',this.classes)
                   )

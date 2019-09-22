@@ -48,7 +48,7 @@ class MaterialController extends Controller
         else
             $extension='pdf';
         $fileName=str_random().'.'.$extension;
-        $path=public_path().'/uploads/profile/'.$fileName;
+        $path=public_path().'/uploads/x/material/'.$fileName;
         file_put_contents($path,$decoded);
 
          Material::create($request->except('file')+['file'=>$fileName]);
@@ -93,6 +93,7 @@ class MaterialController extends Controller
     public function update(Request $request, Material $material)
     {
         //
+        return 'x';
     }
 
     /**

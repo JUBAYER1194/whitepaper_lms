@@ -15,7 +15,8 @@
                     v-for="item in items"
                     outlined
                     tile
-                    style="font-size: 100%"
+                    style="font-size: 100%;background-color:#9652ff;color: white;"
+
                 >
                     {{ item.name }}
                 </v-tab>
@@ -129,13 +130,13 @@
         },
         methods: {
             getclass() {
-                axios.get(`/api/class/about/${this.$route.params.name}`)
+                axios.get(`/lms/api/class/about/${this.$route.params.name}`)
                     .then(res => this.classes = res.data.data)
             },
         },
         computed: {
             getmaterial() {
-                axios.get(`/api/material/${this.classes.id}`)
+                axios.get(`/lms/api/material/${this.classes.id}`)
                     .then(res => this.material = res.data.data)
             },
 

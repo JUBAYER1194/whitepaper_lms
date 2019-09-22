@@ -3,7 +3,7 @@ import AppStorage from './AppStorage'
 class User {
 
 login(data){
-    axios.post('/api/auth/login',data)
+    axios.post('/lms/api/auth/login',data)
         .then(res => this.responseAfterLogin(res))
         // .then(res =>{
         //
@@ -24,7 +24,7 @@ login(data){
 
 
         AppStorage.store(username,access_token)
-        window.location = '/home'
+        window.location = '/lms/home'
 
 
     }
@@ -46,7 +46,7 @@ login(data){
 
  logout(){
     AppStorage.clear()
-     window.location='/'
+     window.location='/lms/'
 
  }
 name(){

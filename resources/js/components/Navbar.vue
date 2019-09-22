@@ -55,7 +55,7 @@
                  </template>
                  <v-list-item style="margin-left:20%" v-for="classs in classes" :key="classs.id">
                      <v-list-item-title>
-                         <a :href="'/class/'+classs.name" style="color:white;text-decoration: none;font-size: 120%">{{classs.name}}</a>
+                         <a :href="'/lms/class/'+classs.name" style="color:white;text-decoration: none;font-size: 120%">{{classs.name}}</a>
                      </v-list-item-title>
                      <v-list-item-icon>
                          <v-icon> adb</v-icon>
@@ -147,9 +147,9 @@
                 dialog: false,
                 drawer: null,
                  items: [
-                    {icon: 'account_circle', text: 'profile',to:"/profile"},
-                     {icon: 'border_all', text: 'Calender View',to:'/calender'},
-                     {icon: 'dashboard', text: 'Admin DashBoard',to:"/admin/dashboard"},
+                    {icon: 'account_circle', text: 'profile',to:"/lms/profile"},
+                     {icon: 'border_all', text: 'Calender View',to:'/lms/calender'},
+                     {icon: 'dashboard', text: 'Admin DashBoard',to:"/lms/admin/dashboard"},
                 ],
                 classes: {},
                 user_id: null,
@@ -158,7 +158,7 @@
         },
         created() {
             this.user_id = User.id();
-            axios.get(`/api/class/${this.user_id}`)
+            axios.get(`/lms/api/class/${this.user_id}`)
                 .then(res => this.classes = res.data);
                this.listen();
         },
