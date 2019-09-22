@@ -1,5 +1,7 @@
 <?php
 
+use App\Lmsclass;
+use App\Material;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 
@@ -14,19 +16,21 @@ class DatabaseSeeder extends Seeder
     {
         //factory(App\User::class,10)->create();
         factory(App\Announcement::class,10)->create();
-       // factory(App\Assaignment::class,10)->create();
-//       Role::create([
-//           'name'=>'Super Admin'
-//       ]);
-//        Role::create([
-//            'name'=>'Admin'
-//        ]);
-//        Role::create([
-//            'name'=>'Teacher'
-//        ]);
-//        Role::create([
-//            'name'=>'Student'
-//        ]);
+        factory(App\Assaignment::class,10)->create();
+        factory(Lmsclass::class,10)->create();
+        factory(Material::class,10)->create();
+       Role::create([
+           'name'=>'Super Admin'
+       ]);
+        Role::create([
+            'name'=>'Admin'
+        ]);
+        Role::create([
+            'name'=>'Teacher'
+        ]);
+        Role::create([
+            'name'=>'Student'
+        ]);
 
    }
 }

@@ -25,7 +25,7 @@
             <v-tabs-items v-model="tab">
                 <v-tab-item>
                     <v-card style="padding-bottom: 10%;padding-top:5%">
-                        <Information></Information>
+                        <Information :data="classes" :datas="material"></Information>
                     </v-card>
                 </v-tab-item>
                 <v-tab-item>
@@ -51,7 +51,7 @@
             </v-tabs-items>
 
 
-
+       {{getmaterial}}
     </div>
 
 </template>
@@ -66,10 +66,12 @@
 
     export default {
 
-        components: {dilog, invite_dilog,Information,Announcement,Assaignment,Student,Exam},
+        components: {dilog, invite_dilog, Information, Announcement, Assaignment, Student, Exam},
         data() {
             return {
                 tab: null,
+                classes: {},
+                material: {},
                 items: [
                     {
                         name: 'INFORMATION',
@@ -119,8 +121,28 @@
 
             }
         },
+
+        created() {
+            this.getclass();
+
+
+        },
+        methods: {
+            getclass() {
+                axios.get(`/api/class/about/${this.$route.params.name}`)
+                    .then(res => this.classes = res.data.data)
+            },
+        },
+        computed: {
+            getmaterial() {
+                axios.get(`/api/material/${this.classes.id}`)
+                    .then(res => this.material = res.data.data)
+            },
+
+
+        },
     }
-</script>
+</script>}
 <style>
     /* Helper classes */
     #basil {

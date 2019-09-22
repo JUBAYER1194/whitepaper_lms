@@ -65,5 +65,12 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Assaignment::class)->latest();
 
     }
+    public function class(){
+        return $this->hasMany(Lmsclass::class)->latest();
+    }
+    public function material(){
+    return $this->hasMany(Material::class)->latest();
+}
+
 
 }

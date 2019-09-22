@@ -3,15 +3,24 @@
   <component name="ChangeListManager">
     <list default="true" id="03434f23-f88b-48c6-bc77-19b79d88e8b8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Assaignment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Assaignment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Class.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ClassController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/ClassResource.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_09_21_031009_create_classes_table.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Announcement.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Announcement.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Announcement_dilog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Announcement_dilog.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Assaignment.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Assaignment.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Router/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Router/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Class.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Class.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Dilog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Dilog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Information.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Information.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Material_dilog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Material_dilog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Navbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Navbar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/updateprofile_dilog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/updateprofile_dilog.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -171,6 +180,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\New folder\htdocs\lms\resources\js\components" />
       <recent name="E:\Xampp\htdocs\lms\resources\views" />
       <recent name="C:\xampp\htdocs\3rd september 2019\lms\resources\js\components" />
     </key>
@@ -230,6 +240,11 @@
       <workItem from="1568979648508" duration="4370000" />
       <workItem from="1568992315689" duration="13730000" />
       <workItem from="1569031564504" duration="3903000" />
+      <workItem from="1569038080902" duration="2592000" />
+      <workItem from="1569057319075" duration="12302000" />
+      <workItem from="1569074497403" duration="402000" />
+      <workItem from="1569074901030" duration="12936000" />
+      <workItem from="1569114190042" duration="597000" />
     </task>
     <servers />
   </component>
@@ -257,13 +272,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/resources/js/components/Dilog.vue</url>
-          <line>54</line>
+          <line>35</line>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/resources/js/components/Announcement.vue</url>
-          <line>43</line>
-          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -6,10 +6,10 @@ Route::get('/information/{id}','ApiUserController@index');
 Route::put('/information/{id}','ApiUserController@update');
 Route::Resource('announcement', 'AnnouncementController');
 Route::Resource('assignment','AssaignmentController');
-
-
+Route::Resource('class','LmsclassController');
+Route::Resource('material','MaterialController');
+Route::get('class/about/{name}','LmsclassController@information');
 Route::group([
-
     'middleware' => 'api',
     'prefix' => 'auth'
 

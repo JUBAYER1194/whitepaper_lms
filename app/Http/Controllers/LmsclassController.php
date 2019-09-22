@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\LmsclassResource;
+use App\Lmsclass;
+use App\User;
 use Illuminate\Http\Request;
 
-class ClassController extends Controller
+class LmsclassController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,6 +38,14 @@ class ClassController extends Controller
     public function store(Request $request)
     {
         //
+        $class=new Lmsclass();
+        $class->name=$request->name;
+        $class->section=$request->section;
+        $class->user_id=$request->user_id;
+        $class->code=$request->code;
+        $class->description=$request->description;
+        $class->save();
+
     }
 
     /**
@@ -46,6 +57,9 @@ class ClassController extends Controller
     public function show($id)
     {
         //
+        $class=User::find($id)->class;
+        return $class;
+
     }
 
     /**
@@ -80,5 +94,11 @@ class ClassController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function information(Lmsclass $name)
+    {
+
+        return new LmsclassResource($name);
+
     }
 }

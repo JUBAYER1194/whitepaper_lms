@@ -73,7 +73,7 @@
                 fileReader.onload = (e) => {
                     this.form.image=e.target.result
                 }
-                console.log(this.form.image)
+
 
             },
 

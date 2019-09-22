@@ -24,7 +24,7 @@ const routes = [
      { path: '/signup', component: SignUp },
     { path: '/calender', component: Calender },
     { path: '/profile', component: Profile,name:'profile'},
-    { path: '/class', component: Class,name:'class'},
+    { path: '/class/:name', component: Class,name:'class'},
     { path: '/announcement', component: Announcement },
     { path: '/assignment', component: Assignment },
     { path: '/discussion', component: Discussion },

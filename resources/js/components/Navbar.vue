@@ -31,86 +31,38 @@
                  </v-flex>
 
              </v-layout>
-             <template v-for="item in items">
-                 <v-layout
-                     :key="item.heading"
-                     align-center
-                     row
-                     v-if="item.heading"
-                     :to="item.to"
-                 >
-                     <v-flex
-                         class="text-xs-center"
-                         xs6
-                     >
-                     </v-flex>
-                 </v-layout>
-                 <v-list-group
-                     :key="item.text"
-                     :prepend-icon="item.model ? item.icon : item['icon-alt']"
-                     append-icon=""
-                     v-else-if="item.children"
-                     v-model="item.model"
-                     no-action
-                     sub-group
-                     value="true"
-                 >
+             <br>
+
+             <v-list-item v-for="item in items" :key="index">
+                 <v-list-item-icon>
+                     <v-icon>{{item.icon}}</v-icon>
+                 </v-list-item-icon>
+
+                 <v-list-item-title>
+                     <router-link :to="item.to" style="color: white;text-decoration: none;font-size: 120%">
+                         {{item.text}}
+                     </router-link>
+                 </v-list-item-title>
+             </v-list-item>
 
 
-                     <template v-slot:activator>
-                         <v-list-item >
-                             <v-list-item-content>
-                                 <v-list-item-title style="font-size: 15px">
-                                     {{ item.text }}
-                                 </v-list-item-title>
-                             </v-list-item-content>
-                         </v-list-item>
-                     </template>
-
-                     <v-list-item
-                         v-for="(child, i) in item.children"
-                         :key="i"
-                         @click=""
-                     >
-                         <v-list-item-action v-if="child.icon">
-                             <v-icon>{{ child.icon }}</v-icon>
-                         </v-list-item-action>
-                         <v-list-item-content>
-                             <v-list-item-title>
-                                 <router-link
-                                     class="white--text"
-                                     :to="child.to"
-                                     style="font-size: 13px"
-                                 >
-                                 {{ child.text }}
-                                 </router-link>
-                             </v-list-item-title>
-                         </v-list-item-content>
-                     </v-list-item>
-
-                 </v-list-group>
-                 <v-list-item
-                     :key="item.text"
-                     @click=""
-                     v-else
-                     v-show="item.show"
-                 >
-                     <v-list-item-action>
-                         <v-icon>{{ item.icon }}</v-icon>
-                     </v-list-item-action>
-                     <v-list-item-content>
-                         <v-list-item-title>
-                             <div class="hidden-sm-and-down">
-                             <router-link class="white--text"
-                              :to="item.to" >
-                                 {{item.text}}
-                             </router-link>
-                             </div>
-
-                         </v-list-item-title>
-                     </v-list-item-content>
+             <v-list-group>
+                 <template v-slot:activator>
+                     <v-list-item-icon>
+                         <v-icon style="color: white">account_circle</v-icon>
+                     </v-list-item-icon>
+                     <v-list-item-title style="color: white;font-size: 100%">ClassRoom</v-list-item-title>
+                 </template>
+                 <v-list-item style="margin-left:20%" v-for="classs in classes" :key="classs.id">
+                     <v-list-item-title>
+                         <a :href="'/class/'+classs.name" style="color:white;text-decoration: none;font-size: 120%">{{classs.name}}</a>
+                     </v-list-item-title>
+                     <v-list-item-icon>
+                         <v-icon> adb</v-icon>
+                     </v-list-item-icon>
                  </v-list-item>
-             </template>
+             </v-list-group>
+
          </v-list>
      </v-navigation-drawer>
 
@@ -194,48 +146,36 @@
                 loggedIn: User.loggedIn(),
                 dialog: false,
                 drawer: null,
-                items: [
-                    {icon: 'account_circle', text: 'profile',to:"/profile",show: true },
-                    {icon: 'exit_to_app', text: 'login',to:"/login",show: !User.loggedIn()},
-                    {icon: 'contacts', text: 'Sign Up',to:"/signup",show: !User.loggedIn()},
-                    //{icon: 'contacts', text: 'Logout',to:"/logout",show: User.loggedIn()},
-
-                    {
-                        icon: 'keyboard_arrow_up',
-                        'icon-alt': 'keyboard_arrow_down',
-                        text: 'ClassRoom',
-                        model: false,
-                        children: [
-                            {icon: 'public', text: 'Physics',to:'/class',show: true },
-                        ],
-                    },
-                    {
-                        icon: 'keyboard_arrow_up',
-                        'icon-alt': 'keyboard_arrow_down',
-                        text: 'Exam Result',
-                        model: false,
-                        children: [
-                            {icon: 'public', text: 'Physics',to:'/login',show: true },
-
-                        ],
-                    },
-                    {icon: 'border_all', text: 'Calender View',to:'/calender',show: true },
-                    {icon: 'dashboard', text: 'Admin DashBoard',to:"/admin/dashboard",show: true },
+                 items: [
+                    {icon: 'account_circle', text: 'profile',to:"/profile"},
+                     {icon: 'border_all', text: 'Calender View',to:'/calender'},
+                     {icon: 'dashboard', text: 'Admin DashBoard',to:"/admin/dashboard"},
                 ],
+                classes: {},
+                user_id: null,
+
             }
+        },
+        created() {
+            this.user_id = User.id();
+            axios.get(`/api/class/${this.user_id}`)
+                .then(res => this.classes = res.data);
+               this.listen();
         },
 
         methods:{
             created() {
                     User.logout();
             },
+            listen(){
+                EventBus.$on('newClass',(clas) =>{
+                    this.classes.unshift(clas)
+                })
+            },
         },
     }
 
 </script>
 <style>
-    a {  text-decoration: none;
-         color: white;
-         font-size: 15px;
-         }
+
 </style>

@@ -2,13 +2,14 @@
     <v-card
         class="mx-auto"
         max-width="80%"
+
     >
         <v-img
             class="white--text"
             height="300px"
             src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
         >
-            <v-card-title class="align-end fill-height">Physics-107</v-card-title>
+            <v-card-title class="align-end fill-height">{{classes.name}}</v-card-title>
         </v-img>
 
         <v-card-text>
@@ -21,7 +22,7 @@
                         <v-icon left>mdi-account</v-icon>
                         Class Information
                     </v-tab>
-                    <v-tab>
+                    <v-tab @click="created">
                         <v-icon left>mdi-lock</v-icon>
                         Class Material
                     </v-tab>
@@ -38,10 +39,29 @@
                             <v-card-text>
                                 <v-simple-table>
                                     <tbody>
-                                    <tr :key="item.name" v-for="item in desserts">
-                                        <td class="font-weight-black">{{ item.name }}</td>
-                                        <td class="black--text">{{ item.calories }}</td>
-
+                                    <tr>
+                                        <td class="font-weight-black"> Class Name:</td>
+                                        <td class="black--text text-capitalize"> {{classes.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-black">Section:</td>
+                                        <td class="black--text text-capitalize">{{classes.section}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-black">Description:</td>
+                                        <td class="black--text text-capitalize">{{classes.description}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-black"> Faculty Name:</td>
+                                        <td class="black--text text-capitalize" >{{classes.first_name}} {{classes.last_name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-black">Code:</td>
+                                        <td class="black--text">{{classes.code}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-black">Create At:</td>
+                                        <td class="black--text">{{classes.created_at}}</td>
                                     </tr>
                                     </tbody>
                                 </v-simple-table>
@@ -54,7 +74,7 @@
                                 flat
                                 max-width="100%">
                             <v-card-text style="float: right">
-                                <dilog></dilog>
+                                <dilog :data="classes.id"></dilog>
                             </v-card-text>
 
                             <v-card-text>
@@ -63,6 +83,8 @@
                                     <v-col
                                         cols="12"
                                         md="4"
+                                        v-for="material in materials"
+                                        :key="material.user_id"
                                     >
                                         <v-card
                                             class="mx-auto"
@@ -71,70 +93,38 @@
                                         >
                                             <v-list-item three-line>
                                                 <v-list-item-content>
-                                                    <div class="overline mb-4">Lesson</div>
-                                                    <v-list-item-title class="headline mb-1">Force
+                                                    <div class="overline mb-4">{{material.option}}</div>
+                                                    <v-list-item-title class="headline mb-1">{{material.title}}
                                                     </v-list-item-title>
-                                                    <v-list-item-subtitle>some description</v-list-item-subtitle>
-                                                    <v-list-item-subtitle>10th August 2019</v-list-item-subtitle>
+                                                    <v-list-item-subtitle>{{material.body}}</v-list-item-subtitle>
+                                                    <v-list-item-subtitle>{{material.created_at}}</v-list-item-subtitle>
                                                 </v-list-item-content>
                                             </v-list-item>
 
                                             <v-card-actions>
-                                                <v-btn style="color: white;background-color:#9652ff">Click</v-btn>
+
+                                                <v-row class="d-flex">
+                                                    <v-col
+                                                        md="4"
+                                                    >
+                                                        <v-btn style="color: white;background-color:#9652ff" depressed>Click</v-btn>
+                                                    </v-col>
+                                                    <v-col
+                                                        md="4"
+                                                    >
+                                                        <EditMaterialdilog :data="material"></EditMaterialdilog>
+
+                                                    </v-col>
+                                                    <v-col
+                                                        md="4"
+                                                    >
+                                                        <v-btn class="error"  depressed>Delete</v-btn>
+                                                    </v-col>
+                                                </v-row>
+
                                             </v-card-actions>
                                         </v-card>
                                     </v-col>
-                                    <v-col
-                                        cols="12"
-                                        md="4"
-                                    >
-                                        <v-card
-                                            class="mx-auto"
-                                            max-width="100%"
-
-                                        >
-                                            <v-list-item three-line>
-                                                <v-list-item-content>
-                                                    <div class="overline mb-4">Lesson</div>
-                                                    <v-list-item-title class="headline mb-1">Force
-                                                    </v-list-item-title>
-                                                    <v-list-item-subtitle>some description</v-list-item-subtitle>
-                                                    <v-list-item-subtitle>10th August 2019</v-list-item-subtitle>
-                                                </v-list-item-content>
-
-                                            </v-list-item>
-
-                                            <v-card-actions>
-                                                <v-btn style="color: white;background-color:#9652ff">Click</v-btn>
-                                            </v-card-actions>
-                                        </v-card>
-                                    </v-col>
-                                    <v-col
-                                        cols="12"
-                                        md="4"
-                                    >
-                                        <v-card
-                                            class="mx-auto"
-                                            max-width="100%"
-
-                                        >
-                                            <v-list-item three-line>
-                                                <v-list-item-content>
-                                                    <div class="overline mb-4">Lesson</div>
-                                                    <v-list-item-title class="headline mb-1">Force
-                                                    </v-list-item-title>
-                                                    <v-list-item-subtitle>some description</v-list-item-subtitle>
-                                                    <v-list-item-subtitle>10th August 2019</v-list-item-subtitle>
-                                                </v-list-item-content>
-
-                                            </v-list-item>
-
-                                            <v-card-actions>
-                                                <v-btn style="color: white;background-color:#9652ff">Click</v-btn>
-                                            </v-card-actions>
-                                        </v-card>
-                                    </v-col>
-
                                 </v-row>
 
 
@@ -179,18 +169,24 @@
             </v-card>
 
         </v-card-text>
-
+          {{created}}
+          {{getMaterial}}
     </v-card>
 </template>
 <script>
     import invite_dilog from "./invite_dilog";
     import dilog from './Material_dilog.vue'
+    import EditMaterialdilog from "./EditMaterialdilog.vue";
 
     export default {
-        components: {dilog, invite_dilog},
+        props:['data','datas'],
+        components: {dilog, invite_dilog,EditMaterialdilog},
         data() {
             return {
                 tab: null,
+                classes:{},
+                materials:{},
+                x:null,
                 items: [
                     {
                         name: 'INFORMATION',
@@ -217,29 +213,23 @@
                     },
 
                 ],
-                desserts: [
-                    {
-                        name: 'Class Name:',
-                        calories: 'Physics-107',
-                    },
-                    {
-                        name: 'Section:',
-                        calories: '1',
-                    },
-                    {
-                        name: 'created on:',
-                        calories: '20th Auugust 2019',
-                    },
-                    {
-                        name: 'Class Code:',
-                        calories: '7g58df41',
-                    },
 
-
-                ],
 
             }
         },
+
+        computed:{
+            created() {
+                this.classes=this.data;
+            },
+            getMaterial(){
+                this.materials=this.datas;
+            }
+        },
+        methods:{
+
+        },
+
     }
 </script>
 <style>

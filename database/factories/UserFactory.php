@@ -2,6 +2,7 @@
 
 use App\Announcement;
 use App\Assaignment;
+use App\Lmsclass;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 use Spatie\Permission\Models\Role;
@@ -46,6 +47,16 @@ $factory->define(Assaignment::class, function (Faker $faker) {
         'user_id'=>1,
         'body'=>$faker->text,
          'deadline'=>$faker->date(),
+
+    ];
+});
+$factory->define(Lmsclass::class, function (Faker $faker) {
+    return [
+        'name' => $faker->name,
+        'user_id'=>1,
+        'description'=>$faker->text,
+        'section'=>$faker->randomDigitNotNull,
+        'code'=>$faker->randomDigit,
 
     ];
 });
