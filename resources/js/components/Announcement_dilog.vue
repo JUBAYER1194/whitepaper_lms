@@ -43,14 +43,25 @@
                 title:null,
                 body:null,
                 user_id:null,
+                lmsclass_id:null,
+
 
             },
 
         }),
+        // created(){
+        //     this.listen();
+        // },
         computed:{
             user(){
                 this.announcement.user_id=User.id();
 
+
+            },
+            listen(){
+                EventBus.$on('classess',(ann) =>{
+                    this.announcement.lmsclass_id=ann;
+                })
             }
         },
         methods:{
@@ -59,7 +70,9 @@
                     .then(res =>this.dialog=false,this.$toasted.show('Announcement Created',{type:'success'}),
                         EventBus.$emit('newAnn',this.announcement)
                     )
-            }
+            },
+
+
         }
     }
 </script>

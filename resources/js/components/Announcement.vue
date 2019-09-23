@@ -104,6 +104,7 @@
                 </v-card>
             </v-col>
         </v-row>
+          {{getannouncements}}
 
     </v-card>
 </template>
@@ -113,18 +114,17 @@
 
     export default {
         components: {dilog,VEditDialog},
+        props:['data'],
         data() {
             return {
                 announcements: {},
                 user_id:null,
 
+
             }
         },
         created() {
 
-            this.user_id=User.id();
-            axios.get(`/lms/api/announcement/${this.user_id}`)
-                .then(res => this.announcements = res.data.data);
             this.listen()
 
         },
@@ -140,6 +140,11 @@
                 })
             },
 
+        },
+        computed:{
+          getannouncements(){
+              this.announcements=this.data;
+          }
         },
 
     }

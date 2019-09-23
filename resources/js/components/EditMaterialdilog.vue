@@ -36,8 +36,8 @@
                 </v-card-text>
                 <v-card-actions>
                     <div class="flex-grow-1"></div>
-                    <v-btn style="background-color:#9652ff;color:white" text @click="update">Close</v-btn>
-                    <v-btn style="background-color:#9652ff;color:white"  text @click="dialog = false">Save</v-btn>
+                    <v-btn style="background-color:#9652ff;color:white" text @click="dialog = false" >Close</v-btn>
+                    <v-btn style="background-color:#9652ff;color:white"  text  @click="update" >Save</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -55,6 +55,8 @@
             menu2: false,
             items: ['Lesson', 'Document', 'Image', 'Audio','Video','Youtube','link'],
             material:{},
+            checking:0,
+
 
         }),
         computed:{
@@ -67,14 +69,19 @@
                 var fileReader=new FileReader();
                 fileReader.readAsDataURL(e.target.files[0]);
                 fileReader.onload = (e) => {
-                    this.form.image=e.target.result
+                    this.material.file=e.target.result
                 }
+                this.checking=1;
+            },
+
+            update(){
+                axios.put(`/lms/api/material/${this.material.lmsclass_id}`,{material:this.material,check:this.checking})
+                    .then(res => this.dialog = false,this.$toasted.show('Material Edited',{type:'success'}))
+
             },
 
         },
-        update(){
 
-        }
 
     }
 </script>

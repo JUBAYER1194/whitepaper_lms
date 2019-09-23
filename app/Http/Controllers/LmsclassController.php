@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\LmsclassResource;
+use App\Http\Resources\LmsuserResource;
 use App\Lmsclass;
 use App\User;
 use Illuminate\Http\Request;
@@ -99,6 +100,12 @@ class LmsclassController extends Controller
     {
 
         return new LmsclassResource($name);
+
+    }
+    public function user($id)
+    {
+        $users=Lmsclass::find($id)->users;
+       return LmsuserResource::collection($users);
 
     }
 }

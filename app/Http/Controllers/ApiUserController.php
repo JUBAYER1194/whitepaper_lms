@@ -17,34 +17,48 @@ class ApiUserController extends Controller
     }
     public function update(Request $request,$id){
 //        \Log::info($request->all());
+            if ($request->check ==1){
+            $exploded=explode(',',$request->form['image']);
+            $decoded=base64_decode($exploded[1]);
+            if (str_contains($exploded[0],'jpeg'))
+                $extension='jpg';
+            else
+                $extension='png';
+            $fileName=str_random().'.'.$extension;
+            $path=public_path().'/uploads/x/profile/'.$fileName;
+            file_put_contents($path,$decoded);
 
-        $exploded=explode(',',$request->image);
-        $decoded=base64_decode($exploded[1]);
-        if (str_contains($exploded[0],'jpeg'))
-            $extension='jpg';
+            $user=User::find($id);
+            $user->first_name=$request->form['first_name'];
+            $user->last_name=$request->form['last_name'];
+            $user->father_name=$request->form['father_name'];
+            $user->mother_name=$request->form['mother_name'];
+            $user->class_teacher_name=$request->form['class_teacher_name'];
+            $user->phone=$request->form['phone'];
+            $user->parents_contact=$request->form['parents_contact'];
+            $user->email=$request->form['email'];
+            $user->nid=$request->form['nid'];
+            $user->image=$fileName;
+            $user->address=$request->form['address'];
+            $user->update();
+            return response('Update',Response::HTTP_ACCEPTED);
+           //$id->update($request->except('image')+['image'=>$fileName]);
+        }
         else
-            $extension='png';
-        $fileName=str_random().'.'.$extension;
-        $path=public_path().'/uploads/x/profile/'.$fileName;
-        file_put_contents($path,$decoded);
-
         $user=User::find($id);
-        $user->first_name=$request->first_name;
-        $user->last_name=$request->last_name;
-        $user->father_name=$request->father_name;
-        $user->mother_name=$request->mother_name;
-        $user->class_teacher_name=$request->class_teacher_name;
-        $user->phone=$request->phone;
-        $user->parents_contact=$request->parents_contact;
-        $user->email=$request->email;
-        $user->nid=$request->nid;
-        $user->image=$fileName;
-        $user->address=$request->address;
-        $user->role_id=$request->role_id;
+        $user->first_name=$request->form['first_name'];
+        $user->last_name=$request->form['last_name'];
+        $user->father_name=$request->form['father_name'];
+        $user->mother_name=$request->form['mother_name'];
+        $user->class_teacher_name=$request->form['class_teacher_name'];
+        $user->phone=$request->form['phone'];
+        $user->parents_contact=$request->form['parents_contact'];
+        $user->email=$request->form['email'];
+        $user->nid=$request->form['nid'];
+        $user->address=$request->form['address'];
         $user->update();
-        //$id->update($request->except('image')+['image'=>$fileName]);
-
         return response('Update',Response::HTTP_ACCEPTED);
+        //$id->update($request->except('image')+['image'=>$fileName]);
 
     }
 }

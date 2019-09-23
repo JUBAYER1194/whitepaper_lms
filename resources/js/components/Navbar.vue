@@ -126,7 +126,7 @@
 
 
          >
-             <span @click="created">Sign Out</span>
+             <span @click="createds">Sign Out</span>
              <v-icon right>exit_to_app</v-icon>
          </v-btn>
 
@@ -164,7 +164,7 @@
         },
 
         methods:{
-            created() {
+            createds() {
                     User.logout();
             },
             listen(){

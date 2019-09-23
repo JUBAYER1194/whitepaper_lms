@@ -52,6 +52,8 @@
             modal: false,
             menu2: false,
             form: {},
+            checking:0,
+
 
             }
 
@@ -64,7 +66,7 @@
         },
         methods: {
             update() {
-                axios.put(`/lms/api/information/1`, this.form)
+                axios.put(`/lms/api/information/1`,{form:this.form,check:this.checking})
                     .then(res => this.dialog = false,this.$toasted.show('profile Updated',{type:'success'}))
             },
             imageChanged(e){
@@ -72,7 +74,9 @@
                 fileReader.readAsDataURL(e.target.files[0])
                 fileReader.onload = (e) => {
                     this.form.image=e.target.result
+
                 }
+                this.checking=1;
 
 
             },

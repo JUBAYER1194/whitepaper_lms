@@ -7,6 +7,7 @@ use App\Lmsclass;
 use App\Material;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
 
 class MaterialController extends Controller
 {
@@ -90,10 +91,39 @@ class MaterialController extends Controller
      * @param  \App\Material  $material
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Material $material)
+    public function update(Request $request,$id)
     {
-        //
-        return 'x';
+          if($request->check==1){
+           $exploded=explode(',',$request->material['file']);
+            $decoded = base64_decode($exploded[1]);
+            if (str_contains($exploded[0], 'docx'))
+                $extension = 'docx';
+            else
+                $extension = 'pdf';
+            $fileName = str_random() . '.' . $extension;
+            $path = public_path() . '/uploads/x/material/' . $fileName;
+            file_put_contents($path, $decoded);
+            $editmaterial=Lmsclass::find($id)->material->find($request->material['id']);
+            $editmaterial->option=$request->material['option'];
+            $editmaterial->user_id=$request->material['user_id'];
+            $editmaterial->lmsclass_id=$request->material['lmsclass_id'];
+            $editmaterial->title=$request->material['title'];
+            $editmaterial->body=$request->material['body'];
+            $editmaterial->file=$fileName;
+            $editmaterial->update();
+            return response('Update',Response::HTTP_ACCEPTED);
+        }
+        else
+        $editmaterial=Lmsclass::find($id)->material->find($request->material['id']);
+        $editmaterial->option=$request->material['option'];
+        $editmaterial->user_id=$request->material['user_id'];
+        $editmaterial->lmsclass_id=$request->material['lmsclass_id'];
+        $editmaterial->title=$request->material['title'];
+        $editmaterial->body=$request->material['body'];
+        $editmaterial->update();
+        return response('Updates',Response::HTTP_ACCEPTED);
+
+
     }
 
     /**
@@ -102,8 +132,12 @@ class MaterialController extends Controller
      * @param  \App\Material  $material
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Material $material)
+    public function destroy($id)
     {
+
+        $material=Material::find($id);
+        $material->delete();
         //
+
     }
 }

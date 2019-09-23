@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Announcement;
 use App\Http\Resources\AnnouncementResource;
+use App\Lmsclass;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -41,10 +42,12 @@ class AnnouncementController extends Controller
     public function store(Request $request)
     {
         //
+        dd($request);
         $ann=new Announcement();
         $ann->title=$request->title;
         $ann->body=$request->body;
         $ann->user_id=$request->user_id;
+        $ann->lmsclass_id=$request->lmsclass_id;
         $ann->save();
     }
 
@@ -57,8 +60,9 @@ class AnnouncementController extends Controller
     public function show($id)
     {
 
-        $ann=User::find($id)->announcement;
-        return AnnouncementResource::collection($ann);
+        $ann=Lmsclass::find($id)->announcement;
+
+       return AnnouncementResource::collection($ann);
     }
 
     /**

@@ -121,7 +121,7 @@
                                                     <v-col
                                                         md="4"
                                                     >
-                                                        <v-btn class="error"  depressed>Delete</v-btn>
+                                                        <v-btn class="error"  depressed @click="deletematerial(index,material.id)">Delete</v-btn>
                                                     </v-col>
                                                 </v-row>
 
@@ -135,6 +135,16 @@
                         </v-card>
                     </v-tab-item>
                     <v-tab-item>
+                        <v-card-actions style="padding-left:3%">
+                            <invite_dilog></invite_dilog>
+                        </v-card-actions>
+                        <v-row class="d-flex">
+                            <v-col
+                                md="4"
+                                v-for="user in users"
+                                :key="user.first_name"
+                            >
+
                         <v-card class="mx-auto" flat
                                 max-width="100%"
 
@@ -154,19 +164,15 @@
                                                 tile
                                             >
                                                 <v-img
-                                                    src="https://cdn.vuetifyjs.com/images/cards/server-room.jpg"></v-img>
+                                                    :src="'http://127.0.0.1:8000/uploads/x/profile/'+ user.image"></v-img>
                                             </v-list-item-avatar>
-                                            <div class="headline mb-2">Jubayer Ahmed</div>
+                                            <div class="headline mb-2">{{user.first_name}} {{user.last_name}}</div>
                                         </v-card-text>
-
-                                        <v-card-actions>
-                                            <invite_dilog></invite_dilog>
-                                        </v-card-actions>
                                     </v-card>
-
-
                             </v-card-text>
                         </v-card>
+                            </v-col>
+                        </v-row>
                     </v-tab-item>
                 </v-tabs>
             </v-card>
@@ -174,6 +180,7 @@
         </v-card-text>
           {{created}}
           {{getMaterial}}
+        {{getuser}}
     </v-card>
 </template>
 <script>
@@ -182,7 +189,7 @@
     import EditMaterialdilog from "./EditMaterialdilog.vue";
 
     export default {
-        props:['data','datas'],
+        props:['data','datas','dat'],
         components: {dilog, invite_dilog,EditMaterialdilog},
         data() {
             return {
@@ -216,12 +223,15 @@
                     },
 
                 ],
+                users:{},
+
 
 
             }
         },
         created(){
           this.listen();
+
         },
 
         computed:{
@@ -230,7 +240,10 @@
             },
             getMaterial(){
                 this.materials=this.datas;
-            }
+            },
+            getuser(){
+                this.users=this.dat;
+            },
         },
         methods:{
             listen(){
@@ -239,6 +252,11 @@
                 })
 
             },
+            deletematerial(index,id){
+                axios.delete(`/lms/api/material/${id}`)
+                    .then(res =>this.materials.splice(index, 1))
+            }
+
 
         },
 

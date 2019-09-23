@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAnnouncementsTable extends Migration
+class CreateLmsclassUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateAnnouncementsTable extends Migration
      */
     public function up()
     {
-        Schema::create('announcements', function (Blueprint $table) {
+        Schema::create('lmsclass_user', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('lmsclass_id');
             $table->integer('user_id');
-            $table->string('title');
-            $table->text('body');
+            $table->string('lmsclass_id');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateAnnouncementsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('announcements');
+        Schema::dropIfExists('lmsclass_user');
     }
 }

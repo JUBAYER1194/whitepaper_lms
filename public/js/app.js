@@ -1845,6 +1845,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2549,6 +2550,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2556,6 +2558,7 @@ __webpack_require__.r(__webpack_exports__);
     dilog: _Announcement_dilog_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     VEditDialog: _EditAnnouncements_dilog_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
+  props: ['data'],
   data: function data() {
     return {
       announcements: {},
@@ -2563,28 +2566,27 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    var _this = this;
-
-    this.user_id = User.id();
-    axios.get("/lms/api/announcement/".concat(this.user_id)).then(function (res) {
-      return _this.announcements = res.data.data;
-    });
     this.listen();
   },
   methods: {
     DeleteAnnouncement: function DeleteAnnouncement(index, x) {
-      var _this2 = this;
+      var _this = this;
 
       axios["delete"]("/lms/api/announcement/".concat(x)).then(function (res) {
-        return _this2.announcements.splice(index, 1);
+        return _this.announcements.splice(index, 1);
       });
     },
     listen: function listen() {
-      var _this3 = this;
+      var _this2 = this;
 
       EventBus.$on('newAnn', function (ann) {
-        _this3.announcements.unshift(ann);
+        _this2.announcements.unshift(ann);
       });
+    }
+  },
+  computed: {
+    getannouncements: function getannouncements() {
+      this.announcements = this.data;
     }
   }
 });
@@ -2642,21 +2644,32 @@ __webpack_require__.r(__webpack_exports__);
       announcement: {
         title: null,
         body: null,
-        user_id: null
+        user_id: null,
+        lmsclass_id: null
       }
     };
   },
+  // created(){
+  //     this.listen();
+  // },
   computed: {
     user: function user() {
       this.announcement.user_id = User.id();
+    },
+    listen: function listen() {
+      var _this = this;
+
+      EventBus.$on('classess', function (ann) {
+        _this.announcement.lmsclass_id = ann;
+      });
     }
   },
   methods: {
     save: function save() {
-      var _this = this;
+      var _this2 = this;
 
       axios.post('/lms/api/announcement', this.announcement).then(function (res) {
-        return _this.dialog = false;
+        return _this2.dialog = false;
       }, this.$toasted.show('Announcement Created', {
         type: 'success'
       }), EventBus.$emit('newAnn', this.announcement));
@@ -3050,6 +3063,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -3072,6 +3087,8 @@ __webpack_require__.r(__webpack_exports__);
       tab: null,
       classes: {},
       material: {},
+      users: {},
+      announcements: {},
       items: [{
         name: 'INFORMATION',
         to: '/information'
@@ -3087,19 +3104,6 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         name: 'Exam',
         to: '/discussion'
-      }],
-      desserts: [{
-        name: 'Class Name:',
-        calories: 'Physics-107'
-      }, {
-        name: 'Section:',
-        calories: '1'
-      }, {
-        name: 'created on:',
-        calories: '20th Auugust 2019'
-      }, {
-        name: 'Class Code:',
-        calories: '7g58df41'
       }]
     };
   },
@@ -3122,6 +3126,21 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("/lms/api/material/".concat(this.classes.id)).then(function (res) {
         return _this2.material = res.data.data;
       });
+    },
+    getuser: function getuser() {
+      var _this3 = this;
+
+      axios.get("/lms/api/class/user/".concat(this.classes.id)).then(function (res) {
+        return _this3.users = res.data.data;
+      });
+    },
+    getannouncement: function getannouncement() {
+      var _this4 = this;
+
+      axios.get("/lms/api/announcement/".concat(this.classes.id)).then(function (res) {
+        return _this4.announcements = res.data.data;
+      });
+      EventBus.$emit('classess', this.classes.id);
     }
   }
 });
@@ -3426,7 +3445,8 @@ __webpack_require__.r(__webpack_exports__);
       modal: false,
       menu2: false,
       items: ['Lesson', 'Document', 'Image', 'Audio', 'Video', 'Youtube', 'link'],
-      material: {}
+      material: {},
+      checking: 0
     };
   },
   computed: {
@@ -3442,11 +3462,24 @@ __webpack_require__.r(__webpack_exports__);
       fileReader.readAsDataURL(e.target.files[0]);
 
       fileReader.onload = function (e) {
-        _this.form.image = e.target.result;
+        _this.material.file = e.target.result;
       };
+
+      this.checking = 1;
+    },
+    update: function update() {
+      var _this2 = this;
+
+      axios.put("/lms/api/material/".concat(this.material.lmsclass_id), {
+        material: this.material,
+        check: this.checking
+      }).then(function (res) {
+        return _this2.dialog = false;
+      }, this.$toasted.show('Material Edited', {
+        type: 'success'
+      }));
     }
-  },
-  update: function update() {}
+  }
 });
 
 /***/ }),
@@ -3676,11 +3709,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['data', 'datas'],
+  props: ['data', 'datas', 'dat'],
   components: {
     dilog: _Material_dilog_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     invite_dilog: _invite_dilog__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -3707,7 +3747,8 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         name: 'DISCUSSION',
         to: '/discussion'
-      }]
+      }],
+      users: {}
     };
   },
   created: function created() {
@@ -3719,6 +3760,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     getMaterial: function getMaterial() {
       this.materials = this.datas;
+    },
+    getuser: function getuser() {
+      this.users = this.dat;
     }
   },
   methods: {
@@ -3727,6 +3771,13 @@ __webpack_require__.r(__webpack_exports__);
 
       EventBus.$on('newMaterial', function (ann) {
         _this.materials.unshift(ann);
+      });
+    },
+    deletematerial: function deletematerial(index, id) {
+      var _this2 = this;
+
+      axios["delete"]("/lms/api/material/".concat(id)).then(function (res) {
+        return _this2.materials.splice(index, 1);
       });
     }
   }
@@ -3828,7 +3879,7 @@ __webpack_require__.r(__webpack_exports__);
       User.login(this.form); //this.$router.push({name:'home'})
     },
     signup: function signup() {
-      window.location = '/lms/signups';
+      window.location = '/signups';
     }
   }
 });
@@ -4143,7 +4194,7 @@ __webpack_require__.r(__webpack_exports__);
     this.listen();
   },
   methods: {
-    created: function created() {
+    createds: function createds() {
       User.logout();
     },
     listen: function listen() {
@@ -4983,7 +5034,8 @@ __webpack_require__.r(__webpack_exports__);
       menu: false,
       modal: false,
       menu2: false,
-      form: {}
+      form: {},
+      checking: 0
     };
   },
   computed: {
@@ -4995,7 +5047,10 @@ __webpack_require__.r(__webpack_exports__);
     update: function update() {
       var _this = this;
 
-      axios.put("/lms/api/information/1", this.form).then(function (res) {
+      axios.put("/lms/api/information/1", {
+        form: this.form,
+        check: this.checking
+      }).then(function (res) {
         return _this.dialog = false;
       }, this.$toasted.show('profile Updated', {
         type: 'success'
@@ -5010,6 +5065,8 @@ __webpack_require__.r(__webpack_exports__);
       fileReader.onload = function (e) {
         _this2.form.image = e.target.result;
       };
+
+      this.checking = 1;
     }
   }
 });
@@ -9531,7 +9588,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*@media screen and (max-width: 400px) {*/\n/*    .sidebar{*/\n/*        font-size:200%*/\n/*    }*/\n/*}*/\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*@media screen and (max-width: 400px) {*/\n/*    .sidebar{*/\n/*        font-size:200%*/\n/*    }*/\n/*}*/\n\n", ""]);
 
 // exports
 
@@ -9550,7 +9607,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Helper classes */\n#basil {\n    background-color: #b380ff !important;\n}\n.basil--text {\n    color: white !important;\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Helper classes */\n#basil {\n    background-color: #b380ff !important;\n}\n.basil--text {\n    color: white !important;\n}\n\n", ""]);
 
 // exports
 
@@ -9569,7 +9626,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Helper classes */\n.basil {\n    background-color: #b380ff !important;\n}\n.basil--text {\n    color: white !important;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Helper classes */\n.basil {\n    background-color: #b380ff !important;\n}\n.basil--text {\n    color: white !important;\n}\n", ""]);
 
 // exports
 
@@ -42291,7 +42348,8 @@ var render = function() {
           )
         }),
         1
-      )
+      ),
+      _vm._v("\n      " + _vm._s(_vm.getannouncements) + "\n\n")
     ],
     1
   )
@@ -43068,7 +43126,11 @@ var render = function() {
                 },
                 [
                   _c("Information", {
-                    attrs: { data: _vm.classes, datas: _vm.material }
+                    attrs: {
+                      data: _vm.classes,
+                      datas: _vm.material,
+                      dat: _vm.users
+                    }
                   })
                 ],
                 1
@@ -43083,7 +43145,7 @@ var render = function() {
               _c(
                 "v-card",
                 { staticStyle: { padding: "10%", "padding-top": "0%" } },
-                [_c("Announcement")],
+                [_c("Announcement", { attrs: { data: _vm.announcements } })],
                 1
               )
             ],
@@ -43143,7 +43205,15 @@ var render = function() {
         ],
         1
       ),
-      _vm._v("\n\n\n   " + _vm._s(_vm.getmaterial) + "\n")
+      _vm._v(
+        "\n\n\n   " +
+          _vm._s(_vm.getmaterial) +
+          "\n    " +
+          _vm._s(_vm.getuser) +
+          "\n    " +
+          _vm._s(_vm.getannouncement) +
+          "\n"
+      )
     ],
     1
   )
@@ -43755,7 +43825,11 @@ var render = function() {
                         color: "white"
                       },
                       attrs: { text: "" },
-                      on: { click: _vm.update }
+                      on: {
+                        click: function($event) {
+                          _vm.dialog = false
+                        }
+                      }
                     },
                     [_vm._v("Close")]
                   ),
@@ -43768,11 +43842,7 @@ var render = function() {
                         color: "white"
                       },
                       attrs: { text: "" },
-                      on: {
-                        click: function($event) {
-                          _vm.dialog = false
-                        }
-                      }
+                      on: { click: _vm.update }
                     },
                     [_vm._v("Save")]
                   )
@@ -44239,6 +44309,16 @@ var render = function() {
                                                           staticClass: "error",
                                                           attrs: {
                                                             depressed: ""
+                                                          },
+                                                          on: {
+                                                            click: function(
+                                                              $event
+                                                            ) {
+                                                              return _vm.deletematerial(
+                                                                _vm.index,
+                                                                material.id
+                                                              )
+                                                            }
                                                           }
                                                         },
                                                         [_vm._v("Delete")]
@@ -44275,60 +44355,88 @@ var render = function() {
                     "v-tab-item",
                     [
                       _c(
-                        "v-card",
-                        {
-                          staticClass: "mx-auto",
-                          attrs: { flat: "", "max-width": "100%" }
-                        },
-                        [
-                          _c(
-                            "v-card-text",
+                        "v-card-actions",
+                        { staticStyle: { "padding-left": "3%" } },
+                        [_c("invite_dilog")],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-row",
+                        { staticClass: "d-flex" },
+                        _vm._l(_vm.users, function(user) {
+                          return _c(
+                            "v-col",
+                            { key: user.first_name, attrs: { md: "4" } },
                             [
                               _c(
                                 "v-card",
-                                { attrs: { color: "white", dark: "" } },
+                                {
+                                  staticClass: "mx-auto",
+                                  attrs: { flat: "", "max-width": "100%" }
+                                },
                                 [
                                   _c(
                                     "v-card-text",
-                                    { staticClass: "black--text" },
                                     [
                                       _c(
-                                        "v-list-item-avatar",
-                                        {
-                                          attrs: {
-                                            left: "",
-                                            size: "125",
-                                            tile: ""
-                                          }
-                                        },
+                                        "v-card",
+                                        { attrs: { color: "white", dark: "" } },
                                         [
-                                          _c("v-img", {
-                                            attrs: {
-                                              src:
-                                                "https://cdn.vuetifyjs.com/images/cards/server-room.jpg"
-                                            }
-                                          })
+                                          _c(
+                                            "v-card-text",
+                                            { staticClass: "black--text" },
+                                            [
+                                              _c(
+                                                "v-list-item-avatar",
+                                                {
+                                                  attrs: {
+                                                    left: "",
+                                                    size: "125",
+                                                    tile: ""
+                                                  }
+                                                },
+                                                [
+                                                  _c("v-img", {
+                                                    attrs: {
+                                                      src:
+                                                        "http://127.0.0.1:8000/uploads/x/profile/" +
+                                                        user.image
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass: "headline mb-2"
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(user.first_name) +
+                                                      " " +
+                                                      _vm._s(user.last_name)
+                                                  )
+                                                ]
+                                              )
+                                            ],
+                                            1
+                                          )
                                         ],
                                         1
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        { staticClass: "headline mb-2" },
-                                        [_vm._v("Jubayer Ahmed")]
                                       )
                                     ],
                                     1
-                                  ),
-                                  _vm._v(" "),
-                                  _c("v-card-actions", [_c("invite_dilog")], 1)
+                                  )
                                 ],
                                 1
                               )
                             ],
                             1
                           )
-                        ],
+                        }),
                         1
                       )
                     ],
@@ -44348,6 +44456,8 @@ var render = function() {
           _vm._s(_vm.created) +
           "\n      " +
           _vm._s(_vm.getMaterial) +
+          "\n    " +
+          _vm._s(_vm.getuser) +
           "\n"
       )
     ],
@@ -44977,7 +45087,7 @@ var render = function() {
                 attrs: { color: "grey lighten-2", depressed: "" }
               },
               [
-                _c("span", { on: { click: _vm.created } }, [
+                _c("span", { on: { click: _vm.createds } }, [
                   _vm._v("Sign Out")
                 ]),
                 _vm._v(" "),
@@ -45063,7 +45173,7 @@ var render = function() {
                                   _c("v-img", {
                                     attrs: {
                                       src:
-                                        "http://127.0.0.1:8000/uploads/profile/" +
+                                        "http://127.0.0.1:8000/uploads/x/profile/" +
                                         _vm.form.image
                                     }
                                   })
@@ -98281,7 +98391,7 @@ function () {
       var payload = this.payload(token);
 
       if (payload) {
-        return payload.iss == "http://127.0.0.1:8000/api/auth/login" || "http://127.0.0.1:8000/api/auth/signup" ? true : false;
+        return payload.iss == "http://127.0.0.1:8000/lms/api/auth/login" || "http://127.0.0.1:8000/lms/api/auth/signup" ? true : false;
       }
 
       return false;
@@ -98394,7 +98504,7 @@ function () {
     key: "logout",
     value: function logout() {
       _AppStorage__WEBPACK_IMPORTED_MODULE_1__["default"].clear();
-      window.location = '/lms/';
+      window.location = '/';
     }
   }, {
     key: "name",

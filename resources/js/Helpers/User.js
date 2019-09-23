@@ -46,7 +46,7 @@ login(data){
 
  logout(){
     AppStorage.clear()
-     window.location='/lms/'
+     window.location='/'
 
  }
 name(){

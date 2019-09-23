@@ -32,7 +32,7 @@
                                     size="164"
                                     tile
                                 >
-                                    <v-img :src="'http://127.0.0.1:8000/uploads/profile/'+ form.image"></v-img>
+                                    <v-img :src="'http://127.0.0.1:8000/uploads/x/profile/'+ form.image"></v-img>
                                 </v-avatar>
                             </v-col>
                             <v-col class="py-0">

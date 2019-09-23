@@ -16,6 +16,7 @@ class AnnouncementResource extends JsonResource
     {
         return [
             'id'=>$this->id,
+            'lmsclass_id'=>$this->lmsclass_id,
             'title'=>$this->title,
             'body'=>$this->body,
             'created_at'=>$this->created_at->diffForHumans(),

@@ -18,4 +18,14 @@ class Lmsclass extends Model
     public function material(){
         return $this->hasMany(Material::class)->latest();
     }
+
+    public function users(){
+        return $this->belongsToMany(User::class);
+
+    }
+    public function announcement(){
+        return $this->hasMany(Announcement::class)->latest();
+
+    }
+
 }

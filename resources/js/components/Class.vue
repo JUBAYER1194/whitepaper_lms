@@ -26,12 +26,12 @@
             <v-tabs-items v-model="tab">
                 <v-tab-item>
                     <v-card style="padding-bottom: 10%;padding-top:5%">
-                        <Information :data="classes" :datas="material"></Information>
+                        <Information :data="classes" :datas="material" :dat="users"></Information>
                     </v-card>
                 </v-tab-item>
                 <v-tab-item>
                     <v-card style="padding: 10%;padding-top:0%">
-                        <Announcement></Announcement >
+                        <Announcement :data="announcements"></Announcement >
                     </v-card>
                 </v-tab-item>
                 <v-tab-item>
@@ -53,6 +53,8 @@
 
 
        {{getmaterial}}
+        {{getuser}}
+        {{getannouncement}}
     </div>
 
 </template>
@@ -73,6 +75,9 @@
                 tab: null,
                 classes: {},
                 material: {},
+                users:{},
+                announcements:{},
+
                 items: [
                     {
                         name: 'INFORMATION',
@@ -99,26 +104,6 @@
                     },
 
                 ],
-                desserts: [
-                    {
-                        name: 'Class Name:',
-                        calories: 'Physics-107',
-                    },
-                    {
-                        name: 'Section:',
-                        calories: '1',
-                    },
-                    {
-                        name: 'created on:',
-                        calories: '20th Auugust 2019',
-                    },
-                    {
-                        name: 'Class Code:',
-                        calories: '7g58df41',
-                    },
-
-
-                ],
 
             }
         },
@@ -138,6 +123,17 @@
             getmaterial() {
                 axios.get(`/lms/api/material/${this.classes.id}`)
                     .then(res => this.material = res.data.data)
+            },
+            getuser(){
+                axios.get(`/lms/api/class/user/${this.classes.id}`)
+                    .then(res => this.users = res.data.data)
+
+            },
+            getannouncement(){
+                axios.get(`/lms/api/announcement/${this.classes.id}`)
+                    .then(res => this.announcements = res.data.data);
+                     EventBus.$emit('classess',this.classes.id);
+
             },
 
 
