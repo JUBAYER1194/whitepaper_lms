@@ -103,6 +103,7 @@ class LmsclassController extends Controller
 
     }
     public function user($id)
+
     {
         $users=Lmsclass::find($id)->users;
        return LmsuserResource::collection($users);

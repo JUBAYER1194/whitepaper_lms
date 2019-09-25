@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Announcement;
-use App\Http\Resources\AnnouncementResource;
-use App\Lmsclass;
-use App\User;
+use App\Qcreative;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
-class AnnouncementController extends Controller
+class QcreativeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +15,6 @@ class AnnouncementController extends Controller
     public function index()
     {
         //
-
-
     }
 
     /**
@@ -42,36 +36,26 @@ class AnnouncementController extends Controller
     public function store(Request $request)
     {
         //
-
-        $ann=new Announcement();
-        $ann->title=$request->title;
-        $ann->body=$request->body;
-        $ann->user_id=$request->user_id;
-        $ann->lmsclass_id=$request->lmsclass_id;
-        $ann->save();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Qcreative  $qcreative
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Qcreative $qcreative)
     {
-
-        $ann=Lmsclass::find($id)->announcement;
-
-       return AnnouncementResource::collection($ann);
+        //
     }
 
     /**
-     * Show the form for editing the specified resource
+     * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Qcreative  $qcreative
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Qcreative $qcreative)
     {
         //
     }
@@ -80,33 +64,22 @@ class AnnouncementController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Qcreative  $qcreative
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Qcreative $qcreative)
     {
         //
-        dd($request);
-        $ann=Announcement::find($id);
-        $ann->title=$request->title;
-        $ann->body=$request->body;
-        $ann->update();
-
-        return response('Update',Response::HTTP_ACCEPTED);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Qcreative  $qcreative
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Qcreative $qcreative)
     {
         //
-        $ann=Announcement::find($id);
-        $ann->delete();
-        return response(null,204);
-
     }
 }

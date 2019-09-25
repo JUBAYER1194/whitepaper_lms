@@ -9,6 +9,7 @@ Route::Resource('assignment','AssaignmentController');
 Route::Resource('class','LmsclassController');
 Route::get('class/user/{id}','LmsclassController@user');
 Route::Resource('material','MaterialController');
+Route::get('material/single/{id}','MaterialController@material');
 Route::get('class/about/{name}','LmsclassController@information');
 
 Route::group([

@@ -7,7 +7,7 @@
 
         >
 
-       <dilog></dilog>
+       <dilog :data="lmsclass_id"></dilog>
         <v-row class="d-flex">
             <v-col
                 cols="12"
@@ -71,7 +71,7 @@
                             <v-list-item-avatar color="grey darken-3">
                                 <v-img
                                     class="elevation-6"
-                                    :src="'http://faisalsarker.com/lms/uploads/profile/'+ announcement.image"
+                                    :src="'http://127.0.0.1:8000/uploads/x/profile/'+ announcement.image"
                                 ></v-img>
                             </v-list-item-avatar>
 
@@ -105,6 +105,7 @@
             </v-col>
         </v-row>
           {{getannouncements}}
+          {{getclassid}}
 
     </v-card>
 </template>
@@ -114,11 +115,12 @@
 
     export default {
         components: {dilog,VEditDialog},
-        props:['data'],
+        props:['data','datas'],
         data() {
             return {
                 announcements: {},
                 user_id:null,
+                lmsclass_id:null,
 
 
             }
@@ -144,8 +146,12 @@
         computed:{
           getannouncements(){
               this.announcements=this.data;
-          }
+          },
+            getclassid(){
+                this.lmsclass_id=this.datas;
+            },
         },
+
 
     }
 

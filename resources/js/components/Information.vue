@@ -97,7 +97,7 @@
                                                     <v-list-item-title class="headline mb-1">{{material.title}}
                                                     </v-list-item-title>
                                                     <v-list-item-title class="headline mb-1">
-                                                        <a :href="'http://localhost:8000/uploads/x/material/'+material.file" target="_blank"><button type="button" class="btn btn-sm">Read File</button></a>
+                                                        <a :href="'http://localhost:8000/uploads/x/x/material/'+material.file" target="_blank"><button type="button" class="btn btn-sm">Read File</button></a>
                                                     </v-list-item-title>
                                                     <v-list-item-subtitle>{{material.body}}</v-list-item-subtitle>
                                                     <v-list-item-subtitle>{{material.created_at}}</v-list-item-subtitle>
@@ -110,7 +110,7 @@
                                                     <v-col
                                                         md="4"
                                                     >
-                                                        <v-btn style="color: white;background-color:#9652ff" depressed>Click</v-btn>
+                                                        <a :href="'/lms/class/material/'+material.id"><v-btn style="color: white;background-color:#9652ff" depressed>Click</v-btn></a>
                                                     </v-col>
                                                     <v-col
                                                         md="4"

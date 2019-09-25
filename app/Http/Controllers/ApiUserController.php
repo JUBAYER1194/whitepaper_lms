@@ -25,7 +25,7 @@ class ApiUserController extends Controller
             else
                 $extension='png';
             $fileName=str_random().'.'.$extension;
-            $path=public_path().'/uploads/x/profile/'.$fileName;
+            $path=public_path().'/uploads/x/x/profile/'.$fileName;
             file_put_contents($path,$decoded);
 
             $user=User::find($id);

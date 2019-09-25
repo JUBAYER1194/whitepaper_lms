@@ -20,6 +20,7 @@ Route::view('/signups','Signup');
 Route::view('/{any}','home');
 Route::view('/{any}/{any1}','home');
 Route::view('/{any}/{any1}/{any2}','home');
+Route::view('/{any}/{any1}/{any2}/{any3}','home');
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');

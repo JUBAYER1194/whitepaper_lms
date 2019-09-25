@@ -31,7 +31,7 @@
                 </v-tab-item>
                 <v-tab-item>
                     <v-card style="padding: 10%;padding-top:0%">
-                        <Announcement :data="announcements"></Announcement >
+                        <Announcement :data="announcements" :datas="classes.id"></Announcement >
                     </v-card>
                 </v-tab-item>
                 <v-tab-item>
@@ -117,6 +117,8 @@
             getclass() {
                 axios.get(`/lms/api/class/about/${this.$route.params.name}`)
                     .then(res => this.classes = res.data.data)
+
+
             },
         },
         computed: {
@@ -132,14 +134,13 @@
             getannouncement(){
                 axios.get(`/lms/api/announcement/${this.classes.id}`)
                     .then(res => this.announcements = res.data.data);
-                     EventBus.$emit('classess',this.classes.id);
 
             },
 
 
         },
     }
-</script>}
+</script>
 <style>
     /* Helper classes */
     #basil {

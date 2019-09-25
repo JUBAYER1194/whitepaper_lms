@@ -42,6 +42,7 @@ class MaterialController extends Controller
     public function store(Request $request)
     {
         //
+        $base64_encoded_string =$request->file;
         $exploded=explode(',',$request->file);
         $decoded=base64_decode($exploded[1]);
         if (str_contains($exploded[0],'docx'))
@@ -49,7 +50,7 @@ class MaterialController extends Controller
         else
             $extension='pdf';
         $fileName=str_random().'.'.$extension;
-        $path=public_path().'/uploads/x/material/'.$fileName;
+        $path=public_path().'/uploads/x/x/material/'.$fileName;
         file_put_contents($path,$decoded);
 
          Material::create($request->except('file')+['file'=>$fileName]);
@@ -101,7 +102,7 @@ class MaterialController extends Controller
             else
                 $extension = 'pdf';
             $fileName = str_random() . '.' . $extension;
-            $path = public_path() . '/uploads/x/material/' . $fileName;
+            $path = public_path() . '/uploads/x/x/material/' . $fileName;
             file_put_contents($path, $decoded);
             $editmaterial=Lmsclass::find($id)->material->find($request->material['id']);
             $editmaterial->option=$request->material['option'];
@@ -139,5 +140,9 @@ class MaterialController extends Controller
         $material->delete();
         //
 
+    }
+    public function material($id){
+        $material=Material::find($id);
+        return new MaterialResource($material);
     }
 }

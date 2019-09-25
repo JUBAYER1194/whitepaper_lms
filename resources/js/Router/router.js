@@ -14,8 +14,9 @@ import Student from '../components/Student.vue';
 import Information from "../components/Information.vue";
 import Admin from "../components/AdminPannel/index.vue"
 import lms from "../components/AppHome.vue";
-import AppHome from "../components/AppHome";
-import Logout from "../components/Logout";
+import AppHome from "../components/AppHome.vue";
+import Logout from "../components/Logout.vue";
+import lesson from "../components/lesson_view.vue";
 
 
 const routes = [
@@ -25,6 +26,7 @@ const routes = [
     { path: '/lms/calender', component: Calender },
     { path: '/lms/profile', component: Profile,name:'profile'},
     { path: '/lms/class/:name', component: Class,name:'class'},
+    { path:'/lms/class/material/:material',component:lesson,name:'material'},
     { path: '/lms/announcement', component: Announcement },
     { path: '/lms/assignment', component: Assignment },
     { path: '/lms/discussion', component: Discussion },

@@ -30,11 +30,13 @@
             </v-card>
         </v-dialog>
         {{user}}
+        {{lmsclassid}}
     </div>
 </template>
 
 <script>
     export default {
+        props:['data'],
 
 
         data: () => ({
@@ -55,14 +57,11 @@
         computed:{
             user(){
                 this.announcement.user_id=User.id();
-
-
             },
-            listen(){
-                EventBus.$on('classess',(ann) =>{
-                    this.announcement.lmsclass_id=ann;
-                })
-            }
+             lmsclassid(){
+               this.announcement.lmsclass_id=this.data;
+             },
+
         },
         methods:{
             save(){
