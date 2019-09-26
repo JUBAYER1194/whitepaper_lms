@@ -18,6 +18,7 @@ class CreateExamsTable extends Migration
             $table->integer('teacher_id');
             $table->integer('class_id');
             $table->string('type');
+            $table->integer('status');
             $table->timestamps();
         });
     }

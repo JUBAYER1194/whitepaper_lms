@@ -16,7 +16,7 @@ class CreateQcreativesTable extends Migration
         Schema::create('qcreatives', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('question_id');
-            $table->string('story')->nullable();
+            $table->text('story')->nullable();
             $table->string('question_1')->nullable();
             $table->string('question_2')->nullable();
             $table->string('question_3')->nullable();

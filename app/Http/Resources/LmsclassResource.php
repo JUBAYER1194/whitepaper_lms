@@ -23,6 +23,7 @@ class LmsclassResource extends JsonResource
             'last_name'=>$this->user->last_name,
             'user_id'=>$this->user_id,
             'code'=>$this->code,
+            'exam'=>LmsclassExamresource::collection($this->exam),
             'created_at'=>$this->created_at->diffForHumans(),
 
         ];

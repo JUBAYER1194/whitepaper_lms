@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Exam;
+use App\Http\Resources\QuestionResource;
+use App\Lmsclass;
+use App\Qcreative;
+use App\Qpoll;
+use App\Question;
 use Illuminate\Http\Request;
 
 class ExamController extends Controller
@@ -25,6 +30,9 @@ class ExamController extends Controller
     public function create()
     {
         //
+
+
+
     }
 
     /**
@@ -35,7 +43,36 @@ class ExamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
+    }
+    public function QcraetiveCreate(Request $request){
+         dd($request);
+
+    }
+    public function QuestionCreate(Request $request){
+
+        $exam=new Exam;
+        $exam->type=$request->type;
+        $exam->class_id=$request->class_id;
+        $exam->teacher_id=$request->teacher_id;
+        $exam->status=$request->status;
+        $exam->save();
+        $question=new Question;
+        $question->type=$request->question_type;
+        $exam->Question()->save($question);
+        $creative=new Qcreative;
+        foreach ($exam->Question->Qcreative() as $x) {
+                 $x->createMany([
+                [
+                    $creative->story = 'some data',
+                ],
+                [
+                    $creative->question_1 = 'again some question',
+                ],
+            ]);
+        }
+
     }
 
     /**
@@ -44,10 +81,14 @@ class ExamController extends Controller
      * @param  \App\Exam  $exam
      * @return \Illuminate\Http\Response
      */
-    public function show(Exam $exam)
+    public function show($exam)
     {
-        //
+        dd($exam);
+        $question=Exam::find($exam)->Question;
+        return QuestionResource::collection($question);
+
     }
+
 
     /**
      * Show the form for editing the specified resource.

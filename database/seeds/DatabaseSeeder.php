@@ -21,34 +21,70 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         //factory(App\User::class,10)->create();
-//        factory(App\Announcement::class,10)->create();
-//        factory(App\Assaignment::class,10)->create();
-//        factory(Lmsclass::class,10)->create();
-//        factory(Material::class,10)->create();
-        factory(Exam::class)->create();
-        factory(Question::class)->create();
-        factory(Qcreative::class)->create();
-        factory(Qmultiple::class)->create();
-        factory(Qpoll::class)->create();
-//       Role::create([
-//           'name'=>'Super Admin'
-//       ]);
-//        Role::create([
-//            'name'=>'Admin'
-//        ]);
-//        Role::create([
-//            'name'=>'Teacher'
-//        ]);
-//        Role::create([
-//            'name'=>'Student'
-//        ]);
-//        User::create([
-//            'first_name'=>'Whitepaper',
-//            'email'=>'admin@whitepaper.tech',
-//            'password'=>'whitepaper'
-//
-//
-//        ]);
+        factory(App\Announcement::class,10)->create();
+        factory(App\Assaignment::class,10)->create();
+        factory(Lmsclass::class,10)->create();
+        factory(Material::class,10)->create();
+//        factory(Exam::class,3)->create();
+//        factory(Question::class,3)->create();
+        factory(Qcreative::class,3)->create();
+        factory(Qmultiple::class,3)->create();
+        factory(Qpoll::class,3)->create();
+       Role::create([
+           'name'=>'Super Admin'
+       ]);
+        Role::create([
+            'name'=>'Admin'
+        ]);
+        Role::create([
+            'name'=>'Teacher'
+        ]);
+        Role::create([
+            'name'=>'Student'
+        ]);
+
+        User::create([
+            'first_name'=>'Whitepaper',
+            'email'=>'admin@whitepaper.tech',
+            'password'=>'whitepaper'
+
+
+        ]);
+        Exam::create([
+            'teacher_id'=>1,
+            'class_id'=>1,
+            'type' =>1,
+            'status'=>1,
+
+        ]);
+        Exam::create([
+            'teacher_id'=>1,
+            'class_id'=>1,
+            'type' =>2,
+            'status'=>1,
+        ]);
+        Exam::create([
+            'teacher_id'=>1,
+            'class_id'=>1,
+            'type' =>3,
+            'status'=>1,
+        ]);
+        Question::create([
+
+              'exam_id'=>1,
+               'type'=>'1',
+            ]);
+        Question::create([
+            'exam_id'=>1,
+            'type'=>'2',
+
+        ]);
+        Question::create([
+
+            'exam_id'=>1,
+            'type'=>'3',
+        ]);
+
 
    }
 }

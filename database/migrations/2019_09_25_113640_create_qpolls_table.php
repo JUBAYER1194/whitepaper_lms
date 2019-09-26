@@ -16,7 +16,7 @@ class CreateQpollsTable extends Migration
         Schema::create('qpolls', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('question_id');
-            $table->string('question');
+            $table->text('question');
             $table->string('option_1');
             $table->string('option_2');
             $table->string('option_3');
