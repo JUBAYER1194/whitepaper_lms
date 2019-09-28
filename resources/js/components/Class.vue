@@ -8,7 +8,6 @@
                 v-model="tab"
 
 
-
             >
                 <v-tab
                     :key="item.name"
@@ -40,13 +39,13 @@
                     </v-card>
                 </v-tab-item>
                 <v-tab-item>
-                    <v-card style="padding: 10%;padding-top:5%;padding-bottom: 1000%">
+                    <v-card style="padding: 10%;padding-top:5%;padding-bottom: 100%">
                         <Student></Student>
                     </v-card>
                 </v-tab-item>
                 <v-tab-item>
-                    <v-card style="padding: 10%;padding-top:5%;padding-bottom: 1000%">
-                        <Exam></Exam>
+                    <v-card style="padding-left: 5%;padding-top:5%;padding-bottom: 100%">
+                        <Exam :data="classes.id"></Exam>
                     </v-card>
                 </v-tab-item>
             </v-tabs-items>

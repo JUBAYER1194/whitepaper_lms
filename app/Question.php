@@ -31,6 +31,9 @@ class Question extends Model
         return $this->hasMany(Qpoll::class, 'question_id', 'id');
 
     }
+    public function Qshort(){
+        return $this->hasMany(Qshort::class,'question_id','id');
+    }
 
 
 }

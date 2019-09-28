@@ -25,7 +25,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "date-fns": "^2.1.0",
+        "date-fns": "^2.4.0",
         "vue-router": "^3.1.3",
         "vue-toasted": "^1.1.27",
         "vuetify": "^2.0.15"

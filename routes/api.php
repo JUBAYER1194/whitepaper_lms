@@ -13,8 +13,8 @@ Route::get('material/single/{id}','MaterialController@material');
 Route::get('class/about/{name}','LmsclassController@information');
 Route::get('class/exam/{id}','LmsclassController@exam');
 Route::Resource('/class/exam/exam','ExamController');
-Route::Post('/class/exam/question','ExamController@QuestionCreate');
-Route::Post('/class/exam/question/qcreative','ExamController@QcreativeCreate');
+Route::Post('/class/exam/question/{class}','ExamController@QuestionCreate');
+
 
 
 Route::group([

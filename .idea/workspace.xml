@@ -2,27 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03434f23-f88b-48c6-bc77-19b79d88e8b8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Exam.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exam.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ExamController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ExamController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LmsclassController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LmsclassController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/QuestionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/QuestionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/LmsclassResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/LmsclassResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Lmsclass.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Lmsclass.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Qcreative.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Qcreative.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Qmultiple.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Qmultiple.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Qpoll.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Qpoll.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Question.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Question.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/ExamFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/ExamFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/QcreativeFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/QcreativeFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/QmultipleFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/QmultipleFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/QpollFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/QpollFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_09_25_113325_create_exams_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_09_25_113325_create_exams_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_09_25_113532_create_qcreatives_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_09_25_113532_create_qcreatives_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_09_25_113600_create_qmultiples_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_09_25_113600_create_qmultiples_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_09_25_113640_create_qpolls_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_09_25_113640_create_qpolls_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Class.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Class.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Exam.vue" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -181,6 +171,7 @@
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../epc" />
@@ -203,6 +194,7 @@
       <recent name="C:\xampp\htdocs\3rd september 2019\lms\resources\js\components" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\New folder\htdocs\lms\resources\js\components" />
       <recent name="C:\xampp\htdocs\3rd september 2019\lms" />
       <recent name="E:\Xampp\htdocs\lms\resources" />
       <recent name="E:\Xampp\htdocs\lms\resources\js" />
@@ -226,6 +218,21 @@
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <treeState>
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@dcc72d68" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+          </expand>
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -273,6 +280,10 @@
       <workItem from="1569411106635" duration="2622000" />
       <workItem from="1569473576757" duration="2829000" />
       <workItem from="1569476448637" duration="21118000" />
+      <workItem from="1569596122930" duration="12784000" />
+      <workItem from="1569647552559" duration="8284000" />
+      <workItem from="1569660801192" duration="4151000" />
+      <workItem from="1569683346132" duration="10786000" />
     </task>
     <servers />
   </component>
@@ -305,12 +316,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/resources/js/components/Announcement.vue</url>
-          <line>112</line>
+          <line>114</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/resources/js/components/Footer.vue</url>
-          <line>6</line>
+          <line>7</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">

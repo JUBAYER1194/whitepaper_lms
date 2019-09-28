@@ -3072,7 +3072,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -3516,11 +3515,553 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['data'],
   data: function data() {
     return {
-      items: ['Creative Question', 'Multiple Choice Question']
+      items: [{
+        name: 'Creative Question',
+        id: 1
+      }, {
+        name: 'Multiple Question',
+        id: 2
+      }, {
+        name: 'Poll Question',
+        id: 3
+      }, {
+        name: 'Short Question',
+        id: 4
+      }],
+      selectedExam: null,
+      show: false,
+      creative: false,
+      multiple: false,
+      pool: false,
+      "short": false,
+      creatives: [],
+      multiples: [],
+      shorts: [],
+      pools: [],
+      form: {
+        date: new Date().toISOString().substr(0, 10),
+        user_id: null,
+        qcc: 0,
+        qcm: 0,
+        qcp: 0,
+        qcs: 0
+      },
+      qcc: 0,
+      qcm: 0,
+      qcp: 0,
+      qcs: 0,
+      modal: false,
+      x: false
     };
+  },
+  methods: {
+    postQuestion: function postQuestion() {
+      var _this = this;
+
+      axios.post("/lms/api/class/exam/question/".concat(this.data), {
+        form: this.form,
+        creatives: this.creatives,
+        multiples: this.multiples,
+        pools: this.pools,
+        shorts: this.shorts
+      }).then(function (res) {
+        return _this.dialog = false;
+      }, this.$toasted.show('Exam Created', {
+        type: 'success'
+      }) //EventBus.$emit('newMaterial',this.material)
+      );
+    },
+    CreateExam: function CreateExam() {
+      this.show = true;
+    },
+    createQuestions: function createQuestions() {
+      this.x = true;
+
+      if (this.selectedExam == 1) {
+        this.createCreative();
+      }
+
+      if (this.selectedExam == 2) {
+        this.createMultiple();
+      }
+
+      if (this.selectedExam == 3) {
+        this.createPool();
+      }
+
+      if (this.selectedExam == 4) {
+        this.createShort();
+      }
+    },
+    createCreative: function createCreative() {
+      this.creatives.push({
+        story: '',
+        q1: '',
+        q1m: 0,
+        q2: '',
+        q2m: 0,
+        q3: '',
+        q3m: 0,
+        q4: '',
+        q4m: 0
+      });
+      this.qcc++;
+    },
+    createMultiple: function createMultiple() {
+      this.multiples.push({
+        qm: '',
+        op1: '',
+        op2: '',
+        op3: '',
+        op4: '',
+        qmm: 0
+      });
+      this.qcm++;
+    },
+    createPool: function createPool() {
+      this.pools.push({
+        qp: '',
+        op1: '',
+        op2: '',
+        op3: '',
+        op4: ''
+      });
+      this.qcp++;
+    },
+    createShort: function createShort() {
+      this.shorts.push({
+        qs: '',
+        qsm: 0
+      });
+      this.qcs++;
+    },
+    creativeRemove: function creativeRemove(index) {
+      Vue["delete"](this.creatives, index);
+      this.qcc--;
+    },
+    multipleRemove: function multipleRemove(index) {
+      Vue["delete"](this.multiples, index);
+      this.qcm--;
+    },
+    poolRemove: function poolRemove(index) {
+      Vue["delete"](this.pools, index);
+      this.qcp--;
+    },
+    shortRemove: function shortRemove(index) {
+      Vue["delete"](this.shorts, index);
+      this.qcs--;
+    }
+  },
+  computed: {
+    checkingCreative: function checkingCreative() {
+      if (this.qcc > 0) {
+        this.form.qcc = 1;
+      } else this.form.qcc = 0;
+    },
+    checkingMultiple: function checkingMultiple() {
+      if (this.qcm > 0) {
+        this.form.qcm = 1;
+      } else this.form.qcm = 0;
+    },
+    checkingPool: function checkingPool() {
+      if (this.qcp > 0) {
+        this.form.qcp = 1;
+      } else this.form.qcp = 0;
+    },
+    checkingShort: function checkingShort() {
+      if (this.qcs > 0) {
+        this.form.qcs = 1;
+      } else this.form.qcs = 0;
+    },
+    userId: function userId() {
+      this.form.user_id = User.id();
+    },
+    Disabled: function Disabled() {
+      if (this.form.exam != '') {
+        return false;
+      } else {
+        return true;
+      }
+    },
+    disabledQuestion: function disabledQuestion() {
+      if (this.multiple == true || this.creative == true || this.pool == true || this["short"] == true) {
+        return false;
+      } else return true;
+    },
+    CreateQuestion: function CreateQuestion() {
+      if (this.selectedExam == 1) {
+        this.creative = true;
+        this.multiple = false;
+        this.pool = false;
+        this["short"] = false;
+      } else if (this.selectedExam == 2) {
+        this.multiple = true;
+        this.creative = false;
+        this.pool = false;
+        this["short"] = false;
+      } else if (this.selectedExam == 3) {
+        this.pool = true;
+        this.creative = false;
+        this.multiple = false;
+        this["short"] = false;
+      } else if (this.selectedExam == 4) {
+        this["short"] = true;
+        this.pool = false;
+        this.creative = false;
+        this.multiple = false;
+      }
+    }
   }
 });
 
@@ -9656,7 +10197,7 @@ exports.push([module.i, "/* MaterialDesignIcons.com */\n@font-face {\n  font-fam
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify/dist/vuetify.min.css?bdb9":
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify/dist/vuetify.min.css":
 /*!***********************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vuetify/dist/vuetify.min.css ***!
   \***********************************************************************************************************************************/
@@ -9725,7 +10266,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Helper classes */\n#basil {\n    background-color: #b380ff !important;\n}\n.basil--text {\n    color: white !important;\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Helper classes */\n#basil {\n    background-color: #b380ff !important;\n}\n.basil--text {\n    color: white !important;\n}\n\n", ""]);
 
 // exports
 
@@ -43306,7 +43847,7 @@ var render = function() {
                   staticStyle: {
                     padding: "10%",
                     "padding-top": "5%",
-                    "padding-bottom": "1000%"
+                    "padding-bottom": "100%"
                   }
                 },
                 [_c("Student")],
@@ -43323,12 +43864,12 @@ var render = function() {
                 "v-card",
                 {
                   staticStyle: {
-                    padding: "10%",
+                    "padding-left": "5%",
                     "padding-top": "5%",
-                    "padding-bottom": "1000%"
+                    "padding-bottom": "100%"
                   }
                 },
-                [_c("Exam")],
+                [_c("Exam", { attrs: { data: _vm.classes.id } })],
                 1
               )
             ],
@@ -44016,33 +44557,777 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-container",
-    { attrs: { fluid: "" } },
     [
       _c(
         "v-row",
+        { staticClass: "d-flex" },
         [
           _c(
             "v-col",
-            { staticClass: "d-flex", attrs: { cols: "12", sm: "6" } },
-            [_c("v-file-input", { attrs: { label: "Upload the Question" } })],
+            { staticClass: "d-flex", attrs: { md: "3" } },
+            [
+              _c(
+                "v-col",
+                { staticClass: "d-flex", attrs: { md: "7" } },
+                [
+                  _c(
+                    "v-dialog",
+                    {
+                      ref: "dialog",
+                      attrs: {
+                        "return-value": _vm.form.date,
+                        persistent: "",
+                        width: "290px"
+                      },
+                      on: {
+                        "update:returnValue": function($event) {
+                          return _vm.$set(_vm.form, "date", $event)
+                        },
+                        "update:return-value": function($event) {
+                          return _vm.$set(_vm.form, "date", $event)
+                        }
+                      },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "activator",
+                          fn: function(ref) {
+                            var on = ref.on
+                            return [
+                              _c(
+                                "v-text-field",
+                                _vm._g(
+                                  {
+                                    attrs: {
+                                      label: "Picker in dialog",
+                                      "prepend-icon": "event",
+                                      readonly: ""
+                                    },
+                                    model: {
+                                      value: _vm.form.date,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.form, "date", $$v)
+                                      },
+                                      expression: "form.date"
+                                    }
+                                  },
+                                  on
+                                )
+                              )
+                            ]
+                          }
+                        }
+                      ]),
+                      model: {
+                        value: _vm.modal,
+                        callback: function($$v) {
+                          _vm.modal = $$v
+                        },
+                        expression: "modal"
+                      }
+                    },
+                    [
+                      _vm._v(" "),
+                      _c(
+                        "v-date-picker",
+                        {
+                          attrs: { scrollable: "" },
+                          model: {
+                            value: _vm.form.date,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "date", $$v)
+                            },
+                            expression: "form.date"
+                          }
+                        },
+                        [
+                          _c("div", { staticClass: "flex-grow-1" }),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { text: "", color: "primary" },
+                              on: {
+                                click: function($event) {
+                                  _vm.modal = false
+                                }
+                              }
+                            },
+                            [_vm._v("Cancel")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { text: "", color: "primary" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.$refs.dialog.save(_vm.form.date)
+                                }
+                              }
+                            },
+                            [_vm._v("OK")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-col",
+                { staticClass: "d-flex", attrs: { md: "5" } },
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      staticStyle: {
+                        color: "white",
+                        "background-color": "#9652ff"
+                      },
+                      attrs: { disabled: _vm.Disabled },
+                      on: { click: _vm.CreateExam }
+                    },
+                    [_vm._v("Create Exam\n                ")]
+                  )
+                ],
+                1
+              )
+            ],
             1
           ),
           _vm._v(" "),
-          _c(
-            "v-col",
-            { staticClass: "d-flex", attrs: { cols: "12", sm: "6" } },
-            [
-              _c("v-select", {
-                attrs: { items: _vm.items, label: "Select Question type" }
-              })
-            ],
-            1
-          )
+          _vm.show
+            ? _c(
+                "v-col",
+                { staticClass: "d-flex", attrs: { cols: "12", sm: "3" } },
+                [
+                  _c("v-file-input", {
+                    attrs: { label: "Upload the Question" }
+                  })
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.show
+            ? _c(
+                "v-col",
+                { staticClass: "d-flex", attrs: { cols: "12", sm: "4" } },
+                [
+                  _c("v-select", {
+                    attrs: {
+                      items: _vm.items,
+                      "item-text": "name",
+                      "item-value": "id",
+                      label: "Select Exam type"
+                    },
+                    model: {
+                      value: _vm.selectedExam,
+                      callback: function($$v) {
+                        _vm.selectedExam = $$v
+                      },
+                      expression: "selectedExam"
+                    }
+                  })
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.show
+            ? _c(
+                "v-col",
+                { staticClass: "d-flex", attrs: { md: "2" } },
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      staticStyle: {
+                        color: "white",
+                        "background-color": "#9652ff"
+                      },
+                      attrs: { disabled: _vm.disabledQuestion },
+                      on: { click: _vm.createQuestions }
+                    },
+                    [_vm._v("Create Question\n\n            ")]
+                  )
+                ],
+                1
+              )
+            : _vm._e()
         ],
         1
+      ),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _vm._l(_vm.creatives, function(creative, index) {
+        return _c(
+          "div",
+          [
+            _c(
+              "div",
+              { staticStyle: { display: "inline-flex", margin: "5%" } },
+              [
+                _c("h4", { staticStyle: { color: "#9652ff" } }, [
+                  _vm._v(" Creative Question No:" + _vm._s(index + 1))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "v-btn",
+                  {
+                    staticClass: "error",
+                    staticStyle: { float: "right", "margin-left": "5%" },
+                    attrs: { depressed: "" },
+                    on: {
+                      click: function($event) {
+                        return _vm.creativeRemove(index)
+                      }
+                    }
+                  },
+                  [_vm._v("Remove\n                    ")]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("v-textarea", {
+              attrs: { filled: "", label: "Story", rounded: "" },
+              model: {
+                value: creative.story,
+                callback: function($$v) {
+                  _vm.$set(creative, "story", $$v)
+                },
+                expression: "creative.story"
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "v-row",
+              { staticClass: "d-flex" },
+              [
+                _c("v-col", { attrs: { md: "3" } }, [
+                  _c(
+                    "div",
+                    [
+                      _c("v-textarea", {
+                        attrs: {
+                          label: "Question no 1",
+                          outlined: "",
+                          rounded: ""
+                        },
+                        model: {
+                          value: creative.q1,
+                          callback: function($$v) {
+                            _vm.$set(creative, "q1", $$v)
+                          },
+                          expression: "creative.q1"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("v-text-field", {
+                        attrs: {
+                          filled: "",
+                          label: "Marks",
+                          rounded: "",
+                          type: "number"
+                        },
+                        model: {
+                          value: creative.q1m,
+                          callback: function($$v) {
+                            _vm.$set(creative, "q1m", $$v)
+                          },
+                          expression: "creative.q1m"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("v-col", { attrs: { md: "3" } }, [
+                  _c(
+                    "div",
+                    [
+                      _c("v-textarea", {
+                        attrs: {
+                          label: "Question no 2",
+                          outlined: "",
+                          rounded: ""
+                        },
+                        model: {
+                          value: creative.q2,
+                          callback: function($$v) {
+                            _vm.$set(creative, "q2", $$v)
+                          },
+                          expression: "creative.q2"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("v-text-field", {
+                        attrs: {
+                          filled: "",
+                          label: "Marks",
+                          rounded: "",
+                          type: "number"
+                        },
+                        model: {
+                          value: creative.q2m,
+                          callback: function($$v) {
+                            _vm.$set(creative, "q2m", $$v)
+                          },
+                          expression: "creative.q2m"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("v-col", { attrs: { md: "3" } }, [
+                  _c(
+                    "div",
+                    [
+                      _c("v-textarea", {
+                        attrs: {
+                          label: "Question no 3",
+                          outlined: "",
+                          rounded: ""
+                        },
+                        model: {
+                          value: creative.q3,
+                          callback: function($$v) {
+                            _vm.$set(creative, "q3", $$v)
+                          },
+                          expression: "creative.q3"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("v-text-field", {
+                        attrs: {
+                          filled: "",
+                          label: "Marks",
+                          rounded: "",
+                          type: "number"
+                        },
+                        model: {
+                          value: creative.q3m,
+                          callback: function($$v) {
+                            _vm.$set(creative, "q3m", $$v)
+                          },
+                          expression: "creative.q3m"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("v-col", { attrs: { md: "3" } }, [
+                  _c(
+                    "div",
+                    [
+                      _c("v-textarea", {
+                        attrs: {
+                          label: "Question no 4",
+                          outlined: "",
+                          rounded: ""
+                        },
+                        model: {
+                          value: creative.q4,
+                          callback: function($$v) {
+                            _vm.$set(creative, "q4", $$v)
+                          },
+                          expression: "creative.q4"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("v-text-field", {
+                        attrs: {
+                          filled: "",
+                          label: "Marks",
+                          rounded: "",
+                          type: "number"
+                        },
+                        model: {
+                          value: creative.q4m,
+                          callback: function($$v) {
+                            _vm.$set(creative, "q4m", $$v)
+                          },
+                          expression: "creative.q4m"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ])
+              ],
+              1
+            )
+          ],
+          1
+        )
+      }),
+      _vm._v(" "),
+      _vm._l(_vm.multiples, function(multiple, index) {
+        return _c(
+          "div",
+          [
+            _c(
+              "div",
+              { staticStyle: { display: "inline-flex", margin: "5%" } },
+              [
+                _c("h4", { staticStyle: { color: "#9652ff" } }, [
+                  _vm._v(" Multiple Question No:" + _vm._s(index + 1))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "v-btn",
+                  {
+                    staticClass: "error",
+                    staticStyle: { "margin-left": "5%" },
+                    attrs: { depressed: "" },
+                    on: {
+                      click: function($event) {
+                        return _vm.multipleRemove(index)
+                      }
+                    }
+                  },
+                  [_vm._v("Remove")]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("v-textarea", {
+              attrs: { filled: "", label: "Question", rounded: "" },
+              model: {
+                value: multiple.qm,
+                callback: function($$v) {
+                  _vm.$set(multiple, "qm", $$v)
+                },
+                expression: "multiple.qm"
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "v-row",
+              { staticClass: "d-flex" },
+              [
+                _c(
+                  "v-col",
+                  { attrs: { md: "3" } },
+                  [
+                    _c("v-textarea", {
+                      attrs: { label: "Option 1", outlined: "", rounded: "" },
+                      model: {
+                        value: multiple.op1,
+                        callback: function($$v) {
+                          _vm.$set(multiple, "op1", $$v)
+                        },
+                        expression: "multiple.op1"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-col",
+                  { attrs: { md: "3" } },
+                  [
+                    _c("v-textarea", {
+                      attrs: { label: "Option 2", outlined: "", rounded: "" },
+                      model: {
+                        value: multiple.op2,
+                        callback: function($$v) {
+                          _vm.$set(multiple, "op2", $$v)
+                        },
+                        expression: "multiple.op2"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-col",
+                  { attrs: { md: "3" } },
+                  [
+                    _c("v-textarea", {
+                      attrs: { label: "Option 1", outlined: "", rounded: "" },
+                      model: {
+                        value: multiple.op3,
+                        callback: function($$v) {
+                          _vm.$set(multiple, "op3", $$v)
+                        },
+                        expression: "multiple.op3"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-col",
+                  { attrs: { md: "3" } },
+                  [
+                    _c("v-textarea", {
+                      attrs: { label: "Option 2", outlined: "", rounded: "" },
+                      model: {
+                        value: multiple.op4,
+                        callback: function($$v) {
+                          _vm.$set(multiple, "op4", $$v)
+                        },
+                        expression: "multiple.op4"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("v-text-field", {
+                  attrs: {
+                    filled: "",
+                    label: "Marks",
+                    rounded: "",
+                    type: "number"
+                  },
+                  model: {
+                    value: multiple.qmm,
+                    callback: function($$v) {
+                      _vm.$set(multiple, "qmm", $$v)
+                    },
+                    expression: "multiple.qmm"
+                  }
+                })
+              ],
+              1
+            )
+          ],
+          1
+        )
+      }),
+      _vm._v(" "),
+      _vm._l(_vm.pools, function(pool, index) {
+        return _c(
+          "div",
+          [
+            _c(
+              "div",
+              { staticStyle: { display: "inline-flex", margin: "5%" } },
+              [
+                _c("h4", { staticStyle: { color: "#9652ff" } }, [
+                  _vm._v(" Pool Question No:" + _vm._s(index + 1))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "v-btn",
+                  {
+                    staticClass: "error",
+                    staticStyle: { float: "right", "margin-left": "5%" },
+                    attrs: { depressed: "" },
+                    on: {
+                      click: function($event) {
+                        return _vm.poolRemove(index)
+                      }
+                    }
+                  },
+                  [_vm._v("Remove\n            ")]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("v-textarea", {
+              attrs: { filled: "", label: "Question", rounded: "" },
+              model: {
+                value: pool.qp,
+                callback: function($$v) {
+                  _vm.$set(pool, "qp", $$v)
+                },
+                expression: "pool.qp"
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "v-row",
+              { staticClass: "d-flex" },
+              [
+                _c(
+                  "v-col",
+                  { attrs: { md: "3" } },
+                  [
+                    _c("v-textarea", {
+                      attrs: { label: "Option 1", outlined: "", rounded: "" },
+                      model: {
+                        value: pool.op1,
+                        callback: function($$v) {
+                          _vm.$set(pool, "op1", $$v)
+                        },
+                        expression: "pool.op1"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-col",
+                  { attrs: { md: "3" } },
+                  [
+                    _c("v-textarea", {
+                      attrs: { label: "Option 2", outlined: "", rounded: "" },
+                      model: {
+                        value: pool.op2,
+                        callback: function($$v) {
+                          _vm.$set(pool, "op2", $$v)
+                        },
+                        expression: "pool.op2"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-col",
+                  { attrs: { md: "3" } },
+                  [
+                    _c("v-textarea", {
+                      attrs: { label: "Option 3", outlined: "", rounded: "" },
+                      model: {
+                        value: pool.op3,
+                        callback: function($$v) {
+                          _vm.$set(pool, "op3", $$v)
+                        },
+                        expression: "pool.op3"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-col",
+                  { attrs: { md: "3" } },
+                  [
+                    _c("v-textarea", {
+                      attrs: { label: "Option 4", outlined: "", rounded: "" },
+                      model: {
+                        value: pool.op4,
+                        callback: function($$v) {
+                          _vm.$set(pool, "op4", $$v)
+                        },
+                        expression: "pool.op4"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ],
+          1
+        )
+      }),
+      _vm._v(" "),
+      _vm._l(_vm.shorts, function(short, index) {
+        return _c(
+          "div",
+          [
+            _c(
+              "div",
+              { staticStyle: { display: "inline-flex", margin: "5%" } },
+              [
+                _c("h4", { staticStyle: { color: "#9652ff" } }, [
+                  _vm._v(" Short Question No:" + _vm._s(index + 1))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "v-btn",
+                  {
+                    staticClass: "error",
+                    staticStyle: { float: "right", "margin-left": "5%" },
+                    attrs: { depressed: "" },
+                    on: {
+                      click: function($event) {
+                        return _vm.shortRemove(index)
+                      }
+                    }
+                  },
+                  [_vm._v("\n                Remove\n            ")]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("v-textarea", {
+              attrs: { filled: "", label: "Question", rounded: "" },
+              model: {
+                value: short.qs,
+                callback: function($$v) {
+                  _vm.$set(short, "qs", $$v)
+                },
+                expression: "short.qs"
+              }
+            }),
+            _vm._v(" "),
+            _c("v-text-field", {
+              attrs: {
+                filled: "",
+                label: "Marks",
+                rounded: "",
+                type: "number"
+              },
+              model: {
+                value: short.qsm,
+                callback: function($$v) {
+                  _vm.$set(short, "qsm", $$v)
+                },
+                expression: "short.qsm"
+              }
+            })
+          ],
+          1
+        )
+      }),
+      _vm._v(" "),
+      _vm.x
+        ? _c(
+            "v-btn",
+            {
+              staticClass: "primary",
+              attrs: { rounded: "" },
+              on: { click: _vm.postQuestion }
+            },
+            [_vm._v("\n        Create Question\n    ")]
+          )
+        : _vm._e(),
+      _vm._v(
+        "\n    " +
+          _vm._s(_vm.CreateQuestion) +
+          "\n    " +
+          _vm._s(_vm.userId) +
+          "\n    " +
+          _vm._s(_vm.checkingCreative) +
+          "\n    " +
+          _vm._s(_vm.checkingMultiple) +
+          "\n    " +
+          _vm._s(_vm.checkingPool) +
+          "\n    " +
+          _vm._s(_vm.checkingShort) +
+          "\n"
       )
     ],
-    1
+    2
   )
 }
 var staticRenderFns = []
@@ -98476,7 +99761,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_vue__;
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../css-loader??ref--6-1!../../postcss-loader/src??ref--6-2!./vuetify.min.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify/dist/vuetify.min.css?bdb9");
+var content = __webpack_require__(/*! !../../css-loader??ref--6-1!../../postcss-loader/src??ref--6-2!./vuetify.min.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify/dist/vuetify.min.css");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -101213,8 +102498,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\Xampp\htdocs\lms\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\Xampp\htdocs\lms\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\New folder\htdocs\lms\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\New folder\htdocs\lms\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
