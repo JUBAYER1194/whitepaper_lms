@@ -16,7 +16,7 @@ class QmultipleResource extends JsonResource
     {
         return [
             'question_id'=>$this->question_id,
-            'question'=>$this->question,
+            'question_s'=>$this->question,
             'option_1'=>$this->option_1,
             'option_2'=>$this->option_2,
             'option_3'=>$this->option_3,

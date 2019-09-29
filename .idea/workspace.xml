@@ -2,18 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03434f23-f88b-48c6-bc77-19b79d88e8b8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ExamController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ExamController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Question.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Question.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/LmsclassExamresource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/LmsclassExamresource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/QmultipleResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/QmultipleResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/QuestionResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/QuestionResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/Class.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Class.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Exam.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Exam.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Exam.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -174,7 +172,7 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../epc" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -186,19 +184,19 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2019.2.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\Xampp\htdocs\lms\public\uploads\x\x" />
-      <recent name="E:\Xampp\htdocs\lms\public\uploads\x" />
-      <recent name="D:\New folder\htdocs\lms\resources\js\components" />
-      <recent name="E:\Xampp\htdocs\lms\resources\views" />
-      <recent name="C:\xampp\htdocs\3rd september 2019\lms\resources\js\components" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\New folder\htdocs\lms\resources\js\components" />
       <recent name="C:\xampp\htdocs\3rd september 2019\lms" />
       <recent name="E:\Xampp\htdocs\lms\resources" />
       <recent name="E:\Xampp\htdocs\lms\resources\js" />
       <recent name="E:\Xampp\htdocs\lms" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Xampp\htdocs\lms\public\uploads\x\x" />
+      <recent name="E:\Xampp\htdocs\lms\public\uploads\x" />
+      <recent name="D:\New folder\htdocs\lms\resources\js\components" />
+      <recent name="E:\Xampp\htdocs\lms\resources\views" />
+      <recent name="C:\xampp\htdocs\3rd september 2019\lms\resources\js\components" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -284,6 +282,8 @@
       <workItem from="1569647552559" duration="8284000" />
       <workItem from="1569660801192" duration="4151000" />
       <workItem from="1569683346132" duration="10786000" />
+      <workItem from="1569733199668" duration="12087000" />
+      <workItem from="1569751963304" duration="6644000" />
     </task>
     <servers />
   </component>
@@ -323,6 +323,16 @@
           <url>file://$PROJECT_DIR$/resources/js/components/Footer.vue</url>
           <line>7</line>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/resources/js/components/Exam.vue</url>
+          <line>16</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/resources/js/components/Exam.vue</url>
+          <line>269</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/app/Http/Controllers/QuestionController.php</url>

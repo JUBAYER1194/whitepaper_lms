@@ -3862,10 +3862,300 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['data'],
+  props: ['data', 'exam'],
   data: function data() {
     return {
+      dailyexam: {},
+      date: {
+        selected: null
+      },
+      examShow: false,
       items: [{
         name: 'Creative Question',
         id: 1
@@ -3873,11 +4163,11 @@ __webpack_require__.r(__webpack_exports__);
         name: 'Multiple Question',
         id: 2
       }, {
-        name: 'Poll Question',
-        id: 3
-      }, {
         name: 'Short Question',
         id: 4
+      }, {
+        name: 'Poll Question',
+        id: 3
       }],
       selectedExam: null,
       show: false,
@@ -3902,6 +4192,7 @@ __webpack_require__.r(__webpack_exports__);
       qcp: 0,
       qcs: 0,
       modal: false,
+      exams: {},
       x: false
     };
   },
@@ -4004,6 +4295,23 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   computed: {
+    filteredExams: function filteredExams() {
+      var _this2 = this;
+
+      this.dailyexam = this.exams.filter(function (exam) {
+        return exam.type.match(_this2.date.selected);
+      });
+    },
+    Examdisabled: function Examdisabled() {
+      if (this.date.selected != null) {
+        return false;
+      } else {
+        return true;
+      }
+    },
+    puttingExam: function puttingExam() {
+      this.exams = this.exam;
+    },
     checkingCreative: function checkingCreative() {
       if (this.qcc > 0) {
         this.form.qcc = 1;
@@ -43869,7 +44177,11 @@ var render = function() {
                     "padding-bottom": "100%"
                   }
                 },
-                [_c("Exam", { attrs: { data: _vm.classes.id } })],
+                [
+                  _c("Exam", {
+                    attrs: { data: _vm.classes.id, exam: _vm.classes.exam }
+                  })
+                ],
                 1
               )
             ],
@@ -44559,6 +44871,47 @@ var render = function() {
     "v-container",
     [
       _c(
+        "div",
+        { staticStyle: { display: "inline-flex" } },
+        [
+          _c("v-select", {
+            attrs: {
+              items: _vm.exams,
+              "item-text": "type",
+              "item-value": "type",
+              label: "Select Exam type"
+            },
+            model: {
+              value: _vm.date.selected,
+              callback: function($$v) {
+                _vm.$set(_vm.date, "selected", $$v)
+              },
+              expression: "date.selected"
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "v-btn",
+            {
+              staticStyle: {
+                color: "white",
+                "background-color": "#9652ff",
+                "padding-left": "5%"
+              },
+              attrs: { disabled: _vm.Examdisabled },
+              on: {
+                click: function($event) {
+                  _vm.examShow = true
+                }
+              }
+            },
+            [_vm._v("\n                show\n            ")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
         "v-row",
         { staticClass: "d-flex" },
         [
@@ -44691,7 +45044,7 @@ var render = function() {
                       attrs: { disabled: _vm.Disabled },
                       on: { click: _vm.CreateExam }
                     },
-                    [_vm._v("Create Exam\n                ")]
+                    [_vm._v("Create Exam\n                    ")]
                   )
                 ],
                 1
@@ -44753,7 +45106,7 @@ var render = function() {
                       attrs: { disabled: _vm.disabledQuestion },
                       on: { click: _vm.createQuestions }
                     },
-                    [_vm._v("Create Question\n\n            ")]
+                    [_vm._v("Create Question\n\n                ")]
                   )
                 ],
                 1
@@ -44791,7 +45144,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("Remove\n                    ")]
+                  [_vm._v("Remove\n                        ")]
                 )
               ],
               1
@@ -45115,6 +45468,67 @@ var render = function() {
         )
       }),
       _vm._v(" "),
+      _vm._l(_vm.shorts, function(short, index) {
+        return _c(
+          "div",
+          [
+            _c(
+              "div",
+              { staticStyle: { display: "inline-flex", margin: "5%" } },
+              [
+                _c("h4", { staticStyle: { color: "#9652ff" } }, [
+                  _vm._v(" Short Question No:" + _vm._s(index + 1))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "v-btn",
+                  {
+                    staticClass: "error",
+                    staticStyle: { float: "right", "margin-left": "5%" },
+                    attrs: { depressed: "" },
+                    on: {
+                      click: function($event) {
+                        return _vm.shortRemove(index)
+                      }
+                    }
+                  },
+                  [_vm._v("\n                    Remove\n                ")]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("v-textarea", {
+              attrs: { filled: "", label: "Question", rounded: "" },
+              model: {
+                value: short.qs,
+                callback: function($$v) {
+                  _vm.$set(short, "qs", $$v)
+                },
+                expression: "short.qs"
+              }
+            }),
+            _vm._v(" "),
+            _c("v-text-field", {
+              attrs: {
+                filled: "",
+                label: "Marks",
+                rounded: "",
+                type: "number"
+              },
+              model: {
+                value: short.qsm,
+                callback: function($$v) {
+                  _vm.$set(short, "qsm", $$v)
+                },
+                expression: "short.qsm"
+              }
+            })
+          ],
+          1
+        )
+      }),
+      _vm._v(" "),
       _vm._l(_vm.pools, function(pool, index) {
         return _c(
           "div",
@@ -45139,7 +45553,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("Remove\n            ")]
+                  [_vm._v("Remove\n                ")]
                 )
               ],
               1
@@ -45239,67 +45653,6 @@ var render = function() {
         )
       }),
       _vm._v(" "),
-      _vm._l(_vm.shorts, function(short, index) {
-        return _c(
-          "div",
-          [
-            _c(
-              "div",
-              { staticStyle: { display: "inline-flex", margin: "5%" } },
-              [
-                _c("h4", { staticStyle: { color: "#9652ff" } }, [
-                  _vm._v(" Short Question No:" + _vm._s(index + 1))
-                ]),
-                _vm._v(" "),
-                _c(
-                  "v-btn",
-                  {
-                    staticClass: "error",
-                    staticStyle: { float: "right", "margin-left": "5%" },
-                    attrs: { depressed: "" },
-                    on: {
-                      click: function($event) {
-                        return _vm.shortRemove(index)
-                      }
-                    }
-                  },
-                  [_vm._v("\n                Remove\n            ")]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("v-textarea", {
-              attrs: { filled: "", label: "Question", rounded: "" },
-              model: {
-                value: short.qs,
-                callback: function($$v) {
-                  _vm.$set(short, "qs", $$v)
-                },
-                expression: "short.qs"
-              }
-            }),
-            _vm._v(" "),
-            _c("v-text-field", {
-              attrs: {
-                filled: "",
-                label: "Marks",
-                rounded: "",
-                type: "number"
-              },
-              model: {
-                value: short.qsm,
-                callback: function($$v) {
-                  _vm.$set(short, "qsm", $$v)
-                },
-                expression: "short.qsm"
-              }
-            })
-          ],
-          1
-        )
-      }),
-      _vm._v(" "),
       _vm.x
         ? _c(
             "v-btn",
@@ -45308,23 +45661,270 @@ var render = function() {
               attrs: { rounded: "" },
               on: { click: _vm.postQuestion }
             },
-            [_vm._v("\n        Create Question\n    ")]
+            [_vm._v("\n            Create Question\n        ")]
           )
         : _vm._e(),
+      _vm._v(" "),
+      _vm._l(_vm.dailyexam, function(questions_s, index) {
+        return _c(
+          "div",
+          _vm._l(questions_s.question_s, function(question_s_s, index) {
+            return _c(
+              "div",
+              _vm._l(question_s_s.creative_s_s, function(creative_s, index) {
+                return question_s_s.type == "Creative"
+                  ? _c("div", [
+                      _c(
+                        "div",
+                        [
+                          _c(
+                            "div",
+                            {
+                              staticStyle: {
+                                display: "inline-flex",
+                                margin: "5%"
+                              }
+                            },
+                            [
+                              _c("h4", { staticStyle: { color: "#9652ff" } }, [
+                                _vm._v(
+                                  " Creative Question No:" + _vm._s(index + 1)
+                                )
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("v-textarea", {
+                            attrs: {
+                              filled: "",
+                              label: "Story",
+                              rounded: "",
+                              disabled: ""
+                            },
+                            model: {
+                              value: creative_s.story,
+                              callback: function($$v) {
+                                _vm.$set(creative_s, "story", $$v)
+                              },
+                              expression: "creative_s.story"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "v-row",
+                            { staticClass: "d-flex" },
+                            [
+                              _c("v-col", { attrs: { md: "3" } }, [
+                                _c(
+                                  "div",
+                                  [
+                                    _c("v-textarea", {
+                                      attrs: {
+                                        label: "Question no 1",
+                                        outlined: "",
+                                        rounded: "",
+                                        disabled: ""
+                                      },
+                                      model: {
+                                        value: creative_s.question_1,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            creative_s,
+                                            "question_1",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "creative_s.question_1"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        filled: "",
+                                        label: "Marks",
+                                        rounded: "",
+                                        type: "number",
+                                        disabled: ""
+                                      },
+                                      model: {
+                                        value: creative_s.q1_marks,
+                                        callback: function($$v) {
+                                          _vm.$set(creative_s, "q1_marks", $$v)
+                                        },
+                                        expression: "creative_s.q1_marks"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("v-col", { attrs: { md: "3" } }, [
+                                _c(
+                                  "div",
+                                  [
+                                    _c("v-textarea", {
+                                      attrs: {
+                                        label: "Question no 2",
+                                        outlined: "",
+                                        rounded: "",
+                                        disabled: ""
+                                      },
+                                      model: {
+                                        value: creative_s.question_2,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            creative_s,
+                                            "question_2",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "creative_s.question_2"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        filled: "",
+                                        label: "Marks",
+                                        rounded: "",
+                                        type: "number",
+                                        disabled: ""
+                                      },
+                                      model: {
+                                        value: creative_s.q2_marks,
+                                        callback: function($$v) {
+                                          _vm.$set(creative_s, "q2_marks", $$v)
+                                        },
+                                        expression: "creative_s.q2_marks"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("v-col", { attrs: { md: "3" } }, [
+                                _c(
+                                  "div",
+                                  [
+                                    _c("v-textarea", {
+                                      attrs: {
+                                        label: "Question no 3",
+                                        outlined: "",
+                                        rounded: "",
+                                        disabled: ""
+                                      },
+                                      model: {
+                                        value: creative_s.question_3,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            creative_s,
+                                            "question_3",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "creative_s.question_3"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        filled: "",
+                                        label: "Marks",
+                                        rounded: "",
+                                        type: "number",
+                                        disabled: ""
+                                      },
+                                      model: {
+                                        value: creative_s.q3_marks,
+                                        callback: function($$v) {
+                                          _vm.$set(creative_s, "q3_marks", $$v)
+                                        },
+                                        expression: "creative_s.q3_marks"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("v-col", { attrs: { md: "3" } }, [
+                                _c(
+                                  "div",
+                                  [
+                                    _c("v-textarea", {
+                                      attrs: {
+                                        label: "Question no 4",
+                                        outlined: "",
+                                        rounded: "",
+                                        disabled: ""
+                                      },
+                                      model: {
+                                        value: creative_s.question_4,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            creative_s,
+                                            "question_4",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "creative_s.question_4"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        filled: "",
+                                        label: "Marks",
+                                        rounded: "",
+                                        type: "number",
+                                        disabled: ""
+                                      },
+                                      model: {
+                                        value: creative_s.q4_marks,
+                                        callback: function($$v) {
+                                          _vm.$set(creative_s, "q4_marks", $$v)
+                                        },
+                                        expression: "creative_s.q4_marks"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ])
+                  : _vm._e()
+              }),
+              0
+            )
+          }),
+          0
+        )
+      }),
+      _vm._v(" "),
       _vm._v(
-        "\n    " +
+        "\n\n\n\n\n\n\n\n\n\n\n        " +
           _vm._s(_vm.CreateQuestion) +
-          "\n    " +
+          "\n        " +
           _vm._s(_vm.userId) +
-          "\n    " +
+          "\n        " +
           _vm._s(_vm.checkingCreative) +
-          "\n    " +
+          "\n        " +
           _vm._s(_vm.checkingMultiple) +
-          "\n    " +
+          "\n        " +
           _vm._s(_vm.checkingPool) +
-          "\n    " +
+          "\n        " +
           _vm._s(_vm.checkingShort) +
-          "\n"
+          "\n        " +
+          _vm._s(_vm.puttingExam) +
+          "\n\n    "
       )
     ],
     2
@@ -102498,8 +103098,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\New folder\htdocs\lms\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\New folder\htdocs\lms\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! E:\Xampp\htdocs\lms\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\Xampp\htdocs\lms\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

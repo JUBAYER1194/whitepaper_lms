@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class LmsclassExamresource extends JsonResource
+class QshortResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,11 +15,11 @@ class LmsclassExamresource extends JsonResource
     public function toArray($request)
     {
         return [
-            'teacher_id'=>$this->teacher_id,
-            'class_id' =>$this->class_id,
-            'type'=>$this->type,
-             'status'=>$this->status,
-            'question_s'=>QuestionResource::collection($this->Question),
+            'question_id'=>$this->question_id,
+            'question'=>$this->question,
+            'marks'=>$this->marks,
+
         ];
+
     }
 }

@@ -17,9 +17,10 @@ class QuestionResource extends JsonResource
         return [
             'exam_id'=>$this->exam_id,
             'type'=>$this->type,
-            'creative'=>QcreativeResource::collection($this->Qcreative),
-            'multiple'=>QmultipleResource::collection($this->Qmultiple),
-            'poll'=>QpollResource::collection($this->Qpoll),
+            'creative_s_s'=>QcreativeResource::collection($this->Qcreative),
+            'multiple_s_s'=>QmultipleResource::collection($this->Qmultiple),
+            'poll_s_s'=>QpollResource::collection($this->Qpoll),
+            'short_s_s'=>QshortResource::collection($this->Qshort),
             'created_at' =>$this->created_at->diffForHumans(),
         ];
     }
