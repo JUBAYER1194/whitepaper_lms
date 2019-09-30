@@ -12,5 +12,9 @@ class Qpoll extends Model
     public function question(){
         return $this->belongsTo(Question::class,'id','question_id');
     }
+    public function Apoll(){
+        return $this->hasMany(Apoll::class,'qpoll_id','id');
+    }
+
 
 }

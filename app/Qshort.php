@@ -12,4 +12,9 @@ class Qshort extends Model
     public function question(){
         return $this->belongsTo(Question::class,'id','question_id');
     }
+
+    public function Ashort(){
+        return $this->hasMany(Ashort::class,'qshort_id','id');
+    }
+
 }

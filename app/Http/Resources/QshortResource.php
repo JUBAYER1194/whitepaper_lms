@@ -15,8 +15,9 @@ class QshortResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id'=>$this->id,
             'question_id'=>$this->question_id,
-            'question'=>$this->question,
+            'question_s'=>$this->question,
             'marks'=>$this->marks,
 
         ];

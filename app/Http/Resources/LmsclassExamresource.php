@@ -18,7 +18,7 @@ class LmsclassExamresource extends JsonResource
             'teacher_id'=>$this->teacher_id,
             'class_id' =>$this->class_id,
             'type'=>$this->type,
-             'status'=>$this->status,
+             'status_s'=>$this->status,
             'question_s'=>QuestionResource::collection($this->Question),
         ];
     }

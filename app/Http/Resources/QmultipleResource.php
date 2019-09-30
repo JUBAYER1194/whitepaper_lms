@@ -15,6 +15,7 @@ class QmultipleResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id'=>$this->id,
             'question_id'=>$this->question_id,
             'question_s'=>$this->question,
             'option_1'=>$this->option_1,

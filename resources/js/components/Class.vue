@@ -48,6 +48,11 @@
                         <Exam :data="classes.id" :exam="classes.exam"   ></Exam>
                     </v-card>
                 </v-tab-item>
+                <v-tab-item>
+                    <v-card style="padding-left: 5%;padding-top:5%;padding-bottom: 100%">
+                        <ExamAnswer :data="classes.id" :exam="classes.exam"   ></ExamAnswer>
+                    </v-card>
+                </v-tab-item>
             </v-tabs-items>
 
 
@@ -65,10 +70,11 @@
     import Assaignment from "./Assaignment.vue";
     import Student from "./Student.vue";
     import Exam from "./Exam.vue";
+    import ExamAnswer from "./ExamAnswer";
 
     export default {
 
-        components: {dilog, invite_dilog, Information, Announcement, Assaignment, Student, Exam},
+        components: {dilog, invite_dilog, Information, Announcement, Assaignment, Student, Exam,ExamAnswer},
         data() {
             return {
                 tab: null,
@@ -80,26 +86,29 @@
                 items: [
                     {
                         name: 'INFORMATION',
-                        to: '/information',
+
                     },
                     {
                         name: 'ANNOUNCEMENTS',
-                        to: '/announcement',
+
 
                     },
                     {
                         name: 'ASSIGNMENTS',
-                        to: '/assignment',
+
 
                     },
                     {
                         name: 'STUDENTS',
-                        to: '/student',
+
 
                     },
                     {
                         name: 'Exam',
-                        to: '/discussion'
+
+                    },
+                    {
+                      name:'Exam',
                     },
 
                 ],

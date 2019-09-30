@@ -8,9 +8,7 @@
                 label="Select Exam type"
                 v-model="date.selected"
         ></v-select>
-            <v-btn style="color: white;background-color:#9652ff;padding-left: 5%" @click="examShow=true" :disabled="Examdisabled" >
-                show
-            </v-btn>
+
 
         </div>
         <v-row class="d-flex">
@@ -84,291 +82,312 @@
 
                 </v-btn>
 
+
             </v-col>
+            <v-btn
+                @click="show=false"
+                class="error"
+                rounded
+                v-if="x && show"
+            >
+                cancel
+            </v-btn>
 
         </v-row>
         <br>
         <br>
-        <div v-for="(creative,index) in creatives">
+        <div v-if="show">
+            <div v-for="(creative,index) in creatives">
 
 
+                <div style="display: inline-flex;margin:5%">
+                    <h4 style="color:#9652ff"> Creative Question No:{{index+1}}</h4>
 
-                    <div style="display: inline-flex;margin:5%">
-                        <h4 style="color:#9652ff"> Creative Question No:{{index+1}}</h4>
+                    <v-btn
+                        @click="creativeRemove(index)"
+                        class="error"
+                        depressed
+                        style="float: right;margin-left:5%"
 
-                        <v-btn
-                            class="error"
-                            style="float: right;margin-left:5%"
-                            depressed
-                            @click="creativeRemove(index)"
-
-                        >Remove
-                        </v-btn>
-                    </div>
-
-
-            <v-textarea
-                filled
-                label="Story"
-                rounded
-                v-model="creative.story"
-            ></v-textarea>
-            <v-row class="d-flex">
-                <v-col
-                    md="3"
-                >
-                    <div>
-
-                        <v-textarea
-                            label="Question no 1"
-                            outlined
-                            rounded
-
-                            v-model="creative.q1"
-                        ></v-textarea>
-                        <v-text-field
-                            filled
-                            label="Marks"
-                            rounded
-                            type="number"
-                            v-model="creative.q1m"
-                        ></v-text-field>
-                    </div>
-                </v-col>
-                <v-col
-                    md="3"
-                >
-                    <div>
-
-                        <v-textarea
-                            label="Question no 2"
-                            outlined
-                            rounded
-                            v-model="creative.q2"
-                        ></v-textarea>
-                        <v-text-field
-                            filled
-                            label="Marks"
-                            rounded
-                            type="number"
-                            v-model="creative.q2m"
-                        ></v-text-field>
-                    </div>
-                </v-col>
-                <v-col
-                    md="3"
-                >
-                    <div>
-
-                        <v-textarea
-                            label="Question no 3"
-                            outlined
-                            rounded
-                            v-model="creative.q3"
-                        ></v-textarea>
-                        <v-text-field
-                            filled
-                            label="Marks"
-                            rounded
-                            type="number"
-                            v-model="creative.q3m"
-                        ></v-text-field>
-                    </div>
-                </v-col>
-                <v-col
-                    md="3"
-                >
-                    <div>
-
-                        <v-textarea
-                            label="Question no 4"
-                            outlined
-                            rounded
-                            v-model="creative.q4"
-                        ></v-textarea>
-                        <v-text-field
-                            filled
-                            label="Marks"
-                            rounded
-                            type="number"
-                            v-model="creative.q4m"
-                        ></v-text-field>
-                    </div>
-                </v-col>
-            </v-row>
-        </div>
-        <div v-for="(multiple,index) in multiples">
+                    >Remove
+                    </v-btn>
+                </div>
 
 
-            <div style="display: inline-flex;margin:5%">
-                <h4 style="color:#9652ff"> Multiple Question No:{{index+1}}</h4>
+                <v-textarea
+                    filled
+                    label="Story"
+                    rounded
+                    v-model="creative.story"
+                ></v-textarea>
+                <v-row class="d-flex">
+                    <v-col
+                        md="3"
+                    >
+                        <div>
 
-                <v-btn
-                    class="error"
-                    style="float:
-                    right;margin-left:5%"
-                    depressed
-                    @click="multipleRemove(index)"
-                >Remove</v-btn>
+                            <v-textarea
+                                label="Question no 1"
+                                outlined
+                                rounded
+
+                                v-model="creative.q1"
+                            ></v-textarea>
+                            <v-text-field
+                                filled
+                                label="Marks"
+                                rounded
+                                type="number"
+                                v-model="creative.q1m"
+                            ></v-text-field>
+                        </div>
+                    </v-col>
+                    <v-col
+                        md="3"
+                    >
+                        <div>
+
+                            <v-textarea
+                                label="Question no 2"
+                                outlined
+                                rounded
+                                v-model="creative.q2"
+                            ></v-textarea>
+                            <v-text-field
+                                filled
+                                label="Marks"
+                                rounded
+                                type="number"
+                                v-model="creative.q2m"
+                            ></v-text-field>
+                        </div>
+                    </v-col>
+                    <v-col
+                        md="3"
+                    >
+                        <div>
+
+                            <v-textarea
+                                label="Question no 3"
+                                outlined
+                                rounded
+                                v-model="creative.q3"
+                            ></v-textarea>
+                            <v-text-field
+                                filled
+                                label="Marks"
+                                rounded
+                                type="number"
+                                v-model="creative.q3m"
+                            ></v-text-field>
+                        </div>
+                    </v-col>
+                    <v-col
+                        md="3"
+                    >
+                        <div>
+
+                            <v-textarea
+                                label="Question no 4"
+                                outlined
+                                rounded
+                                v-model="creative.q4"
+                            ></v-textarea>
+                            <v-text-field
+                                filled
+                                label="Marks"
+                                rounded
+                                type="number"
+                                v-model="creative.q4m"
+                            ></v-text-field>
+                        </div>
+                    </v-col>
+                </v-row>
             </div>
-            <v-textarea
-                filled
-                label="Question"
-                rounded
-                v-model="multiple.qm"
-            ></v-textarea>
-            <v-row class="d-flex">
-                <v-col
-                    md="3"
-                >
-                    <v-textarea
-                        label="Option 1"
-                        outlined
+            <div v-for="(multiple,index) in multiples">
+
+
+                <div style="display: inline-flex;margin:5%">
+                    <h4 style="color:#9652ff"> Multiple Question No:{{index+1}}</h4>
+
+                    <v-btn
+                        @click="multipleRemove(index)"
+                        class="error"
+                        depressed
+                        style="float:
+                    right;margin-left:5%"
+                    >Remove
+                    </v-btn>
+                </div>
+                <v-textarea
+                    filled
+                    label="Question"
+                    rounded
+                    v-model="multiple.qm"
+                ></v-textarea>
+                <v-row class="d-flex">
+                    <v-col
+                        md="3"
+                    >
+                        <v-textarea
+                            label="Option 1"
+                            outlined
+                            rounded
+                            v-model="multiple.op1"
+                        ></v-textarea>
+                    </v-col>
+                    <v-col
+                        md="3"
+                    >
+                        <v-textarea
+                            label="Option 2"
+                            outlined
+                            rounded
+                            v-model="multiple.op2"
+                        ></v-textarea>
+                    </v-col>
+                    <v-col
+                        md="3"
+                    >
+                        <v-textarea
+                            label="Option 1"
+                            outlined
+                            rounded
+                            v-model="multiple.op3"
+                        ></v-textarea>
+                    </v-col>
+                    <v-col
+                        md="3"
+                    >
+                        <v-textarea
+                            label="Option 2"
+                            outlined
+                            rounded
+                            v-model="multiple.op4"
+                        ></v-textarea>
+                    </v-col>
+                    <v-text-field
+                        filled
+                        label="Marks"
                         rounded
-                        v-model="multiple.op1"
-                    ></v-textarea>
-                </v-col>
-                <v-col
-                    md="3"
-                >
-                    <v-textarea
-                        label="Option 2"
-                        outlined
-                        rounded
-                        v-model="multiple.op2"
-                    ></v-textarea>
-                </v-col>
-                <v-col
-                    md="3"
-                >
-                    <v-textarea
-                        label="Option 1"
-                        outlined
-                        rounded
-                        v-model="multiple.op3"
-                    ></v-textarea>
-                </v-col>
-                <v-col
-                    md="3"
-                >
-                    <v-textarea
-                        label="Option 2"
-                        outlined
-                        rounded
-                        v-model="multiple.op4"
-                    ></v-textarea>
-                </v-col>
+                        type="number"
+                        v-model="multiple.qmm"
+                    ></v-text-field>
+                </v-row>
+            </div>
+            <div v-for="(short,index) in shorts">
+                <div style="display: inline-flex;margin:5%">
+                    <h4 style="color:#9652ff"> Short Question No:{{index+1}}</h4>
+
+                    <v-btn
+                        @click="shortRemove(index)"
+                        class="error"
+                        depressed
+                        style="float: right;margin-left:5%"
+                    >
+                        Remove
+                    </v-btn>
+                </div>
+                <v-textarea
+                    filled
+                    label="Question"
+                    rounded
+                    v-model="short.qs"
+                ></v-textarea>
                 <v-text-field
                     filled
                     label="Marks"
                     rounded
                     type="number"
-                    v-model="multiple.qmm"
+                    v-model="short.qsm"
                 ></v-text-field>
-            </v-row>
-        </div>
-        <div v-for="(short,index) in shorts">
-            <div style="display: inline-flex;margin:5%">
-                <h4 style="color:#9652ff"> Short Question No:{{index+1}}</h4>
-
-                <v-btn
-                    class="error"
-                    style="float: right;margin-left:5%"
-                    depressed
-                    @click="shortRemove(index)"
-                >
-                    Remove
-                </v-btn>
             </div>
-            <v-textarea
-                filled
-                label="Question"
-                rounded
-                v-model="short.qs"
-            ></v-textarea>
-            <v-text-field
-                filled
-                label="Marks"
-                rounded
-                type="number"
-                v-model="short.qsm"
-            ></v-text-field>
-        </div>
-        <div v-for="(pool,index) in pools">
+            <div v-for="(pool,index) in pools">
 
 
-            <div style="display: inline-flex;margin:5%">
-                <h4 style="color:#9652ff"> Pool Question No:{{index+1}}</h4>
+                <div style="display: inline-flex;margin:5%">
+                    <h4 style="color:#9652ff"> Pool Question No:{{index+1}}</h4>
 
-                <v-btn
-                    class="error"
-                    style="float: right;margin-left:5%"
-                    depressed
-                    @click="poolRemove(index)"
-                >Remove
-                </v-btn>
+                    <v-btn
+                        @click="poolRemove(index)"
+                        class="error"
+                        depressed
+                        style="float: right;margin-left:5%"
+                    >Remove
+                    </v-btn>
+                </div>
+                <v-textarea
+                    filled
+                    label="Question"
+                    rounded
+                    v-model="pool.qp"
+                ></v-textarea>
+                <v-row class="d-flex">
+                    <v-col
+                        md="3"
+                    >
+                        <v-textarea
+                            label="Option 1"
+                            outlined
+                            rounded
+                            v-model="pool.op1"
+                        ></v-textarea>
+                    </v-col>
+                    <v-col
+                        md="3"
+                    >
+                        <v-textarea
+                            label="Option 2"
+                            outlined
+                            rounded
+                            v-model="pool.op2"
+                        ></v-textarea>
+                    </v-col>
+                    <v-col
+                        md="3"
+                    >
+                        <v-textarea
+                            label="Option 3"
+                            outlined
+                            rounded
+                            v-model="pool.op3"
+                        ></v-textarea>
+                    </v-col>
+                    <v-col
+                        md="3"
+                    >
+                        <v-textarea
+                            label="Option 4"
+                            outlined
+                            rounded
+                            v-model="pool.op4"
+                        ></v-textarea>
+                    </v-col>
+                </v-row>
+
             </div>
-            <v-textarea
-                filled
-                label="Question"
-                rounded
-                v-model="pool.qp"
-            ></v-textarea>
-            <v-row class="d-flex">
-                <v-col
-                    md="3"
-                >
-                    <v-textarea
-                        label="Option 1"
-                        outlined
-                        rounded
-                        v-model="pool.op1"
-                    ></v-textarea>
-                </v-col>
-                <v-col
-                    md="3"
-                >
-                    <v-textarea
-                        label="Option 2"
-                        outlined
-                        rounded
-                        v-model="pool.op2"
-                    ></v-textarea>
-                </v-col>
-                <v-col
-                    md="3"
-                >
-                    <v-textarea
-                        label="Option 3"
-                        outlined
-                        rounded
-                        v-model="pool.op3"
-                    ></v-textarea>
-                </v-col>
-                <v-col
-                    md="3"
-                >
-                    <v-textarea
-                        label="Option 4"
-                        outlined
-                        rounded
-                        v-model="pool.op4"
-                    ></v-textarea>
-                </v-col>
-            </v-row>
-
         </div>
-        <v-btn
-            v-if="x"
-            rounded
-            class="primary"
-            @click="postQuestion"
-        >
-            Create Question
-        </v-btn>
+        <div style="display: inline-block">
+            <v-btn
+                @click="postQuestion"
+                class="primary"
+                rounded
+                v-if="x && show"
+            >
+                Create Question
+            </v-btn>
+            <v-btn
+                @click="show=false"
+                class="error"
+                rounded
+                v-if="x && show"
+            >
+                cancel
+            </v-btn>
+        </div>
 
 
-       <div v-for="(questions_s,index) in dailyexam">
+        <div v-for="(questions_s,index) in dailyexam" v-if="show==false">
             <div v-for="(question_s_s,index) in questions_s.question_s">
 
         <div v-if="question_s_s.type=='Creative'" v-for="(creative_s,index) in question_s_s.creative_s_s">
@@ -477,162 +496,160 @@
             </div>
         </div>
 
+
+                <div v-for="(multiple_s,index) in question_s_s.multiple_s_s" v-if="question_s_s.type=='Multiple'">
+                    <div style="display: inline-flex;margin:5%">
+                        <h4 style="color:#9652ff"> Multiple Question No:{{index+1}}</h4>
+
+                    </div>
+                    <v-textarea
+                        disabled
+                        filled
+                        label="Question"
+                        rounded
+                        v-model="multiple_s.question_s"
+                    ></v-textarea>
+                    <v-row class="d-flex">
+                        <v-col
+                            md="3"
+                        >
+                            <v-textarea
+                                disabled
+                                label="Option 1"
+                                outlined
+                                rounded
+                                v-model="multiple_s.option_1"
+                            ></v-textarea>
+                        </v-col>
+                        <v-col
+                            md="3"
+                        >
+                            <v-textarea
+                                disabled
+                                label="Option 2"
+                                outlined
+                                rounded
+                                v-model="multiple_s.option_2"
+                            ></v-textarea>
+                        </v-col>
+                        <v-col
+                            md="3"
+                        >
+                            <v-textarea
+                                disabled
+                                label="Option 3"
+                                outlined
+                                rounded
+                                v-model="multiple_s.option_3"
+                            ></v-textarea>
+                        </v-col>
+                        <v-col
+                            md="3"
+                        >
+                            <v-textarea
+                                disabled
+                                label="Option 4"
+                                outlined
+                                rounded
+                                v-model="multiple_s.option_4"
+                            ></v-textarea>
+                        </v-col>
+                        <v-text-field
+                            disabled
+                            filled
+                            label="Marks"
+                            rounded
+                            type="number"
+                            v-model="multiple_s.marks"
+                        ></v-text-field>
+                    </v-row>
+                </div>
+                <div v-for="(short_s,index) in question_s_s.short_s_s" v-if="question_s_s.type=='Short'">
+                    <div style="display: inline-flex;margin:5%">
+                        <h4 style="color:#9652ff"> Short Question No:{{index+1}}</h4>
+
+                    </div>
+                    <v-textarea
+                        disabled
+                        filled
+                        label="Question"
+                        rounded
+                        v-model="short_s.question_s"
+                    ></v-textarea>
+                    <v-text-field
+                        disabled
+                        filled
+                        label="Marks"
+                        rounded
+                        type="number"
+                        v-model="short_s.marks"
+                    ></v-text-field>
+                </div>
+                <div v-for="(poll_s,index) in question_s_s.poll_s_s" v-if="question_s_s.type=='Pool'">
+
+
+                    <div style="display: inline-flex;margin:5%">
+                        <h4 style="color:#9652ff"> Pool Question No:{{index+1}}</h4>
+
+                    </div>
+                    <v-textarea
+                        disabled
+                        filled
+                        label="Question"
+                        rounded
+                        v-model="poll_s.question_s"
+                    ></v-textarea>
+                    <v-row class="d-flex">
+                        <v-col
+                            md="3"
+                        >
+                            <v-textarea
+                                disabled
+                                label="Option 1"
+                                outlined
+                                rounded
+                                v-model="poll_s.option_1"
+                            ></v-textarea>
+                        </v-col>
+                        <v-col
+                            md="3"
+                        >
+                            <v-textarea
+                                disabled
+                                label="Option 2"
+                                outlined
+                                rounded
+                                v-model="poll_s.option_2"
+                            ></v-textarea>
+                        </v-col>
+                        <v-col
+                            md="3"
+                        >
+                            <v-textarea
+                                disabled
+                                label="Option 3"
+                                outlined
+                                rounded
+                                v-model="poll_s.option_3"
+                            ></v-textarea>
+                        </v-col>
+                        <v-col
+                            md="3"
+                        >
+                            <v-textarea
+                                disabled
+                                label="Option 4"
+                                outlined
+                                rounded
+                                v-model="poll_s.option_4"
+                            ></v-textarea>
+                        </v-col>
+                    </v-row>
+
+                </div>
             </div>
+
         </div>
-
-
-
-
-
-
-
-
-
-<!--        &lt;!&ndash;            <div>&ndash;&gt;-->
-<!--        &lt;!&ndash;                <div style="display: inline-flex;margin:5%">&ndash;&gt;-->
-<!--        &lt;!&ndash;                    <h4 style="color:#9652ff"> Multiple Question No:</h4>&ndash;&gt;-->
-
-<!--        &lt;!&ndash;                </div>&ndash;&gt;-->
-<!--        &lt;!&ndash;                <v-textarea&ndash;&gt;-->
-<!--        &lt;!&ndash;                    filled&ndash;&gt;-->
-<!--        &lt;!&ndash;                    label="Question"&ndash;&gt;-->
-<!--        &lt;!&ndash;                    rounded&ndash;&gt;-->
-<!--        &lt;!&ndash;                    disabled&ndash;&gt;-->
-<!--        &lt;!&ndash;                ></v-textarea>&ndash;&gt;-->
-<!--        &lt;!&ndash;                <v-row class="d-flex">&ndash;&gt;-->
-<!--        &lt;!&ndash;                    <v-col&ndash;&gt;-->
-<!--        &lt;!&ndash;                        md="3"&ndash;&gt;-->
-<!--        &lt;!&ndash;                    >&ndash;&gt;-->
-<!--        &lt;!&ndash;                        <v-textarea&ndash;&gt;-->
-<!--        &lt;!&ndash;                            label="Option 1"&ndash;&gt;-->
-<!--        &lt;!&ndash;                            outlined&ndash;&gt;-->
-<!--        &lt;!&ndash;                            rounded&ndash;&gt;-->
-<!--        &lt;!&ndash;                            disabled&ndash;&gt;-->
-<!--        &lt;!&ndash;                        ></v-textarea>&ndash;&gt;-->
-<!--        &lt;!&ndash;                    </v-col>&ndash;&gt;-->
-<!--        &lt;!&ndash;                    <v-col&ndash;&gt;-->
-<!--        &lt;!&ndash;                        md="3"&ndash;&gt;-->
-<!--        &lt;!&ndash;                    >&ndash;&gt;-->
-<!--        &lt;!&ndash;                        <v-textarea&ndash;&gt;-->
-<!--        &lt;!&ndash;                            label="Option 2"&ndash;&gt;-->
-<!--        &lt;!&ndash;                            outlined&ndash;&gt;-->
-<!--        &lt;!&ndash;                            rounded&ndash;&gt;-->
-<!--        &lt;!&ndash;                            disabled&ndash;&gt;-->
-<!--        &lt;!&ndash;                        ></v-textarea>&ndash;&gt;-->
-<!--        &lt;!&ndash;                    </v-col>&ndash;&gt;-->
-<!--        &lt;!&ndash;                    <v-col&ndash;&gt;-->
-<!--        &lt;!&ndash;                        md="3"&ndash;&gt;-->
-<!--        &lt;!&ndash;                    >&ndash;&gt;-->
-<!--        &lt;!&ndash;                        <v-textarea&ndash;&gt;-->
-<!--        &lt;!&ndash;                            label="Option 1"&ndash;&gt;-->
-<!--        &lt;!&ndash;                            outlined&ndash;&gt;-->
-<!--        &lt;!&ndash;                            rounded&ndash;&gt;-->
-<!--        &lt;!&ndash;                            disabled&ndash;&gt;-->
-<!--        &lt;!&ndash;                        ></v-textarea>&ndash;&gt;-->
-<!--        &lt;!&ndash;                    </v-col>&ndash;&gt;-->
-<!--        &lt;!&ndash;                    <v-col&ndash;&gt;-->
-<!--        &lt;!&ndash;                        md="3"&ndash;&gt;-->
-<!--        &lt;!&ndash;                    >&ndash;&gt;-->
-<!--        &lt;!&ndash;                        <v-textarea&ndash;&gt;-->
-<!--        &lt;!&ndash;                            label="Option 2"&ndash;&gt;-->
-<!--        &lt;!&ndash;                            outlined&ndash;&gt;-->
-<!--        &lt;!&ndash;                            rounded&ndash;&gt;-->
-<!--        &lt;!&ndash;                            disabled&ndash;&gt;-->
-<!--        &lt;!&ndash;                        ></v-textarea>&ndash;&gt;-->
-<!--        &lt;!&ndash;                    </v-col>&ndash;&gt;-->
-<!--        &lt;!&ndash;                    <v-text-field&ndash;&gt;-->
-<!--        &lt;!&ndash;                        filled&ndash;&gt;-->
-<!--        &lt;!&ndash;                        label="Marks"&ndash;&gt;-->
-<!--        &lt;!&ndash;                        rounded&ndash;&gt;-->
-<!--        &lt;!&ndash;                        type="number"&ndash;&gt;-->
-<!--        &lt;!&ndash;                        disabled&ndash;&gt;-->
-<!--        &lt;!&ndash;                    ></v-text-field>&ndash;&gt;-->
-<!--        &lt;!&ndash;                </v-row>&ndash;&gt;-->
-<!--        &lt;!&ndash;                 </div>&ndash;&gt;-->
-<!--        &lt;!&ndash;            <div>&ndash;&gt;-->
-<!--        &lt;!&ndash;                <div style="display: inline-flex;margin:5%">&ndash;&gt;-->
-<!--        &lt;!&ndash;                    <h4 style="color:#9652ff"> Short Question No:</h4>&ndash;&gt;-->
-
-<!--        &lt;!&ndash;                </div>&ndash;&gt;-->
-<!--        &lt;!&ndash;                <v-textarea&ndash;&gt;-->
-<!--        &lt;!&ndash;                    filled&ndash;&gt;-->
-<!--        &lt;!&ndash;                    label="Question"&ndash;&gt;-->
-<!--        &lt;!&ndash;                    rounded&ndash;&gt;-->
-<!--        &lt;!&ndash;                    disabled&ndash;&gt;-->
-<!--        &lt;!&ndash;                ></v-textarea>&ndash;&gt;-->
-<!--        &lt;!&ndash;                <v-text-field&ndash;&gt;-->
-<!--        &lt;!&ndash;                    filled&ndash;&gt;-->
-<!--        &lt;!&ndash;                    label="Marks"&ndash;&gt;-->
-<!--        &lt;!&ndash;                    rounded&ndash;&gt;-->
-<!--        &lt;!&ndash;                    type="number"&ndash;&gt;-->
-<!--        &lt;!&ndash;                    disabled&ndash;&gt;-->
-<!--        &lt;!&ndash;                ></v-text-field>&ndash;&gt;-->
-<!--        &lt;!&ndash;            </div>&ndash;&gt;-->
-<!--        &lt;!&ndash;            <div>&ndash;&gt;-->
-
-
-<!--        &lt;!&ndash;                <div style="display: inline-flex;margin:5%">&ndash;&gt;-->
-<!--        &lt;!&ndash;                    <h4 style="color:#9652ff"> Pool Question No:</h4>&ndash;&gt;-->
-
-<!--        &lt;!&ndash;                </div>&ndash;&gt;-->
-<!--        &lt;!&ndash;                <v-textarea&ndash;&gt;-->
-<!--        &lt;!&ndash;                    filled&ndash;&gt;-->
-<!--        &lt;!&ndash;                    label="Question"&ndash;&gt;-->
-<!--        &lt;!&ndash;                    rounded&ndash;&gt;-->
-<!--        &lt;!&ndash;                    disabled&ndash;&gt;-->
-<!--        &lt;!&ndash;                ></v-textarea>&ndash;&gt;-->
-<!--        &lt;!&ndash;                <v-row class="d-flex">&ndash;&gt;-->
-<!--        &lt;!&ndash;                    <v-col&ndash;&gt;-->
-<!--        &lt;!&ndash;                        md="3"&ndash;&gt;-->
-<!--        &lt;!&ndash;                    >&ndash;&gt;-->
-<!--        &lt;!&ndash;                        <v-textarea&ndash;&gt;-->
-<!--        &lt;!&ndash;                            label="Option 1"&ndash;&gt;-->
-<!--        &lt;!&ndash;                            outlined&ndash;&gt;-->
-<!--        &lt;!&ndash;                            rounded&ndash;&gt;-->
-<!--        &lt;!&ndash;                            disabled&ndash;&gt;-->
-<!--        &lt;!&ndash;                        ></v-textarea>&ndash;&gt;-->
-<!--        &lt;!&ndash;                    </v-col>&ndash;&gt;-->
-<!--        &lt;!&ndash;                    <v-col&ndash;&gt;-->
-<!--        &lt;!&ndash;                        md="3"&ndash;&gt;-->
-<!--        &lt;!&ndash;                    >&ndash;&gt;-->
-<!--        &lt;!&ndash;                        <v-textarea&ndash;&gt;-->
-<!--        &lt;!&ndash;                            label="Option 2"&ndash;&gt;-->
-<!--        &lt;!&ndash;                            outlined&ndash;&gt;-->
-<!--        &lt;!&ndash;                            rounded&ndash;&gt;-->
-<!--        &lt;!&ndash;                            disabled&ndash;&gt;-->
-<!--        &lt;!&ndash;                        ></v-textarea>&ndash;&gt;-->
-<!--        &lt;!&ndash;                    </v-col>&ndash;&gt;-->
-<!--        &lt;!&ndash;                    <v-col&ndash;&gt;-->
-<!--        &lt;!&ndash;                        md="3"&ndash;&gt;-->
-<!--        &lt;!&ndash;                    >&ndash;&gt;-->
-<!--        &lt;!&ndash;                        <v-textarea&ndash;&gt;-->
-<!--        &lt;!&ndash;                            label="Option 3"&ndash;&gt;-->
-<!--        &lt;!&ndash;                            outlined&ndash;&gt;-->
-<!--        &lt;!&ndash;                            rounded&ndash;&gt;-->
-<!--        &lt;!&ndash;                            disabled&ndash;&gt;-->
-<!--        &lt;!&ndash;                        ></v-textarea>&ndash;&gt;-->
-<!--        &lt;!&ndash;                    </v-col>&ndash;&gt;-->
-<!--        &lt;!&ndash;                    <v-col&ndash;&gt;-->
-<!--        &lt;!&ndash;                        md="3"&ndash;&gt;-->
-<!--        &lt;!&ndash;                    >&ndash;&gt;-->
-<!--        &lt;!&ndash;                        <v-textarea&ndash;&gt;-->
-<!--        &lt;!&ndash;                            label="Option 4"&ndash;&gt;-->
-<!--        &lt;!&ndash;                            outlined&ndash;&gt;-->
-<!--        &lt;!&ndash;                            rounded&ndash;&gt;-->
-<!--        &lt;!&ndash;                            disabled&ndash;&gt;-->
-<!--        &lt;!&ndash;                        ></v-textarea>&ndash;&gt;-->
-<!--        &lt;!&ndash;                    </v-col>&ndash;&gt;-->
-<!--        &lt;!&ndash;                </v-row>&ndash;&gt;-->
-
-<!--        &lt;!&ndash;            </div>&ndash;&gt;-->
-<!--    </div>-->
-
-
-
-
-
-
-
 
 
 
@@ -643,6 +660,7 @@
         {{checkingPool}}
         {{checkingShort}}
         {{puttingExam}}
+        {{filteredExams}}
 
     </v-container>
 </template>
