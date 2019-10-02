@@ -739,7 +739,7 @@
                     shorts: this.shorts,
                 })
                     .then(res =>this.dialog=false,this.$toasted.show('Exam Created',{type:'success'}),
-                        //EventBus.$emit('newMaterial',this.material)
+                        window.location.reload(true)
                     )
             },
             CreateExam() {
