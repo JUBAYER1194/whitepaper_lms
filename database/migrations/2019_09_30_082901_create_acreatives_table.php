@@ -15,6 +15,7 @@ class CreateAcreativesTable extends Migration
     {
         Schema::create('acreatives', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('question_id');
             $table->integer('qcreative_id');
             $table->integer('user_id');
             $table->text('aquestion_1')->nullable();

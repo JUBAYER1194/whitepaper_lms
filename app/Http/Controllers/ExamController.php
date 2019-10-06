@@ -152,6 +152,74 @@ class ExamController extends Controller
         }
 
     }
+    public function AnswerCreate(Request $request,$id){
+
+        if($request->form['qcreative_id']!=null) {
+            $question = Question::find($request->form['qcreative_id']);
+            foreach ($request->Acreatives as $acreative) {
+                $question->Acreative()->create([
+
+                    'qcreative_id' => $acreative['question_id'],
+                    'user_id' => $request->form['user_id'],
+                    'aquestion_1' => $acreative['answer1'],
+                    'aquestion_2' => $acreative['answer2'],
+                    'aquestion_3' => $acreative['answer3'],
+                    'aquestion_4' => $acreative['answer4'],
+
+                ]);
+            }
+
+        };
+        if($request->form['qmultiple_id']!=null) {
+            $question = Question::find($request->form['qmultiple_id']);
+            foreach ($request->Amultiples as $multiple) {
+                $question->Amultiple()->create([
+                    'user_id'=>$request->form['user_id'],
+                    'qmultiple_id'=>$multiple['question_id'],
+                    'answer'=>$multiple['answer'],
+
+
+
+                ]);
+            }
+
+        };
+        if($request->form['qpoll_id']!=null) {
+            $question = Question::find($request->form['qpoll_id']);
+            foreach ($request->Apools as $poll) {
+                $question->Apoll()->create([
+                    'user_id'=>$request->form['user_id'],
+                    'qpoll_id'=>$poll['question_id'],
+                    'answer'=>$poll['answer'],
+
+                ]);
+            }
+
+        };
+        if($request->form['qshort_id']!=null) {
+            $question = Question::find($request->form['qshort_id']);
+            foreach ($request->Ashorts as $short) {
+                $question->Ashort()->create([
+                    'user_id'=>$request->form['user_id'],
+                    'qshort_id'=>$short['question_id'],
+                    'answer'=>$short['answer'],
+
+                ]);
+            }
+
+        };
+
+
+
+    }
+    public function StartExam(Request $request,$id){
+        $exam=Exam::find($id);
+        $exam->end_date=$request->end_date;
+        $exam->end_time=$request->end_time;
+        $exam->status=$request->status;
+        $exam->update();
+
+    }
 
 
     /**

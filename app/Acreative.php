@@ -11,5 +11,8 @@ class Acreative extends Model
     public function qcreative(){
         return $this->belongsTo(Qcreative::class,'id','qcreative_id');
     }
+    public function Question(){
+        return $this->belongsTo(Question::class,'id','question_id');
+    }
 
 }

@@ -15,10 +15,15 @@ class LmsclassExamresource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id'=>$this->id,
             'teacher_id'=>$this->teacher_id,
             'class_id' =>$this->class_id,
             'type'=>$this->type,
              'status_s'=>$this->status,
+            'exam_done'=>$this->exam_done,
+            'Active'=>$this->Active,
+            'end_date_s'=>$this->end_date,
+            'end_time_s'=>$this->end_time,
             'question_s'=>QuestionResource::collection($this->Question),
         ];
     }

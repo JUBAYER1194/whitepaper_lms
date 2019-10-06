@@ -18,7 +18,11 @@ class CreateExamsTable extends Migration
             $table->integer('teacher_id');
             $table->integer('class_id');
             $table->string('type');
-            $table->integer('status');
+            $table->date('end_date')->nullable();
+            $table->time('end_time')->nullable();
+            $table->integer('status')->nullable()->default(0);
+            $table->integer('exam_done')->nullable()->default(0);
+            $table->integer('Active')->nullable()->default(1);
             $table->timestamps();
         });
     }

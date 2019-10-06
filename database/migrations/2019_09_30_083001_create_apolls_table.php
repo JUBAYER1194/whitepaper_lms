@@ -15,6 +15,7 @@ class CreateApollsTable extends Migration
     {
         Schema::create('apolls', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('question_id');
             $table->integer('user_id');
             $table->integer('qpoll_id');
             $table->text('answer')->nullable();

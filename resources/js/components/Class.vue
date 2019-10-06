@@ -50,7 +50,7 @@
                 </v-tab-item>
                 <v-tab-item>
                     <v-card style="padding-left: 5%;padding-top:5%;padding-bottom: 100%">
-                        <ExamAnswer :data="classes.id" :exam="classes.exam"   ></ExamAnswer>
+                        <ExamAnswer :data="classes.id" :exam1="classes.exam"   ></ExamAnswer>
                     </v-card>
                 </v-tab-item>
             </v-tabs-items>

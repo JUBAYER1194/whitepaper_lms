@@ -11,6 +11,9 @@ class Amultiple extends Model
     public function qmultiple(){
         return $this->belongsTo(Qmultiple::class,'id','qmultiple_id');
     }
+    public function Question(){
+        return $this->belongsTo(Question::class,'id','question_id');
+    }
 
 
 }

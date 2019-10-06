@@ -15,6 +15,7 @@ class CreateAmultiplesTable extends Migration
     {
         Schema::create('amultiples', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('question_id');
             $table->integer('user_id');
             $table->integer('qmultiple_id');
             $table->text('answer')->nullable();

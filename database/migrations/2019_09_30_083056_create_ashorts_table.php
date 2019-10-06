@@ -15,6 +15,7 @@ class CreateAshortsTable extends Migration
     {
         Schema::create('ashorts', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('question_id');
             $table->integer('user_id');
             $table->integer('qshort_id');
             $table->text('answer')->nullable();

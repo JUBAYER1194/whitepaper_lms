@@ -8,9 +8,109 @@
                 label="Select Exam type"
                 v-model="date.selected"
         ></v-select>
-
-
         </div>
+        <v-row class="d-flex">
+            <v-col class="d-flex"
+            md="4">
+                <v-dialog
+                    ref="dialog"
+                    v-model="modal1"
+                    :return-value.sync="date1"
+                    persistent
+                    width="290px"
+                >
+                    <template v-slot:activator="{ on }">
+                        <v-text-field
+                            v-model="date1"
+                            label="exam finish Date"
+                            prepend-icon="event"
+                            readonly
+                            v-on="on"
+                        ></v-text-field>
+                    </template>
+                    <v-date-picker v-model="date1" scrollable>
+                        <div class="flex-grow-1"></div>
+                        <v-btn text color="primary" @click="modal1 = false">Cancel</v-btn>
+                        <v-btn text color="primary" @click="$refs.dialog.save(date1),modal1 = false">OK</v-btn>
+                    </v-date-picker>
+                </v-dialog>
+            </v-col>
+
+            <v-col class="d-flex"
+                   md="4">
+                <v-menu
+                    ref="menu"
+                    v-model="menu2"
+                    :close-on-content-click="false"
+                    :nudge-right="40"
+                    :return-value.sync="time"
+                    transition="scale-transition"
+                    offset-y
+                    max-width="290px"
+                    min-width="290px"
+                >
+                    <template v-slot:activator="{ on }">
+                        <v-text-field
+                            v-model="time"
+                            label="Exam Finish Time"
+                            prepend-icon="access_time"
+                            readonly
+                            v-on="on"
+                        ></v-text-field>
+                    </template>
+                    <v-time-picker
+                        v-if="menu2"
+                        v-model="time"
+                        full-width
+                        @click:minute="$refs.menu.save(time)"
+                    ></v-time-picker>
+                </v-menu>
+
+
+
+            </v-col>
+            <v-col class="d-flex"
+                   md="4"
+            >
+                <v-btn @click="createStartExam" style="color:white;background-color: #9652ff">
+                    Start Exam
+
+                </v-btn>
+
+            </v-col>
+        </v-row>
+
+        <div>
+            <v-row class="d-flex">
+            <div v-for="(examx,index) in examR">
+                {{startingtime(examx.end_date_s,examx.end_time_s)}}
+                <v-col
+                    class="d-flex"
+                    md="4"
+                >
+            <v-text-field
+                filled
+                label="exam on going"
+                rounded
+                type="text"
+                disabled
+                v-model="examx.type"
+            ></v-text-field>
+                </v-col>
+</div>
+                <v-col
+                    class="d-flex"
+                    md="4"
+                >
+                    <div>
+                        <div v-if="distance > 0">{{`${days}d ${hours}h ${minutes}m ${seconds}s`}}</div>
+                        <div v-else style="color: darkred">OVER</div>
+                    </div>
+                </v-col>
+            </v-row>
+        </div>
+
+
         <v-row class="d-flex">
             <v-col
                 class="d-flex"
@@ -388,6 +488,7 @@
 
 
         <div v-for="(questions_s,index) in dailyexam" v-if="show==false">
+            <h1>{{checkingexamid(questions_s.id)}}</h1>
             <div v-for="(question_s_s,index) in questions_s.question_s">
 
         <div v-if="question_s_s.type=='Creative'" v-for="(creative_s,index) in question_s_s.creative_s_s">
@@ -661,6 +762,9 @@
         {{checkingShort}}
         {{puttingExam}}
         {{filteredExams}}
+        {{filteredExamRunning}}
+        {{exactTime}}
+        {{timeout}}
 
     </v-container>
 </template>
@@ -671,6 +775,12 @@
         props:['data','exam'],
 
         data: () => ({
+
+                time: null,
+                menu2: false,
+                modal2: false,
+                date1: new Date().toISOString().substr(0, 10),
+                modal1: false,
             dailyexam:{},
             date:{
               selected:null,
@@ -716,6 +826,7 @@
                 qcp:0,
                 qcs:0,
             },
+
             qcc:0,
             qcm:0,
             qcp:0,
@@ -724,12 +835,69 @@
             exams:{},
 
             x:false,
-        }),
 
+            examId:null,
+            examR:null,
+            end_date:null,
+            end_time:null,
+            exact_time:null,
+            countDownDate:null,
+            days: 0,
+            hours: 0,
+            minutes: 0,
+            seconds: 0,
+            distance: 0,
+        }),
+        mounted(){
+
+            var vm = this
+            var x = setInterval(function() {
+                var now = new Date().getTime();
+                vm.distance = vm.countDownDate - now;
+                vm.days = Math.floor(vm.distance / (1000 * 60 * 60 * 24));
+                vm.hours = Math.floor((vm.distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                vm.minutes = Math.floor((vm.distance % (1000 * 60 * 60)) / (1000 * 60));
+                vm.seconds = Math.floor((vm.distance % (1000 * 60)) / 1000);
+                if (vm.distance < 0) {
+                    if(vm.distance < - 1000 * 60 * 60* 24){ // if its past the "game day"
+                        // reset timer to next year
+                        vm.countDownDate += (1000 * 60 * 60 * 24 * 1) * 365
+
+                    }
+                }
+
+
+            }, 1000);
+        },
 
 
 
         methods: {
+            timeout(){
+                if(this.distance<0){
+                    window.location.reload(true)
+                }
+            },
+            startingtime(end_date_s,end_time_s){
+                this.end_date=end_date_s;
+                this.end_time=end_time_s;
+            },
+            checkingexamid(id){
+                this.examId=id;
+            },
+            createStartExam(){
+                axios.patch(`/lms/api/class/exam/${this.examId}`,{
+                    end_date:this.date1,
+                    end_time:this.time,
+                    status:1,
+
+
+                })
+                    .then(res =>this.dialog=false,this.$toasted.show('Exam Started',{type:'success'}),
+                        window.location.reload(true)
+                    )
+            },
+
             postQuestion(){
                 axios.post(`/lms/api/class/exam/question/${this.data}`,{
                     form:this.form,
@@ -831,12 +999,33 @@
 
 
         },
-        computed: {
+        watch:{
 
+        },
+        computed: {
+            timeout(){
+              if(this.distance<0){
+                  window.location.reload(true)
+              }
+            },
+            exactTime(){
+              this.exact_time=this.end_date+" "+this.end_time;
+              this.countDownDate=new Date(this.exact_time).getTime();
+            },
+
+            filteredExamRunning: function(){
+                this.examR=this.exams.filter((el) => {
+                    return (el.status_s==1);
+
+                });
+
+            },
             filteredExams: function(){
                  this.dailyexam=this.exams.filter((exam) => {
                      return exam.type.match(this.date.selected);
+
                 });
+
             },
 
             Examdisabled(){

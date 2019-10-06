@@ -13,7 +13,9 @@ Route::get('material/single/{id}','MaterialController@material');
 Route::get('class/about/{name}','LmsclassController@information');
 Route::get('class/exam/{id}','LmsclassController@exam');
 Route::Resource('/class/exam/exam','ExamController');
+Route::patch('/class/exam/{exam}','ExamController@StartExam');
 Route::Post('/class/exam/question/{class}','ExamController@QuestionCreate');
+Route::Post('/class/exam/answer/{class}','ExamController@AnswerCreate');
 
 
 
