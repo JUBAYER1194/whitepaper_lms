@@ -9,6 +9,20 @@
                 v-model="date.selected"
         ></v-select>
         </div>
+        <div v-for="(examx,index) in examR" v-if="examx.exam_done==0 && examx.status_s==0">
+            <div style="display: inline-flex">
+            <v-select
+                :items="examx"
+                item-text="type"
+                item-value="id"
+                label="Start Exam"
+                rounded
+                filled
+                type="text"
+                v-model="examsatrtId"
+            ></v-select>
+            </div>
+
         <v-row class="d-flex">
             <v-col class="d-flex"
             md="4">
@@ -31,7 +45,7 @@
                     <v-date-picker v-model="date1" scrollable>
                         <div class="flex-grow-1"></div>
                         <v-btn text color="primary" @click="modal1 = false">Cancel</v-btn>
-                        <v-btn text color="primary" @click="$refs.dialog.save(date1),modal1 = false">OK</v-btn>
+                        <v-btn text color="primary" @click="$refs.dialog[index].save(date1)">OK</v-btn>
                     </v-date-picker>
                 </v-dialog>
             </v-col>
@@ -62,7 +76,7 @@
                         v-if="menu2"
                         v-model="time"
                         full-width
-                        @click:minute="$refs.menu.save(time)"
+                        @click:minute="$refs.menu[index].save(time)"
                     ></v-time-picker>
                 </v-menu>
 
@@ -79,11 +93,12 @@
 
             </v-col>
         </v-row>
+        </div>
 
-        <div>
+
+            <div v-for="(examx,index) in examR" v-if="examx.status_s==1 && examx.exam_done==0">
+                {{startingtime(examx.end_date_s,examx.end_time_s,examx.id)}}
             <v-row class="d-flex">
-            <div v-for="(examx,index) in examR">
-                {{startingtime(examx.end_date_s,examx.end_time_s)}}
                 <v-col
                     class="d-flex"
                     md="4"
@@ -97,7 +112,7 @@
                 v-model="examx.type"
             ></v-text-field>
                 </v-col>
-</div>
+
                 <v-col
                     class="d-flex"
                     md="4"
@@ -107,11 +122,13 @@
                         <div v-else style="color: darkred">OVER</div>
                     </div>
                 </v-col>
+
             </v-row>
-        </div>
+            </div>
 
 
-        <v-row class="d-flex">
+
+        <v-row class="d-flex" >
             <v-col
                 class="d-flex"
                 md="3"
@@ -120,28 +137,8 @@
                     class="d-flex"
                     md="7"
                 >
-                    <v-dialog
-                        ref="dialog"
-                        v-model="modal"
-                        :return-value.sync="form.date"
-                        persistent
-                        width="290px"
-                    >
-                        <template v-slot:activator="{ on }">
-                            <v-text-field
-                                v-model="form.date"
-                                label="Picker in dialog"
-                                prepend-icon="event"
-                                readonly
-                                v-on="on"
-                            ></v-text-field>
-                        </template>
-                        <v-date-picker v-model="form.date" scrollable>
-                            <div class="flex-grow-1"></div>
-                            <v-btn text color="primary" @click="modal = false">Cancel</v-btn>
-                            <v-btn text color="primary" @click="$refs.dialog.save(form.date)">OK</v-btn>
-                        </v-date-picker>
-                    </v-dialog>
+                    <dilog> </dilog>
+
                 </v-col>
                 <v-col class="d-flex"
                        md="5">
@@ -769,10 +766,12 @@
     </v-container>
 </template>
 <script>
-
+    import dilog from "./CreateExamDateDilog";
 
     export default {
+
         props:['data','exam'],
+        components: {dilog},
 
         data: () => ({
 
@@ -819,7 +818,7 @@
             shorts:[],
             pools:[],
             form:{
-                date: new Date().toISOString().substr(0, 10),
+                date: null,
                 user_id:null,
                 qcc:0,
                 qcm:0,
@@ -847,7 +846,12 @@
             minutes: 0,
             seconds: 0,
             distance: 0,
+            examIDs:null,
+            examsatrtId:null,
         }),
+        created(){
+          this.listen();
+        },
         mounted(){
 
             var vm = this
@@ -858,13 +862,13 @@
                 vm.hours = Math.floor((vm.distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 vm.minutes = Math.floor((vm.distance % (1000 * 60 * 60)) / (1000 * 60));
                 vm.seconds = Math.floor((vm.distance % (1000 * 60)) / 1000);
-                if (vm.distance < 0) {
-                    if(vm.distance < - 1000 * 60 * 60* 24){ // if its past the "game day"
-                        // reset timer to next year
-                        vm.countDownDate += (1000 * 60 * 60 * 24 * 1) * 365
-
-                    }
-                }
+                // if (vm.distance < 0) {
+                //     if(vm.distance < - 1000 * 60 * 60* 24){ // if its past the "game day"
+                //         // reset timer to next year
+                //         vm.countDownDate += (1000 * 60 * 60 * 24 * 1) * 365
+                //
+                //     }
+                // }
 
 
             }, 1000);
@@ -873,20 +877,21 @@
 
 
         methods: {
-            timeout(){
-                if(this.distance<0){
-                    window.location.reload(true)
-                }
+            listen(){
+                EventBus.$on('exam_date',(x) =>{
+                    this.form.date=x;
+                })
             },
-            startingtime(end_date_s,end_time_s){
+            startingtime(end_date_s,end_time_s,Id){
                 this.end_date=end_date_s;
                 this.end_time=end_time_s;
+                this.examIDs=Id;
             },
             checkingexamid(id){
                 this.examId=id;
             },
             createStartExam(){
-                axios.patch(`/lms/api/class/exam/${this.examId}`,{
+                axios.patch(`/lms/api/class/exam/${this.examsatrtId}`,{
                     end_date:this.date1,
                     end_time:this.time,
                     status:1,
@@ -894,7 +899,7 @@
 
                 })
                     .then(res =>this.dialog=false,this.$toasted.show('Exam Started',{type:'success'}),
-                        window.location.reload(true)
+                       window.location.reload(true)
                     )
             },
 
@@ -905,6 +910,7 @@
                     multiples:this.multiples,
                     pools:this.pools,
                     shorts: this.shorts,
+
                 })
                     .then(res =>this.dialog=false,this.$toasted.show('Exam Created',{type:'success'}),
                         window.location.reload(true)
@@ -1004,10 +1010,19 @@
         },
         computed: {
             timeout(){
-              if(this.distance<0){
-                  window.location.reload(true)
-              }
+                if(this.distance<0){
+                    axios.patch(`/lms/api/class/end_exam/${this.examIDs}`,{
+                        exam_done:1,
+
+
+                    })
+                        .then(res =>this.dialog=false,this.$toasted.show('Exam Started',{type:'success'}),
+                            window.location.reload(true)
+                        )
+
+                }
             },
+
             exactTime(){
               this.exact_time=this.end_date+" "+this.end_time;
               this.countDownDate=new Date(this.exact_time).getTime();
@@ -1015,7 +1030,7 @@
 
             filteredExamRunning: function(){
                 this.examR=this.exams.filter((el) => {
-                    return (el.status_s==1);
+                    return (el.exam_done==0);
 
                 });
 

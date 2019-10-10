@@ -88,6 +88,9 @@ class User extends Authenticatable implements JWTSubject
     public function Ashort(){
         return $this->hasMany(Ashort::class,'user_id','id');
     }
+    public function exams(){
+        return $this->belongsToMany(Exam::class,'exam_users');
+    }
 
 
 

@@ -57,6 +57,7 @@ class ExamController extends Controller
                 'teacher_id' => $request->form['user_id'],
                 'type' => $request->form['date'],
                 'status' => 0,
+                'exam_done'=>0,
             ],
         ]);
 
@@ -217,6 +218,12 @@ class ExamController extends Controller
         $exam->end_date=$request->end_date;
         $exam->end_time=$request->end_time;
         $exam->status=$request->status;
+        $exam->update();
+
+    }
+    public function EndExam(Request $request,$id){
+        $exam=Exam::find($id);
+        $exam->exam_done=$request->exam_done;
         $exam->update();
 
     }

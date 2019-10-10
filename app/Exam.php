@@ -15,4 +15,7 @@ class Exam extends Model
     public function class(){
         return $this->belongsTo(Lmsclass::class,'id','class_id');
     }
+    public function users(){
+        return $this->belongsToMany(User::class,'exam_users');
+    }
 }
