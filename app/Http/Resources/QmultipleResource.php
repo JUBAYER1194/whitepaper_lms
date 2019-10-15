@@ -23,6 +23,7 @@ class QmultipleResource extends JsonResource
             'option_3'=>$this->option_3,
             'option_4'=>$this->option_4,
             'marks'=>$this->marks,
+            'Amultiple'=>Amultiple::collection($this->Amultiple),
             'created_at'=>$this->created_at->diffForHumans(),
 
 

@@ -16,6 +16,7 @@ class Exam extends Model
         return $this->belongsTo(Lmsclass::class,'id','class_id');
     }
     public function users(){
-        return $this->belongsToMany(User::class,'exam_users');
+        return $this->belongsToMany(User::class,'exam_users','exam_id','user_id')->withPivot('exam_done','user_id');
+
     }
 }

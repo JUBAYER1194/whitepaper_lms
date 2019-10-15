@@ -25,6 +25,8 @@ class LmsclassExamresource extends JsonResource
             'end_date_s'=>$this->end_date,
             'end_time_s'=>$this->end_time,
             'question_s'=>QuestionResource::collection($this->Question),
+            'exam_done_Status'=>$this->users()->where('exam_id', $this->id)->get(),
+            'exam_user'=>UserResource::collection($this->users),
         ];
     }
 }

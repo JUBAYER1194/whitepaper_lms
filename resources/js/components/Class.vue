@@ -53,6 +53,11 @@
                         <ExamAnswer :data="classes.id" :exam1="classes.exam"   ></ExamAnswer>
                     </v-card>
                 </v-tab-item>
+                <v-tab-item>
+                    <v-card style="padding-left: 5%;padding-top:5%;padding-bottom: 100%">
+                        <Marks :data1="classes.id" :exam2="classes.exam"   ></Marks>
+                    </v-card>
+                </v-tab-item>
             </v-tabs-items>
 
 
@@ -71,10 +76,11 @@
     import Student from "./Student.vue";
     import Exam from "./Exam.vue";
     import ExamAnswer from "./ExamAnswer";
+    import Marks from "./Teacher_marking.vue";
 
     export default {
 
-        components: {dilog, invite_dilog, Information, Announcement, Assaignment, Student, Exam,ExamAnswer},
+        components: {dilog, invite_dilog, Information, Announcement, Assaignment, Student, Exam,ExamAnswer,Marks},
         data() {
             return {
                 tab: null,
@@ -110,6 +116,9 @@
                     {
                       name:'Exam',
                     },
+                    {
+                        name:'Marks',
+                    }
 
                 ],
 

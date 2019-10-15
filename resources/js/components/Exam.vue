@@ -9,10 +9,13 @@
                 v-model="date.selected"
         ></v-select>
         </div>
-        <div v-for="(examx,index) in examR" v-if="examx.exam_done==0 && examx.status_s==0">
+<!--        <div v-for="(examx,index) in examR" v-if="examx.exam_done==0 && examx.status_s==0">-->
+<!--            {{checkingstartexam(examx)}}-->
+<!--        </div>-->
+        <div v-if="somex && examn!=''" >
             <div style="display: inline-flex">
             <v-select
-                :items="examx"
+                :items="examn"
                 item-text="type"
                 item-value="id"
                 label="Start Exam"
@@ -22,8 +25,7 @@
                 v-model="examsatrtId"
             ></v-select>
             </div>
-
-        <v-row class="d-flex">
+            <v-row class="d-flex">
             <v-col class="d-flex"
             md="4">
                 <v-dialog
@@ -45,7 +47,7 @@
                     <v-date-picker v-model="date1" scrollable>
                         <div class="flex-grow-1"></div>
                         <v-btn text color="primary" @click="modal1 = false">Cancel</v-btn>
-                        <v-btn text color="primary" @click="$refs.dialog[index].save(date1)">OK</v-btn>
+                        <v-btn text color="primary" @click="$refs.dialog.save(date1)">OK</v-btn>
                     </v-date-picker>
                 </v-dialog>
             </v-col>
@@ -76,7 +78,7 @@
                         v-if="menu2"
                         v-model="time"
                         full-width
-                        @click:minute="$refs.menu[index].save(time)"
+                        @click:minute="$refs.menu.save(time)"
                     ></v-time-picker>
                 </v-menu>
 
@@ -121,6 +123,15 @@
                         <div v-if="distance > 0">{{`${days}d ${hours}h ${minutes}m ${seconds}s`}}</div>
                         <div v-else style="color: darkred">OVER</div>
                     </div>
+                </v-col>
+                <v-col
+                    class="d-flex"
+                    md="4"
+                >
+                    <v-btn @click="stopingRunningExam(examx.id)" style="color: white;background-color: #9652ff">
+                        Stop Exam
+                    </v-btn>
+
                 </v-col>
 
             </v-row>
@@ -760,6 +771,7 @@
         {{puttingExam}}
         {{filteredExams}}
         {{filteredExamRunning}}
+        {{filteredExamstartRunning}}
         {{exactTime}}
         {{timeout}}
 
@@ -848,6 +860,8 @@
             distance: 0,
             examIDs:null,
             examsatrtId:null,
+            examn:null,
+            somex:true,
         }),
         created(){
           this.listen();
@@ -877,6 +891,17 @@
 
 
         methods: {
+            stopingRunningExam(id){
+                axios.patch(`/lms/api/class/exam/stop/${id}`,{
+
+
+
+                })
+                    .then(res =>this.dialog=false,this.$toasted.show('Exam Stoped',{type:'success'}),
+                        window.location.reload(true)
+                    )
+            },
+
             listen(){
                 EventBus.$on('exam_date',(x) =>{
                     this.form.date=x;
@@ -886,6 +911,7 @@
                 this.end_date=end_date_s;
                 this.end_time=end_time_s;
                 this.examIDs=Id;
+                this.somex=false;
             },
             checkingexamid(id){
                 this.examId=id;
@@ -1009,6 +1035,7 @@
 
         },
         computed: {
+
             timeout(){
                 if(this.distance<0){
                     axios.patch(`/lms/api/class/end_exam/${this.examIDs}`,{
@@ -1017,7 +1044,7 @@
 
                     })
                         .then(res =>this.dialog=false,this.$toasted.show('Exam Started',{type:'success'}),
-                            window.location.reload(true)
+                           window.location.reload(true)
                         )
 
                 }
@@ -1031,6 +1058,13 @@
             filteredExamRunning: function(){
                 this.examR=this.exams.filter((el) => {
                     return (el.exam_done==0);
+
+                });
+
+            },
+            filteredExamstartRunning: function(){
+                this.examn=this.examR.filter((el) => {
+                    return (el.exam_done==0 && el.status_s==0);
 
                 });
 

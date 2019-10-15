@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Acreative;
+use App\Amultiple;
+use App\Ashort;
 use App\Exam;
+use App\Exam_user;
 use App\Http\Resources\QuestionResource;
 use App\Lmsclass;
 use App\Question;
@@ -30,7 +34,6 @@ class ExamController extends Controller
         //
 
 
-
     }
 
     /**
@@ -44,10 +47,12 @@ class ExamController extends Controller
 
 
     }
+
     public function QcraetiveCreate(Request $request){
-         dd($request);
+        dd($request);
 
     }
+
     public function QuestionCreate(Request $request,$id)
     {
 
@@ -153,6 +158,7 @@ class ExamController extends Controller
         }
 
     }
+
     public function AnswerCreate(Request $request,$id){
 
         if($request->form['qcreative_id']!=null) {
@@ -178,7 +184,6 @@ class ExamController extends Controller
                     'user_id'=>$request->form['user_id'],
                     'qmultiple_id'=>$multiple['question_id'],
                     'answer'=>$multiple['answer'],
-
 
 
                 ]);
@@ -211,9 +216,24 @@ class ExamController extends Controller
         };
 
 
+    }
+
+    public function updating_Examuser(Request $request, $id)
+    {
+
+
+        $users = Exam_user::where([
+            ['exam_id', '=', $id],
+            ['user_id', '=', $request->user_id],
+        ])->get();
+        foreach ($users as $user) {
+            $user->exam_done = 1;
+            $user->update();
+        }
 
     }
-    public function StartExam(Request $request,$id){
+
+    public function StartExam(Request $request, $id){
         $exam=Exam::find($id);
         $exam->end_date=$request->end_date;
         $exam->end_time=$request->end_time;
@@ -221,9 +241,19 @@ class ExamController extends Controller
         $exam->update();
 
     }
-    public function EndExam(Request $request,$id){
+
+    public function StopExam(Request $request, $id)
+    {
+        $exam = Exam::find($id);
+        $exam->end_date = null;
+        $exam->end_time = null;
+        $exam->status = 0;
+        $exam->update();
+    }
+
+    public function EndExam(Request $request, $id){
         $exam=Exam::find($id);
-        $exam->exam_done=$request->exam_done;
+        $exam->exam_done = 1;
         $exam->update();
 
     }
@@ -237,44 +267,72 @@ class ExamController extends Controller
      */
     public function show($exam)
     {
-        dd($exam);
+
         $question=Exam::find($exam)->Question;
         return QuestionResource::collection($question);
 
     }
 
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Exam  $exam
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Exam $exam)
+    public function user_examDone(Request $request, $id)
     {
-        //
+
+        if ($request->check == 5) {
+            $user_exam = new Exam_user();
+            $user_exam->exam_id = $id;
+            $user_exam->user_id = $request->user_id;
+            $user_exam->exam_done = 0;
+            $user_exam->save();
+        }
+
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Exam  $exam
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Exam $exam)
+    public function Marks_update(Request $request)
     {
-        //
+
+
+        if ($request->form['acreative_id'] != null) {
+            foreach ($request->Mcreatives as $Mcreative) {
+                $somes = Acreative::find($Mcreative['question_id']);
+                if ($Mcreative['marks1'] != null) {
+                    $somes->aq1_marks = $Mcreative['marks1'];
+                }
+                if ($Mcreative['marks2'] != null) {
+                    $somes->aq2_marks = $Mcreative['marks2'];
+                }
+                if ($Mcreative['marks3'] != null) {
+                    $somes->aq3_marks = $Mcreative['marks3'];
+                }
+                if ($Mcreative['marks4'] != null) {
+                    $somes->aq4_marks = $Mcreative['marks4'];
+                }
+                $somes->update();
+
+
+            }
+
+        }
+        if ($request->form['amultiple_id'] != null) {
+            foreach ($request->Mmultiples as $Mmultiple) {
+                $somes = Amultiple::find($Mmultiple['question_id']);
+                $somes->marks = $Mmultiple['marks'];
+                $somes->update();
+
+
+            }
+
+        }
+        if ($request->form['ashort_id'] != null) {
+            foreach ($request->Mshorts as $Mshort) {
+                $somes = Ashort::find($Mshort['question_id']);
+                $somes->marks = $Mshort['marks'];
+                $somes->update();
+
+
+            }
+
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Exam  $exam
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Exam $exam)
-    {
-        //
-    }
+
 }

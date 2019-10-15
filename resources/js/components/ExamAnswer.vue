@@ -16,20 +16,22 @@
                         ></v-select>
                     </div>
                 </v-col>
-                <v-col class="d-flex" md="3">
+                <div v-if="checkShow && showingStartExam && showStartExam ||showExam">
+                <v-col  class="d-flex" md="3">
                     <div class="text--right">
                         <v-btn
                             style="background-color:#9652ff;color: white"
-                            @click="show=true"
+                            @click="exam_done_Change"
                         >
                             Start Exam
                         </v-btn>
                     </div>
                 </v-col>
+                </div>
             </v-row>
-            <div>
+            <div v-if="checkShow==false && showingStartExam && showStartExam ||showExam">
                 <div v-if="distance > 0">{{`${days}d ${hours}h ${minutes}m ${seconds}s`}}</div>
-                <div v-else>OVER</div>
+                <div v-else style="color: darkred">OVER</div>
             </div>
             <div v-if="show==true">
                 <div>
@@ -260,7 +262,7 @@
                     </div>
                 </div>
 
-                <v-btn @click="submitAnswer">
+                <v-btn @click="submitAnswer"  style="color: white;background-color: #9652ff">
                     Post Question
                 </v-btn>
             </div>
@@ -533,7 +535,16 @@
             </div>
 
         </div>
+        <div v-for="(exam_start,index) in start_exam">
 
+            {{gettingExamDate(exam_start.end_date_s,exam_start.end_time_s,exam_start.id)}}
+            <div v-for="exam_done_statuses in exam_start.exam_done_Status" v-if="exam_done_statuses.pivot.user_id==user_id">
+
+                {{checkingPivot(exam_done_statuses.pivot.exam_done)}}
+            </div>
+
+        </div>
+        {{checkingUser}}
         {{userId}}
         {{puttingExam}}
         {{filteredExams}}
@@ -543,11 +554,15 @@
         {{filteredQuestionp}}
         {{filteredQuestions}}
         {{checingcountdown}}
+       {{checkingUser_startExam}}
+        {{submitAnswer_distance}}
 
     </v-container>
 </template>
 <script>
 
+
+    import User from "../Helpers/User";
 
     export default {
         props: ['data', 'exam1'],
@@ -572,8 +587,8 @@
                 qpoll_id:null,
                 user_id:null,
             },
-            dates:"2019-10-06",
-            times:" 6:45:06 PM",
+            dates:null,
+            times:null,
             some:"",
             countDownDate:null,
             days: 0,
@@ -581,11 +596,20 @@
             minutes: 0,
             seconds: 0,
             distance: 0,
+            showingStartExam:false,
+            checkShow:true,
+            student_start_exam:{},
+            user_id:null,
+            exam_done_done:5,
+            showStartExam:false,
+            showExam:false,
+            startExam_id:null,
 
 
 
 
-            creativenesss: [{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,}],
+
+            creativenesss: [{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},{question_id:0,answer1:null,answer2:null,answer3:null,answer4:null},],
             multiplesss: [{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,}],
             shortsss: [{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,}],
             pollsss: [{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,},{question_id:0,}],
@@ -600,28 +624,55 @@
                 vm.hours = Math.floor((vm.distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 vm.minutes = Math.floor((vm.distance % (1000 * 60 * 60)) / (1000 * 60));
                 vm.seconds = Math.floor((vm.distance % (1000 * 60)) / 1000);
-                if (vm.distance < 0) {
-                    if(vm.distance < - 1000 * 60 * 60* 24){ // if its past the "game day"
-                        // reset timer to next year
-                        vm.countDownDate += (1000 * 60 * 60 * 24 * 1) * 365
-                    }
-                }
+
             }, 1000);
         },
 
 
 
         methods: {
+            exam_done_Change(){
+                axios.post(`/lms/api/class/exam/exam_done/${this.startExam_id}`,{
+                   user_id:this.user_id,
+                    check:this.exam_done_done,
+
+
+                })
+                    .then(res =>this.dialog=false,this.$toasted.show('Exam Started',{type:'success'}),
+                        this.show=true,
+                        this.checkShow=false,
+
+                    )
+            },
+            gettingExamDate(data,data1,id){
+                this.dates=data;
+                this.times=data1;
+                this.startExam_id=id;
+            },
+
+            checkingPivot(data){
+              this.exam_done_done=data;
+            },
+            updating_Examuser(){
+                axios.patch(`/lms/api/class/exam/updating_Examuser/${this.startExam_id}`,{
+                    user_id:this.user_id,
+                    check:this.exam_done_done,
+                })
+
+            },
+
             submitAnswer(){
+                this.updating_Examuser();
                 axios.post(`/lms/api/class/exam/answer/${this.data}`,{
                     form:this.question_id,
                     Acreatives:this.filteringc,
                     Amultiples:this.filteringm,
                     Apools:this.filteringp,
                     Ashorts: this.filterings,
+
                 })
                     .then(res =>this.dialog=false,this.$toasted.show('Exam Done',{type:'success'}),
-                        //window.location.reload(true)
+                      window.location.reload(true)
                     )
             },
             checkingQuestionId(index,id,question_id){
@@ -647,8 +698,43 @@
 
         },
         computed: {
+            submitAnswer_distance(){
+                if (this.distance<0){
+                    this.updating_Examuser();
+                    axios.post(`/lms/api/class/exam/answer/${this.data}`,{
+                        form:this.question_id,
+                        Acreatives:this.filteringc,
+                        Amultiples:this.filteringm,
+                        Apools:this.filteringp,
+                        Ashorts: this.filterings,
+                        user_id:this.user_id,
+                        check:this.exam_done_done,
+                        start_exam_id:this.startExam_id,
+
+                    })
+                        .then(res =>this.dialog=false,this.$toasted.show('Exam Done',{type:'success'}),
+                            window.location.reload(true)
+                        )
+                }
+            },
+            checkingUser_startExam(){
+                if (this.exam_done_done== 5 || this.exam_done_done== 0){
+                    this.showStartExam=true;
+                }
+                else
+                {
+                    this.showStartExam=false;
+                }
+
+            },
+
+            checkingUser(){
+                this.user_id=User.id();
+            },
+
+
             checingcountdown(){
-                this.some=this.dates+this.times;
+                this.some=this.dates+" "+this.times;
                 this.countDownDate=new Date(this.some).getTime();
             },
             userId(){
@@ -685,11 +771,16 @@
             },
             startexam: function () {
                 this.start_exam=this.exams.filter((el) => {
-                    return (el.status_s == this.start_exam_status)
-
+                    if (el.status_s == this.start_exam_status && el.exam_done == 0){
+                        this.showingStartExam=true;
+                    }
+                    return (el.status_s == this.start_exam_status && el.exam_done == 0)
                 });
 
+
             },
+
+
 
 
         },

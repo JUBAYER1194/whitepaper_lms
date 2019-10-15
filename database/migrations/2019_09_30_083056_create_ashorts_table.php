@@ -19,7 +19,7 @@ class CreateAshortsTable extends Migration
             $table->integer('user_id');
             $table->integer('qshort_id');
             $table->text('answer')->nullable();
-            $table->integer('marks')->nullable()->default(0);
+            $table->integer('marks')->nullable();
             $table->timestamps();
         });
     }

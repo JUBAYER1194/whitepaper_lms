@@ -23,6 +23,7 @@ class QpollResource extends JsonResource
            'option_3'=>$this->option_3,
            'option_4'=>$this->option_4,
            'marks'=>$this->marks,
+           'Apoll'=>Apoll::collection($this->Apoll),
            'created_at'=>$this->created_at->diffForHumans(),
 
 

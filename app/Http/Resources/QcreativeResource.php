@@ -28,6 +28,7 @@ class QcreativeResource extends JsonResource
             'q3_marks' => $this->q3_marks,
             'q4_marks' => $this->q4_marks,
             'all_marks'=> $this->all_marks,
+            'Acreatives'=>Acreative::collection($this->Acreative),
             'created_at'=>$this->created_at->diffForHumans(),
 
 

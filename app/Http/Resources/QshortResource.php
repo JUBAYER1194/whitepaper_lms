@@ -19,6 +19,7 @@ class QshortResource extends JsonResource
             'question_id'=>$this->question_id,
             'question_s'=>$this->question,
             'marks'=>$this->marks,
+            'Ashort'=>Ashort::collection($this->Ashort),
 
         ];
 

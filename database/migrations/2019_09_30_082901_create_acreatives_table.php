@@ -19,13 +19,13 @@ class CreateAcreativesTable extends Migration
             $table->integer('qcreative_id');
             $table->integer('user_id');
             $table->text('aquestion_1')->nullable();
-            $table->integer('aq1_marks')->nullable()->default(0);
+            $table->integer('aq1_marks')->nullable();
             $table->text('aquestion_2')->nullable();
-            $table->integer('aq2_marks')->nullable()->default(0);
+            $table->integer('aq2_marks')->nullable();
             $table->text('aquestion_3')->nullable();
-            $table->integer('aq3_marks')->nullable()->default(0);
+            $table->integer('aq3_marks')->nullable();
             $table->text('aquestion_4')->nullable();
-            $table->integer('aq4_marks')->nullable()->default(0);
+            $table->integer('aq4_marks')->nullable();
             $table->timestamps();
         });
     }

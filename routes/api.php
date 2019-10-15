@@ -14,9 +14,13 @@ Route::get('class/about/{name}','LmsclassController@information');
 Route::get('class/exam/{id}','LmsclassController@exam');
 Route::Resource('/class/exam/exam','ExamController');
 Route::patch('/class/exam/{exam}','ExamController@StartExam');
+Route::patch('/class/exam/stop/{exam}','ExamController@StopExam');
+Route::Post('/class/exam/exam_done/{exam}','ExamController@user_examDone');
+Route::patch('/class/exam/updating_Examuser/{exam}','ExamController@updating_Examuser');
 Route::patch('/class/end_exam/{exam}','ExamController@EndExam');
 Route::Post('/class/exam/question/{class}','ExamController@QuestionCreate');
 Route::Post('/class/exam/answer/{class}','ExamController@AnswerCreate');
+Route::patch('/class/exam/marks/{mark}','ExamController@Marks_update');
 
 
 
