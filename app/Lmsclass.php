@@ -27,6 +27,11 @@ class Lmsclass extends Model
         return $this->hasMany(Announcement::class)->latest();
 
     }
+    public function Assaignments(){
+        return $this->hasMany(Assaignment::class)->latest();
+
+    }
+
     public function exam(){
         return $this->hasMany(Exam::class,'class_id','id');
     }

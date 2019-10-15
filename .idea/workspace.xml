@@ -2,29 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03434f23-f88b-48c6-bc77-19b79d88e8b8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Exam.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exam.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ExamController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ExamController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/LmsclassExamresource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/LmsclassExamresource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/LmsuserResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/LmsuserResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/QcreativeResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/QcreativeResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/QmultipleResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/QmultipleResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/QpollResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/QpollResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/QshortResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/QshortResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/UserResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/UserResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Assaignment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Assaignment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AssaignmentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AssaignmentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MaterialController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MaterialController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Lmsclass.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Lmsclass.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_09_30_082901_create_acreatives_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_09_30_082901_create_acreatives_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_09_30_082933_create_amultiples_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_09_30_082933_create_amultiples_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_09_30_083056_create_ashorts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_09_30_083056_create_ashorts_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_09_21_020858_create_assaignments_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_09_21_020858_create_assaignments_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Assaignment.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Assaignment.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Assignment_dilog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Assignment_dilog.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/Class.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Class.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Exam.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Exam.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/ExamAnswer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ExamAnswer.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Information.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Information.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/profile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/profile.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -330,7 +323,8 @@
       <workItem from="1570897669467" duration="7431000" />
       <workItem from="1570939079461" duration="10681000" />
       <workItem from="1571018921288" duration="41677000" />
-      <workItem from="1571104200965" duration="4382000" />
+      <workItem from="1571104200965" duration="4937000" />
+      <workItem from="1571115492732" duration="16834000" />
     </task>
     <servers />
   </component>
@@ -378,7 +372,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" log-message="true" suspend="NONE" type="javascript">
           <url>file://$PROJECT_DIR$/resources/js/components/ExamAnswer.vue</url>
-          <line>294</line>
+          <line>633</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">

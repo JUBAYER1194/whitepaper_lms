@@ -13,4 +13,7 @@ class Assaignment extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+    public function lmsClass(){
+        return $this->belongsTo(Lmsclass::class);
+    }
 }

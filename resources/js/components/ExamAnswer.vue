@@ -268,12 +268,11 @@
             </div>
 
 
-            <div v-if="show==false" >
-                <div v-for="(questions_s,index) in dailyexam">
-                    <div v-for="(question_s_s,index) in questions_s.question_s">
-
-                        <div v-for="(creative_s,index) in question_s_s.creative_s_s" v-if="question_s_s.type=='Creative'">
-                            <div>
+            <div v-if="show==false">
+                <div>
+                    <div v-for="(questions_s,index) in dailyexam" v-if="show==false">
+                        <div v-for="(question_s_s,index) in questions_s.question_s">
+                            <div v-for="(creative_s,index) in question_s_s.creative_s_s" v-if="question_s_s.type=='Creative'">
                                 <div style="display: inline-flex;margin:5%">
                                     <h4 style="color:#9652ff"> Creative Question No:{{index+1}}</h4>
 
@@ -285,100 +284,179 @@
                                     rounded
                                     v-model="creative_s.story"
                                 ></v-textarea>
-                                <v-row class="d-flex">
-                                    <v-col
-                                        md="3"
-                                    >
+
+                                <div>
+
+                                    <v-textarea
+                                        :label="'question no '+(index+1)+'(a)'"
+                                        disabled
+                                        outlined
+                                        rounded
+                                        v-model="creative_s.question_1"
+
+                                    ></v-textarea>
+                                    <v-text-field
+                                        :label="'marks for '+(index+1)+'(a)'"
+                                        disabled
+                                        filled
+                                        rounded
+                                        type="number"
+                                        v-model="creative_s.q1_marks"
+                                    ></v-text-field>
+                                </div>
+                                <div>
+
+                                    <v-textarea
+                                        :label="'question no '+(index+1)+'(b)'"
+                                        disabled
+                                        outlined
+                                        rounded
+                                        v-model="creative_s.question_2"
+                                    ></v-textarea>
+                                    <v-text-field
+                                        :label="'Marks for '+(index+1)+'(b)'"
+                                        disabled
+                                        filled
+                                        rounded
+                                        type="number"
+                                        v-model="creative_s.q2_marks"
+                                    ></v-text-field>
+                                </div>
+
+                                <div>
+
+                                    <v-textarea
+                                        :label="'question no '+(index+1)+'(c)'"
+                                        disabled
+                                        outlined
+                                        rounded
+                                        v-model="creative_s.question_3"
+                                    ></v-textarea>
+                                    <v-text-field
+                                        :label="'marks for '+(index+1)+'(c)'"
+                                        disabled
+                                        filled
+                                        rounded
+                                        type="number"
+                                        v-model="creative_s.q3_marks"
+                                    ></v-text-field>
+                                </div>
+
+                                <div>
+
+                                    <v-textarea
+                                        :label="'question no '+(index+1)+'(d)'"
+                                        disabled
+                                        outlined
+                                        rounded
+                                        v-model="creative_s.question_4"
+                                    ></v-textarea>
+                                    <v-text-field
+                                        :label="'marks for '+(index+1)+'(d)'"
+                                        disabled
+                                        filled
+                                        rounded
+                                        type="number"
+                                        v-model="creative_s.q4_marks"
+                                    ></v-text-field>
+                                </div>
+                                <div>
+                                    <div style="display: inline-flex;margin:5%">
+                                        <h4 style="color:#9652ff"> Answer For Question No:{{index+1}}</h4>
+
+                                    </div>
+                                    <div v-for="A_creative_s in creative_s.Acreatives" v-if="A_creative_s.user_id==user_id">
+                                        <v-textarea
+                                            :label="'Answer (a)'"
+                                            disabled
+                                            outlined
+                                            rounded
+                                            v-model="A_creative_s.aquestion_1"
+                                        ></v-textarea>
+
                                         <div>
 
-                                            <v-textarea
-                                                disabled
-                                                label="Question no 1"
-                                                outlined
-                                                rounded
-                                                v-model="creative_s.question_1"
-                                            ></v-textarea>
                                             <v-text-field
+                                                :label="'marks (a) '"
                                                 disabled
                                                 filled
-                                                label="Marks"
                                                 rounded
                                                 type="number"
-                                                v-model="creative_s.q1_marks"
+                                                v-model="A_creative_s.aq1_marks"
                                             ></v-text-field>
                                         </div>
-                                    </v-col>
-                                    <v-col
-                                        md="3"
-                                    >
+                                        <v-textarea
+                                            :label="'Answer (b)'"
+                                            disabled
+                                            outlined
+                                            rounded
+                                            v-model="A_creative_s.aquestion_2"
+                                        ></v-textarea>
+
                                         <div>
 
-                                            <v-textarea
-                                                disabled
-                                                label="Question no 2"
-                                                outlined
-                                                rounded
-                                                v-model="creative_s.question_2"
-                                            ></v-textarea>
                                             <v-text-field
+                                                :label="'marks (b)'"
                                                 disabled
                                                 filled
-                                                label="Marks"
                                                 rounded
                                                 type="number"
-                                                v-model="creative_s.q2_marks"
+                                                v-model="A_creative_s.aq2_marks"
                                             ></v-text-field>
                                         </div>
-                                    </v-col>
-                                    <v-col
-                                        md="3"
-                                    >
+
+                                        <v-textarea
+                                            :label="'Answer (c)'"
+                                            disabled
+                                            outlined
+                                            rounded
+                                            v-model="A_creative_s.aquestion_3"
+                                        ></v-textarea>
+
                                         <div>
 
-                                            <v-textarea
-                                                disabled
-                                                label="Question no 3"
-                                                outlined
-                                                rounded
-                                                v-model="creative_s.question_3"
-                                            ></v-textarea>
                                             <v-text-field
+                                                :label="'marks (c)'"
                                                 disabled
                                                 filled
-                                                label="Marks"
                                                 rounded
                                                 type="number"
-                                                v-model="creative_s.q3_marks"
+                                                v-model="A_creative_s.aq3_marks"
                                             ></v-text-field>
                                         </div>
-                                    </v-col>
-                                    <v-col
-                                        md="3"
-                                    >
+                                        <v-textarea
+                                            :label="'Answer (d)'"
+                                            disabled
+                                            outlined
+                                            rounded
+                                            v-model="A_creative_s.aquestion_4"
+                                        ></v-textarea>
                                         <div>
 
-                                            <v-textarea
-                                                disabled
-                                                label="Question no 4"
-                                                outlined
-                                                rounded
-                                                v-model="creative_s.question_4"
-                                            ></v-textarea>
                                             <v-text-field
+                                                :label="'marks (d)'"
                                                 disabled
                                                 filled
-                                                label="Marks"
                                                 rounded
                                                 type="number"
-                                                v-model="creative_s.q4_marks"
+                                                v-model="A_creative_s.aq4_marks"
                                             ></v-text-field>
                                         </div>
-                                    </v-col>
-                                </v-row>
+
+
+
+                                    </div>
+                                </div>
+
+
+
                             </div>
                         </div>
+                    </div>
 
-
+                </div>
+                <div v-for="(questions_s,index) in dailyexam" v-if="show==false">
+                    <div v-for="(question_s_s,index) in questions_s.question_s">
                         <div v-for="(multiple_s,index) in question_s_s.multiple_s_s" v-if="question_s_s.type=='Multiple'">
                             <div style="display: inline-flex;margin:5%">
                                 <h4 style="color:#9652ff"> Multiple Question No:{{index+1}}</h4>
@@ -391,61 +469,54 @@
                                 rounded
                                 v-model="multiple_s.question_s"
                             ></v-textarea>
-                            <v-row class="d-flex">
-                                <v-col
-                                    md="3"
-                                >
-                                    <v-textarea
+                            <v-select
+                                :items=[multiple_s.option_1,multiple_s.option_2,multiple_s.option_3,multiple_s.option_4]
+                                label="Option"
+                                solo
+                            ></v-select>
+
+                            <v-text-field
+                                disabled
+                                filled
+                                label="Marks"
+                                rounded
+                                v-model="multiple_s.marks"
+                            ></v-text-field>
+                            <div>
+                                <div style="display: inline-flex;margin:5%">
+                                    <h4 style="color:#9652ff"> Multiple Question Answer  No:{{index+1}}</h4>
+
+                                </div>
+                                <div v-for="(A_multiple_s) in multiple_s.Amultiple" v-if="A_multiple_s.user_id==user_id">
+
+                                    <v-text-field
+                                        :label="'Answer:'"
                                         disabled
-                                        label="Option 1"
-                                        outlined
+                                        filled
                                         rounded
-                                        v-model="multiple_s.option_1"
-                                    ></v-textarea>
-                                </v-col>
-                                <v-col
-                                    md="3"
-                                >
-                                    <v-textarea
-                                        disabled
-                                        label="Option 2"
-                                        outlined
-                                        rounded
-                                        v-model="multiple_s.option_2"
-                                    ></v-textarea>
-                                </v-col>
-                                <v-col
-                                    md="3"
-                                >
-                                    <v-textarea
-                                        disabled
-                                        label="Option 3"
-                                        outlined
-                                        rounded
-                                        v-model="multiple_s.option_3"
-                                    ></v-textarea>
-                                </v-col>
-                                <v-col
-                                    md="3"
-                                >
-                                    <v-textarea
-                                        disabled
-                                        label="Option 4"
-                                        outlined
-                                        rounded
-                                        v-model="multiple_s.option_4"
-                                    ></v-textarea>
-                                </v-col>
-                                <v-text-field
-                                    disabled
-                                    filled
-                                    label="Marks"
-                                    rounded
-                                    type="number"
-                                    v-model="multiple_s.marks"
-                                ></v-text-field>
-                            </v-row>
+                                        v-model="A_multiple_s.answer"
+                                    ></v-text-field>
+                                    <div>
+
+                                        <v-text-field
+                                            :label="'Marks:'"
+                                            disabled
+                                            filled
+                                            rounded
+                                            type="number"
+                                            v-model="A_multiple_s.marks"
+                                        ></v-text-field>
+                                    </div>
+
+
+                                </div>
+                            </div>
                         </div>
+                    </div>
+                </div>
+
+                <div v-for="(questions_s,index) in dailyexam" v-if="show==false">
+                    <div v-for="(question_s_s,index) in questions_s.question_s">
                         <div v-for="(short_s,index) in question_s_s.short_s_s" v-if="question_s_s.type=='Short'">
                             <div style="display: inline-flex;margin:5%">
                                 <h4 style="color:#9652ff"> Short Question No:{{index+1}}</h4>
@@ -466,7 +537,38 @@
                                 type="number"
                                 v-model="short_s.marks"
                             ></v-text-field>
+                            <div>
+                                <div style="display: inline-flex;margin:5%">
+                                    <h4 style="color:#9652ff"> Answer For Short Question No:{{index+1}}</h4>
+
+                                </div>
+                                <div v-for="(A_short) in short_s.Ashort" v-if="A_short.user_id==user_id">
+                                    <v-textarea
+                                        filled
+                                        label="Answer"
+                                        rounded
+                                        v-model="A_short.answer"
+                                        disabled
+                                    ></v-textarea>
+                                    <div>
+                                        <v-text-field
+                                            disabled
+                                            filled
+                                            label="Marks"
+                                            rounded
+                                            type="number"
+                                            v-model="A_short.marks"
+                                        ></v-text-field>
+                                    </div>
+
+                                </div>
+                            </div>
+
                         </div>
+                    </div>
+                </div>
+                <div v-for="(questions_s,index) in dailyexam" v-if="show==false">
+                    <div v-for="(question_s_s,index) in questions_s.question_s">
                         <div v-for="(poll_s,index) in question_s_s.poll_s_s" v-if="question_s_s.type=='Pool'">
 
 
@@ -481,56 +583,31 @@
                                 rounded
                                 v-model="poll_s.question_s"
                             ></v-textarea>
-                            <v-row class="d-flex">
-                                <v-col
-                                    md="3"
-                                >
-                                    <v-textarea
+                            <v-select
+                                :items=[poll_s.option_1,poll_s.option_2,poll_s.option_3,poll_s.option_4]
+                                label="Option"
+                                solo
+                            ></v-select>
+                            <div>
+                                <div style="display: inline-flex;margin:5%">
+                                    <h4 style="color:#9652ff"> Answer For Pool Question No:{{index+1}}</h4>
+                                </div>
+                                <div v-for="(A_poll_s,index) in poll_s.Apoll" v-if="A_poll_s.user_id==user_id">
+
+                                    <v-text-field
+                                        :label="'Answer:'"
                                         disabled
-                                        label="Option 1"
-                                        outlined
+                                        filled
                                         rounded
-                                        v-model="poll_s.option_1"
-                                    ></v-textarea>
-                                </v-col>
-                                <v-col
-                                    md="3"
-                                >
-                                    <v-textarea
-                                        disabled
-                                        label="Option 2"
-                                        outlined
-                                        rounded
-                                        v-model="poll_s.option_2"
-                                    ></v-textarea>
-                                </v-col>
-                                <v-col
-                                    md="3"
-                                >
-                                    <v-textarea
-                                        disabled
-                                        label="Option 3"
-                                        outlined
-                                        rounded
-                                        v-model="poll_s.option_3"
-                                    ></v-textarea>
-                                </v-col>
-                                <v-col
-                                    md="3"
-                                >
-                                    <v-textarea
-                                        disabled
-                                        label="Option 4"
-                                        outlined
-                                        rounded
-                                        v-model="poll_s.option_4"
-                                    ></v-textarea>
-                                </v-col>
-                            </v-row>
+                                        v-model="A_poll_s.answer"
+                                    ></v-text-field>
+
+                                </div>
+
+                            </div>
 
                         </div>
                     </div>
-
                 </div>
             </div>
 
@@ -604,6 +681,7 @@
             showStartExam:false,
             showExam:false,
             startExam_id:null,
+            checking_distance:true,
 
 
 
@@ -673,6 +751,7 @@
                 })
                     .then(res =>this.dialog=false,this.$toasted.show('Exam Done',{type:'success'}),
                       window.location.reload(true)
+
                     )
             },
             checkingQuestionId(index,id,question_id){
@@ -699,7 +778,7 @@
         },
         computed: {
             submitAnswer_distance(){
-                if (this.distance<0){
+                if (this.distance<0 && this.checking_distance==true){
                     this.updating_Examuser();
                     axios.post(`/lms/api/class/exam/answer/${this.data}`,{
                         form:this.question_id,
@@ -713,8 +792,10 @@
 
                     })
                         .then(res =>this.dialog=false,this.$toasted.show('Exam Done',{type:'success'}),
-                            window.location.reload(true)
+                            //window.location.reload(true)
+                            this.checking_distance=false
                         )
+
                 }
             },
             checkingUser_startExam(){

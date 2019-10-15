@@ -35,7 +35,7 @@
                 </v-tab-item>
                 <v-tab-item>
                     <v-card style="padding: 10%;padding-top:0%">
-                        <Assaignment></Assaignment>
+                        <Assaignment :Adata="assaignments" :Cdata="classes.id" ></Assaignment>
                     </v-card>
                 </v-tab-item>
                 <v-tab-item>
@@ -64,6 +64,7 @@
        {{getmaterial}}
         {{getuser}}
         {{getannouncement}}
+        {{getassignment}}
     </div>
 
 </template>
@@ -88,6 +89,7 @@
                 material: {},
                 users:{},
                 announcements:{},
+                assaignments:{},
 
                 items: [
                     {
@@ -151,6 +153,11 @@
             getannouncement(){
                 axios.get(`/lms/api/announcement/${this.classes.id}`)
                     .then(res => this.announcements = res.data.data);
+
+            },
+            getassignment(){
+                axios.get(`/lms/api/class/assignment/${this.classes.id}`)
+                    .then(res => this.assaignments = res.data.data);
 
             },
 

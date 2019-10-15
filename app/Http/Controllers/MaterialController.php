@@ -42,6 +42,7 @@ class MaterialController extends Controller
     public function store(Request $request)
     {
         //
+
         $base64_encoded_string =$request->file;
         $exploded=explode(',',$request->file);
         $decoded=base64_decode($exploded[1]);

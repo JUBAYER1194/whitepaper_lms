@@ -10,33 +10,40 @@
                 </v-card-title>
                 <v-card-text>
                     <v-container>
-                        <v-text-field label="Title:*"  required ></v-text-field>
+                        <v-text-field v-model="form.title" label="Title:*"  required ></v-text-field>
                         <v-textarea
                             label="Description"
+                            v-model="form.description"
                         ></v-textarea>
-                        <v-file-input show-size counter multiple label="File input"></v-file-input>
+                        <div>
+                            <v-dialog
+                                ref="dialog"
+                                v-model="modal"
+                                :return-value.sync="form.date"
+                                persistent
+                                width="290px"
+                            >
+                                <template v-slot:activator="{ on }">
+                                    <v-text-field
+                                        v-model="form.date"
+                                        label="Deadline"
+                                        prepend-icon="event"
+                                        readonly
+                                        v-on="on"
+                                    ></v-text-field>
+                                </template>
+                                <v-date-picker v-model="form.date" scrollable>
+                                    <v-spacer></v-spacer>
+                                    <v-btn text color="primary" @click="modal = false">Cancel</v-btn>
+                                    <v-btn text color="primary" @click="$refs.dialog.save(form.date)">OK</v-btn>
+                                </v-date-picker>
+                            </v-dialog>
+                        </div>
+                        <div class="form-group">
+                            <h4>Add File:</h4>
+                            <input type="file" @change="filechanged"   class="form-control form-control-lg" placeholder="Large form control">
+                        </div>
 
-                        <v-menu
-                            v-model="menu2"
-                            :close-on-content-click="false"
-                            :nudge-right="40"
-                            transition="scale-transition"
-                            offset-y
-                            full-width
-                            min-width="240px"
-
-                        >
-                            <template v-slot:activator="{ on }">
-                                <v-text-field
-                                    v-model="date"
-                                    label="start date"
-                                    prepend-icon="event"
-                                    readonly
-                                    v-on="on"
-                                ></v-text-field>
-                            </template>
-                            <v-date-picker v-model="date" @input="menu2 = false" color="#9652ff"></v-date-picker>
-                        </v-menu>
 
 
                     </v-container>
@@ -45,21 +52,57 @@
                 <v-card-actions>
                     <div class="flex-grow-1"></div>
                     <v-btn style="background-color:#9652ff;color:white" text @click="dialog = false">Close</v-btn>
-                    <v-btn style="background-color:#9652ff;color:white"  text @click="dialog = false">Send</v-btn>
+                    <v-btn style="background-color:#9652ff;color:white"  text @click="send">Send</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
+        {{gettingclass_id}}
+        {{gettingUserId}}
     </div>
 </template>
 
 <script>
     export default {
-        data: () => ({
-            dialog: false,
-            date: new Date().toISOString().substr(0, 10),
-            menu: false,
-            modal: false,
-            menu2: false,
-        }),
+        props:['data1'],
+        data(){
+            return {
+                dialog: false,
+                modal: false,
+                form:{
+                    title:null,
+                    description:null,
+                    file:null,
+                    class_id:null,
+                    user_id:null,
+                    date: new Date().toISOString().substr(0, 10),
+                },
+
+            }
+        },
+        methods:{
+            filechanged(e){
+                var fileReader=new FileReader();
+                fileReader.readAsDataURL(e.target.files[0]);
+                fileReader.onload = (e) => {
+                    this.form.file=e.target.result
+                }
+            },
+            send(){
+                axios.post('/lms/api/class/assignment',this.form)
+                    .then(res =>this.dialog=false,this.$toasted.show('Material Created',{type:'success'}),
+                        EventBus.$emit('newAssignment',this.form)
+                    )
+            },
+        },
+        computed:{
+            gettingclass_id(){
+                this.form.class_id=this.data1;
+            },
+            gettingUserId(){
+              this.form.user_id=User.id();
+            },
+
+        }
+
     }
 </script>

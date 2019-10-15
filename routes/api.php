@@ -5,7 +5,7 @@ Route::get('/role','ApiRoleController@index')->name('role');
 Route::get('/information/{id}','ApiUserController@index');
 Route::put('/information/{id}','ApiUserController@update');
 Route::Resource('announcement', 'AnnouncementController');
-Route::Resource('assignment','AssaignmentController');
+Route::Resource('class/assignment','AssaignmentController');
 Route::Resource('class','LmsclassController');
 Route::get('class/user/{id}','LmsclassController@user');
 Route::Resource('material','MaterialController');

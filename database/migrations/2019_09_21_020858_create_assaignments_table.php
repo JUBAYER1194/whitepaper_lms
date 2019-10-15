@@ -16,6 +16,7 @@ class CreateAssaignmentsTable extends Migration
         Schema::create('assaignments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
+            $table->integer('lmsclass_id');
             $table->string('title');
             $table->text('body');
             $table->string('file')->nullable();

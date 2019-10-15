@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Assaignment;
 use App\Http\Resources\AssignmentResource;
+use App\Lmsclass;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class AssaignmentController extends Controller
 {
@@ -37,7 +40,27 @@ class AssaignmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
+//        $base64_encoded_string =$request->file;
+        $exploded=explode(',',$request->file);
+        $decoded=base64_decode($exploded[1]);
+        if (str_contains($exploded[0],'docx'))
+            $extension='docx';
+        else
+            $extension='pdf';
+        $fileName=str_random().'.'.$extension;
+        $path=public_path().'/uploads/x/x/assignment/'.$fileName;
+        file_put_contents($path,$decoded);
+        $assignment=new Assaignment();
+        $assignment->user_id=$request->user_id;
+        $assignment->lmsclass_id=$request->class_id;
+        $assignment->title=$request->title;
+        $assignment->deadline=$request->date;
+        $assignment->body=$request->description;
+        $assignment->file=$fileName;
+        $assignment->save();
+        return response('Update',Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -49,7 +72,7 @@ class AssaignmentController extends Controller
     public function show($id)
     {
         //
-        $ann=User::find($id)->assignment;
+        $ann=Lmsclass::find($id)->Assaignments;
         return AssignmentResource::collection($ann);
 
     }

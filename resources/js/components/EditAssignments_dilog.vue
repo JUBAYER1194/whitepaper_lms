@@ -15,10 +15,6 @@
                             label="Description"
                             v-model="announcement.body"
                         ></v-textarea>
-
-
-
-
                     </v-container>
 
                 </v-card-text>
