@@ -56,11 +56,11 @@ class AssaignmentController extends Controller
         $assignment->user_id=$request->user_id;
         $assignment->lmsclass_id=$request->class_id;
         $assignment->title=$request->title;
-        $assignment->deadline=$request->date;
-        $assignment->body=$request->description;
+        $assignment->deadline=$request->deadline;
+        $assignment->body=$request->body;
         $assignment->file=$fileName;
         $assignment->save();
-        return response('Update',Response::HTTP_ACCEPTED);
+        return response('Created',Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -98,6 +98,23 @@ class AssaignmentController extends Controller
     public function update(Request $request, $id)
     {
         //
+//        $base64_encoded_string =$request->file;
+        $exploded=explode(',',$request->file);
+        $decoded=base64_decode($exploded[1]);
+        if (str_contains($exploded[0],'docx'))
+            $extension='docx';
+        else
+            $extension='pdf';
+        $fileName=str_random().'.'.$extension;
+        $path=public_path().'/uploads/x/x/assignment/'.$fileName;
+        file_put_contents($path,$decoded);
+        $assignment=Assaignment::find($request->id);
+        $assignment->title=$request->title;
+        $assignment->deadline=$request->deadline;
+        $assignment->body=$request->body;
+        $assignment->file=$fileName;
+        $assignment->save();
+        return response('Update',Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -109,5 +126,7 @@ class AssaignmentController extends Controller
     public function destroy($id)
     {
         //
+        $assignment=Assaignment::find($id);
+        $assignment->delete();
     }
 }

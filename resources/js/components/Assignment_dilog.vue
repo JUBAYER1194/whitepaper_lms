@@ -13,29 +13,29 @@
                         <v-text-field v-model="form.title" label="Title:*"  required ></v-text-field>
                         <v-textarea
                             label="Description"
-                            v-model="form.description"
+                            v-model="form.body"
                         ></v-textarea>
                         <div>
                             <v-dialog
                                 ref="dialog"
                                 v-model="modal"
-                                :return-value.sync="form.date"
+                                :return-value.sync="form.deadline"
                                 persistent
                                 width="290px"
                             >
                                 <template v-slot:activator="{ on }">
                                     <v-text-field
-                                        v-model="form.date"
+                                        v-model="form.deadline"
                                         label="Deadline"
                                         prepend-icon="event"
                                         readonly
                                         v-on="on"
                                     ></v-text-field>
                                 </template>
-                                <v-date-picker v-model="form.date" scrollable>
+                                <v-date-picker v-model="form.deadline" scrollable>
                                     <v-spacer></v-spacer>
                                     <v-btn text color="primary" @click="modal = false">Cancel</v-btn>
-                                    <v-btn text color="primary" @click="$refs.dialog.save(form.date)">OK</v-btn>
+                                    <v-btn text color="primary" @click="$refs.dialog.save(form.deadline)">OK</v-btn>
                                 </v-date-picker>
                             </v-dialog>
                         </div>
@@ -70,11 +70,11 @@
                 modal: false,
                 form:{
                     title:null,
-                    description:null,
+                    body:null,
                     file:null,
                     class_id:null,
                     user_id:null,
-                    date: new Date().toISOString().substr(0, 10),
+                    deadline: new Date().toISOString().substr(0, 10),
                 },
 
             }
@@ -89,7 +89,7 @@
             },
             send(){
                 axios.post('/lms/api/class/assignment',this.form)
-                    .then(res =>this.dialog=false,this.$toasted.show('Material Created',{type:'success'}),
+                    .then(res =>this.dialog=false,this.$toasted.show('Assignments Created',{type:'success'}),
                         EventBus.$emit('newAssignment',this.form)
                     )
             },

@@ -63,6 +63,9 @@
                     <v-card-text style="padding-left: 10%">
                         {{assignment.created_at}}
                     </v-card-text>
+                    <v-card-title>
+                        {{assignment.title}}
+                    </v-card-title>
                     <v-card-actions>
                         <v-list-item class="grow">
                                 <a :href="'http://localhost:8000/uploads/x/x/assignment/'+assignment.file" target="_blank"><button type="button" class="btn btn-sm">Read File</button></a>
@@ -80,14 +83,14 @@
                                 md="6"
                             >
                                 <div class="my-2">
-                                    <VEditDialog></VEditDialog>
+                                    <VEditDialog :data="assignment"></VEditDialog>
                                 </div>
                             </v-col>
                             <v-col
                                 md="6"
                             >
                                 <div class="my-2">
-                                    <v-btn color="error"  depressed>Delete</v-btn>
+                                    <v-btn color="error"  depressed @click="deleteAssignment(index,assignment.id)">Delete</v-btn>
                                 </div>
                             </v-col>
                         </v-row>
@@ -116,6 +119,11 @@
 
             }
         },
+        created() {
+
+            this.listen()
+
+        },
        computed:{
             geetingClassId(){
               this.class_id=this.Cdata;
@@ -123,7 +131,19 @@
            gettingAssignment(){
              this.assignments=this.Adata;
            },
-       }
+       },
+        methods:{
+            deleteAssignment(index,x){
+                axios.delete(`/lms/api/class/assignment/${x}`)
+                    .then(res =>this.assignments.splice(index, 1))
+            },
+            listen(){
+                EventBus.$on('newAssignment',(an1) =>{
+                    this.assignments.unshift(an1)
+                })
+            },
+        },
+
     }
 
 </script>

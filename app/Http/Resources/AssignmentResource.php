@@ -15,6 +15,7 @@ class AssignmentResource extends JsonResource
     public function toArray($request)
     {
         return [
+
             'title'=> $this->title,
             'body'=>$this->body,
             'id'=>$this->id,
