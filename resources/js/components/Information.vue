@@ -97,7 +97,7 @@
                                                     <v-list-item-title class="headline mb-1">{{material.title}}
                                                     </v-list-item-title>
                                                     <v-list-item-title class="headline mb-1">
-                                                        <a :href="'http://localhost:8000/uploads/x/x/material/'+material.file" target="_blank"><button type="button" class="btn btn-sm">Read File</button></a>
+                                                        <a :href="'http://faisalsarker.com/lms/public/uploads/x/x/material/'+material.file" target="_blank"><button type="button" class="btn btn-sm">Read File</button></a>
                                                     </v-list-item-title>
                                                     <v-list-item-subtitle>{{material.body}}</v-list-item-subtitle>
                                                     <v-list-item-subtitle>{{material.created_at}}</v-list-item-subtitle>

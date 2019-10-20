@@ -44,6 +44,7 @@
                                     item-text="name"
                                     item-value="name"
                                     outlined
+                                    v-model="event.color"
                                 ></v-select>
                             </v-col>
                             <v-col cols="12" sm="6">
@@ -246,6 +247,13 @@
             }
         },
         methods:{
+            send(){
+                axios.post('/lms/api/allevent',this.event)
+                    .then(res =>this.dialog=false,this.$toasted.show('Event Created',{type:'success'}),
+                        EventBus.$emit('newEvent',this.event)
+                    )
+            }
+
 
         }
 

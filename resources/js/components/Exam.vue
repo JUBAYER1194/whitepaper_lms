@@ -1044,7 +1044,7 @@
 
                     })
                         .then(res =>this.dialog=false,this.$toasted.show('Exam Started',{type:'success'}),
-                           window.location.reload(true)
+                           //window.location.reload(true)
                         )
 
                 }

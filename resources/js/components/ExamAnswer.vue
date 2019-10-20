@@ -791,9 +791,11 @@
                         start_exam_id:this.startExam_id,
 
                     })
-                        .then(res =>this.dialog=false,this.$toasted.show('Exam Done',{type:'success'}),
-                            //window.location.reload(true)
-                            this.checking_distance=false
+                        .then(res =>this.checking_distance=false,this.$toasted.show('Exam Done',{type:'success'}),
+                            window.location.reload(true)
+
+
+
                         )
 
                 }

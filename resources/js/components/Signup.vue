@@ -20,7 +20,7 @@
                                 dark
                                 flat
                             >
-                                <v-toolbar-title>SignUp form</v-toolbar-title>
+                                <v-toolbar-title>Sign Up</v-toolbar-title>
                                 <v-spacer></v-spacer>
 
                             </v-toolbar>
@@ -74,10 +74,10 @@
                                 </v-form>
                             </v-card-text>
                             <v-card-actions>
+                                <v-btn style="background-color:#9652ff;color: white;text-transform: none !important;margin: 3%"  @click="login">Login</v-btn>
                                 <v-spacer></v-spacer>
-                                <v-btn style="background-color:#9652ff;color: white;" type="submit" @click="login">Login</v-btn>
                                 <v-btn
-                                    color="#9652ff"
+                                    style="background-color:#9652ff;color: white;text-transform: none !important;margin: 3%"
                                     dark
                                     @click="signup"
                                 >
@@ -130,7 +130,7 @@
                         .then(res => window.location = '/')
                 },
                 login(){
-                    window.location = '/lms/'
+                    window.location = '/'
                 },
 
             }

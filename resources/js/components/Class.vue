@@ -90,6 +90,7 @@
                 users:{},
                 announcements:{},
                 assaignments:{},
+                user_id:null,
 
                 items: [
                     {
@@ -129,6 +130,7 @@
 
         created() {
             this.getclass();
+            this.getuserId();
 
 
         },
@@ -160,6 +162,9 @@
                     .then(res => this.assaignments = res.data.data);
 
             },
+            getuserId(){
+                this.user_id=User.id();
+            }
 
 
         },

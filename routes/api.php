@@ -21,7 +21,7 @@ Route::patch('/class/end_exam/{exam}','ExamController@EndExam');
 Route::Post('/class/exam/question/{class}','ExamController@QuestionCreate');
 Route::Post('/class/exam/answer/{class}','ExamController@AnswerCreate');
 Route::patch('/class/exam/marks/{mark}','ExamController@Marks_update');
-
+Route::Resource('allevent','AlleventController');
 
 
 Route::group([

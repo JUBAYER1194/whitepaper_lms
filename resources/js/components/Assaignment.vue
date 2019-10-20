@@ -68,7 +68,7 @@
                     </v-card-title>
                     <v-card-actions>
                         <v-list-item class="grow">
-                                <a :href="'http://localhost:8000/uploads/x/x/assignment/'+assignment.file" target="_blank"><button type="button" class="btn btn-sm">Read File</button></a>
+                                <a :href="'http://faisalsarker.com/lms/public/uploads/x/x/assignment/'+assignment.file" target="_blank"><button type="button" class="btn btn-sm">Read File</button></a>
                         </v-list-item>
                     </v-card-actions>
                     <v-card-text class="headline font-weight-bold">

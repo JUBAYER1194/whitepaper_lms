@@ -75,16 +75,13 @@
                             :color="selectedEvent.color"
                             dark
                         >
-                            <v-btn icon>
-                                <v-icon>mdi-pencil</v-icon>
-                            </v-btn>
+                            <EditCalender :data="selectedEvent"></EditCalender>
+
                             <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
                             <v-spacer></v-spacer>
-                            <v-btn icon>
-                                <v-icon>mdi-heart</v-icon>
-                            </v-btn>
-                            <v-btn icon>
-                                <v-icon>mdi-dots-vertical</v-icon>
+
+                            <v-btn icon @click="deleteEvent(selectedEvent.id)">
+                                <v-icon >delete_outline</v-icon>
                             </v-btn>
                         </v-toolbar>
                         <v-card-text>
@@ -108,11 +105,13 @@
 </template>
 <script>
     import Dcalender from './Calenderdilog.vue'
+    import EditCalender from "./EditCalender.vue";
+
     export default {
-        components:{Dcalender},
+        components:{Dcalender,EditCalender},
         data: () => ({
-            today: '2019-01-01',
-            focus: '2019-01-01',
+            today: new Date().toISOString().substr(0, 10),
+            focus: new Date().toISOString().substr(0, 10),
             type: 'month',
             typeToLabel: {
                 month: 'Month',
@@ -125,140 +124,14 @@
             selectedEvent: {},
             selectedElement: null,
             selectedOpen: false,
-            events: [
-                {
-                    name: 'Vacation',
-                    details: 'Going to the beach!',
-                    start: '2018-12-29',
-                    end: '2019-01-01',
-                    color: 'blue',
-                },
-                {
-                    name: 'happy birthday',
-                    details: 'Going to the beach!',
-                    start: '2018-12-29',
-                    end: '2019-01-03',
-                    color: 'blue',
-                },
-                {
-                    name: 'Meeting',
-                    details: 'Spending time on how we do not have enough time',
-                    start: '2019-01-07 09:00',
-                    end: '2019-01-07 09:30',
-                    color: 'indigo',
-                },
-                {
-                    name: 'Large Event',
-                    details: 'This starts in the middle of an event and spans over multiple events',
-                    start: '2018-12-31',
-                    end: '2019-01-04',
-                    color: 'deep-purple',
-                },
-                {
-                    name: '3rd to 7th',
-                    details: 'Testing',
-                    start: '2019-01-03',
-                    end: '2019-01-07',
-                    color: 'cyan',
-                },
-                {
-                    name: 'Big Meeting',
-                    details: 'A very important meeting about nothing',
-                    start: '2019-01-07 08:00',
-                    end: '2019-01-07 11:30',
-                    color: 'red',
-                },
-                {
-                    name: 'Another Meeting',
-                    details: 'Another important meeting about nothing',
-                    start: '2019-01-07 10:00',
-                    end: '2019-01-07 13:30',
-                    color: 'brown',
-                },
-                {
-                    name: '7th to 8th',
-                    start: '2019-01-07',
-                    end: '2019-01-08',
-                    color: 'blue',
-                },
-                {
-                    name: 'Lunch',
-                    details: 'Time to feed',
-                    start: '2019-01-07 12:00',
-                    end: '2019-01-07 15:00',
-                    color: 'deep-orange',
-                },
-                {
-                    name: '30th Birthday',
-                    details: 'Celebrate responsibly',
-                    start: '2019-01-03',
-                    color: 'teal',
-                },
-                {
-                    name: 'New Year',
-                    details: 'Eat chocolate until you pass out',
-                    start: '2019-01-01',
-                    end: '2019-01-02',
-                    color: 'green',
-                },
-                {
-                    name: 'Conference',
-                    details: 'The best time of my life',
-                    start: '2019-01-21',
-                    end: '2019-01-28',
-                    color: 'grey darken-1',
-                },
-                {
-                    name: 'Hackathon',
-                    details: 'Code like there is no tommorrow',
-                    start: '2019-01-30 23:00',
-                    end: '2019-02-01 08:00',
-                    color: 'black',
-                },
-                {
-                    name: 'event 1',
-                    start: '2019-01-14 18:00',
-                    end: '2019-01-14 19:00',
-                    color: '#4285F4',
-                },
-                {
-                    name: 'event 2',
-                    start: '2019-01-14 18:00',
-                    end: '2019-01-14 19:00',
-                    color: '#4285F4',
-                },
-                {
-                    name: 'event 5',
-                    start: '2019-01-14 18:00',
-                    end: '2019-01-14 19:00',
-                    color: '#4285F4',
-                },
-                {
-                    name: 'event 3',
-                    start: '2019-01-14 18:30',
-                    end: '2019-01-14 20:30',
-                    color: '#4285F4',
-                },
-                {
-                    name: 'event 4',
-                    start: '2019-01-14 19:00',
-                    end: '2019-01-14 20:00',
-                    color: '#4285F4',
-                },
-                {
-                    name: 'event 6',
-                    start: '2019-01-14 21:00',
-                    end: '2019-01-14 23:00',
-                    color: '#4285F4',
-                },
-                {
-                    name: 'event 7',
-                    start: '2019-01-14 22:00',
-                    end: '2019-01-14 23:00',
-                    color: '#4285F4',
-                },
-            ],
+            events: {},
         }),
+
+        created(){
+            axios.get(`/lms/api/allevent`)
+                .then(res=>this.events =res.data.data)
+        },
+
         computed: {
             title () {
                 const { start, end } = this
@@ -298,6 +171,14 @@
             this.$refs.calendar.checkChange()
         },
         methods: {
+            deleteEvent(x){
+                    axios.delete(`/lms/api/allevent/${x}`)
+                        .then(res =>this.dialog=false,this.$toasted.show('Event Deleted',{type:'success'}),
+
+
+                        )
+
+            },
             viewDay ({ date }) {
                 this.focus = date
                 this.type = 'day'

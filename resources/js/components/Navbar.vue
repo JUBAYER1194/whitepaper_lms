@@ -82,16 +82,16 @@
          <v-app-bar-nav-icon
              @click.stop="drawer = !drawer"
              depressed
-             color="grey"
+             style="background-color:#E0E0E0;color:#757575;"
          >
 
          </v-app-bar-nav-icon>
          <v-toolbar-title
-             style="width: 300px"
-             class="text-uppercase grey--text"
+             class="text-uppercase"
+             style="background-color:#E0E0E0;color:#757575;width: 300px"
          >
 
-             <span class="font-weight-light">LMS</span>
+             <span class="font-weight-bold">LMS</span>
          </v-toolbar-title>
          <v-spacer></v-spacer>
 
@@ -99,7 +99,7 @@
          <v-btn
              icon
              depressed
-             color="grey"
+             style="background-color:#E0E0E0;color:#757575;"
          >
              <v-icon>notifications</v-icon>
          </v-btn>
@@ -120,13 +120,13 @@
          </v-btn>
 
          <v-btn
-             color="grey lighten-2"
              depressed
-             class="text-uppercase grey--text"
+             style="background-color:#E0E0E0;color:#757575;"
+
 
 
          >
-             <span @click="createds">Sign Out</span>
+             <span class="font-weight-bold" @click="createds" style="text-transform: none;">Log Out</span>
              <v-icon right>exit_to_app</v-icon>
          </v-btn>
 

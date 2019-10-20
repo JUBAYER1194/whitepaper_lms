@@ -15,6 +15,12 @@ class CreateLmsclassEventsTable extends Migration
     {
         Schema::create('lmsclass_events', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('lmsclass_id');
+            $table->string('name');
+            $table->dateTime('start');
+            $table->dateTime('end');
+            $table->string('color');
+            $table->text('details');
             $table->timestamps();
         });
     }
