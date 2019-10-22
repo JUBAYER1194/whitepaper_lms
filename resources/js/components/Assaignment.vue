@@ -1,43 +1,37 @@
 <template>
 
     <v-card
-        class="mx-auto d-flex flex-wrap"
+        class="mx-auto d-flex flex-wrap grey lighten-4"
         max-width="100%"
-        height="100%"
         flat
-        style="padding-top: 5%"
+        style="padding: 1%"
 
     >
+        <v-card
 
-        <dilog :data1="Cdata"></dilog>
-        <v-row class="d-flex">
-            <v-col
-                cols="12"
-                md="3"
-            >
+            max-width="100%"
+            tile
+            width="100%"
+            flat
+            class="grey lighten-4"
 
-            </v-col>
-            <v-col
-                cols="12"
-                md="6"
+        >
+
+
+            <v-card-title
+                class="white--text justify-center font-weight-bold"
+                style="font-size: 1.3em;padding-bottom: 1.5%;"
             >
-                <h1
-                    class="sidebar"
-                    style="text-align:center;font-size:140%;color:#9652ff"
-                >
+                <v-spacer></v-spacer>
+                <h2 style="color: #9652ff;">
                     Assignments
-                </h1>
-            </v-col>
-            <v-col
-                cols="12"
-                md="4"
-            >
+                </h2>
+                <v-spacer></v-spacer>
+                <dilog :data1="Cdata"></dilog>
+            </v-card-title>
 
-            </v-col>
-        </v-row>
-
-
-        <v-row style="margin-top:5%;">
+        </v-card>
+        <v-row style="margin-top:1%;">
 
             <v-col
                 cols="12"
@@ -45,10 +39,11 @@
                 v-for="(assignment,index) in assignments" :key="assignment.id"
             >
                 <v-card
+                    flat
                     class="mx-auto"
-                    color="#9652ff"
-                    dark
                     max-width="100%"
+                    height="300"
+                    style="overflow-y: auto"
 
                 >
                     <v-card-title>
@@ -56,44 +51,29 @@
                             large
                             left
                         >
-                            mdi-twitter
+                            event
                         </v-icon>
                         <span class="title font-weight " style="color:darkred;">Deadline: {{assignment.deadline}}</span>
                     </v-card-title>
-                    <v-card-text style="padding-left: 10%">
+                    <v-card-subtitle style="padding-left: 10%">
                         {{assignment.created_at}}
-                    </v-card-text>
+                    </v-card-subtitle>
                     <v-card-title>
                         {{assignment.title}}
                     </v-card-title>
-                    <v-card-actions>
-                        <v-list-item class="grow">
-                                <a :href="'http://faisalsarker.com/lms/public/uploads/x/x/assignment/'+assignment.file" target="_blank"><button type="button" class="btn btn-sm">Read File</button></a>
-                        </v-list-item>
+                    <v-card-actions style="padding-left:5%;">
+                                <a :href="'http://127.0.0.1:8000/uploads/x/x/assignment/'+assignment.file" target="_blank"><button type="button" class="btn btn-sm">Read File</button></a>
                     </v-card-actions>
                     <v-card-text class="headline font-weight-bold">
                         {{assignment.body}}
                     </v-card-text>
 
                 </v-card>
-                <v-card flat>
+                <v-card class="grey lighten-4" flat>
                     <v-card-title>
-                        <v-row>
-                            <v-col
-                                md="6"
-                            >
-                                <div class="my-2">
-                                    <VEditDialog :data="assignment"></VEditDialog>
-                                </div>
-                            </v-col>
-                            <v-col
-                                md="6"
-                            >
-                                <div class="my-2">
-                                    <v-btn color="error"  depressed @click="deleteAssignment(index,assignment.id)">Delete</v-btn>
-                                </div>
-                            </v-col>
-                        </v-row>
+                        <VEditDialog :data="assignment"></VEditDialog>
+                        <v-spacer></v-spacer>
+                        <v-btn color="error"  depressed @click="deleteAssignment(index,assignment.id)">Delete</v-btn>
                     </v-card-title>
                 </v-card>
             </v-col>

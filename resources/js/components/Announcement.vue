@@ -1,105 +1,74 @@
 <template>
     <v-card
-        class="mx-auto d-flex flex-wrap"
+        class="mx-auto d-flex flex-wrap grey lighten-4"
         max-width="100%"
         flat
-        style="padding-top: 5%"
+        style="padding: 1%"
+        >
+        <v-card
+
+            max-width="100%"
+            tile
+            width="100%"
+            flat
+           class="grey lighten-4"
 
         >
 
-       <dilog :data="lmsclass_id"></dilog>
-        <v-row class="d-flex">
-            <v-col
-                cols="12"
-                md="3"
-            >
 
-                </v-col>
-            <v-col
-                cols="12"
-                md="6"
+            <v-card-title
+                class="white--text justify-center font-weight-bold"
+                style="font-size: 1.3em;padding-bottom: 1.5%;"
             >
-                <h1
-                    class="sidebar"
-                    style="text-align:center;font-size:140%;background-color:#9652ff;color: white"
-                >
+                <v-spacer></v-spacer>
+                <h2 style="color: #9652ff;">
                     Announcements
-                </h1>
-            </v-col>
-            <v-col
-                cols="12"
-                md="4"
-            >
+                </h2>
+             <v-spacer></v-spacer>
+                <dilog style="text-align: right" :data="lmsclass_id"></dilog>
+            </v-card-title>
 
-            </v-col>
-        </v-row>
+            </v-card>
 
-
-        <v-row style="margin-top:5%;">
+        <v-row style="margin-top:1%;">
             <v-col
                 cols="12"
                 md="4"
                 v-for="(announcement,index) in announcements" :key="announcement.id"
             >
                 <v-card
+                    flat
                     class="mx-auto"
-                    color="#9652ff"
-                    dark
                     max-width="100%"
+                    height="300"
+                    style="overflow-y: auto"
 
                 >
+
                     <v-card-title>
                         <v-icon
                             large
                             left
                         >
-                            mdi-twitter
+                            announcement
                         </v-icon>
                         <span class="title font-weight " style="color:darkred;">{{announcement.title}}</span>
                     </v-card-title>
-                    <v-card-text style="padding-left: 10%">
+                    <v-card-subtitle style="padding-left: 10%">
                    {{announcement.created_at}}
-                   </v-card-text>
+                   </v-card-subtitle>
 
 
                     <v-card-text class="headline font-weight-bold">
                         "{{announcement.body}}"
                     </v-card-text>
-
-                    <v-card-actions>
-                        <v-list-item class="grow">
-                            <v-list-item-avatar color="grey darken-3">
-                                <v-img
-                                    class="elevation-6"
-                                    :src="'http://127.0.0.1:8000/uploads/x/profile/'+ announcement.image"
-                                ></v-img>
-                            </v-list-item-avatar>
-
-                            <v-list-item-content>
-                                <v-list-item-title class="title text-capitalize">{{announcement.first_name}} {{announcement.last_name}}</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-
-                    </v-card-actions>
                 </v-card>
-                <v-card flat>
+                <br>
+                <v-card class="grey lighten-4" flat>
                     <v-card-title>
-                        <v-row>
-                            <v-col
-                                md="6"
-                            >
-                                <div class="my-2">
                                     <VEditDialog :data="announcement"></VEditDialog>
-                                </div>
-                            </v-col>
-                            <v-col
-                                md="6"
-                            >
-                                <div class="my-2">
+                        <v-spacer></v-spacer>
                                     <v-btn color="error" @click="DeleteAnnouncement(index,announcement.id)" depressed>Delete</v-btn>
-                                </div>
-                            </v-col>
-                        </v-row>
                     </v-card-title>
                 </v-card>
             </v-col>

@@ -1,7 +1,8 @@
 <template>
     <v-card
         class="mx-auto"
-        max-width="80%"
+        max-width="95%"
+        flat
 
     >
         <v-img
@@ -13,7 +14,6 @@
         </v-img>
 
         <v-card-text>
-            <v-card>
                 <v-tabs
                     flat
                     grow
@@ -26,11 +26,6 @@
                         <v-icon left>mdi-lock</v-icon>
                         Class Material
                     </v-tab>
-                    <v-tab>
-                        <v-icon left>mdi-access-point</v-icon>
-                        Faculty
-                    </v-tab>
-
                     <v-tab-item>
                         <v-card class="mx-auto"
                                 flat
@@ -175,8 +170,6 @@
                         </v-row>
                     </v-tab-item>
                 </v-tabs>
-            </v-card>
-
         </v-card-text>
           {{created}}
           {{getMaterial}}

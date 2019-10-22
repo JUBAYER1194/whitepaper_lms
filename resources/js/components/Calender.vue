@@ -6,6 +6,7 @@
         <v-col>
             <v-sheet height="64">
                 <v-toolbar flat color="white">
+
                     <v-btn outlined class="mr-4" @click="setToday">
                         Today
                     </v-btn>

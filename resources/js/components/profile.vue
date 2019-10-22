@@ -73,7 +73,7 @@
                 >
 
                     <v-card-text>
-                        <v-simple-table>
+                        <v-simple-table >
                             <tbody>
                             <tr>
                                 <td class="font-weight-black">Name:</td>

@@ -82,8 +82,8 @@
                 </v-row>
                 <v-card-actions>
                     <div class="flex-grow-1"></div>
-                    <v-btn style="background-color:#9652ff;color:white" text @click="dialog = false">Close</v-btn>
-                    <v-btn style="background-color:#9652ff;color:white"  text @click="dialog = false">Save</v-btn>
+                    <v-btn  style="background-color:#9652ff;color:white" text @click="dialog = false">Close</v-btn>
+                    <v-btn style="background-color:#9652ff;color:white;text-transform: none"  text @click="dialog = false">Enter Profile</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>

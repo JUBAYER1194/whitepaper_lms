@@ -1,11 +1,12 @@
 <template>
-    <div>
+    <div style="margin-top: 1%">
         <div >
             <v-tabs
                 color="grey lighten-2"
                 flat
                 grow
                 v-model="tab"
+
 
 
             >
@@ -24,37 +25,37 @@
 
             <v-tabs-items v-model="tab">
                 <v-tab-item>
-                    <v-card style="padding-bottom: 10%;padding-top:5%">
+                    <v-card flat style="padding-top:1%">
                         <Information :data="classes" :datas="material" :dat="users"></Information>
                     </v-card>
                 </v-tab-item>
                 <v-tab-item>
-                    <v-card style="padding: 10%;padding-top:0%">
+                    <v-card class="grey lighten-4" flat style="padding-top:1%">
                         <Announcement :data="announcements" :datas="classes.id"></Announcement >
                     </v-card>
                 </v-tab-item>
                 <v-tab-item>
-                    <v-card style="padding: 10%;padding-top:0%">
+                    <v-card class="grey lighten-4" flat style="padding-top:1%">
                         <Assaignment :Adata="assaignments" :Cdata="classes.id" ></Assaignment>
                     </v-card>
                 </v-tab-item>
                 <v-tab-item>
-                    <v-card style="padding: 10%;padding-top:5%;padding-bottom: 100%">
+                    <v-card class="grey lighten-4" flat style="padding-top:1%">
                         <Student></Student>
                     </v-card>
                 </v-tab-item>
                 <v-tab-item>
-                    <v-card style="padding-left: 5%;padding-top:5%;padding-bottom: 100%">
+                    <v-card class="grey lighten-4" flat style="padding-top:1%">
                         <Exam :data="classes.id" :exam="classes.exam"   ></Exam>
                     </v-card>
                 </v-tab-item>
                 <v-tab-item>
-                    <v-card style="padding-left: 5%;padding-top:5%;padding-bottom: 100%">
+                    <v-card class="grey lighten-4" flat style="padding-top:1%">
                         <ExamAnswer :data="classes.id" :exam1="classes.exam"   ></ExamAnswer>
                     </v-card>
                 </v-tab-item>
                 <v-tab-item>
-                    <v-card style="padding-left: 5%;padding-top:5%;padding-bottom: 100%">
+                    <v-card class="grey lighten-4" flat style="padding-top:1%">
                         <Marks :data1="classes.id" :exam2="classes.exam"   ></Marks>
                     </v-card>
                 </v-tab-item>

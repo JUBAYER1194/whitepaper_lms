@@ -2,24 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03434f23-f88b-48c6-bc77-19b79d88e8b8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_10_16_115752_create_all_events_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_10_16_115752_create_all_events_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_10_16_115827_create_lmsclass_events_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_10_16_115827_create_lmsclass_events_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Helpers/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Helpers/User.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/AdminPannel/details_dilog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AdminPannel/details_dilog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Announcement.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Announcement.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Announcement_dilog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Announcement_dilog.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/Assaignment.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Assaignment.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Assignment_dilog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Assignment_dilog.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/Calender.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Calender.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Calenderdilog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Calenderdilog.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/Class.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Class.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/Exam.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Exam.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/ExamAnswer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ExamAnswer.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/Information.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Information.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Navbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Navbar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Signup.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Signup.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Student.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Student.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/profile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/profile.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.php" beforeDir="false" afterPath="$PROJECT_DIR$/server.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -201,7 +200,7 @@
     <property name="DatabaseDriversLRU" value="java.sql.Driver&#10;mysql" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../New folder/lms" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -330,6 +329,9 @@
       <workItem from="1571289483581" duration="12798000" />
       <workItem from="1571310111159" duration="1806000" />
       <workItem from="1571546589934" duration="11931000" />
+      <workItem from="1571657756212" duration="17116000" />
+      <workItem from="1571680685787" duration="668000" />
+      <workItem from="1571706429830" duration="590000" />
     </task>
     <servers />
   </component>
@@ -362,7 +364,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/resources/js/components/Announcement.vue</url>
-          <line>114</line>
+          <line>83</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -372,7 +374,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/resources/js/components/Exam.vue</url>
-          <line>907</line>
+          <line>893</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" log-message="true" suspend="NONE" type="javascript">
@@ -398,7 +400,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/resources/js/components/Login.vue</url>
           <line>9</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">

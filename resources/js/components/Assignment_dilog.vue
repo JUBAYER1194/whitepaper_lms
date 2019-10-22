@@ -6,7 +6,7 @@
             </template>
             <v-card>
                 <v-card-title>
-                    <span class="headline" style="color: white;background-color: #9652ff;">Create Assignment</span>
+                    <span class="headline" style="color: #9652ff;">Create Assignment</span>
                 </v-card-title>
                 <v-card-text>
                     <v-container>

@@ -1,6 +1,10 @@
 <template>
-    <v-container>
-        <div style="display: inline-flex">
+    <v-card class="grey lighten-4"
+                 width="100%"
+                 flat
+                 style="padding: 1%;padding-bottom:115%"
+    >
+
             <v-select
                 :items="exams"
                 item-text="type"
@@ -8,10 +12,8 @@
                 label="Select Exam type"
                 v-model="date.selected"
         ></v-select>
-        </div>
-<!--        <div v-for="(examx,index) in examR" v-if="examx.exam_done==0 && examx.status_s==0">-->
-<!--            {{checkingstartexam(examx)}}-->
-<!--        </div>-->
+
+
         <div v-if="somex && examn!=''" >
             <div style="display: inline-flex">
             <v-select
@@ -139,20 +141,16 @@
 
 
 
-        <v-row class="d-flex" >
-            <v-col
-                class="d-flex"
-                md="3"
-            >
+        <v-row align="center" >
+
                 <v-col
-                    class="d-flex"
-                    md="7"
+                    class="d-flex" cols="12" sm="3"
                 >
                     <dilog> </dilog>
 
                 </v-col>
                 <v-col class="d-flex"
-                       md="5">
+                       sm="3">
                     <v-btn
 
                         :disabled="Disabled"
@@ -163,12 +161,7 @@
 
                 </v-col>
 
-            </v-col>
             <v-col class="d-flex" cols="12" sm="3" v-if="show">
-                <v-file-input label="Upload the Question"></v-file-input>
-
-            </v-col>
-            <v-col class="d-flex" cols="12" sm="4" v-if="show">
                 <v-select
                     :items="items"
                     item-text="name"
@@ -180,7 +173,7 @@
 
 
             </v-col>
-            <v-col class="d-flex" md="2"
+            <v-col class="d-flex" cols="12" sm="3"
                    v-if="show">
                 <v-btn
                     :disabled="disabledQuestion"
@@ -189,17 +182,8 @@
                 >Create Question
 
                 </v-btn>
-
-
             </v-col>
-            <v-btn
-                @click="show=false"
-                class="error"
-                rounded
-                v-if="x && show"
-            >
-                cancel
-            </v-btn>
+
 
         </v-row>
         <br>
@@ -242,6 +226,7 @@
                                 v-model="creative.q1"
                             ></v-textarea>
                             <v-text-field
+                                color:red
                                 filled
                                 label="Marks"
                                 rounded
@@ -679,6 +664,7 @@
 
                     </div>
                     <v-textarea
+                        style="color:#ff5d78!important;"
                         disabled
                         filled
                         label="Question"
@@ -775,7 +761,7 @@
         {{exactTime}}
         {{timeout}}
 
-    </v-container>
+    </v-card>
 </template>
 <script>
     import dilog from "./CreateExamDateDilog";
@@ -1171,3 +1157,15 @@
         }
 
 </script>
+<style scoped>
+    .v-btn__content{
+        text-transform: none;
+    }
+    .v-input.v-textarea
+    {
+       opacity: ;
+
+    }
+
+
+</style>
