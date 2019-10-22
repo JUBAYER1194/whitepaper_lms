@@ -42,8 +42,7 @@
                     flat
                     class="mx-auto"
                     max-width="100%"
-                    height="300"
-                    style="overflow-y: auto"
+                    height="420"
 
                 >
                     <v-card-title>
@@ -62,20 +61,19 @@
                         {{assignment.title}}
                     </v-card-title>
                     <v-card-actions style="padding-left:5%;">
-                                <a :href="'http://127.0.0.1:8000/uploads/x/x/assignment/'+assignment.file" target="_blank"><button type="button" class="btn btn-sm">Read File</button></a>
+                        <a v-if="assignment.file" :href="'http://127.0.0.1:8000/uploads/x/x/assignment/'+assignment.file" target="_blank"><button type="button" class="btn btn-sm">Read File</button></a>
+                        <a v-else :href="'#'"><button type="button" class="btn btn-sm">Read File</button></a>
                     </v-card-actions>
-                    <v-card-text class="headline font-weight-bold">
-                        {{assignment.body}}
+                    <v-card-text  style="font-size:1.2em;min-height:40%;max-height: 40%;overflow-y: auto" class="font-weight-bold">
+                        "{{assignment.body}}"
                     </v-card-text>
-
-                </v-card>
-                <v-card class="grey lighten-4" flat>
                     <v-card-title>
                         <VEditDialog :data="assignment"></VEditDialog>
                         <v-spacer></v-spacer>
                         <v-btn color="error"  depressed @click="deleteAssignment(index,assignment.id)">Delete</v-btn>
                     </v-card-title>
                 </v-card>
+
             </v-col>
 
 

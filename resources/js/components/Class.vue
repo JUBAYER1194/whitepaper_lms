@@ -6,6 +6,10 @@
                 flat
                 grow
                 v-model="tab"
+                center-active
+                mobile-break-point
+
+
 
 
 
@@ -23,7 +27,7 @@
             </v-tabs>
         </div>
 
-            <v-tabs-items v-model="tab">
+            <v-tabs-items  v-model="tab">
                 <v-tab-item>
                     <v-card flat style="padding-top:1%">
                         <Information :data="classes" :datas="material" :dat="users"></Information>

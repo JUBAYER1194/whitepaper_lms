@@ -41,7 +41,7 @@
                     class="mx-auto"
                     max-width="100%"
                     height="300"
-                    style="overflow-y: auto"
+
 
                 >
 
@@ -59,18 +59,17 @@
                    </v-card-subtitle>
 
 
-                    <v-card-text class="headline font-weight-bold">
+                    <v-card-text  style="font-size:1.2em;min-height:50%;max-height: 50%;overflow-y: auto" class="font-weight-bold">
                         "{{announcement.body}}"
                     </v-card-text>
-                </v-card>
-                <br>
-                <v-card class="grey lighten-4" flat>
                     <v-card-title>
-                                    <VEditDialog :data="announcement"></VEditDialog>
+                        <VEditDialog :data="announcement"></VEditDialog>
                         <v-spacer></v-spacer>
-                                    <v-btn color="error" @click="DeleteAnnouncement(index,announcement.id)" depressed>Delete</v-btn>
+                        <v-btn color="error" @click="DeleteAnnouncement(index,announcement.id)" depressed>Delete</v-btn>
                     </v-card-title>
                 </v-card>
+                <br>
+
             </v-col>
         </v-row>
           {{getannouncements}}

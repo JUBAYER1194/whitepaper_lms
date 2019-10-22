@@ -1,6 +1,11 @@
 <template>
-    <v-container>
-        <v-card flat>
+    <v-container
+        class="grey lighten-4"
+        width="100%"
+        flat
+        style="padding: 1%;padding-bottom:115%"
+    >
+        <v-card   class="grey lighten-4" flat>
         <v-row align="center">
         <v-col class="d-flex" cols="12" sm="6">
             <v-select
@@ -38,7 +43,7 @@
 
                             </div>
                             <v-textarea
-                                disabled
+                                readonly
                                 filled
                                 label="Story"
                                 rounded
@@ -49,7 +54,7 @@
 
                                 <v-textarea
                                     :label="'question no '+(index+1)+'(a)'"
-                                    disabled
+                                    readonly
                                     outlined
                                     rounded
                                     v-model="creative_s.question_1"
@@ -57,7 +62,7 @@
                                 ></v-textarea>
                                 <v-text-field
                                     :label="'marks for '+(index+1)+'(a)'"
-                                    disabled
+                                    readonly
                                     filled
                                     rounded
                                     type="number"
@@ -68,14 +73,14 @@
 
                                 <v-textarea
                                     :label="'question no '+(index+1)+'(b)'"
-                                    disabled
+                                    readonly
                                     outlined
                                     rounded
                                     v-model="creative_s.question_2"
                                 ></v-textarea>
                                 <v-text-field
                                     :label="'Marks for '+(index+1)+'(b)'"
-                                    disabled
+                                    readonly
                                     filled
                                     rounded
                                     type="number"
@@ -87,14 +92,14 @@
 
                                 <v-textarea
                                     :label="'question no '+(index+1)+'(c)'"
-                                    disabled
+                                    readonly
                                     outlined
                                     rounded
                                     v-model="creative_s.question_3"
                                 ></v-textarea>
                                 <v-text-field
                                     :label="'marks for '+(index+1)+'(c)'"
-                                    disabled
+                                    readonly
                                     filled
                                     rounded
                                     type="number"
@@ -106,14 +111,14 @@
 
                                 <v-textarea
                                     :label="'question no '+(index+1)+'(d)'"
-                                    disabled
+                                    readonly
                                     outlined
                                     rounded
                                     v-model="creative_s.question_4"
                                 ></v-textarea>
                                 <v-text-field
                                     :label="'marks for '+(index+1)+'(d)'"
-                                    disabled
+                                    readonly
                                     filled
                                     rounded
                                     type="number"
@@ -126,10 +131,9 @@
 
                             </div>
                             <div v-for="A_creative_s in creative_s.Acreatives" v-if="A_creative_s.user_id==user_select">
-                                {{index}}
                                 <v-textarea
                                     :label="'Answer (a)'"
-                                    disabled
+                                    readonly
                                     outlined
                                     rounded
                                     v-model="A_creative_s.aquestion_1"
@@ -151,7 +155,7 @@
 
                                     <v-text-field
                                         :label="'marks (a) '"
-                                        disabled
+                                        readonly
                                         filled
                                         rounded
                                         type="number"
@@ -160,7 +164,7 @@
                                 </div>
                                 <v-textarea
                                     :label="'Answer (b)'"
-                                    disabled
+                                    readonly
                                     outlined
                                     rounded
                                     v-model="A_creative_s.aquestion_2"
@@ -180,7 +184,7 @@
 
                                     <v-text-field
                                         :label="'marks (b)'"
-                                        disabled
+                                        readonly
                                         filled
                                         rounded
                                         type="number"
@@ -190,7 +194,7 @@
 
                                 <v-textarea
                                     :label="'Answer (c)'"
-                                    disabled
+                                    readonly
                                     outlined
                                     rounded
                                     v-model="A_creative_s.aquestion_3"
@@ -210,7 +214,7 @@
 
                                     <v-text-field
                                         :label="'marks (c)'"
-                                        disabled
+                                        readonly
                                         filled
                                         rounded
                                         type="number"
@@ -219,7 +223,7 @@
                                 </div>
                                 <v-textarea
                                     :label="'Answer (d)'"
-                                    disabled
+                                    readonly
                                     outlined
                                     rounded
                                     v-model="A_creative_s.aquestion_4"
@@ -239,7 +243,7 @@
 
                                     <v-text-field
                                         :label="'marks (d)'"
-                                        disabled
+                                        readonly
                                         filled
                                         rounded
                                         type="number"
@@ -267,20 +271,20 @@
 
                         </div>
                         <v-textarea
-                            disabled
-                            filled
+                            readonly
                             label="Question"
                             rounded
+                            outlined
                             v-model="multiple_s.question_s"
                         ></v-textarea>
                             <v-select
                                 :items=[multiple_s.option_1,multiple_s.option_2,multiple_s.option_3,multiple_s.option_4]
                                 label="Option"
-                                solo
+                                outlined
                             ></v-select>
 
                         <v-text-field
-                            disabled
+                            readonly
                             filled
                             label="Marks"
                             rounded
@@ -295,8 +299,8 @@
 
                                 <v-text-field
                                     :label="'Answer:'"
-                                    disabled
-                                    filled
+                                    readonly
+                                    outlined
                                     rounded
                                     v-model="A_multiple_s.answer"
                                 ></v-text-field>
@@ -314,7 +318,7 @@
 
                                 <v-text-field
                                     :label="'Marks:'"
-                                    disabled
+                                    readonly
                                     filled
                                     rounded
                                     type="number"
@@ -337,14 +341,14 @@
 
                         </div>
                         <v-textarea
-                            disabled
-                            filled
+                            readonly
+                            outlined
                             label="Question"
                             rounded
                             v-model="short_s.question_s"
                         ></v-textarea>
                         <v-text-field
-                            disabled
+                            readonly
                             filled
                             label="Marks"
                             rounded
@@ -358,11 +362,11 @@
                             </div>
                             <div v-for="(A_short) in short_s.Ashort" v-if="A_short.user_id==user_select">
                                 <v-textarea
-                                    filled
+                                    outlined
                                     label="Answer"
                                     rounded
                                     v-model="A_short.answer"
-                                    disabled
+                                    readonly
                                 ></v-textarea>
                                 <div v-if="A_short.marks==null">
 
@@ -377,7 +381,7 @@
                                 </div>
                                 <div v-else>
                                     <v-text-field
-                                        disabled
+                                        readonly
                                         filled
                                         label="Marks"
                                         rounded
@@ -402,8 +406,8 @@
 
                         </div>
                         <v-textarea
-                            disabled
-                            filled
+                            readonly
+                            outlined
                             label="Question"
                             rounded
                             v-model="poll_s.question_s"
@@ -411,7 +415,7 @@
                         <v-select
                             :items=[poll_s.option_1,poll_s.option_2,poll_s.option_3,poll_s.option_4]
                             label="Option"
-                            solo
+                            outlined
                         ></v-select>
                         <div>
                             <div style="display: inline-flex;margin:5%">
@@ -421,8 +425,8 @@
 
                                 <v-text-field
                                     :label="'Answer:'"
-                                    disabled
-                                    filled
+                                    readonly
+                                    outlined
                                     rounded
                                     v-model="A_poll_s.answer"
                                 ></v-text-field>
@@ -436,7 +440,7 @@
             </div>
 
             <div v-if="count==true">
-                <v-btn @click="submitMarks"  style="color: white;background-color: #9652ff">
+                <v-btn rounded @click="submitMarks"  style="color: white;background-color: #9652ff">
                     Post Marks
                 </v-btn>
             </div>

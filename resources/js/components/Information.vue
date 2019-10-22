@@ -19,11 +19,11 @@
                     grow
                 >
                     <v-tab>
-                        <v-icon left>mdi-account</v-icon>
+                        <v-icon left>info</v-icon>
                         Class Information
                     </v-tab>
                     <v-tab @click="created">
-                        <v-icon left>mdi-lock</v-icon>
+                        <v-icon left>menu_book</v-icon>
                         Class Material
                     </v-tab>
                     <v-tab-item>
@@ -91,10 +91,11 @@
                                                     <div class="overline mb-4">{{material.option}}</div>
                                                     <v-list-item-title class="headline mb-1">{{material.title}}
                                                     </v-list-item-title>
-                                                    <v-list-item-title class="headline mb-1">
+
+                                                    <v-list-item-subtitle style="color: #000000">{{material.body}}</v-list-item-subtitle>
+                                                    <v-list-item-title >
                                                         <a :href="'http://faisalsarker.com/lms/public/uploads/x/x/material/'+material.file" target="_blank"><button type="button" class="btn btn-sm">Read File</button></a>
                                                     </v-list-item-title>
-                                                    <v-list-item-subtitle>{{material.body}}</v-list-item-subtitle>
                                                     <v-list-item-subtitle>{{material.created_at}}</v-list-item-subtitle>
                                                 </v-list-item-content>
                                             </v-list-item>
@@ -105,7 +106,7 @@
                                                     <v-col
                                                         md="4"
                                                     >
-                                                        <a :href="'/lms/class/material/'+material.id"><v-btn style="color: white;background-color:#9652ff" depressed>Click</v-btn></a>
+                                                        <a style="text-decoration: none;" :href="'/lms/class/material/'+material.id"><v-btn style="color: white;background-color:#9652ff;" depressed>Click</v-btn></a>
                                                     </v-col>
                                                     <v-col
                                                         md="4"

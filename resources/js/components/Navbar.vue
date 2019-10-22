@@ -22,11 +22,10 @@
                      xs6
 
                  >
-                     <v-avatar size="100">
+                     <v-avatar style="margin-left: 15%" size="100">
                          <img class="text-lg-center" src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg">
                      </v-avatar>
                      <p style="margin-top: 10px;">Jubayer Ahmed</p>
-                     <dilog></dilog>
 
                  </v-flex>
 
@@ -49,16 +48,16 @@
              <v-list-group>
                  <template v-slot:activator>
                      <v-list-item-icon>
-                         <v-icon style="color: white">account_circle</v-icon>
+                         <v-icon style="color: white">class</v-icon>
                      </v-list-item-icon>
-                     <v-list-item-title style="color: white;font-size: 100%">ClassRoom</v-list-item-title>
+                     <v-list-item-title style="color: white;font-size: 0.8em">Class Room</v-list-item-title>
                  </template>
                  <v-list-item style="margin-left:20%" v-for="classs in classes" :key="classs.id">
                      <v-list-item-title>
                          <a :href="'/lms/class/'+classs.name" style="color:white;text-decoration: none;font-size: 120%">{{classs.name}}</a>
                      </v-list-item-title>
-                     <v-list-item-icon>
-                         <v-icon> adb</v-icon>
+                     <v-list-item-icon >
+                         <v-icon> menu_book</v-icon>
                      </v-list-item-icon>
                  </v-list-item>
              </v-list-group>
@@ -147,9 +146,10 @@
                 dialog: false,
                 drawer: null,
                  items: [
-                    {icon: 'account_circle', text: 'profile',to:"/lms/profile"},
-                     {icon: 'border_all', text: 'Calender View',to:'/lms/calender'},
-                     {icon: 'dashboard', text: 'Admin DashBoard',to:"/lms/admin/dashboard"},
+                     {icon: 'dashboard', text: 'DashBoard',to:"/lms/admin/dashboard"},
+                    {icon: 'account_circle', text: 'Profile',to:"/lms/profile"},
+                     {icon: 'calendar_today', text: 'Calender View',to:'/lms/calender'},
+
                 ],
                 classes: {},
                 user_id: null,

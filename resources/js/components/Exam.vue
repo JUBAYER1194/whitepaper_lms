@@ -5,13 +5,18 @@
                  style="padding: 1%;padding-bottom:115%"
     >
 
-            <v-select
-                :items="exams"
-                item-text="type"
-                item-value="type"
-                label="Select Exam type"
-                v-model="date.selected"
-        ></v-select>
+            <div class="d-inline-flex">
+                <v-select
+                    :items="exams"
+                    item-text="type"
+                    item-value="type"
+                    label="Select Exam Date"
+                    v-model="date.selected"
+                    filled
+                    rounded
+                ></v-select>
+
+            </div>
 
 
         <div v-if="somex && examn!=''" >
@@ -27,9 +32,12 @@
                 v-model="examsatrtId"
             ></v-select>
             </div>
-            <v-row class="d-flex">
-            <v-col class="d-flex"
-            md="4">
+            <v-row>
+            <v-col
+                class="d-flex"
+                cols="12"
+                md="5"
+            >
                 <v-dialog
                     ref="dialog"
                     v-model="modal1"
@@ -54,8 +62,11 @@
                 </v-dialog>
             </v-col>
 
-            <v-col class="d-flex"
-                   md="4">
+            <v-col
+                class="d-flex"
+                cols="12"
+                md="5"
+            >
                 <v-menu
                     ref="menu"
                     v-model="menu2"
@@ -87,10 +98,12 @@
 
 
             </v-col>
-            <v-col class="d-flex"
-                   md="4"
+            <v-col
+                class="d-flex"
+                cols="12"
+                md="2"
             >
-                <v-btn @click="createStartExam" style="color:white;background-color: #9652ff">
+                <v-btn  @click="createStartExam" style="float: right;color:white;background-color: #9652ff">
                     Start Exam
 
                 </v-btn>
@@ -102,40 +115,43 @@
 
             <div v-for="(examx,index) in examR" v-if="examx.status_s==1 && examx.exam_done==0">
                 {{startingtime(examx.end_date_s,examx.end_time_s,examx.id)}}
-            <v-row class="d-flex">
+            <v-row>
                 <v-col
                     class="d-flex"
                     md="4"
+                    cols="12"
                 >
             <v-text-field
                 filled
                 label="exam on going"
                 rounded
                 type="text"
-                disabled
+                readonly
                 v-model="examx.type"
             ></v-text-field>
                 </v-col>
-
                 <v-col
                     class="d-flex"
-                    md="4"
+                    cols="12"
+                    md="2"
                 >
-                    <div>
-                        <div v-if="distance > 0">{{`${days}d ${hours}h ${minutes}m ${seconds}s`}}</div>
-                        <div v-else style="color: darkred">OVER</div>
-                    </div>
-                </v-col>
-                <v-col
-                    class="d-flex"
-                    md="4"
-                >
-                    <v-btn @click="stopingRunningExam(examx.id)" style="color: white;background-color: #9652ff">
+                    <v-btn
+                        rounded
+                        @click="stopingRunningExam(examx.id)"
+                        style="color: white;background-color: #9652ff"
+                    >
                         Stop Exam
                     </v-btn>
 
                 </v-col>
-
+                <v-col cols="12" md="3" class="d-flex">
+                </v-col>
+                <v-col  cols="12" md="3" class="d-flex">
+                    <div  class="text-right">
+                        <div class="font-weight-bold text-right" style="color: #9652ff;" v-if="distance > 0">{{`${days}d ${hours}h ${minutes}m ${seconds}s`}}</div>
+                        <div class="font-weight-bold text-right" v-else style="color: darkred">OVER</div>
+                    </div>
+                </v-col>
             </v-row>
             </div>
 
@@ -143,24 +159,21 @@
 
         <v-row align="center" >
 
-                <v-col
-                    class="d-flex" cols="12" sm="3"
-                >
+                <v-col class="d-flex" cols="12" sm="3">
                     <dilog> </dilog>
-
                 </v-col>
-                <v-col class="d-flex"
+            <v-col class="d-flex"
                        sm="3">
                     <v-btn
 
-                        :disabled="Disabled"
+                        :readonly="readonly"
                         @click="CreateExam"
                         style="color: white;background-color: #9652ff"
+                        rounded
                     >Create Exam
                     </v-btn>
 
                 </v-col>
-
             <v-col class="d-flex" cols="12" sm="3" v-if="show">
                 <v-select
                     :items="items"
@@ -176,7 +189,7 @@
             <v-col class="d-flex" cols="12" sm="3"
                    v-if="show">
                 <v-btn
-                    :disabled="disabledQuestion"
+                    :readonly="readonlyQuestion"
                     @click="createQuestions"
                     style="color: white;background-color: #9652ff"
                 >Create Question
@@ -192,55 +205,63 @@
             <div v-for="(creative,index) in creatives">
 
 
-                <div style="display: inline-flex;margin:5%">
-                    <h4 style="color:#9652ff"> Creative Question No:{{index+1}}</h4>
-
+                <v-toolbar class="grey lighten-4" flat>
+                    <h4 style="color:#9652ff;margin-left: 1%;margin-right: 5%"> Creative Question No:{{index+1}}</h4>
                     <v-btn
                         @click="creativeRemove(index)"
                         class="error"
                         depressed
-                        style="float: right;margin-left:5%"
+                        rounded
+                        style="float: right;"
 
                     >Remove
                     </v-btn>
-                </div>
+                </v-toolbar>
 
 
                 <v-textarea
+                    style="font-size:1.2em"
                     filled
                     label="Story"
                     rounded
                     v-model="creative.story"
                 ></v-textarea>
-                <v-row class="d-flex">
+                <v-row >
                     <v-col
+                        class="d-flex"
+                        cols="12"
                         md="3"
                     >
-                        <div>
+                               <div style="margin-left: 5%">
+                                   <v-textarea
+                                       class="ma-0"
+                                       style="font-size:1.2em"
+                                       label="Question no 1"
+                                       outlined
+                                       rounded
 
-                            <v-textarea
-                                label="Question no 1"
-                                outlined
-                                rounded
+                                       v-model="creative.q1"
+                                   ></v-textarea>
 
-                                v-model="creative.q1"
-                            ></v-textarea>
-                            <v-text-field
-                                color:red
-                                filled
-                                label="Marks"
-                                rounded
-                                type="number"
-                                v-model="creative.q1m"
-                            ></v-text-field>
-                        </div>
+                                   <v-text-field
+
+                                       filled
+                                       label="Marks"
+                                       rounded
+                                       type="number"
+                                       v-model="creative.q1m"
+                                   ></v-text-field>
+                               </div>
                     </v-col>
                     <v-col
+                        class="d-flex"
+                        cols="12"
                         md="3"
                     >
-                        <div>
+                        <div style="margin-left: 5%">
 
                             <v-textarea
+                                style="font-size:1.2em"
                                 label="Question no 2"
                                 outlined
                                 rounded
@@ -256,11 +277,15 @@
                         </div>
                     </v-col>
                     <v-col
+                        class="d-flex"
+                        cols="12"
                         md="3"
+
                     >
-                        <div>
+                        <div style="margin-left: 7%">
 
                             <v-textarea
+                                style="font-size:1.2em"
                                 label="Question no 3"
                                 outlined
                                 rounded
@@ -276,11 +301,14 @@
                         </div>
                     </v-col>
                     <v-col
+                        class="d-flex"
+                        cols="12"
                         md="3"
                     >
-                        <div>
+                        <div style="margin-left: 5%">
 
                             <v-textarea
+                                style="font-size:1.2em"
                                 label="Question no 4"
                                 outlined
                                 rounded
@@ -299,30 +327,33 @@
             </div>
             <div v-for="(multiple,index) in multiples">
 
-
-                <div style="display: inline-flex;margin:5%">
-                    <h4 style="color:#9652ff"> Multiple Question No:{{index+1}}</h4>
-
+                <v-toolbar class="grey lighten-4" flat>
+                    <h4 style="color:#9652ff;margin-left: 1%;margin-right: 5%">  Multiple Question No:{{index+1}}</h4>
                     <v-btn
                         @click="multipleRemove(index)"
                         class="error"
                         depressed
+                        rounded
                         style="float:
                     right;margin-left:5%"
                     >Remove
                     </v-btn>
-                </div>
+                </v-toolbar>
                 <v-textarea
+                    style="font-size:1.2em"
                     filled
                     label="Question"
                     rounded
                     v-model="multiple.qm"
                 ></v-textarea>
-                <v-row class="d-flex">
+                <v-row>
                     <v-col
+                        class="d-flex"
+                        cols="12"
                         md="3"
                     >
                         <v-textarea
+                            style="font-size:1.2em"
                             label="Option 1"
                             outlined
                             rounded
@@ -330,9 +361,12 @@
                         ></v-textarea>
                     </v-col>
                     <v-col
+                        class="d-flex"
+                        cols="12"
                         md="3"
                     >
                         <v-textarea
+                            style="font-size:1.2em"
                             label="Option 2"
                             outlined
                             rounded
@@ -340,9 +374,12 @@
                         ></v-textarea>
                     </v-col>
                     <v-col
+                        class="d-flex"
+                        cols="12"
                         md="3"
                     >
                         <v-textarea
+                            style="font-size:1.2em"
                             label="Option 1"
                             outlined
                             rounded
@@ -350,9 +387,12 @@
                         ></v-textarea>
                     </v-col>
                     <v-col
+                        class="d-flex"
+                        cols="12"
                         md="3"
                     >
                         <v-textarea
+                            style="font-size:1.2em"
                             label="Option 2"
                             outlined
                             rounded
@@ -369,19 +409,21 @@
                 </v-row>
             </div>
             <div v-for="(short,index) in shorts">
-                <div style="display: inline-flex;margin:5%">
-                    <h4 style="color:#9652ff"> Short Question No:{{index+1}}</h4>
-
+                <v-toolbar class="grey lighten-4" flat>
+                    <h4 style="color:#9652ff;margin-left: 1%;margin-right: 5%">Short Question No:{{index+1}}</h4>
                     <v-btn
                         @click="shortRemove(index)"
                         class="error"
                         depressed
+                        rounded
                         style="float: right;margin-left:5%"
                     >
                         Remove
                     </v-btn>
-                </div>
+                </v-toolbar>
+
                 <v-textarea
+                    style="font-size:1.2em"
                     filled
                     label="Question"
                     rounded
@@ -396,30 +438,33 @@
                 ></v-text-field>
             </div>
             <div v-for="(pool,index) in pools">
-
-
-                <div style="display: inline-flex;margin:5%">
-                    <h4 style="color:#9652ff"> Pool Question No:{{index+1}}</h4>
+                <v-toolbar class="grey lighten-4" flat>
+                    <h4 style="color:#9652ff;margin-left: 1%;margin-right: 5%">Pool Question No:{{index+1}}</h4>
 
                     <v-btn
                         @click="poolRemove(index)"
+                        rounded
                         class="error"
                         depressed
                         style="float: right;margin-left:5%"
                     >Remove
                     </v-btn>
-                </div>
+                </v-toolbar>
                 <v-textarea
+                    style="font-size:1.2em"
                     filled
                     label="Question"
                     rounded
                     v-model="pool.qp"
                 ></v-textarea>
-                <v-row class="d-flex">
+                <v-row>
                     <v-col
+                        class="d-flex"
+                        cols="12"
                         md="3"
                     >
                         <v-textarea
+                            style="font-size:1.2em"
                             label="Option 1"
                             outlined
                             rounded
@@ -427,9 +472,12 @@
                         ></v-textarea>
                     </v-col>
                     <v-col
+                        class="d-flex"
+                        cols="12"
                         md="3"
                     >
                         <v-textarea
+                            style="font-size:1.2em"
                             label="Option 2"
                             outlined
                             rounded
@@ -437,9 +485,12 @@
                         ></v-textarea>
                     </v-col>
                     <v-col
+                        class="d-flex"
+                        cols="12"
                         md="3"
                     >
                         <v-textarea
+                            style="font-size:1.2em"
                             label="Option 3"
                             outlined
                             rounded
@@ -447,9 +498,12 @@
                         ></v-textarea>
                     </v-col>
                     <v-col
+                        class="d-flex"
+                        cols="12"
                         md="3"
                     >
                         <v-textarea
+                            style="font-size:1.2em"
                             label="Option 4"
                             outlined
                             rounded
@@ -491,23 +545,27 @@
 
                 </div>
                 <v-textarea
+                    style="font-size:1.2em"
                     filled
                     label="Story"
                     rounded
-                    disabled
+                    readonly
                     v-model="creative_s.story"
                 ></v-textarea>
-                <v-row class="d-flex">
+                <v-row>
                     <v-col
+                        class="d-flex"
                         md="3"
+                        cols="12"
                     >
-                        <div>
+                        <div style="margin-left: 5%">
 
                             <v-textarea
+                                style="font-size:1.2em"
                                 label="Question no 1"
                                 outlined
                                 rounded
-                                disabled
+                               readonly
                                 v-model="creative_s.question_1"
                             ></v-textarea>
                             <v-text-field
@@ -515,21 +573,24 @@
                                 label="Marks"
                                 rounded
                                 type="number"
-                                disabled
+                                readonly
                                 v-model="creative_s.q1_marks"
                             ></v-text-field>
                         </div>
                     </v-col>
                     <v-col
+                        class="d-flex"
                         md="3"
+                        cols="12"
                     >
-                        <div>
+                        <div style="margin-left: 5%">
 
                             <v-textarea
+                                style="font-size:1.2em"
                                 label="Question no 2"
                                 outlined
                                 rounded
-                                disabled
+                                readonly
                                 v-model="creative_s.question_2"
                             ></v-textarea>
                             <v-text-field
@@ -537,21 +598,24 @@
                                 label="Marks"
                                 rounded
                                 type="number"
-                                disabled
+                                readonly
                                 v-model="creative_s.q2_marks"
                             ></v-text-field>
                         </div>
                     </v-col>
                     <v-col
+                        class="d-flex"
                         md="3"
+                        cols="12"
                     >
-                        <div>
+                        <div style="margin-left: 5%">
 
                             <v-textarea
+                                style="font-size:1.2em"
                                 label="Question no 3"
                                 outlined
                                 rounded
-                                disabled
+                                readonly
                                 v-model="creative_s.question_3"
                             ></v-textarea>
                             <v-text-field
@@ -559,21 +623,24 @@
                                 label="Marks"
                                 rounded
                                 type="number"
-                                disabled
+                                readonly
                                 v-model="creative_s.q3_marks"
                             ></v-text-field>
                         </div>
                     </v-col>
                     <v-col
+                        class="d-flex"
                         md="3"
+                        cols="12"
                     >
-                        <div>
+                        <div style="margin-left: 5%">
 
                             <v-textarea
+                                style="font-size:1.2em"
                                 label="Question no 4"
                                 outlined
                                 rounded
-                                disabled
+                                readonly
                                 v-model="creative_s.question_4"
                             ></v-textarea>
                             <v-text-field
@@ -581,7 +648,7 @@
                                 label="Marks"
                                 rounded
                                 type="number"
-                                disabled
+                                readonly
                                 v-model="creative_s.q4_marks"
                             ></v-text-field>
                         </div>
@@ -597,7 +664,8 @@
 
                     </div>
                     <v-textarea
-                        disabled
+                        style="font-size:1.2em"
+                        readonly
                         filled
                         label="Question"
                         rounded
@@ -605,10 +673,13 @@
                     ></v-textarea>
                     <v-row class="d-flex">
                         <v-col
+                            class="d-flex"
                             md="3"
+                            cols="12"
                         >
                             <v-textarea
-                                disabled
+                                style="font-size:1.2em"
+                                readonly
                                 label="Option 1"
                                 outlined
                                 rounded
@@ -616,10 +687,13 @@
                             ></v-textarea>
                         </v-col>
                         <v-col
+                            class="d-flex"
                             md="3"
+                            cols="12"
                         >
                             <v-textarea
-                                disabled
+                                style="font-size:1.2em"
+                                readonly
                                 label="Option 2"
                                 outlined
                                 rounded
@@ -627,10 +701,13 @@
                             ></v-textarea>
                         </v-col>
                         <v-col
+                            class="d-flex"
                             md="3"
+                            cols="12"
                         >
                             <v-textarea
-                                disabled
+                                style="font-size:1.2em"
+                                readonly
                                 label="Option 3"
                                 outlined
                                 rounded
@@ -638,10 +715,13 @@
                             ></v-textarea>
                         </v-col>
                         <v-col
+                            class="d-flex"
                             md="3"
+                            cols="12"
                         >
                             <v-textarea
-                                disabled
+                                style="font-size:1.2em"
+                                readonly
                                 label="Option 4"
                                 outlined
                                 rounded
@@ -649,7 +729,7 @@
                             ></v-textarea>
                         </v-col>
                         <v-text-field
-                            disabled
+                            readonly
                             filled
                             label="Marks"
                             rounded
@@ -659,20 +739,20 @@
                     </v-row>
                 </div>
                 <div v-for="(short_s,index) in question_s_s.short_s_s" v-if="question_s_s.type=='Short'">
-                    <div style="display: inline-flex;margin:5%">
+                    <div style="display: inline-flex;margin-bottom: 3%;margin-left: 2%">
                         <h4 style="color:#9652ff"> Short Question No:{{index+1}}</h4>
 
                     </div>
                     <v-textarea
-                        style="color:#ff5d78!important;"
-                        disabled
-                        filled
+                        style="font-size:1.2em"
+                        readonly
+                        outlined
                         label="Question"
                         rounded
                         v-model="short_s.question_s"
                     ></v-textarea>
                     <v-text-field
-                        disabled
+                        readonly
                         filled
                         label="Marks"
                         rounded
@@ -688,7 +768,8 @@
 
                     </div>
                     <v-textarea
-                        disabled
+                        style="font-size:1.2em"
+                        readonly
                         filled
                         label="Question"
                         rounded
@@ -696,10 +777,13 @@
                     ></v-textarea>
                     <v-row class="d-flex">
                         <v-col
+                            class="d-flex"
                             md="3"
+                            cols="12"
                         >
                             <v-textarea
-                                disabled
+                                style="font-size:1.2em"
+                                readonly
                                 label="Option 1"
                                 outlined
                                 rounded
@@ -707,10 +791,13 @@
                             ></v-textarea>
                         </v-col>
                         <v-col
+                            class="d-flex"
                             md="3"
+                            cols="12"
                         >
                             <v-textarea
-                                disabled
+                                style="font-size:1.2em"
+                                readonly
                                 label="Option 2"
                                 outlined
                                 rounded
@@ -718,10 +805,13 @@
                             ></v-textarea>
                         </v-col>
                         <v-col
+                            class="d-flex"
                             md="3"
+                            cols="12"
                         >
                             <v-textarea
-                                disabled
+                                style="font-size:1.2em"
+                                readonly
                                 label="Option 3"
                                 outlined
                                 rounded
@@ -729,10 +819,13 @@
                             ></v-textarea>
                         </v-col>
                         <v-col
+                            class="d-flex"
                             md="3"
+                            cols="12"
                         >
                             <v-textarea
-                                disabled
+                                style="font-size:1.2em"
+                                readonly
                                 label="Option 4"
                                 outlined
                                 rounded
@@ -1063,7 +1156,7 @@
 
             },
 
-            Examdisabled(){
+            Examreadonly(){
                 if (this.date.selected!=null){
                     return false;
                 }
@@ -1110,14 +1203,14 @@
             userId(){
                 this.form.user_id=User.id();
             },
-            Disabled() {
+            readonly() {
                 if (this.form.exam != '') {
                     return false;
                 } else {
                     return true;
                 }
             },
-            disabledQuestion() {
+            readonlyQuestion() {
                 if (this.multiple == true || this.creative == true || this.pool == true || this.short ==true) {
                     return false;
                 } else
@@ -1157,15 +1250,18 @@
         }
 
 </script>
-<style scoped>
+<style>
     .v-btn__content{
         text-transform: none;
-    }
-    .v-input.v-textarea
-    {
-       opacity: ;
-
+        font-size: 1em;
     }
 
+    .v-input input {
+        font-size: 1.2em;
+    }
+    .v-input .v-label {
+        font-size: 1em;
+
+    }
 
 </style>
