@@ -12,15 +12,25 @@
             flat
 
         >
-
-            <v-card-title
-                class="white--text justify-center font-weight-bold"
-                style="font-size: 1.3em;background-color: #9652ff;padding-bottom: 1.5%;"
+            <v-tabs
+                center-active color="grey lighten-2"
+                flat
+                grow
             >
 
-                Profile Information
+                <v-tab
 
-            </v-card-title>
+                    outlined
+                    style="font-size:1em;background-color:#9652ff;color: white;"
+                    tile
+
+
+                >
+
+                    profile information
+
+                </v-tab>
+            </v-tabs>
             <v-row class="d-flex" style="margin-bottom: 5%">
                 <v-col
                     class="d-flex"

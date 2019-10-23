@@ -1,5 +1,5 @@
 <template>
-    <div style="margin-top: 1%">
+    <div>
         <div >
             <v-tabs
                 color="grey lighten-2"

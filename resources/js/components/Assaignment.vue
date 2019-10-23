@@ -38,11 +38,14 @@
                 md="4"
                 v-for="(assignment,index) in assignments" :key="assignment.id"
             >
+                <v-card flat>
                 <v-card
                     flat
                     class="mx-auto"
                     max-width="100%"
                     height="420"
+                    style="overflow-y: auto;"
+
 
                 >
                     <v-card-title>
@@ -64,14 +67,18 @@
                         <a v-if="assignment.file" :href="'http://127.0.0.1:8000/uploads/x/x/assignment/'+assignment.file" target="_blank"><button type="button" class="btn btn-sm">Read File</button></a>
                         <a v-else :href="'#'"><button type="button" class="btn btn-sm">Read File</button></a>
                     </v-card-actions>
-                    <v-card-text  style="font-size:1.2em;min-height:40%;max-height: 40%;overflow-y: auto" class="font-weight-bold">
+                    <v-card-text  style="font-size:1.2em;" class="font-weight-bold">
                         "{{assignment.body}}"
                     </v-card-text>
-                    <v-card-title>
-                        <VEditDialog :data="assignment"></VEditDialog>
-                        <v-spacer></v-spacer>
-                        <v-btn color="error"  depressed @click="deleteAssignment(index,assignment.id)">Delete</v-btn>
-                    </v-card-title>
+
+                </v-card>
+                    <v-card flat>
+                        <v-card-title>
+                            <VEditDialog :data="assignment"></VEditDialog>
+                            <v-spacer></v-spacer>
+                            <v-btn color="error"  depressed @click="deleteAssignment(index,assignment.id)">Delete</v-btn>
+                        </v-card-title>
+                    </v-card>
                 </v-card>
 
             </v-col>

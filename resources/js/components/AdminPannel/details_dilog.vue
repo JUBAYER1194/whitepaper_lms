@@ -2,7 +2,7 @@
     <v-row justify="center">
         <v-dialog max-width="600px" persistent v-model="dialog">
             <template v-slot:activator="{ on }">
-                <v-btn style="float: right;background-color: #9652ff;color: white;width: 100%" v-on="on">Profile</v-btn>
+                <v-btn style="background-color: #9652ff;color: white;" v-on="on">Profile</v-btn>
             </template>
             <v-card>
                 <v-row class="d-flex" style="margin-bottom: 5%">

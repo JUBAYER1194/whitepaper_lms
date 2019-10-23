@@ -1,13 +1,10 @@
 <template>
-    <v-footer
-        dark
-        padless
-        style="background-color:#9652ff;color:white;"
-    >
+
         <v-card
+
             flat
             tile
-            style="background-color:#9652ff;color:white;width: 100%;"
+            style="background-color:#9652ff;color:white;width: 100%;padding-bottom:-50%"
         >
 
 
@@ -25,7 +22,7 @@
                 <div
 
                 >
-                    <v-divider vertical></v-divider>
+                    <v-divider dark vertical></v-divider>
 
                 </div>
                 <v-col
@@ -37,11 +34,8 @@
                 </v-col>
             </v-row>
 
-            <br>
-
-
         </v-card>
-    </v-footer>
+
 </template>
 <script>
     export default {

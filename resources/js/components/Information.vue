@@ -94,7 +94,7 @@
 
                                                     <v-list-item-subtitle style="color: #000000">{{material.body}}</v-list-item-subtitle>
                                                     <v-list-item-title >
-                                                        <a :href="'http://faisalsarker.com/lms/public/uploads/x/x/material/'+material.file" target="_blank"><button type="button" class="btn btn-sm">Read File</button></a>
+                                                        <a :href="'http://127.0.0.1:8000/uploads/x/x/material/'+material.file" target="_blank"><button type="button" class="btn btn-sm">Read File</button></a>
                                                     </v-list-item-title>
                                                     <v-list-item-subtitle>{{material.created_at}}</v-list-item-subtitle>
                                                 </v-list-item-content>

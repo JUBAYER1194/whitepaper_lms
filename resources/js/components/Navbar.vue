@@ -9,7 +9,7 @@
          dark
          style="font-size:20px;padding-top: 10px;"
          fixed
-         width="300"
+         width="250"
          flat
 
      >
@@ -72,8 +72,6 @@
          flat
          class="grey lighten-2"
          dark
-         style="padding-bottom: 10px"
-
 
 
 

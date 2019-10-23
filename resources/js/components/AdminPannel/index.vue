@@ -1,98 +1,103 @@
 <template>
-    <v-container>
-        <v-card color="basil" style="margin-bottom: 20px;">
-            <v-card-title class="text-center justify-center py-6">
-            </v-card-title>
-
+    <div>
+        <div >
             <v-tabs
-                background-color="transparent"
-                color="white"
+                color="grey lighten-2"  flat
                 grow
                 v-model="tab"
+                center-active
+                mobile-break-point
+
+
+
+
+
             >
                 <v-tab
-
-                    style="color:white;font-size: 15px"
                     :key="item.name"
                     v-for="item in items"
+                    outlined
+                    tile
+                    style="font-size:1em;background-color:#9652ff;color: white;"
+
 
                 >
-
                     {{ item.name }}
-
-
                 </v-tab>
             </v-tabs>
+        </div>
 
-            <v-tabs-items v-model="tab">
-                <v-tab-item>
-                    <v-card style="padding-bottom: 1000%;padding-top:5%">
-                        <AllStudent></AllStudent>
-                    </v-card>
-                </v-tab-item>
-                <v-tab-item>
-                    <v-card style="padding-bottom: 1000%;padding-top:5%">
-                        <AllTeacher></AllTeacher >
-                    </v-card>
-                </v-tab-item>
-                <v-tab-item>
-                    <v-card style="padding-bottom: 1000%;padding-top:5%">
-                        <Request></Request>
-                    </v-card>
-                </v-tab-item>
-            </v-tabs-items>
-        </v-card>
+        <v-tabs-items  v-model="tab">
+            <v-tab-item>
+                <v-card class="grey lighten-4" flat>
+                    <C_lass></C_lass>
+                </v-card>
+            </v-tab-item>
+            <v-tab-item>
+                <v-card class="grey lighten-4" flat>
+                    <All_Student></All_Student>
+                </v-card>
+            </v-tab-item>
+            <v-tab-item>
+                <v-card class="grey lighten-4" flat>
+                    <AllTeacher></AllTeacher >
+                </v-card>
+            </v-tab-item>
+            <v-tab-item>
+                <v-card class="grey lighten-4" flat>
+                    <Request></Request>
+                </v-card>
+            </v-tab-item>
+            <v-tab-item>
+                <v-card class="grey lighten-4" flat>
+                    <Assign></Assign>
+                </v-card>
+            </v-tab-item>
+        </v-tabs-items>
 
 
-    </v-container>
+        {{getmaterial}}
+        {{getuser}}
+        {{getannouncement}}
+        {{getassignment}}
+    </div>
 
 </template>
 <script>
-    import invite_dilog from "../invite_dilog";
-    import dilog from '../Material_dilog.vue';
-    import AllStudent from "./AllStudent.vue";
+    import All_Student from "./AllStudent.vue";
     import AllTeacher from "./AllTeacher.vue";
     import Request from "./Request.vue";
+    import Assign from "./Assign.vue";
+    import C_lass from "./class.vue";
 
     export default {
 
-        components: {dilog, invite_dilog,AllStudent,AllTeacher,Request},
+        components: {AllTeacher, All_Student,Request,Assign,C_lass},
         data() {
             return {
                 tab: null,
                 items: [
                     {
-                        name: 'All Student',
-                        to: '/information',
+                      name:'Class'
                     },
                     {
-                        name: 'All Teacher',
-                        to: '/announcement',
+                        name: 'Student',
 
                     },
                     {
-                        name: 'Request',
-                        to: '/assignment',
+                        name: 'Teacher',
+
 
                     },
+                    {
+                        name: 'Permission',
 
-                ],
-                desserts: [
-                    {
-                        name: 'Class Name:',
-                        calories: 'Physics-107',
+
                     },
                     {
-                        name: 'Section:',
-                        calories: '1',
-                    },
-                    {
-                        name: 'created on:',
-                        calories: '20th Auugust 2019',
-                    },
-                    {
-                        name: 'Class Code:',
-                        calories: '7g58df41',
+                        name: 'Assign',
+
+
                     },
 
 
@@ -100,15 +105,19 @@
 
             }
         },
+
+
+        methods: {
+
+        },
+        computed: {
+
+
+
+        },
     }
 </script>
 <style>
-    /* Helper classes */
-    .basil {
-        background-color: #b380ff !important;
-    }
 
-    .basil--text {
-        color: white !important;
-    }
+
 </style>

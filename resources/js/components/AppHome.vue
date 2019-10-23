@@ -2,7 +2,7 @@
     <div>
         <v-app class="grey lighten-2">
             <Navbar />
-            <v-content class="mx-4 mb-4">
+            <v-content class="mx-1 mb-1">
                 <router-view></router-view>
             </v-content>
             <f> </f>

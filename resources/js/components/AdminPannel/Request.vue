@@ -1,75 +1,47 @@
 <template>
-    <v-container>
-        <v-card
-            max-width="1000"
-            class="mx-auto"
-            height="750"
-            width="900"
-            style="float: left;"
-            flat
+    <v-simple-table
+        fixed-header
+        width="100%"
+        height="100%"
+        class="grey lighten-4"
+        flat
+    >
+        <template v-slot:default>
+            <thead>
+            <tr>
+                <th style=" font-size: 1.2rem " class="text-left font-weight-black">Name</th>
+                <th  style=" font-size: 1.2rem " class="text-left font-weight-black">Profile</th>
+                <th colspan="2" style=" font-size: 1.2rem;" class="text-center font-weight-black">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <v-list  class="grey lighten-4 ma-0 pa-0" subheader>
+                        <v-list-item
+                        >
+                            <v-list-item-avatar>
+                                <v-img src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"></v-img>
+                            </v-list-item-avatar>
+                            <v-list-item-content>
+                                <v-list-item-title> Jubayer Ahmed</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </v-list>
+                </td>
+                <td >
+                    <details_dilog style="float: left"></details_dilog>
+                </td>
 
-        >
-            <v-toolbar
-                color="#9652ff"
-                dark
-            >
-                <v-toolbar-title>Request</v-toolbar-title>
-                <v-toolbar-title style="padding-left: 60%">Action</v-toolbar-title>
+                <td class="text-center">
+                    <v-btn style="margin-left:5%"  color="primary"  depressed >Approve</v-btn>
+                    <v-btn color="error"  depressed >Disapprove</v-btn>
+                </td>
+            </tr>
+            </tbody>
+        </template>
+    </v-simple-table>
 
-                <div class="flex-grow-1"></div>
-
-            </v-toolbar>
-            <v-list>
-                <v-list-item
-                    v-for="item in items"
-                    :key="item.title"
-                    @click=""
-                >
-                    <v-list-item-avatar>
-                        <v-img :src="item.avatar"></v-img>
-                    </v-list-item-avatar>
-                    <v-list-item-content>
-                        <v-list-item-title v-text="item.title"></v-list-item-title>
-                    </v-list-item-content>
-
-                    <v-list-item-content>
-                        <v-row>
-                            <v-col
-                                cols="12"
-                                md="4"
-                            >
-                                <v-list-item-title>
-                                    <details_dilog></details_dilog>
-                                </v-list-item-title>
-                            </v-col>
-                            <v-col
-                             cols="12"
-                             md="4"
-                            >
-                        <v-list-item-title>
-                            <v-btn
-                                style="float: right;background-color: #9652ff;color: white"
-                            >Approve</v-btn>
-
-                        </v-list-item-title>
-                            </v-col>
-                            <v-col
-                                cols="12"
-                                md="4"
-                            >
-                        <v-list-item-title>
-                            <v-btn
-                                style="float: right;background-color:darkred;color: white;display: inline"
-                            >Not Approve</v-btn>
-                        </v-list-item-title>
-                                </v-col>
-
-                            </v-row>
-                    </v-list-item-content>
-                </v-list-item>
-            </v-list>
-        </v-card>
-    </v-container>
 </template>
 <script>
     import details_dilog from "./details_dilog.vue";
@@ -78,27 +50,11 @@
         data () {
             return {
 
-                items: [
-                    { icon: true, title: 'Jason Oner', avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg' },
-                    { title: 'Travis Howard', avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg' },
-                    { title: 'Ali Connors', avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg' },
-                    { title: 'Cindy Baker', avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg' },
-                    { icon: true, title: 'Jason Oner', avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg' },
-                    { title: 'Travis Howard', avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg' },
-                    { title: 'Ali Connors', avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg' },
-                    { title: 'Cindy Baker', avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg' },
-                    { icon: true, title: 'Jason Oner', avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg' },
-                    { title: 'Travis Howard', avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg' },
-                    { title: 'Ali Connors', avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg' },
-                    { title: 'Cindy Baker', avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg' },
-                    { icon: true, title: 'Jason Oner', avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg' },
-                    { title: 'Travis Howard', avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg' },
-                    { title: 'Ali Connors', avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg' },
-                    { title: 'Cindy Baker', avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg' },
-                ],
             }
         },
     }
 </script>
-Inbox
+<style>
+
+</style>
 
