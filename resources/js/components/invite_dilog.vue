@@ -2,7 +2,7 @@
     <div>
         <v-dialog v-model="dialog" persistent max-width="600px">
             <template v-slot:activator="{ on }">
-                <v-btn v-on="on"  style="background-color: #9652ff;color:white;">Invite Faculty</v-btn>
+                <v-btn v-on="on"  style="background-color: #3b5998;color:white;">Invite Faculty</v-btn>
             </template>
             <v-card>
                 <v-card-title>
@@ -34,8 +34,8 @@
                 </v-card-text>
                 <v-card-actions>
                     <div class="flex-grow-1"></div>
-                    <v-btn style="background-color:#9652ff;color:white" text @click="dialog = false">Close</v-btn>
-                    <v-btn style="background-color:#9652ff;color:white"  text @click="dialog = false">Send</v-btn>
+                    <v-btn style="background-color:#3b5998;color:white" text @click="dialog = false">Close</v-btn>
+                    <v-btn style="background-color:#3b5998;color:white"  text @click="dialog = false">Send</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>

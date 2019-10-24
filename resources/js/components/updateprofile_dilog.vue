@@ -6,7 +6,7 @@
             </template>
             <v-card>
                 <v-card-title>
-                    <span class="headline" style="color: #9652ff;"> Update Profile</span>
+                    <span class="headline" style="color: #3b5998;"> Update Profile</span>
                 </v-card-title>
                 <v-card-text>
                     <v-container>
@@ -29,8 +29,8 @@
                 </v-card-text>
                 <v-card-actions>
                     <div class="flex-grow-1"></div>
-                    <v-btn style="background-color:#9652ff;color:white" text @click="dialog = false">Close</v-btn>
-                    <v-btn style="background-color:#9652ff;color:white"  text @click="update">Update</v-btn>
+                    <v-btn style="background-color:#3b5998;color:white" text @click="dialog = false">Close</v-btn>
+                    <v-btn style="background-color:#3b5998;color:white"  text @click="update">Update</v-btn>
                     {{created}}
                 </v-card-actions>
             </v-card>

@@ -36,8 +36,8 @@
                 </v-card-text>
                 <v-card-actions>
                     <div class="flex-grow-1"></div>
-                    <v-btn style="background-color:#9652ff;color:white" text @click="dialog = false" >Close</v-btn>
-                    <v-btn style="background-color:#9652ff;color:white"  text  @click="update" >Save</v-btn>
+                    <v-btn style="background-color:#3b5998;color:white" text @click="dialog = false" >Close</v-btn>
+                    <v-btn style="background-color:#3b5998;color:white"  text  @click="update" >Save</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>

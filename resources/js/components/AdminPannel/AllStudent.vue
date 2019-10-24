@@ -1,4 +1,5 @@
 <template>
+    <v-container class="grey lighten-4" style="padding-bottom:25%;margin-top: 0.5%;height: 100%">
     <v-simple-table
         fixed-header
         width="100%"
@@ -10,9 +11,9 @@
             <thead>
             <tr>
                 <th style=" font-size: 1.2rem " class="text-left font-weight-black">Name</th>
-                <th style=" font-size: 1.2rem " class="text-center font-weight-black">Profile</th>
                 <th style=" font-size: 1.2rem " class="text-center font-weight-black">Class</th>
-                <th style=" font-size: 1.2rem; padding-right:5%  " class="text-right font-weight-black">Action</th>
+                <th style=" font-size: 1.2rem " class="text-center font-weight-black">Profile</th>
+                <th colspan="2" style=" font-size: 1.2rem;" class="text-center font-weight-black">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -30,15 +31,16 @@
                         </v-list-item>
                     </v-list>
                 </td>
-
+                <td class="text-center" style="font-size: 1rem">
+                    class-1
+                </td>
                 <td>
                     <details_dilog ></details_dilog>
                 </td>
-                <td>
-                    <h1 style="text-align: center"> class-1</h1>
-                </td>
-                    <td>
-                    <v-btn style="float: right;margin-right:8%;" color="error"  depressed >Delete</v-btn>
+
+                    <td class="text-center">
+                    <v-btn width="100" color="primary mr-lg-6 my-3"  depressed >Assign</v-btn>
+                    <v-btn width="100"   color="error"  depressed >Delete</v-btn>
                 </td>
 
 
@@ -47,7 +49,7 @@
             </tbody>
         </template>
     </v-simple-table>
-
+    </v-container>
 </template>
 <script>
     import details_dilog from "./details_dilog.vue";

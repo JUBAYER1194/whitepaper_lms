@@ -8,7 +8,6 @@ import Calender from'../components/Calender.vue';
 import Profile from'../components/Profile.vue';
 import Class from'../components/Class.vue';
 import Announcement from '../components/Announcement.vue';
-import Discussion from '../components/Discussion.vue';
 import Assignment from '../components/Assaignment.vue';
 import Student from '../components/Student.vue';
 import Information from "../components/Information.vue";
@@ -29,7 +28,6 @@ const routes = [
     { path:'/lms/class/material/:material',component:lesson,name:'material'},
     { path: '/lms/announcement', component: Announcement },
     { path: '/lms/assignment', component: Assignment },
-    { path: '/lms/discussion', component: Discussion },
     { path: '/lms/student', component: Student },
     { path: '/lms/information', component: Information},
     { path: '/lms/admin/dashboard', component: Admin},

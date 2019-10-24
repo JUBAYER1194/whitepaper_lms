@@ -103,7 +103,7 @@
                 cols="12"
                 md="2"
             >
-                <v-btn  @click="createStartExam" style="float: right;color:white;background-color: #9652ff">
+                <v-btn  @click="createStartExam" style="float: right;color:white;background-color: #3b5998">
                     Start Exam
 
                 </v-btn>
@@ -138,7 +138,7 @@
                     <v-btn
                         rounded
                         @click="stopingRunningExam(examx.id)"
-                        style="color: white;background-color: #9652ff"
+                        style="color: white;background-color: #3b5998"
                     >
                         Stop Exam
                     </v-btn>
@@ -148,7 +148,7 @@
                 </v-col>
                 <v-col  cols="12" md="3" class="d-flex">
                     <div  class="text-right">
-                        <div class="font-weight-bold text-right" style="color: #9652ff;" v-if="distance > 0">{{`${days}d ${hours}h ${minutes}m ${seconds}s`}}</div>
+                        <div class="font-weight-bold text-right" style="color: #3b5998;" v-if="distance > 0">{{`${days}d ${hours}h ${minutes}m ${seconds}s`}}</div>
                         <div class="font-weight-bold text-right" v-else style="color: darkred">OVER</div>
                     </div>
                 </v-col>
@@ -168,7 +168,7 @@
 
                         :readonly="readonly"
                         @click="CreateExam"
-                        style="color: white;background-color: #9652ff"
+                        style="color: white;background-color: #3b5998"
                         rounded
                     >Create Exam
                     </v-btn>
@@ -191,7 +191,7 @@
                 <v-btn
                     :readonly="readonlyQuestion"
                     @click="createQuestions"
-                    style="color: white;background-color: #9652ff"
+                    style="color: white;background-color: #3b5998"
                 >Create Question
 
                 </v-btn>
@@ -206,7 +206,7 @@
 
 
                 <v-toolbar class="grey lighten-4" flat>
-                    <h4 style="color:#9652ff;margin-left: 1%;margin-right: 5%"> Creative Question No:{{index+1}}</h4>
+                    <h4 style="color:#3b5998;margin-left: 1%;margin-right: 5%"> Creative Question No:{{index+1}}</h4>
                     <v-btn
                         @click="creativeRemove(index)"
                         class="error"
@@ -328,7 +328,7 @@
             <div v-for="(multiple,index) in multiples">
 
                 <v-toolbar class="grey lighten-4" flat>
-                    <h4 style="color:#9652ff;margin-left: 1%;margin-right: 5%">  Multiple Question No:{{index+1}}</h4>
+                    <h4 style="color:#3b5998;margin-left: 1%;margin-right: 5%">  Multiple Question No:{{index+1}}</h4>
                     <v-btn
                         @click="multipleRemove(index)"
                         class="error"
@@ -410,7 +410,7 @@
             </div>
             <div v-for="(short,index) in shorts">
                 <v-toolbar class="grey lighten-4" flat>
-                    <h4 style="color:#9652ff;margin-left: 1%;margin-right: 5%">Short Question No:{{index+1}}</h4>
+                    <h4 style="color:#3b5998;margin-left: 1%;margin-right: 5%">Short Question No:{{index+1}}</h4>
                     <v-btn
                         @click="shortRemove(index)"
                         class="error"
@@ -439,7 +439,7 @@
             </div>
             <div v-for="(pool,index) in pools">
                 <v-toolbar class="grey lighten-4" flat>
-                    <h4 style="color:#9652ff;margin-left: 1%;margin-right: 5%">Pool Question No:{{index+1}}</h4>
+                    <h4 style="color:#3b5998;margin-left: 1%;margin-right: 5%">Pool Question No:{{index+1}}</h4>
 
                     <v-btn
                         @click="poolRemove(index)"
@@ -541,7 +541,7 @@
         <div v-if="question_s_s.type=='Creative'" v-for="(creative_s,index) in question_s_s.creative_s_s">
             <div>
                 <div style="display: inline-flex;margin:5%">
-                    <h4 style="color:#9652ff"> Creative Question No:{{index+1}}</h4>
+                    <h4 style="color:#3b5998"> Creative Question No:{{index+1}}</h4>
 
                 </div>
                 <v-textarea
@@ -660,7 +660,7 @@
 
                 <div v-for="(multiple_s,index) in question_s_s.multiple_s_s" v-if="question_s_s.type=='Multiple'">
                     <div style="display: inline-flex;margin:5%">
-                        <h4 style="color:#9652ff"> Multiple Question No:{{index+1}}</h4>
+                        <h4 style="color:#3b5998"> Multiple Question No:{{index+1}}</h4>
 
                     </div>
                     <v-textarea
@@ -740,7 +740,7 @@
                 </div>
                 <div v-for="(short_s,index) in question_s_s.short_s_s" v-if="question_s_s.type=='Short'">
                     <div style="display: inline-flex;margin-bottom: 3%;margin-left: 2%">
-                        <h4 style="color:#9652ff"> Short Question No:{{index+1}}</h4>
+                        <h4 style="color:#3b5998"> Short Question No:{{index+1}}</h4>
 
                     </div>
                     <v-textarea
@@ -764,7 +764,7 @@
 
 
                     <div style="display: inline-flex;margin:5%">
-                        <h4 style="color:#9652ff"> Pool Question No:{{index+1}}</h4>
+                        <h4 style="color:#3b5998"> Pool Question No:{{index+1}}</h4>
 
                     </div>
                     <v-textarea

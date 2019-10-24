@@ -16,7 +16,7 @@
                     >
                         <v-card class="elevation-12">
                             <v-toolbar
-                                color="#9652ff"
+                                color="#3b5998"
                                 dark
                                 flat
                             >
@@ -74,10 +74,10 @@
                                 </v-form>
                             </v-card-text>
                             <v-card-actions>
-                                <v-btn style="background-color:#9652ff;color: white;text-transform: none !important;margin: 3%"  @click="login">Login</v-btn>
+                                <v-btn style="background-color:#3b5998;color: white;text-transform: none !important;margin: 3%"  @click="login">Login</v-btn>
                                 <v-spacer></v-spacer>
                                 <v-btn
-                                    style="background-color:#9652ff;color: white;text-transform: none !important;margin: 3%"
+                                    style="background-color:#3b5998;color: white;text-transform: none !important;margin: 3%"
                                     dark
                                     @click="signup"
                                 >

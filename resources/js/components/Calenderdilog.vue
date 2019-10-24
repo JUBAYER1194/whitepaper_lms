@@ -5,7 +5,7 @@
                 <v-btn
                     depressed
                     elevation="10"
-                    style="color: white;background-color: #9652ff;"
+                    style="color: white;background-color: #3b5998;"
                     v-on="on"
 
 

@@ -1,4 +1,5 @@
 <template>
+    <v-container class="grey lighten-4" style="padding-bottom:25%;margin-top: 0.5%;height: 100%">
     <v-simple-table
         fixed-header
         width="100%"
@@ -11,7 +12,7 @@
             <tr>
                 <th style=" font-size: 1.2rem " class="text-left font-weight-black">Name</th>
                 <th style=" font-size: 1.2rem " class="text-center font-weight-black">Profile</th>
-                <th style=" font-size: 1.2rem;padding-right:5%" class="text-right font-weight-black">Action</th>
+                <th colspan="2" style=" font-size: 1.2rem;" class="text-center font-weight-black">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -33,13 +34,15 @@
                     <details_dilog></details_dilog>
                 </td>
 
-                <td class="text-right">
-                    <v-btn class="error" style="float: right;margin-right:8%;" depressed >Delete</v-btn>
+                <td class="text-center">
+                    <v-btn width="100" color="primary mr-lg-6 my-3"  depressed >Assign</v-btn>
+                    <v-btn width="100"   color="error"  depressed >Delete</v-btn>
                 </td>
             </tr>
             </tbody>
         </template>
     </v-simple-table>
+    </v-container>
 
 </template>
 <script>

@@ -1,6 +1,6 @@
 <template>
     <v-card
-        class="mx-auto"
+        class="mx-auto d-flex flex-wrap grey lighten-4"
         max-width="95%"
         flat
 
@@ -106,7 +106,7 @@
                                                     <v-col
                                                         md="4"
                                                     >
-                                                        <a style="text-decoration: none;" :href="'/lms/class/material/'+material.id"><v-btn style="color: white;background-color:#9652ff;" depressed>Click</v-btn></a>
+                                                        <a style="text-decoration: none;" :href="'/lms/class/material/'+material.id"><v-btn style="color: white;background-color:#3b5998;" depressed>Click</v-btn></a>
                                                     </v-col>
                                                     <v-col
                                                         md="4"

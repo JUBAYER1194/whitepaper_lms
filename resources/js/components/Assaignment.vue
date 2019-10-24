@@ -23,7 +23,7 @@
                 style="font-size: 1.3em;padding-bottom: 1.5%;"
             >
                 <v-spacer></v-spacer>
-                <h2 style="color: #9652ff;">
+                <h2 style="color: #3b5998;">
                     Assignments
                 </h2>
                 <v-spacer></v-spacer>

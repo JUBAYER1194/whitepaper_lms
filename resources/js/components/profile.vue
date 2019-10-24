@@ -1,6 +1,6 @@
 <template>
 
-    <v-container class="grey lighten-4" style="padding-bottom:15%;">
+    <div class="grey lighten-4" style="padding-bottom:15%;">
         <!-- Stack the columns on mobile by making one full-width and the other half-width -->
 
 
@@ -21,7 +21,7 @@
                 <v-tab
 
                     outlined
-                    style="font-size:1em;background-color:#9652ff;color: white;"
+                    style="font-size:1em;background-color:#3b5998;color: white;"
                     tile
 
 
@@ -157,14 +157,14 @@
                         </v-list-item-content>
 
                         <v-list-item-avatar
-                            color="#9652ff"
+                            color="#3b5998"
                             size="80"
                             tile
                         ></v-list-item-avatar>
                     </v-list-item>
 
                     <v-card-actions>
-                        <v-btn href="/class" style="color: white;background-color:#9652ff">
+                        <v-btn href="/class" style="color: white;background-color:#3b5998">
                             go to the class
 
                         </v-btn>
@@ -188,14 +188,14 @@
                         </v-list-item-content>
 
                         <v-list-item-avatar
-                            color="#9652ff"
+                            color="#3b5998"
                             size="80"
                             tile
                         ></v-list-item-avatar>
                     </v-list-item>
 
                     <v-card-actions>
-                        <v-btn style="color: white;background-color:#9652ff">go to the class</v-btn>
+                        <v-btn style="color: white;background-color:#3b5998">go to the class</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-col>
@@ -216,14 +216,14 @@
                         </v-list-item-content>
 
                         <v-list-item-avatar
-                            color="#9652ff"
+                            color="#3b5998"
                             size="80"
                             tile
                         ></v-list-item-avatar>
                     </v-list-item>
 
                     <v-card-actions>
-                        <v-btn style="color: white;background-color:#9652ff">go to the class</v-btn>
+                        <v-btn style="color: white;background-color:#3b5998">go to the class</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-col>
@@ -246,14 +246,14 @@
                         </v-list-item-content>
 
                         <v-list-item-avatar
-                            color="#9652ff"
+                            color="#3b5998"
                             size="80"
                             tile
                         ></v-list-item-avatar>
                     </v-list-item>
 
                     <v-card-actions>
-                        <v-btn style="color: white;background-color:#9652ff">go to the class</v-btn>
+                        <v-btn style="color: white;background-color:#3b5998">go to the class</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-col>
@@ -274,14 +274,14 @@
                         </v-list-item-content>
 
                         <v-list-item-avatar
-                            color="#9652ff"
+                            color="#3b5998"
                             size="80"
                             tile
                         ></v-list-item-avatar>
                     </v-list-item>
 
                     <v-card-actions>
-                        <v-btn style="color: white;background-color:#9652ff">go to the class</v-btn>
+                        <v-btn style="color: white;background-color:#3b5998">go to the class</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-col>
@@ -302,14 +302,14 @@
                         </v-list-item-content>
 
                         <v-list-item-avatar
-                            color="#9652ff"
+                            color="#3b5998"
                             size="80"
                             tile
                         ></v-list-item-avatar>
                     </v-list-item>
 
                     <v-card-actions>
-                        <v-btn style="color: white;background-color:#9652ff">go to the class</v-btn>
+                        <v-btn style="color: white;background-color:#3b5998">go to the class</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-col>
@@ -332,14 +332,14 @@
                         </v-list-item-content>
 
                         <v-list-item-avatar
-                            color="#9652ff"
+                            color="#3b5998"
                             size="80"
                             tile
                         ></v-list-item-avatar>
                     </v-list-item>
 
                     <v-card-actions>
-                        <v-btn style="color: white;background-color:#9652ff">go to the class</v-btn>
+                        <v-btn style="color: white;background-color:#3b5998">go to the class</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-col>
@@ -360,14 +360,14 @@
                         </v-list-item-content>
 
                         <v-list-item-avatar
-                            color="#9652ff"
+                            color="#3b5998"
                             size="80"
                             tile
                         ></v-list-item-avatar>
                     </v-list-item>
 
                     <v-card-actions>
-                        <v-btn style="color: white;background-color:#9652ff">go to the class</v-btn>
+                        <v-btn style="color: white;background-color:#3b5998">go to the class</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-col>
@@ -388,19 +388,19 @@
                         </v-list-item-content>
 
                         <v-list-item-avatar
-                            color="#9652ff"
+                            color="#3b5998"
                             size="80"
                             tile
                         ></v-list-item-avatar>
                     </v-list-item>
 
                     <v-card-actions>
-                        <v-btn style="color: white;background-color:#9652ff">go to the class</v-btn>
+                        <v-btn style="color: white;background-color:#3b5998">go to the class</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-col>
         </v-row>
-    </v-container>
+    </div>
 </template>
 <script>
     import dilog from "./updateprofile_dilog";

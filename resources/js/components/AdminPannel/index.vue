@@ -18,7 +18,7 @@
                     v-for="item in items"
                     outlined
                     tile
-                    style="font-size:1em;background-color:#9652ff;color: white;"
+                    style="font-size:1em;background-color:#3b5998;color: white;"
 
 
                 >
@@ -28,6 +28,12 @@
         </div>
 
         <v-tabs-items  v-model="tab">
+            <v-tab-item>
+                <v-card class="grey lighten-4" flat>
+
+                    <Classhead></Classhead>
+                </v-card>
+            </v-tab-item>
             <v-tab-item>
                 <v-card class="grey lighten-4" flat>
                     <C_lass></C_lass>
@@ -48,11 +54,6 @@
                     <Request></Request>
                 </v-card>
             </v-tab-item>
-            <v-tab-item>
-                <v-card class="grey lighten-4" flat>
-                    <Assign></Assign>
-                </v-card>
-            </v-tab-item>
         </v-tabs-items>
 
 
@@ -67,18 +68,21 @@
     import All_Student from "./AllStudent.vue";
     import AllTeacher from "./AllTeacher.vue";
     import Request from "./Request.vue";
-    import Assign from "./Assign.vue";
     import C_lass from "./class.vue";
+    import Classhead from "./classHead.vue"
 
     export default {
 
-        components: {AllTeacher, All_Student,Request,Assign,C_lass},
+        components: {AllTeacher, All_Student,Request,C_lass,Classhead},
         data() {
             return {
                 tab: null,
                 items: [
                     {
-                      name:'Class'
+                        name:'Class'
+                    },
+                    {
+                      name:'Subject'
                     },
                     {
                         name: 'Student',
@@ -94,12 +98,6 @@
 
 
                     },
-                    {
-                        name: 'Assign',
-
-
-                    },
-
 
                 ],
 

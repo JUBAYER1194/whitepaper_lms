@@ -8,9 +8,9 @@
                 v-model="tab"
                 center-active
                 mobile-break-point
-
-
-
+                show-arrows
+                slider-color="#24355c"
+                slider-size="4"
 
 
             >
@@ -19,7 +19,7 @@
                     v-for="item in items"
                     outlined
                     tile
-                    style="font-size: 100%;background-color:#9652ff;color: white;"
+                    style="font-size: 100%;background-color:#3b5998;color: white;"
 
                 >
                     {{ item.name }}

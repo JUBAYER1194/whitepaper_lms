@@ -25,7 +25,7 @@
                     <div class="text--right">
                         <v-btn
                             rounded
-                            style="background-color:#9652ff;color: white"
+                            style="background-color:#3b5998;color: white"
                             @click="exam_done_Change"
                         >
                             Start Exam
@@ -35,7 +35,7 @@
                 </div>
                 <div style="margin-top: 5%" v-else>
                     <div v-if="checkShow==false && showingStartExam && showStartExam ||showExam">
-                        <div class="font-weight-bold text-right" style="color: #9652ff;" v-if="distance > 0">{{`${days}d ${hours}h ${minutes}m ${seconds}s`}}</div>
+                        <div class="font-weight-bold text-right" style="color: #3b5998;" v-if="distance > 0">{{`${days}d ${hours}h ${minutes}m ${seconds}s`}}</div>
                         <div class="font-weight-bold text-right" v-else style="color: darkred">OVER</div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
 
 
                                 <div style="display: inline-flex;margin:5%">
-                                    <h4 style="color:#9652ff"> Creative Question No:{{index+1}}</h4>
+                                    <h4 style="color:#3b5998"> Creative Question No:{{index+1}}</h4>
 
                                 </div>
                                 <v-textarea
@@ -179,7 +179,7 @@
                     <div v-for="(question_s_s,index) in questions_s.question_s">
                         <div v-for="(multiple_s,index) in question_s_s.multiple_s_s" v-if="question_s_s.type=='Multiple'">
                             <div style="display: inline-flex;margin:5%">
-                                <h4 style="color:#9652ff"> Multiple Question No:{{index+1}}</h4>
+                                <h4 style="color:#3b5998"> Multiple Question No:{{index+1}}</h4>
 
                             </div>
                             <v-textarea
@@ -213,7 +213,7 @@
                     <div v-for="(question_s_s,index) in questions_s.question_s">
                         <div v-for="(short_s,index) in question_s_s.short_s_s" v-if="question_s_s.type=='Short'">
                             <div style="display: inline-flex;margin:5%">
-                                <h4 style="color:#9652ff"> Short Question No:{{index+1}}</h4>
+                                <h4 style="color:#3b5998"> Short Question No:{{index+1}}</h4>
 
                             </div>
                             <v-textarea
@@ -248,7 +248,7 @@
 
 
                             <div style="display: inline-flex;margin:5%">
-                                <h4 style="color:#9652ff"> Pool Question No:{{index+1}}</h4>
+                                <h4 style="color:#3b5998"> Pool Question No:{{index+1}}</h4>
 
                             </div>
                             <v-textarea
@@ -270,7 +270,7 @@
                     </div>
                 </div>
 
-                <v-btn rounded @click="submitAnswer"  style="color: white;background-color: #9652ff">
+                <v-btn rounded @click="submitAnswer"  style="color: white;background-color: #3b5998">
                     Post Question
                 </v-btn>
             </div>
@@ -282,7 +282,7 @@
                         <div v-for="(question_s_s,index) in questions_s.question_s">
                             <div v-for="(creative_s,index) in question_s_s.creative_s_s" v-if="question_s_s.type=='Creative'">
                                 <div style="display: inline-flex;margin:5%">
-                                    <h4 style="color:#9652ff"> Creative Question No:{{index+1}}</h4>
+                                    <h4 style="color:#3b5998"> Creative Question No:{{index+1}}</h4>
 
                                 </div>
                                 <v-textarea
@@ -370,7 +370,7 @@
                                 </div>
                                 <div>
                                     <div style="display: inline-flex;margin:5%">
-                                        <h4 style="color:#9652ff"> Answer For Question No:{{index+1}}</h4>
+                                        <h4 style="color:#3b5998"> Answer For Question No:{{index+1}}</h4>
 
                                     </div>
                                     <div v-for="A_creative_s in creative_s.Acreatives" v-if="A_creative_s.user_id==user_id">
@@ -467,7 +467,7 @@
                     <div v-for="(question_s_s,index) in questions_s.question_s">
                         <div v-for="(multiple_s,index) in question_s_s.multiple_s_s" v-if="question_s_s.type=='Multiple'">
                             <div style="display: inline-flex;margin:5%">
-                                <h4 style="color:#9652ff"> Multiple Question No:{{index+1}}</h4>
+                                <h4 style="color:#3b5998"> Multiple Question No:{{index+1}}</h4>
 
                             </div>
                             <v-textarea
@@ -492,7 +492,7 @@
                             ></v-text-field>
                             <div>
                                 <div style="display: inline-flex;margin:5%">
-                                    <h4 style="color:#9652ff"> Multiple Question Answer  No:{{index+1}}</h4>
+                                    <h4 style="color:#3b5998"> Multiple Question Answer  No:{{index+1}}</h4>
 
                                 </div>
                                 <div v-for="(A_multiple_s) in multiple_s.Amultiple" v-if="A_multiple_s.user_id==user_id">
@@ -527,7 +527,7 @@
                     <div v-for="(question_s_s,index) in questions_s.question_s">
                         <div v-for="(short_s,index) in question_s_s.short_s_s" v-if="question_s_s.type=='Short'">
                             <div style="display: inline-flex;margin:5%">
-                                <h4 style="color:#9652ff"> Short Question No:{{index+1}}</h4>
+                                <h4 style="color:#3b5998"> Short Question No:{{index+1}}</h4>
 
                             </div>
                             <v-textarea
@@ -547,7 +547,7 @@
                             ></v-text-field>
                             <div>
                                 <div style="display: inline-flex;margin:5%">
-                                    <h4 style="color:#9652ff"> Answer For Short Question No:{{index+1}}</h4>
+                                    <h4 style="color:#3b5998"> Answer For Short Question No:{{index+1}}</h4>
 
                                 </div>
                                 <div v-for="(A_short) in short_s.Ashort" v-if="A_short.user_id==user_id">
@@ -581,7 +581,7 @@
 
 
                             <div style="display: inline-flex;margin:5%">
-                                <h4 style="color:#9652ff"> Pool Question No:{{index+1}}</h4>
+                                <h4 style="color:#3b5998"> Pool Question No:{{index+1}}</h4>
 
                             </div>
                             <v-textarea
@@ -598,7 +598,7 @@
                             ></v-select>
                             <div>
                                 <div style="display: inline-flex;margin:5%">
-                                    <h4 style="color:#9652ff"> Answer For Pool Question No:{{index+1}}</h4>
+                                    <h4 style="color:#3b5998"> Answer For Pool Question No:{{index+1}}</h4>
                                 </div>
                                 <div v-for="(A_poll_s,index) in poll_s.Apoll" v-if="A_poll_s.user_id==user_id">
 

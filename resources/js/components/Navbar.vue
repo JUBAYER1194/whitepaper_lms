@@ -5,7 +5,7 @@
          :clipped="$vuetify.breakpoint.lgAndUp"
          app
          v-model="drawer"
-         color="#9652ff"
+         color="#3b5998"
          dark
          style="font-size:20px;padding-top: 10px;"
          fixed

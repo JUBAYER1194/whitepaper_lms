@@ -2,7 +2,7 @@
     <v-row justify="center">
         <v-dialog max-width="600px" persistent v-model="dialog">
             <template v-slot:activator="{ on }">
-                <v-btn style="background-color: #9652ff;color: white;" v-on="on">Profile</v-btn>
+                <v-btn style="background-color: #3b5998;color: white;" v-on="on">Profile</v-btn>
             </template>
             <v-card>
                 <v-row class="d-flex" style="margin-bottom: 5%">
@@ -53,10 +53,10 @@
                                 <v-simple-table>
                                     <thead>
                                     <tr>
-                                        <th style="background-color: #9652ff"></th>
+                                        <th style="background-color: #3b5998"></th>
                                         <th
                                             class="white--text"
-                                            style="font-size: large;background-color: #9652ff;"
+                                            style="font-size: large;background-color: #3b5998;"
 
 
                                         >
@@ -82,8 +82,8 @@
                 </v-row>
                 <v-card-actions>
                     <div class="flex-grow-1"></div>
-                    <v-btn  style="background-color:#9652ff;color:white" text @click="dialog = false">Close</v-btn>
-                    <v-btn style="background-color:#9652ff;color:white;text-transform: none"  text @click="dialog = false">Enter Profile</v-btn>
+                    <v-btn  style="background-color:#3b5998;color:white" text @click="dialog = false">Close</v-btn>
+                    <v-btn style="background-color:#3b5998;color:white;text-transform: none"  text @click="dialog = false">Enter Profile</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>

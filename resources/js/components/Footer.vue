@@ -1,38 +1,23 @@
 <template>
 
         <v-card
-
             flat
             tile
-            style="background-color:#9652ff;color:white;width: 100%;padding-bottom:-50%"
+            class="grey lighten-1"
+            dark
         >
 
 
-            <v-row>
-                <v-col
-                    md="5"
-                >
-                    <v-card-text align="right" justify="left"
-                                 style="color:white;"
+
+                    <v-card-text class="text-center font-weight-bold"
+                                 style="background-color:#E0E0E0;color:#757575;"
                     >
-                        powered by — UNIQUE
+                       Powered By —  <a style="text-decoration:none;background-color:#E0E0E0;color:#476bb8;" href="https://ubsbd.com.bd/">Unique Business Systems Limited</a>
+                      <span class="ma-lg-5" style="color:black;">| </span> Developed By — <a style="text-decoration:none;background-color:#E0E0E0;color:#476bb8" href="https://whitepaper.tech">White Paper</a>
                     </v-card-text>
 
-                </v-col>
-                <div
 
-                >
-                    <v-divider dark vertical></v-divider>
 
-                </div>
-                <v-col
-                    md="6"
-                >
-                    <v-card-text  align="left" style="color:white">
-                        developed by — WHITEPAPER
-                    </v-card-text>
-                </v-col>
-            </v-row>
 
         </v-card>
 
