@@ -17,6 +17,9 @@
                 <v-tabs
                     flat
                     grow
+                    slider-size="4"
+                    mobile-break-point
+                    show-arrows
                 >
                     <v-tab>
                         <v-icon left>info</v-icon>

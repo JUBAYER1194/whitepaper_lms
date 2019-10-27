@@ -146,7 +146,7 @@
                  items: [
                      {icon: 'dashboard', text: 'DashBoard',to:"/lms/admin/dashboard"},
                     {icon: 'account_circle', text: 'Profile',to:"/lms/profile"},
-                     {icon: 'calendar_today', text: 'Calender View',to:'/lms/calender'},
+                     {icon: 'calendar_today', text: 'calendar View',to:'/lms/calender'},
 
                 ],
                 classes: {},

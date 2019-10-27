@@ -14,7 +14,7 @@
                         sm8
                         md4
                     >
-                        <v-card class="elevation-12">
+                        <v-card flat class="elevation-5">
                             <v-toolbar
                                 color="#3b5998"
                                 dark
@@ -74,9 +74,10 @@
                                 </v-form>
                             </v-card-text>
                             <v-card-actions>
-                                <v-btn style="background-color:#3b5998;color: white;text-transform: none !important;margin: 3%"  @click="login">Login</v-btn>
+                                <v-btn depressed style="background-color:#3b5998;color: white;text-transform: none !important;margin: 3%"  @click="login">Login</v-btn>
                                 <v-spacer></v-spacer>
                                 <v-btn
+                                    depressed
                                     style="background-color:#3b5998;color: white;text-transform: none !important;margin: 3%"
                                     dark
                                     @click="signup"

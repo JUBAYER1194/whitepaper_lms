@@ -9,7 +9,7 @@
                 center-active
                 mobile-break-point
                 show-arrows
-                slider-color="#24355c"
+                slider-color="white"
                 slider-size="4"
 
 

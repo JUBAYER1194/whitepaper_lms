@@ -44,6 +44,7 @@
                     :return-value.sync="date1"
                     persistent
                     width="290px"
+                    color="red"
                 >
                     <template v-slot:activator="{ on }">
                         <v-text-field
@@ -54,10 +55,10 @@
                             v-on="on"
                         ></v-text-field>
                     </template>
-                    <v-date-picker v-model="date1" scrollable>
+                    <v-date-picker color="#3b5998" v-model="date1" scrollable>
                         <div class="flex-grow-1"></div>
-                        <v-btn text color="primary" @click="modal1 = false">Cancel</v-btn>
-                        <v-btn text color="primary" @click="$refs.dialog.save(date1)">OK</v-btn>
+                        <v-btn text style="background-color: #3b5998;color: white" @click="modal1 = false">Cancel</v-btn>
+                        <v-btn text style="background-color: #3b5998;color: white" @click="$refs.dialog.save(date1)">OK</v-btn>
                     </v-date-picker>
                 </v-dialog>
             </v-col>
@@ -88,6 +89,7 @@
                         ></v-text-field>
                     </template>
                     <v-time-picker
+                        color="#3b5998"
                         v-if="menu2"
                         v-model="time"
                         full-width
@@ -103,7 +105,7 @@
                 cols="12"
                 md="2"
             >
-                <v-btn  @click="createStartExam" style="float: right;color:white;background-color: #3b5998">
+                <v-btn depressed rounded  @click="createStartExam" style="float: right;color:white;background-color: #3b5998">
                     Start Exam
 
                 </v-btn>
@@ -137,6 +139,7 @@
                 >
                     <v-btn
                         rounded
+                        depressed
                         @click="stopingRunningExam(examx.id)"
                         style="color: white;background-color: #3b5998"
                     >
@@ -148,8 +151,8 @@
                 </v-col>
                 <v-col  cols="12" md="3" class="d-flex">
                     <div  class="text-right">
-                        <div class="font-weight-bold text-right" style="color: #3b5998;" v-if="distance > 0">{{`${days}d ${hours}h ${minutes}m ${seconds}s`}}</div>
-                        <div class="font-weight-bold text-right" v-else style="color: darkred">OVER</div>
+                        <div class="font-weight-bold text-right" style="color: #3b5998;" v-if="distance > 0"><h2>{{`${days}d ${hours}h ${minutes}m ${seconds}s`}}</h2></div>
+                        <div class="font-weight-bold text-right" v-else style="color: darkred"><h2>OVER</h2></div>
                     </div>
                 </v-col>
             </v-row>
@@ -165,7 +168,7 @@
             <v-col class="d-flex"
                        sm="3">
                     <v-btn
-
+                        depressed
                         :readonly="readonly"
                         @click="CreateExam"
                         style="color: white;background-color: #3b5998"
@@ -189,6 +192,8 @@
             <v-col class="d-flex" cols="12" sm="3"
                    v-if="show">
                 <v-btn
+                    depressed
+                    rounded
                     :readonly="readonlyQuestion"
                     @click="createQuestions"
                     style="color: white;background-color: #3b5998"
@@ -335,7 +340,7 @@
                         depressed
                         rounded
                         style="float:
-                    right;margin-left:5%"
+                    right;"
                     >Remove
                     </v-btn>
                 </v-toolbar>
@@ -416,7 +421,7 @@
                         class="error"
                         depressed
                         rounded
-                        style="float: right;margin-left:5%"
+                        style="float: right;"
                     >
                         Remove
                     </v-btn>
@@ -446,7 +451,7 @@
                         rounded
                         class="error"
                         depressed
-                        style="float: right;margin-left:5%"
+                        style="float: right;"
                     >Remove
                     </v-btn>
                 </v-toolbar>
@@ -519,11 +524,13 @@
                 @click="postQuestion"
                 class="primary"
                 rounded
+                depressed
                 v-if="x && show"
             >
-                Create Question
+                Submit
             </v-btn>
             <v-btn
+                depressed
                 @click="show=false"
                 class="error"
                 rounded
@@ -1251,10 +1258,7 @@
 
 </script>
 <style>
-    .v-btn__content{
-        text-transform: none;
-        font-size: 1em;
-    }
+
 
     .v-input input {
         font-size: 1.2em;

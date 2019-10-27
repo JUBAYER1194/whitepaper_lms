@@ -4,9 +4,9 @@
             <template v-slot:activator="{ on }">
                 <v-btn
                     depressed
-                    elevation="10"
                     style="color: white;background-color: #3b5998;"
                     v-on="on"
+                    rounded
 
 
                 >
@@ -164,8 +164,8 @@
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn @click="dialog = false" color="blue darken-1" text>Close</v-btn>
-                    <v-btn @click="send" color="blue darken-1" text>Save</v-btn>
+                    <v-btn style="color: white;background-color: #3b5998;" @click="dialog = false"  text>Close</v-btn>
+                    <v-btn style="color: white;background-color: #3b5998;" @click="send" text>Save</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>

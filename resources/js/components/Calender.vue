@@ -1,5 +1,36 @@
 <template>
-    <div>
+    <div class="grey lighten-4" style="padding-bottom:15%;">
+        <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+
+
+        <v-card
+
+            max-width="100%"
+            tile
+            width="100%"
+            flat
+
+        >
+            <v-tabs
+                center-active color="grey lighten-2"
+                flat
+                grow
+                class="mb-5"
+            >
+
+                <v-tab
+
+                    outlined
+                    style="font-size:1em;background-color:#3b5998;color: white;"
+                    tile
+
+
+                >
+
+                    calendar View
+
+                </v-tab>
+            </v-tabs>
         <Dcalender> </Dcalender>
 
     <v-row class="fill-height">
@@ -102,6 +133,7 @@
             </v-sheet>
         </v-col>
     </v-row>
+        </v-card>
     </div>
 </template>
 <script>

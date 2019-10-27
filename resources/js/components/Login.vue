@@ -18,7 +18,7 @@
                         md4
                     >
                         <v-card
-                            class="elevation-12"
+                            class="elevation-5"
                             flat
                         >
                             <v-toolbar
@@ -51,9 +51,9 @@
                                 </v-form>
                             </v-card-text>
                             <v-card-actions>
-                                <v-btn style="background-color:#3b5998;color: white;text-transform: none !important;margin: 3%"  @click="signup">Sign Up</v-btn>
+                                <v-btn depressed style="background-color:#3b5998;color: white;text-transform: none !important;margin: 3%"  @click="signup">Sign Up</v-btn>
                                 <v-spacer></v-spacer>
-                                <v-btn style="background-color:#3b5998;color: white;text-transform: none !important;margin: 3%" type="submit" @click="login">Login</v-btn>
+                                <v-btn depressed style="background-color:#3b5998;color: white;text-transform: none !important;margin: 3%" type="submit" @click="login">Login</v-btn>
 
                             </v-card-actions>
                         </v-card>
@@ -79,7 +79,7 @@
         },
         created(){
             if(User.loggedIn()){
-                this.$router.push({name:'home'})
+                this.$router.push({name:'profile'})
                 // window.location = '/'
             }
 
@@ -87,7 +87,7 @@
         methods:{
             login(){
                User.login(this.form)
-                //this.$router.push({name:'home'})
+
             },
             signup(){
                 window.location = '/signups'

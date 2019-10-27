@@ -2,7 +2,7 @@
     <div>
         <v-dialog v-model="dialog" persistent max-width="600px">
             <template v-slot:activator="{ on }">
-                <v-btn v-on="on"  style="background-color: #3b5998;color:white;">Add Material</v-btn>
+                <v-btn rounded v-on="on"  style="background-color: #3b5998;color:white;">Add Material</v-btn>
             </template>
             <v-card>
                 <v-card-title>

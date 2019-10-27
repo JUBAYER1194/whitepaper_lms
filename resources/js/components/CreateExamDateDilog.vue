@@ -15,10 +15,10 @@
                 v-on="on"
             ></v-text-field>
         </template>
-        <v-date-picker v-model="date" scrollable>
+        <v-date-picker color="#3b5998" v-model="date" scrollable>
             <div class="flex-grow-1"></div>
-            <v-btn text color="primary" @click="modal = false">Cancel</v-btn>
-            <v-btn text color="primary" @click="save(date)">OK</v-btn>
+            <v-btn text style="background-color: #3b5998;color: white" @click="modal = false">Cancel</v-btn>
+            <v-btn text style="background-color: #3b5998;color: white" @click="save(date)">OK</v-btn>
         </v-date-picker>
     </v-dialog>
 </template>

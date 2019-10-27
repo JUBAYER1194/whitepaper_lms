@@ -7,6 +7,7 @@
                 v-model="tab"
                 center-active
                 mobile-break-point
+                slider-size="4"
 
 
 

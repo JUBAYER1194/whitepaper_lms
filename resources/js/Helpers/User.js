@@ -24,7 +24,7 @@ login(data){
 
 
         AppStorage.store(username,access_token)
-        window.location = '/home'
+        window.location = '/lms/profile'
 
 
     }

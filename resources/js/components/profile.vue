@@ -33,16 +33,14 @@
             </v-tabs>
             <v-row class="d-flex" style="margin-bottom: 5%">
                 <v-col
-                    class="d-flex"
+                    class="pt-10 text-center d-flex"
                     md="3"
-                    style="padding-bottom: 23%;padding-top: 4%"
                 >
 
                     <v-img
                     >
                         <v-row
-                            align="end"
-                            class="fill-height"
+                            height="10"
                         >
                             <v-col
                                 align-self="start"
@@ -54,7 +52,7 @@
                                     size="200"
                                     tile
                                     rounded
-                                    style="margin-left:10%;border-radius:5%;"
+                                    style="border-radius:5%;"
                                 >
                                     <v-img
                                         :src="'http://127.0.0.1:8000/uploads/x/x/profile/'+ form.image"></v-img>
@@ -67,7 +65,7 @@
                                 <v-list-item
                                     style="color: #0d47a1"
                                 >
-                                    <v-list-item-content class="title" style="margin-left:17%;">
+                                    <v-list-item-content class="title">
                                         <dilog :data="form"></dilog>
                                     </v-list-item-content>
                                 </v-list-item>
@@ -411,13 +409,16 @@
         data() {
             return {
                 form:{},
+                user_id:0,
 
             }
         },
         created() {
-            axios.get(`/lms/api/information/1`)
+            this.user_id = User.id();
+            axios.get(`/lms/api/information/${this.user_id}`)
                 .then(res=>this.form =res.data.data)
-        }
+        },
+
 
 
     }

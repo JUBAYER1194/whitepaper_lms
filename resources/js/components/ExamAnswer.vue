@@ -25,6 +25,7 @@
                     <div class="text--right">
                         <v-btn
                             rounded
+                            depressed
                             style="background-color:#3b5998;color: white"
                             @click="exam_done_Change"
                         >
@@ -35,8 +36,8 @@
                 </div>
                 <div style="margin-top: 5%" v-else>
                     <div v-if="checkShow==false && showingStartExam && showStartExam ||showExam">
-                        <div class="font-weight-bold text-right" style="color: #3b5998;" v-if="distance > 0">{{`${days}d ${hours}h ${minutes}m ${seconds}s`}}</div>
-                        <div class="font-weight-bold text-right" v-else style="color: darkred">OVER</div>
+                        <div class="font-weight-bold text-right" style="color: #3b5998;" v-if="distance > 0"><h2>{{`${days}d ${hours}h ${minutes}m ${seconds}s`}}</h2></div>
+                        <div class="font-weight-bold text-right" v-else style="color: darkred"><h2>OVER</h2></div>
                     </div>
                 </div>
             </v-row>
@@ -64,7 +65,7 @@
                                 <div>
 
                                     <v-textarea
-                                        :label="'question no '+(index+1)+'(a)'"
+                                        :label="'Question no '+(index+1)+'(a)'"
                                         readonly
                                         outlined
                                         rounded
@@ -72,7 +73,7 @@
 
                                     ></v-textarea>
                                     <v-text-fieldv
-                                        :label="'marks for '+(index+1)+'(a)'"
+                                        :label="'Marks for '+(index+1)+'(a)'"
                                         readonly
                                         filled
                                         rounded
@@ -93,7 +94,7 @@
                                 <div>
 
                                     <v-textarea
-                                        :label="'question no '+(index+1)+'(b)'"
+                                        :label="'Question no '+(index+1)+'(b)'"
                                         readonly
                                         outlined
                                         rounded
@@ -120,14 +121,14 @@
                                 <div>
 
                                     <v-textarea
-                                        :label="'question no '+(index+1)+'(c)'"
+                                        :label="'Question no '+(index+1)+'(c)'"
                                         readonly
                                         outlined
                                         rounded
                                         v-model="creative_s.question_3"
                                     ></v-textarea>
                                     <v-text-field
-                                        :label="'marks for '+(index+1)+'(c)'"
+                                        :label="'Marks for '+(index+1)+'(c)'"
                                         readonly
                                         filled
                                         rounded
@@ -147,14 +148,14 @@
                                 <div>
 
                                     <v-textarea
-                                        :label="'question no '+(index+1)+'(d)'"
+                                        :label="'Question no '+(index+1)+'(d)'"
                                         readonly
                                         outlined
                                         rounded
                                         v-model="creative_s.question_4"
                                     ></v-textarea>
                                     <v-text-field
-                                        :label="'marks for '+(index+1)+'(d)'"
+                                        :label="'Marks for '+(index+1)+'(d)'"
                                         readonly
                                         filled
                                         rounded
@@ -271,7 +272,7 @@
                 </div>
 
                 <v-btn rounded @click="submitAnswer"  style="color: white;background-color: #3b5998">
-                    Post Question
+                    Submit Answer
                 </v-btn>
             </div>
 
@@ -370,7 +371,7 @@
                                 </div>
                                 <div>
                                     <div style="display: inline-flex;margin:5%">
-                                        <h4 style="color:#3b5998"> Answer For Question No:{{index+1}}</h4>
+                                        <h4 style="color:#3b5998"> Answer For Creative Question No:{{index+1}}</h4>
 
                                     </div>
                                     <div v-for="A_creative_s in creative_s.Acreatives" v-if="A_creative_s.user_id==user_id">
@@ -492,7 +493,7 @@
                             ></v-text-field>
                             <div>
                                 <div style="display: inline-flex;margin:5%">
-                                    <h4 style="color:#3b5998"> Multiple Question Answer  No:{{index+1}}</h4>
+                                    <h4 style="color:#3b5998">Answer for Multiple Question No:{{index+1}}</h4>
 
                                 </div>
                                 <div v-for="(A_multiple_s) in multiple_s.Amultiple" v-if="A_multiple_s.user_id==user_id">
