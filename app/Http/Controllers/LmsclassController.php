@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\ClassHead;
 use App\Http\Resources\LmsclassResource;
 use App\Http\Resources\LmsuserResource;
+use App\Http\Resources\SubjectResource;
 use App\Lmsclass;
 use App\User;
 use Illuminate\Http\Request;
@@ -18,6 +20,10 @@ class LmsclassController extends Controller
     public function index()
     {
         //
+
+        $subject=Lmsclass::all();
+        return SubjectResource::collection($subject);
+
     }
 
     /**
@@ -43,8 +49,9 @@ class LmsclassController extends Controller
         $class->name=$request->name;
         $class->section=$request->section;
         $class->user_id=$request->user_id;
-        $class->code=$request->code;
+        $class->status=$request->status;
         $class->description=$request->description;
+        $class->classhead_id=$request->class_head;
         $class->save();
 
     }

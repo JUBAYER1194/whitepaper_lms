@@ -2,9 +2,10 @@
 
 <template>
     <v-container class="grey lighten-4" style="padding-bottom:25%;margin-top: 0.5%;height: 100%">
-        <v-btn depressed rounded style="background-color: #3b5998;color: white">Create Class</v-btn>
+        <head_dialog></head_dialog>
         <br>
         <br>
+
             <v-simple-table
                 fixed-header
                 width="100%"
@@ -22,550 +23,67 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td style="font-size: 1rem">some name</td>
+                    <tr v-for="classHead in classHeads">
+                        <td style="font-size: 1rem">{{classHead.name}}</td>
                         <td class="text-center">
-                            <v-btn depressed style="color:white;background-color:#2196F3">Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
+                            <v-btn v-if="classHead.status==1" depressed style="color:white;background-color:#2196F3">Active</v-btn>
+                            <v-btn v-else width="90" depressed style="color:white;background-color:#ff531a">In-Active</v-btn>
 
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
+                        </td>
+
+                        <td class="text-center">
+                            <Edit_dialog :data="classHead"></Edit_dialog>
+                            <Delete_dialog :data="classHead"></Delete_dialog>
                         </td>
                     </tr>
-                    <tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn width="90" depressed style="color:white;background-color:#ff531a">In-Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn depressed style="color:white;background-color:#2196F3">Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn width="90" depressed style="color:white;background-color:#ff531a">In-Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr><tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn depressed style="color:white;background-color:#2196F3">Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn width="90" depressed style="color:white;background-color:#ff531a">In-Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr><tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn depressed style="color:white;background-color:#2196F3">Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn width="90" depressed style="color:white;background-color:#ff531a">In-Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr><tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn depressed style="color:white;background-color:#2196F3">Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn width="90" depressed style="color:white;background-color:#ff531a">In-Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr><tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn depressed style="color:white;background-color:#2196F3">Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn width="90" depressed style="color:white;background-color:#ff531a">In-Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr><tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn depressed style="color:white;background-color:#2196F3">Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn width="90" depressed style="color:white;background-color:#ff531a">In-Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr><tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn depressed style="color:white;background-color:#2196F3">Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn width="90" depressed style="color:white;background-color:#ff531a">In-Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr><tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn depressed style="color:white;background-color:#2196F3">Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn width="90" depressed style="color:white;background-color:#ff531a">In-Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr><tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn depressed style="color:white;background-color:#2196F3">Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn width="90" depressed style="color:white;background-color:#ff531a">In-Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr><tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn depressed style="color:white;background-color:#2196F3">Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn width="90" depressed style="color:white;background-color:#ff531a">In-Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr><tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn depressed style="color:white;background-color:#2196F3">Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn width="90" depressed style="color:white;background-color:#ff531a">In-Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr><tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn depressed style="color:white;background-color:#2196F3">Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn width="90" depressed style="color:white;background-color:#ff531a">In-Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr><tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn depressed style="color:white;background-color:#2196F3">Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn width="90" depressed style="color:white;background-color:#ff531a">In-Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr><tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn depressed style="color:white;background-color:#2196F3">Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn width="90" depressed style="color:white;background-color:#ff531a">In-Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr><tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn depressed style="color:white;background-color:#2196F3">Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn width="90" depressed style="color:white;background-color:#ff531a">In-Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr><tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn depressed style="color:white;background-color:#2196F3">Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn width="90" depressed style="color:white;background-color:#ff531a">In-Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr><tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn depressed style="color:white;background-color:#2196F3">Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn width="90" depressed style="color:white;background-color:#ff531a">In-Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr><tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn depressed style="color:white;background-color:#2196F3">Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn width="90" depressed style="color:white;background-color:#ff531a">In-Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr><tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn depressed style="color:white;background-color:#2196F3">Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn width="90" depressed style="color:white;background-color:#ff531a">In-Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr><tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn depressed style="color:white;background-color:#2196F3">Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn width="90" depressed style="color:white;background-color:#ff531a">In-Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr><tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn depressed style="color:white;background-color:#2196F3">Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn width="90" depressed style="color:white;background-color:#ff531a">In-Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr><tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn depressed style="color:white;background-color:#2196F3">Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn width="90" depressed style="color:white;background-color:#ff531a">In-Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr><tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn depressed style="color:white;background-color:#2196F3">Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn width="90" depressed style="color:white;background-color:#ff531a">In-Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr><tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn depressed style="color:white;background-color:#2196F3">Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 1rem">some name</td>
-                        <td class="text-center">
-                            <v-btn width="90" depressed style="color:white;background-color:#ff531a">In-Active</v-btn>
-                        </td>
-                        <td class="text-center">
-                            <v-btn  width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
-
-                            <v-btn width="60" depressed class="error my-3">Delete</v-btn>
-                        </td>
-                    </tr>
-
                     </tbody>
                 </template>
             </v-simple-table>
-
+{{  getclassHead}}
     </v-container>
 
 </template>
 <script>
     import details_dilog from "./details_dilog.vue";
+    import head_dialog from "./class_head_dialog.vue"
+    import Edit_dialog from "./Edit_class_head.vue";
+    import Delete_dialog from "./Delete_class_head.vue";
     export default {
-        components:{details_dilog},
+        props:['data'],
+        components:{details_dilog,head_dialog,Edit_dialog,Delete_dialog},
         data () {
             return {
+                classHeads:{},
+                deleteId:null,
 
             }
         },
+        created()
+        {
+          this.Createhead();
+          this.Deletehead();
+        },
+        methods:
+            {
+                Createhead(){
+                    EventBus.$on('class-head-created',(ann) =>{
+                        this.classHeads.unshift(ann)
+                    })
+                },
+                Deletehead(){
+                    EventBus.$on('class-head-deleted',(annd) =>{
+                        this.classHeads.splice(this.classHeads.indexOf(annd), 1);
+                    })
+                },
+            },
+        computed:{
+            getclassHead() {
+                this.classHeads=this.data;
+            }
+        }
+
+
+
     }
 </script>
 <style>

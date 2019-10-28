@@ -31,7 +31,7 @@
 
                         >
 
-                            profile information
+                            User information
 
                         </v-tab>
                     </v-tabs>

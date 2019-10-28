@@ -16,10 +16,11 @@ class CreateLmsclassesTable extends Migration
         Schema::create('lmsclasses', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
+            $table->integer('classhead_id');
             $table->string('name');
-            $table->integer('section');
+            $table->string('section');
             $table->text('description');
-            $table->integer('code');
+            $table->integer('status');
             $table->timestamps();
         });
     }

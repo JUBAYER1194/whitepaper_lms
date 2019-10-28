@@ -35,5 +35,8 @@ class Lmsclass extends Model
     public function exam(){
         return $this->hasMany(Exam::class,'class_id','id');
     }
+    public function head(){
+        return $this->belongsTo(ClassHead::class,'classhead_id','id');
+    }
 
 }

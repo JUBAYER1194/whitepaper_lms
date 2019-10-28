@@ -1,5 +1,6 @@
 <?php
 
+use App\ClassHead;
 use App\Exam;
 use App\Lmsclass;
 use App\Material;
@@ -49,6 +50,22 @@ class DatabaseSeeder extends Seeder
             'password'=>'whitepaper'
 
 
+        ]);
+        ClassHead::create([
+            'name'=>'class 1',
+            'status'=>1
+        ]);
+        ClassHead::create([
+            'name'=>'class 1',
+            'status'=>2
+        ]);
+        ClassHead::create([
+            'name'=>'class 1',
+            'status'=>3
+        ]);
+        ClassHead::create([
+            'name'=>'class 1',
+            'status'=>4
         ]);
 
 

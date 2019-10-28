@@ -55,10 +55,11 @@ $factory->define(Assaignment::class, function (Faker $faker) {
 $factory->define(Lmsclass::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
+        'classhead_id'=>$faker->randomDigitNotNull,
         'user_id'=>1,
         'description'=>$faker->text,
         'section'=>$faker->randomDigitNotNull,
-        'code'=>$faker->randomDigit,
+        'status'=>$faker->randomDigit,
 
     ];
 });

@@ -32,12 +32,12 @@
             <v-tab-item>
                 <v-card class="grey lighten-4" flat>
 
-                    <Classhead></Classhead>
+                    <Classhead :data="class_head"></Classhead>
                 </v-card>
             </v-tab-item>
             <v-tab-item>
                 <v-card class="grey lighten-4" flat>
-                    <C_lass></C_lass>
+                    <C_lass :dataH="class_head" :datafld="subjects"></C_lass>
                 </v-card>
             </v-tab-item>
             <v-tab-item>
@@ -101,12 +101,31 @@
                     },
 
                 ],
+                class_head:{},
+                subjects:{},
 
             }
+        },
+        created()
+        {
+           this. getclassHead();
+           this.getSubject();
         },
 
 
         methods: {
+            getclassHead() {
+                axios.get('/lms/api/class-head')
+                    .then(res => this.class_head = res.data)
+
+
+            },
+            getSubject()
+            {
+                axios.get('/lms/api/class')
+                    .then(res => this.subjects = res.data.data)
+
+            },
 
         },
         computed: {
