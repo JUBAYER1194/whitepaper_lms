@@ -3,6 +3,10 @@
 
 Route::get('/role','ApiRoleController@index')->name('role');
 Route::get('/information/{id}','ApiUserController@index');
+Route::get('/request_user','ApiUserController@request_user');
+Route::patch('/user/accept_user/{id}','ApiUserController@accept_user');
+Route::delete('/user/delete_user/{id}','ApiUserController@delete_user');
+Route::get('/user/student_user','ApiUserController@student_user');
 Route::put('/information/{id}','ApiUserController@update');
 Route::Resource('announcement', 'AnnouncementController');
 Route::Resource('class/assignment','AssaignmentController');

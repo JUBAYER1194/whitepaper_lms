@@ -91,6 +91,16 @@ class LmsclassController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $subject=Lmsclass::find($id);
+        $subject->classhead_id=$request->class_id;
+        $subject->name=$request->name;
+        $subject->section=$request->section;
+        $subject->description=$request->description;
+        $subject->status=$request->status;
+        $subject->update();
+
+
     }
 
     /**
@@ -102,6 +112,8 @@ class LmsclassController extends Controller
     public function destroy($id)
     {
         //
+        $subject_delete=Lmsclass::find($id);
+        $subject_delete->delete();
     }
     public function information(Lmsclass $name)
     {

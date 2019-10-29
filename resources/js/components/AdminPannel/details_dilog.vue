@@ -2,7 +2,7 @@
     <v-row justify="center">
         <v-dialog max-width="600px" persistent v-model="dialog">
             <template v-slot:activator="{ on }">
-                <v-btn depressed style="background-color: #3b5998;color: white;" v-on="on">Profile</v-btn>
+                <v-btn small depressed style="background-color: #3b5998;color: white;" v-on="on">Profile</v-btn>
             </template>
             <v-card
 

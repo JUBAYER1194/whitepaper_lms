@@ -132,11 +132,9 @@
     </div>
 </template>
 <script>
-    import dilog from './Dilog.vue';
 
     export default
     {
-        components: { dilog},
         data(){
 
             return {

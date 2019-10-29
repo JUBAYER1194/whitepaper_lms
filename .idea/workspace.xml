@@ -2,22 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03434f23-f88b-48c6-bc77-19b79d88e8b8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ApiUserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ApiUserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LmsclassController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LmsclassController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Lmsclass.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Lmsclass.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/SubjectResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/SubjectResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/UserResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/UserResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/permission.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_09_18_064228_create_permission_tables.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2019_09_21_042645_create_lmsclasses_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_09_21_042645_create_lmsclasses_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/AdminPannel/class.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AdminPannel/class.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/AdminPannel/Request.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AdminPannel/Request.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/AdminPannel/class.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AdminPannel/Subject.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/AdminPannel/classHead.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AdminPannel/classHead.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/AdminPannel/class_Profile_dialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AdminPannel/subject_Profile_dialog.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/AdminPannel/details_dilog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AdminPannel/details_dilog.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/AdminPannel/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AdminPannel/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Dilog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Dilog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Dilog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AdminPannel/Create_subject_dialog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Navbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Navbar.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -171,12 +179,12 @@
       <path value="$PROJECT_DIR$/vendor/tymon/jwt-auth" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-util" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php56" />
-      <path value="$PROJECT_DIR$/vendor/spatie/laravel-permission" />
       <path value="$PROJECT_DIR$/vendor/beyondcode/laravel-er-diagram-generator" />
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/graphviz" />
       <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
       <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
       <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
+      <path value="$PROJECT_DIR$/vendor/spatie/laravel-permission" />
     </include_path>
   </component>
   <component name="ProjectId" id="1QYP0flzp6ATtMF1Ncte2YUOpx0" />
@@ -187,7 +195,7 @@
     <property name="DatabaseDriversLRU" value="java.sql.Driver&#10;mysql" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../realtimeApp" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -199,19 +207,19 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2019.2.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\123456\lms\public\uploads\x\x\material" />
-      <recent name="E:\Xampp\htdocs\lms" />
-      <recent name="D:\New folder\htdocs\lms\resources\js\components" />
-      <recent name="C:\xampp\htdocs\3rd september 2019\lms" />
-      <recent name="E:\Xampp\htdocs\lms\resources" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Xampp\htdocs\lms\resources\js\components\AdminPannel" />
       <recent name="E:\Xampp\htdocs\lms\public\uploads\x\x" />
       <recent name="E:\Xampp\htdocs\lms\public\uploads\x" />
       <recent name="D:\New folder\htdocs\lms\resources\js\components" />
       <recent name="E:\Xampp\htdocs\lms\resources\views" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\123456\lms\public\uploads\x\x\material" />
+      <recent name="E:\Xampp\htdocs\lms" />
+      <recent name="D:\New folder\htdocs\lms\resources\js\components" />
+      <recent name="C:\xampp\htdocs\3rd september 2019\lms" />
+      <recent name="E:\Xampp\htdocs\lms\resources" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -333,6 +341,7 @@
       <workItem from="1572011821059" duration="12222000" />
       <workItem from="1572240041673" duration="537000" />
       <workItem from="1572240616509" duration="21019000" />
+      <workItem from="1572325049732" duration="23150000" />
     </task>
     <servers />
   </component>
@@ -359,7 +368,7 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/resources/js/components/Dilog.vue</url>
+          <url>file://$PROJECT_DIR$/resources/js/components/AdminPannel/Create_subject_dialog.vue</url>
           <line>54</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>

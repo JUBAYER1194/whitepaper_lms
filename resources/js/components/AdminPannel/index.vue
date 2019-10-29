@@ -52,7 +52,7 @@
             </v-tab-item>
             <v-tab-item>
                 <v-card class="grey lighten-4" flat>
-                    <Request></Request>
+                    <Request :data="request_user"></Request>
                 </v-card>
             </v-tab-item>
         </v-tabs-items>
@@ -69,7 +69,7 @@
     import All_Student from "./AllStudent.vue";
     import AllTeacher from "./AllTeacher.vue";
     import Request from "./Request.vue";
-    import C_lass from "./class.vue";
+    import C_lass from "./Subject.vue";
     import Classhead from "./classHead.vue"
 
     export default {
@@ -103,6 +103,8 @@
                 ],
                 class_head:{},
                 subjects:{},
+                request_user:{},
+                student_user:{},
 
             }
         },
@@ -110,6 +112,8 @@
         {
            this. getclassHead();
            this.getSubject();
+           this.getRequest_user();
+           this.getStudent_user();
         },
 
 
@@ -125,6 +129,14 @@
                 axios.get('/lms/api/class')
                     .then(res => this.subjects = res.data.data)
 
+            },
+            getRequest_user(){
+                axios.get('/lms/api/request_user')
+                    .then(res => this.request_user = res.data.data)
+            },
+            getStudent_user(){
+                axios.get('/lms/api/user/student_user')
+                    .then(res => this.student_user = res.data)
             },
 
         },

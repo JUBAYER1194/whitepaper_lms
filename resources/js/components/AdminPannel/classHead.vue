@@ -26,8 +26,8 @@
                     <tr v-for="classHead in classHeads">
                         <td style="font-size: 1rem">{{classHead.name}}</td>
                         <td class="text-center">
-                            <v-btn v-if="classHead.status==1" depressed style="color:white;background-color:#2196F3">Active</v-btn>
-                            <v-btn v-else width="90" depressed style="color:white;background-color:#ff531a">In-Active</v-btn>
+                            <v-btn width="80" small v-if="classHead.status==1" depressed class="info">Active</v-btn>
+                            <v-btn small v-else width="80"  depressed style="color:white;background-color:#ff531a">In-Active</v-btn>
 
                         </td>
 

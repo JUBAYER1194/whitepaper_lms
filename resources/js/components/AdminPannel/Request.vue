@@ -10,437 +10,25 @@
         <template v-slot:default>
             <thead>
             <tr>
+                <th width="1" class="ma-0 pa-0"></th>
                 <th style=" font-size: 1.2rem " class="text-left font-weight-black">Name</th>
                 <th  style=" font-size: 1.2rem " class="text-left font-weight-black">Profile</th>
                 <th colspan="2" style=" font-size: 1.2rem;" class="text-center font-weight-black">Action</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
+            <tr v-for="(user,index) in data">
+                <td>{{index+1}}</td>
                 <td>
-                    <v-list  class="grey lighten-4 ma-0 pa-0" subheader>
-                        <v-list-item
-                        >
-                            <v-list-item-avatar>
-                                <v-img src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"></v-img>
-                            </v-list-item-avatar>
-                            <v-list-item-content>
-                                <v-list-item-title> Jubayer Ahmed</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-list>
+                    {{user.first_name}} {{user.last_name}}
                 </td>
                 <td >
-                    <details_dilog style="float: left"></details_dilog>
+                    <Request_details_dialog :data="user" style="float: left"></Request_details_dialog>
                 </td>
 
                 <td class="text-center ">
-                    <v-btn  width="100"   class="primary mx-lg-6 my-3"  depressed >Approve</v-btn>
-                    <v-btn color="error my-3" width="100"  depressed >Disapprove</v-btn>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <v-list  class="grey lighten-4 ma-0 pa-0" subheader>
-                        <v-list-item
-                        >
-                            <v-list-item-avatar>
-                                <v-img src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"></v-img>
-                            </v-list-item-avatar>
-                            <v-list-item-content>
-                                <v-list-item-title> Jubayer Ahmed</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-list>
-                </td>
-                <td >
-                    <details_dilog style="float: left"></details_dilog>
-                </td>
-
-                <td class="text-center ">
-                    <v-btn  width="100"   class="primary mx-lg-6 my-3"  depressed >Approve</v-btn>
-                    <v-btn color="error my-3" width="100"  depressed >Disapprove</v-btn>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <v-list  class="grey lighten-4 ma-0 pa-0" subheader>
-                        <v-list-item
-                        >
-                            <v-list-item-avatar>
-                                <v-img src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"></v-img>
-                            </v-list-item-avatar>
-                            <v-list-item-content>
-                                <v-list-item-title> Jubayer Ahmed</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-list>
-                </td>
-                <td >
-                    <details_dilog style="float: left"></details_dilog>
-                </td>
-
-                <td class="text-center ">
-                    <v-btn  width="100"   class="primary mx-lg-6 my-3"  depressed >Approve</v-btn>
-                    <v-btn color="error my-3" width="100"  depressed >Disapprove</v-btn>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <v-list  class="grey lighten-4 ma-0 pa-0" subheader>
-                        <v-list-item
-                        >
-                            <v-list-item-avatar>
-                                <v-img src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"></v-img>
-                            </v-list-item-avatar>
-                            <v-list-item-content>
-                                <v-list-item-title> Jubayer Ahmed</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-list>
-                </td>
-                <td >
-                    <details_dilog style="float: left"></details_dilog>
-                </td>
-
-                <td class="text-center ">
-                    <v-btn  width="100"   class="primary mx-lg-6 my-3"  depressed >Approve</v-btn>
-                    <v-btn color="error my-3" width="100"  depressed >Disapprove</v-btn>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <v-list  class="grey lighten-4 ma-0 pa-0" subheader>
-                        <v-list-item
-                        >
-                            <v-list-item-avatar>
-                                <v-img src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"></v-img>
-                            </v-list-item-avatar>
-                            <v-list-item-content>
-                                <v-list-item-title> Jubayer Ahmed</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-list>
-                </td>
-                <td >
-                    <details_dilog style="float: left"></details_dilog>
-                </td>
-
-                <td class="text-center ">
-                    <v-btn  width="100"   class="primary mx-lg-6 my-3"  depressed >Approve</v-btn>
-                    <v-btn color="error my-3" width="100"  depressed >Disapprove</v-btn>
-                </td>
-            </tr><tr>
-                <td>
-                    <v-list  class="grey lighten-4 ma-0 pa-0" subheader>
-                        <v-list-item
-                        >
-                            <v-list-item-avatar>
-                                <v-img src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"></v-img>
-                            </v-list-item-avatar>
-                            <v-list-item-content>
-                                <v-list-item-title> Jubayer Ahmed</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-list>
-                </td>
-                <td >
-                    <details_dilog style="float: left"></details_dilog>
-                </td>
-
-                <td class="text-center ">
-                    <v-btn  width="100"   class="primary mx-lg-6 my-3"  depressed >Approve</v-btn>
-                    <v-btn color="error my-3" width="100"  depressed >Disapprove</v-btn>
-                </td>
-            </tr><tr>
-                <td>
-                    <v-list  class="grey lighten-4 ma-0 pa-0" subheader>
-                        <v-list-item
-                        >
-                            <v-list-item-avatar>
-                                <v-img src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"></v-img>
-                            </v-list-item-avatar>
-                            <v-list-item-content>
-                                <v-list-item-title> Jubayer Ahmed</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-list>
-                </td>
-                <td >
-                    <details_dilog style="float: left"></details_dilog>
-                </td>
-
-                <td class="text-center ">
-                    <v-btn  width="100"   class="primary mx-lg-6 my-3"  depressed >Approve</v-btn>
-                    <v-btn color="error my-3" width="100"  depressed >Disapprove</v-btn>
-                </td>
-            </tr><tr>
-                <td>
-                    <v-list  class="grey lighten-4 ma-0 pa-0" subheader>
-                        <v-list-item
-                        >
-                            <v-list-item-avatar>
-                                <v-img src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"></v-img>
-                            </v-list-item-avatar>
-                            <v-list-item-content>
-                                <v-list-item-title> Jubayer Ahmed</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-list>
-                </td>
-                <td >
-                    <details_dilog style="float: left"></details_dilog>
-                </td>
-
-                <td class="text-center ">
-                    <v-btn  width="100"   class="primary mx-lg-6 my-3"  depressed >Approve</v-btn>
-                    <v-btn color="error my-3" width="100"  depressed >Disapprove</v-btn>
-                </td>
-            </tr><tr>
-                <td>
-                    <v-list  class="grey lighten-4 ma-0 pa-0" subheader>
-                        <v-list-item
-                        >
-                            <v-list-item-avatar>
-                                <v-img src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"></v-img>
-                            </v-list-item-avatar>
-                            <v-list-item-content>
-                                <v-list-item-title> Jubayer Ahmed</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-list>
-                </td>
-                <td >
-                    <details_dilog style="float: left"></details_dilog>
-                </td>
-
-                <td class="text-center ">
-                    <v-btn  width="100"   class="primary mx-lg-6 my-3"  depressed >Approve</v-btn>
-                    <v-btn color="error my-3" width="100"  depressed >Disapprove</v-btn>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <v-list  class="grey lighten-4 ma-0 pa-0" subheader>
-                        <v-list-item
-                        >
-                            <v-list-item-avatar>
-                                <v-img src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"></v-img>
-                            </v-list-item-avatar>
-                            <v-list-item-content>
-                                <v-list-item-title> Jubayer Ahmed</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-list>
-                </td>
-                <td >
-                    <details_dilog style="float: left"></details_dilog>
-                </td>
-
-                <td class="text-center ">
-                    <v-btn  width="100"   class="primary mx-lg-6 my-3"  depressed >Approve</v-btn>
-                    <v-btn color="error my-3" width="100"  depressed >Disapprove</v-btn>
-                </td>
-            </tr><tr>
-                <td>
-                    <v-list  class="grey lighten-4 ma-0 pa-0" subheader>
-                        <v-list-item
-                        >
-                            <v-list-item-avatar>
-                                <v-img src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"></v-img>
-                            </v-list-item-avatar>
-                            <v-list-item-content>
-                                <v-list-item-title> Jubayer Ahmed</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-list>
-                </td>
-                <td >
-                    <details_dilog style="float: left"></details_dilog>
-                </td>
-
-                <td class="text-center ">
-                    <v-btn  width="100"   class="primary mx-lg-6 my-3"  depressed >Approve</v-btn>
-                    <v-btn color="error my-3" width="100"  depressed >Disapprove</v-btn>
-                </td>
-            </tr><tr>
-                <td>
-                    <v-list  class="grey lighten-4 ma-0 pa-0" subheader>
-                        <v-list-item
-                        >
-                            <v-list-item-avatar>
-                                <v-img src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"></v-img>
-                            </v-list-item-avatar>
-                            <v-list-item-content>
-                                <v-list-item-title> Jubayer Ahmed</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-list>
-                </td>
-                <td >
-                    <details_dilog style="float: left"></details_dilog>
-                </td>
-
-                <td class="text-center ">
-                    <v-btn  width="100"   class="primary mx-lg-6 my-3"  depressed >Approve</v-btn>
-                    <v-btn color="error my-3" width="100"  depressed >Disapprove</v-btn>
-                </td>
-            </tr><tr>
-                <td>
-                    <v-list  class="grey lighten-4 ma-0 pa-0" subheader>
-                        <v-list-item
-                        >
-                            <v-list-item-avatar>
-                                <v-img src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"></v-img>
-                            </v-list-item-avatar>
-                            <v-list-item-content>
-                                <v-list-item-title> Jubayer Ahmed</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-list>
-                </td>
-                <td >
-                    <details_dilog style="float: left"></details_dilog>
-                </td>
-
-                <td class="text-center ">
-                    <v-btn  width="100"   class="primary mx-lg-6 my-3"  depressed >Approve</v-btn>
-                    <v-btn color="error my-3" width="100"  depressed >Disapprove</v-btn>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <v-list  class="grey lighten-4 ma-0 pa-0" subheader>
-                        <v-list-item
-                        >
-                            <v-list-item-avatar>
-                                <v-img src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"></v-img>
-                            </v-list-item-avatar>
-                            <v-list-item-content>
-                                <v-list-item-title> Jubayer Ahmed</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-list>
-                </td>
-                <td >
-                    <details_dilog style="float: left"></details_dilog>
-                </td>
-
-                <td class="text-center ">
-                    <v-btn  width="100"   class="primary mx-lg-6 my-3"  depressed >Approve</v-btn>
-                    <v-btn color="error my-3" width="100"  depressed >Disapprove</v-btn>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <v-list  class="grey lighten-4 ma-0 pa-0" subheader>
-                        <v-list-item
-                        >
-                            <v-list-item-avatar>
-                                <v-img src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"></v-img>
-                            </v-list-item-avatar>
-                            <v-list-item-content>
-                                <v-list-item-title> Jubayer Ahmed</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-list>
-                </td>
-                <td >
-                    <details_dilog style="float: left"></details_dilog>
-                </td>
-
-                <td class="text-center ">
-                    <v-btn  width="100"   class="primary mx-lg-6 my-3"  depressed >Approve</v-btn>
-                    <v-btn color="error my-3" width="100"  depressed >Disapprove</v-btn>
-                </td>
-            </tr><tr>
-                <td>
-                    <v-list  class="grey lighten-4 ma-0 pa-0" subheader>
-                        <v-list-item
-                        >
-                            <v-list-item-avatar>
-                                <v-img src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"></v-img>
-                            </v-list-item-avatar>
-                            <v-list-item-content>
-                                <v-list-item-title> Jubayer Ahmed</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-list>
-                </td>
-                <td >
-                    <details_dilog style="float: left"></details_dilog>
-                </td>
-
-                <td class="text-center ">
-                    <v-btn  width="100"   class="primary mx-lg-6 my-3"  depressed >Approve</v-btn>
-                    <v-btn color="error my-3" width="100"  depressed >Disapprove</v-btn>
-                </td>
-            </tr><tr>
-                <td>
-                    <v-list  class="grey lighten-4 ma-0 pa-0" subheader>
-                        <v-list-item
-                        >
-                            <v-list-item-avatar>
-                                <v-img src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"></v-img>
-                            </v-list-item-avatar>
-                            <v-list-item-content>
-                                <v-list-item-title> Jubayer Ahmed</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-list>
-                </td>
-                <td >
-                    <details_dilog style="float: left"></details_dilog>
-                </td>
-
-                <td class="text-center ">
-                    <v-btn  width="100"   class="primary mx-lg-6 my-3"  depressed >Approve</v-btn>
-                    <v-btn color="error my-3" width="100"  depressed >Disapprove</v-btn>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <v-list  class="grey lighten-4 ma-0 pa-0" subheader>
-                        <v-list-item
-                        >
-                            <v-list-item-avatar>
-                                <v-img src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"></v-img>
-                            </v-list-item-avatar>
-                            <v-list-item-content>
-                                <v-list-item-title> Jubayer Ahmed</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-list>
-                </td>
-                <td >
-                    <details_dilog style="float: left"></details_dilog>
-                </td>
-
-                <td class="text-center ">
-                    <v-btn  width="100"   class="primary mx-lg-6 my-3"  depressed >Approve</v-btn>
-                    <v-btn color="error my-3" width="100"  depressed >Disapprove</v-btn>
-                </td>
-            </tr><tr>
-                <td>
-                    <v-list  class="grey lighten-4 ma-0 pa-0" subheader>
-                        <v-list-item
-                        >
-                            <v-list-item-avatar>
-                                <v-img src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"></v-img>
-                            </v-list-item-avatar>
-                            <v-list-item-content>
-                                <v-list-item-title> Jubayer Ahmed</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-list>
-                </td>
-                <td >
-                    <details_dilog style="float: left"></details_dilog>
-                </td>
-
-                <td class="text-center ">
-                    <v-btn  width="100"   class="primary mx-lg-6 my-3"  depressed >Approve</v-btn>
-                    <v-btn color="error my-3" width="100"  depressed >Disapprove</v-btn>
+                    <v-btn small  width="70"   class="primary mx-lg-6 my-3" @click="accepting_user(user)"  depressed >Accept</v-btn>
+                    <Delete_Request :data="user"></Delete_Request>
                 </td>
             </tr>
             </tbody>
@@ -450,14 +38,35 @@
 
 </template>
 <script>
-    import details_dilog from "./details_dilog.vue";
+    import Request_details_dialog from "./Request_details_dialog.vue";
+    import Delete_Request from "./Delete_Request.vue";
     export default {
-        components:{details_dilog},
+        props:['data'],
+        components:{Request_details_dialog,Delete_Request},
         data () {
             return {
 
             }
         },
+        created(){
+            this.not_Accepting_user();
+        },
+        methods:
+            {
+                accepting_user(user)
+                {
+                    axios.patch(`/lms/api/user/accept_user/${user.id}`)
+                        .then(res =>this.data.splice(this.data.indexOf(user), 1),this.$toasted.show('User Accepted',{type:'success'}),
+
+                        )
+                },
+                not_Accepting_user()
+                {
+                    EventBus.$on('user-deleted',(userDelete) =>{
+                        this.data.splice(this.data.indexOf(userDelete), 1);
+                    })
+                },
+            }
     }
 </script>
 <style>

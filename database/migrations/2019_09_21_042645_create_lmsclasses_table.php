@@ -17,6 +17,7 @@ class CreateLmsclassesTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('classhead_id');
+            $table->string('teacher_name')->nullable();
             $table->string('name');
             $table->string('section');
             $table->text('description');

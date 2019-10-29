@@ -6,6 +6,8 @@ use App\Http\Resources\UserResource;
 use App\User;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class ApiUserController extends Controller
 {
@@ -60,5 +62,22 @@ class ApiUserController extends Controller
         return response('Update',Response::HTTP_ACCEPTED);
         //$id->update($request->except('image')+['image'=>$fileName]);
 
+    }
+    public function request_user(){
+        $users=User::where('status','=',0)->get();
+        return UserResource::collection($users);
+    }
+    public function accept_user($id){
+             $user=User::find($id);
+             $user->status=1;
+             $user->update();
+    }
+    public function delete_user($id){
+        $user=User::find($id);
+        $user->delete();
+    }
+    public function student_user(){
+        $users = User::role('Student')->get();
+        return $users;
     }
 }
