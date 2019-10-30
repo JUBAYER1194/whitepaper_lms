@@ -14,7 +14,6 @@
                         <v-text-field label="Last Name:*" v-model="form.last_name" required ></v-text-field>
                         <v-text-field label="Father Name:*"  v-model="form.father_name" ></v-text-field>
                         <v-text-field label="Mother Name:*"  v-model="form.mother_name" required  ></v-text-field>
-                        <v-text-field label="Class Teacher Name:*"  required v-model="form.class_teacher_name" ></v-text-field>
                         <v-text-field label="Phone No:*"  required v-model="form.phone" ></v-text-field>
                         <v-text-field label="Parents Contact No:*"  required v-model="form.parents_contact" ></v-text-field>
                         <v-text-field label="NId No:*"  required v-model="form.nid" ></v-text-field>
@@ -66,7 +65,7 @@
         },
         methods: {
             update() {
-                axios.put(`/lms/api/information/1`,{form:this.form,check:this.checking})
+                axios.put(`/lms/api/information/${this.form.id}`,{form:this.form,check:this.checking})
                     .then(res => this.dialog = false,this.$toasted.show('profile Updated',{type:'success'}))
             },
             imageChanged(e){

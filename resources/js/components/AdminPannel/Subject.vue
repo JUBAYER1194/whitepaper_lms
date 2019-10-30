@@ -31,11 +31,15 @@
                         {{subject.class_name}}
                     </td>
                     <td style="text-align: center;font-size: 1rem">
-                        <subject_Profile_dialog :datas="datafld"></subject_Profile_dialog>
+                        <subject_Profile_dialog :data="subject"></subject_Profile_dialog>
                     </td>
                     <td class="text-center">
-                        <v-btn small v-if="subject.status==1" depressed style="color:white;background-color:#2196F3">Active</v-btn>
-                        <v-btn small v-else width="90" depressed style="color:white;background-color:#ff531a" >In-Active</v-btn>
+                        <v-btn depressed small style="color:white;background-color:#2196F3" v-if="subject.status==1"
+                               width="70">Active
+                        </v-btn>
+                        <v-btn depressed small style="color:white;background-color:#ff531a" v-else width="70">
+                            In-Active
+                        </v-btn>
                     </td>
                     <td class="text-center">
                         <Edit_Subject_dialog :subject="subject" :datah="dataH"></Edit_Subject_dialog>
@@ -56,6 +60,7 @@
     import Edit_Subject_dialog from "./Edit_Subject_dialog.vue";
     import Delete_subject_dialog from "./Delete_subject_dialog.vue";
     import subject_Profile_dialog from "./subject_Profile_dialog.vue";
+
     export default {
         props:['dataH','datafld'],
         components:{details_dilog,Create_subject_dialog,Edit_Subject_dialog,Delete_subject_dialog,subject_Profile_dialog},

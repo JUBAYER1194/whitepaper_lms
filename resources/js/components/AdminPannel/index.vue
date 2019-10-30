@@ -42,7 +42,7 @@
             </v-tab-item>
             <v-tab-item>
                 <v-card class="grey lighten-4" flat>
-                    <All_Student></All_Student>
+                    <All_Student :dataH="class_head" :datafld="subjects" :data="student_user"></All_Student>
                 </v-card>
             </v-tab-item>
             <v-tab-item>
@@ -136,7 +136,7 @@
             },
             getStudent_user(){
                 axios.get('/lms/api/user/student_user')
-                    .then(res => this.student_user = res.data)
+                    .then(res => this.student_user = res.data.data)
             },
 
         },

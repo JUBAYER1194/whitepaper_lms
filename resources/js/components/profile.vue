@@ -100,12 +100,8 @@
                                 <td class="black--text">{{form.email}}</td>
                             </tr>
                             <tr>
-                                <td class="font-weight-black">Nid:</td>
+                                <td class="font-weight-black">NID:</td>
                                 <td class="black--text text-capitalize">{{form.nid}}</td>
-                            </tr>
-                            <tr>
-                                <td class="font-weight-black">Class Teacher’s Name:</td>
-                                <td class="black--text text-capitalize">{{form.class_teacher_name}}</td>
                             </tr>
                             <tr>
                                 <td class="font-weight-black ">Father’s Name:</td>

@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\studentResource;
 use App\Http\Resources\UserResource;
+use App\lmsClass_user;
 use App\User;
+use App\User_classHead;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\DB;
 
 class ApiUserController extends Controller
 {
@@ -35,7 +39,6 @@ class ApiUserController extends Controller
             $user->last_name=$request->form['last_name'];
             $user->father_name=$request->form['father_name'];
             $user->mother_name=$request->form['mother_name'];
-            $user->class_teacher_name=$request->form['class_teacher_name'];
             $user->phone=$request->form['phone'];
             $user->parents_contact=$request->form['parents_contact'];
             $user->email=$request->form['email'];
@@ -52,7 +55,6 @@ class ApiUserController extends Controller
         $user->last_name=$request->form['last_name'];
         $user->father_name=$request->form['father_name'];
         $user->mother_name=$request->form['mother_name'];
-        $user->class_teacher_name=$request->form['class_teacher_name'];
         $user->phone=$request->form['phone'];
         $user->parents_contact=$request->form['parents_contact'];
         $user->email=$request->form['email'];
@@ -77,7 +79,21 @@ class ApiUserController extends Controller
         $user->delete();
     }
     public function student_user(){
-        $users = User::role('Student')->get();
-        return $users;
+
+        $users = User::role('Student')->whereIn('status', [1, 2])->get();
+        return studentResource::collection($users);
     }
+    public function assign_student(Request $request,$id){
+
+        if ($request->classhead_id!=null) {
+            DB::table('user_class_heads')->updateOrInsert(['user_id' => $id],
+                ['classhead_id' => $request->classHead]
+            );
+        }
+            foreach ($request->subject as $subject){
+                lmsClass_user::updateOrCreate(['lmsclass_id' => $subject,'user_id' =>$id],['lmsclass_id' => $subject,'user_id' =>$id]);
+            }
+        }
+
+
 }

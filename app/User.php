@@ -67,7 +67,7 @@ class User extends Authenticatable implements JWTSubject
 
     }
     public function class(){
-        return $this->belongsToMany(Lmsclass::class,'lmsclass_user');
+        return $this->belongsToMany(Lmsclass::class,'lms_class_users');
     }
     public function material(){
     return $this->hasMany(Material::class)->latest();
@@ -92,7 +92,9 @@ class User extends Authenticatable implements JWTSubject
     public function exams(){
         return $this->belongsToMany(Exam::class,'exam_users','user_id','exam_id');
     }
-
+    public function classHead(){
+        return $this->belongsToMany(ClassHead::class,'user_class_heads','user_id','classHead_id');
+    }
 
 
 

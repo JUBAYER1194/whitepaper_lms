@@ -55,7 +55,7 @@ $factory->define(Assaignment::class, function (Faker $faker) {
 $factory->define(Lmsclass::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'classhead_id'=>$faker->randomDigitNotNull,
+        'classhead_id'=>1,
         'user_id'=>1,
         'description'=>$faker->text,
         'section'=>$faker->randomDigitNotNull,

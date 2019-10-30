@@ -42,7 +42,7 @@
 
                             <v-card-text>
                                 <v-simple-table >
-                                    <tbody v-for="data in datas" align="left">
+                                    <tbody  align="left">
                                     <tr  >
                                         <td class="font-weight-black">Name:</td>
                                         <td class="black--text text-capitalize">{{data.name}}</td>
@@ -81,7 +81,7 @@
 </template>
 <script>
     export default {
-        props:['datas'],
+        props:['data'],
         data: () => ({
             dialog: false,
 

@@ -1623,6 +1623,7 @@
 </template>
 <script>
     import details_dilog from "./details_dilog.vue";
+
     export default {
         components:{details_dilog},
         data () {

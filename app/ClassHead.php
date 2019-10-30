@@ -10,5 +10,8 @@ class ClassHead extends Model
     public function Lms_class(){
         return $this->hasMany( Lmsclass::class,'classhead_id','id');
     }
+    public function UserClass(){
+        return $this->belongsToMany( User::class,'user_class_heads','classhead_id','user_id');
+    }
 
 }

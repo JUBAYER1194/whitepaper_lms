@@ -2,7 +2,8 @@
     <v-row justify="center">
         <v-dialog max-width="600px" persistent v-model="dialog">
             <template v-slot:activator="{ on }">
-                <v-btn small depressed style="background-color: #3b5998;color: white;" v-on="on">Profile</v-btn>
+                <v-btn depressed small style="background-color: #3b5998;color: white;" v-on="on" width="70">Profile
+                </v-btn>
             </template>
             <v-card
 
@@ -53,8 +54,10 @@
                                             rounded
                                             style="margin-left:10%;border-radius:5%;"
                                         >
-                                            <v-img
-                                                src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"></v-img>
+                                            <v-img :src="'http://127.0.0.1:8000/uploads/x/x/profile/blank-profile.png'"
+                                                   v-if="data.image==null"></v-img>
+                                            <v-img :src="'http://127.0.0.1:8000/uploads/x/x/profile/'+ data.image"
+                                                   v-else></v-img>
                                         </v-avatar>
 
                             </v-img>
@@ -67,27 +70,28 @@
 
                             <v-card-text>
                                 <v-simple-table >
-                                    <tbody>
+                                    <tbody align="left">
                                     <tr>
                                         <td class="font-weight-black">Name:</td>
-                                        <td class="black--text text-capitalize">Jubayer Ahmed</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="font-weight-black">Role:</td>
-                                        <td class="black--text text-capitalize">Student</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="font-weight-black">Phone:</td>
-                                        <td class="black--text text-capitalize">01766363513</td>
+                                        <td class="black--text text-capitalize">{{data.first_name}} {{data.last_name}}
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="font-weight-black">Email:</td>
-                                        <td class="black--text">ahmedjubayer54@gmail.com</td>
+                                        <td class="black--text">{{data.email}}</td>
                                     </tr>
-
-
-
-
+                                    <tr>
+                                        <td class="font-weight-black">Phone:</td>
+                                        <td class="black--text text-capitalize">{{data.phone}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-black">NID:</td>
+                                        <td class="black--text text-capitalize">{{data.nid}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-black">Address:</td>
+                                        <td class="black--text text-capitalize">{{data.address}}</td>
+                                    </tr>
                                     </tbody>
                                 </v-simple-table>
 
@@ -98,8 +102,14 @@
 
                 <v-card-actions>
                     <div class="flex-grow-1"></div>
-                    <v-btn  style="background-color:#3b5998;color:white" text @click="dialog = false">Close</v-btn>
-                    <v-btn style="background-color:#3b5998;color:white;text-transform: none"  text @click="dialog = false">Enter Profile</v-btn>
+                    <v-btn @click="dialog = false" class="mr-4" style="background-color:#3b5998;color:white;" text>
+                        Close
+                    </v-btn>
+                    <a :href="'/lms/user_profile/'+data.first_name+'/'+data.id"
+                       style="color:white;text-decoration: none;">
+                        <v-btn style="background-color:#3b5998;color:white;text-transform: none" text>Enter Profile
+                        </v-btn>
+                    </a>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -107,9 +117,11 @@
 </template>
 <script>
     export default {
+        props: ['data'],
         data: () => ({
             dialog: false,
 
         }),
+        methods: {}
     }
 </script>

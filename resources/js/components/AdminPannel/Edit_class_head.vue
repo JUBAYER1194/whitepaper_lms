@@ -2,7 +2,7 @@
 
         <v-dialog  v-model="dialog" persistent max-width="600px">
             <template v-slot:activator="{ on }">
-                <v-btn  v-on="on" width="60" depressed  class="primary mx-lg-6 my-3">Edit</v-btn>
+                <v-btn class="primary mx-lg-6 my-3" depressed small v-on="on" width="80">Edit</v-btn>
             </template>
             <v-card>
                 <v-card-title>

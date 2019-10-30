@@ -20,7 +20,7 @@ class Lmsclass extends Model
     }
 
     public function users(){
-        return $this->belongsToMany(User::class,'lmsclass_user');
+        return $this->belongsToMany(User::class,'lms_class_users');
 
     }
     public function announcement(){

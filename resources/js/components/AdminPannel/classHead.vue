@@ -48,6 +48,7 @@
     import head_dialog from "./class_head_dialog.vue"
     import Edit_dialog from "./Edit_class_head.vue";
     import Delete_dialog from "./Delete_class_head.vue";
+
     export default {
         props:['data'],
         components:{details_dilog,head_dialog,Edit_dialog,Delete_dialog},

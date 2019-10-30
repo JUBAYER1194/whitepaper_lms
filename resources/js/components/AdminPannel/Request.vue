@@ -40,6 +40,7 @@
 <script>
     import Request_details_dialog from "./Request_details_dialog.vue";
     import Delete_Request from "./Delete_Request.vue";
+
     export default {
         props:['data'],
         components:{Request_details_dialog,Delete_Request},

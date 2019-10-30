@@ -69,6 +69,7 @@
                                         item-value="id"
                                         label="Select your Role"
                                         prepend-icon="supervisor_account"
+                                        v-model="form.role_id"
 
                                     ></v-select>
                                 </v-form>
