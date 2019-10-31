@@ -18,7 +18,7 @@
                 <th colspan="2" style=" font-size: 1.2rem;" class="text-center font-weight-black">Action</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody v-if="data.length">
             <tr v-for="(student,index) in data">
                 <td>{{index+1}}</td>
                 <td>
@@ -37,9 +37,17 @@
                         </v-list-item>
                     </v-list>
                 </td>
-                <td class="text-center" style="font-size: 1rem">
-                    class-1
+                <template v-if="student.class_head !=''">
+                <td v-for="(className,index) in student.class_head" class="text-center" style="font-size: 1rem">
+                     {{className.name}}
                 </td>
+                </template>
+                <template v-else>
+                    <td  class="text-center" style="font-size: 1rem">
+                        Not Assigned
+                    </td>
+                </template>
+
                 <td>
                     <details_dilog :data="student"></details_dilog>
                 </td>
@@ -70,6 +78,8 @@
         props: ['data','dataH','datafld'],
         data () {
             return {
+                AllClass:null,
+                AllSubject:null,
 
             }
         },
@@ -77,6 +87,9 @@
             this.deleteStudent();
         },
         methods:{
+            changing(){
+                this.y=1;
+            },
             deleteStudent()
             {
                 EventBus.$on('user-deleted',(userDelete) =>{
@@ -85,6 +98,17 @@
             },
 
         },
+        computed:
+            {
+                gettingClass()
+                {
+
+                },
+                gettingSubject(){
+
+                },
+
+            },
     }
 </script>
 <style>

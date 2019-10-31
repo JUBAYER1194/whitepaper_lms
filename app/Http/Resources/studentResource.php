@@ -28,7 +28,8 @@ class studentResource extends JsonResource
             'address'=>$this->address,
             'Status'=>$this->status,
             'role'=>$this->getRoleNames()->first(),
-            'classHead'=>$this->classHead,
+            'class_head'=>classHeadResorce::collection($this->classHead),
+            'subject'=>SubjectResource::collection($this->lmsclass),
         ];
 
     }

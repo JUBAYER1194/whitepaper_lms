@@ -16,11 +16,11 @@ class LmsclassResource extends JsonResource
     {
         return [
             'id'=>$this->id,
+            'classHead_id'=>$this->classhead_id,
             'name'=>$this->name,
             'section'=>$this->section,
             'description'=>$this->description,
-            'first_name'=>$this->user->first_name,
-            'last_name'=>$this->user->last_name,
+            'teacher_name'=>$this->teacher_name,
             'user_id'=>$this->user_id,
             'code'=>$this->code,
             'exam'=>LmsclassExamresource::collection($this->exam),

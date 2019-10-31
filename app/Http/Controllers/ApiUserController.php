@@ -84,15 +84,9 @@ class ApiUserController extends Controller
         return studentResource::collection($users);
     }
     public function assign_student(Request $request,$id){
-
-        if ($request->classhead_id!=null) {
-            DB::table('user_class_heads')->updateOrInsert(['user_id' => $id],
-                ['classhead_id' => $request->classHead]
-            );
-        }
-            foreach ($request->subject as $subject){
-                lmsClass_user::updateOrCreate(['lmsclass_id' => $subject,'user_id' =>$id],['lmsclass_id' => $subject,'user_id' =>$id]);
-            }
+        $user=User::find($id);
+        $user->classHead()->sync($request->classHead);
+        $user->lmsclass()->sync($request->subject);
         }
 
 

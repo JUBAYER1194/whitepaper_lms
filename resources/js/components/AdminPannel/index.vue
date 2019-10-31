@@ -6,7 +6,6 @@
                 grow
                 v-model="tab"
                 center-active
-                mobile-break-point
                 slider-size="4"
 
 
@@ -57,11 +56,6 @@
             </v-tab-item>
         </v-tabs-items>
 
-
-        {{getmaterial}}
-        {{getuser}}
-        {{getannouncement}}
-        {{getassignment}}
     </div>
 
 </template>

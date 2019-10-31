@@ -10,12 +10,12 @@
             </v-card-title>
             <v-card-text>
                 <v-container>
-                    <v-row>
 
 
-                        <v-col cols="12" sm="12" md="6">
+
+
                             <v-select
-                                :items="dataH"
+                                :items="datak"
                                 label="Select Class"
                                 item-text="name"
                                 item-value="id"
@@ -25,11 +25,10 @@
                             >
 
                             </v-select>
-                        </v-col>
-                        <v-col cols="12" sm="12" md="6">
+
                             <v-select
                                 v-model="form.subject"
-                                :items="datafld"
+                                :items="selectedSubject"
                                 chips
                                 item-text="name"
                                 item-value="id"
@@ -38,9 +37,6 @@
                                 rounded
                                 outlined
                             ></v-select>
-                        </v-col>
-
-                    </v-row>
                 </v-container>
                 <small>*indicates required field</small>
             </v-card-text>
@@ -50,6 +46,17 @@
                 <v-btn style="background-color:#3b5998;color:white;text-transform: none" text @click="Assign_ClassRoom">Save</v-btn>
             </v-card-actions>
         </v-card>
+        <div v-for="subject in checkingSubject">
+            {{gettingcheckingsubject(subject.id)}}
+        </div>
+
+
+
+        {{getting_subject}}
+        {{User_Subject}}
+        {{User_class}}
+        {{puttingdata}}
+
     </v-dialog>
 
 </template>
@@ -58,18 +65,60 @@
         props: ['data','dataH','datafld'],
         data: () => ({
             dialog: false,
-            form:{
-                classHead:null,
-                subject:null,
-            }
+            form: {
+                classHead: null,
+                subject: null,
+            },
+            checkingSubject:null,
+            datak:[],
+            selectedSubject:{},
+            subject:{},
+            puttingclass:null,
+            x:0,
         }),
+        created(){
+            this.subject=this.datafld;
+            this.datak=this.dataH;
+            this.datak.push({name: 'No Class', id: null, status: '', created_at: '', updated_at: ''});
+        },
+
+
+        computed:{
+            puttingdata()
+            {
+                this.form.classHead=this.puttingclass;
+
+            },
+
+
+            getting_subject: function(){
+                this.selectedSubject=this.subject.filter((el) => {
+                    return (el.class_head_id== this.form.classHead);
+
+                });
+
+            },
+
+            User_Subject()
+            {
+                this.form.subject=this.data.subject;
+            },
+            User_class(){
+                this.checkingSubject=this.data.class_head;
+            },
+
+        },
         methods:{
+            gettingcheckingsubject(id){
+                this.puttingclass=id;
+            },
             Assign_ClassRoom()
             {
                 axios.post(`/lms/api/student/assign_c_s/${this.data.id}`,this.form)
                     .then(res =>this.dialog=false,this.$toasted.show('Assigned',{type:'success'}),
                     )
             },
+
 
         }
     }

@@ -3,32 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="03434f23-f88b-48c6-bc77-19b79d88e8b8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ClassHead.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/ClassHead.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ApiUserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ApiUserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Lmsclass.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Lmsclass.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_09_23_092237_create_lmsclass_user_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/LmsclassResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/LmsclassResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/SubjectResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/SubjectResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/studentResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/studentResource.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Helpers/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Helpers/User.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Router/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Router/router.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/AdminPannel/AllStudent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AdminPannel/AllStudent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/AdminPannel/AllTeacher.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AdminPannel/AllTeacher.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/AdminPannel/Delete_class_head.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AdminPannel/Delete_class_head.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/AdminPannel/Edit_Subject_dialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AdminPannel/Edit_Subject_dialog.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/AdminPannel/Edit_class_head.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AdminPannel/Edit_class_head.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/AdminPannel/Request.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AdminPannel/Request.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/AdminPannel/Subject.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AdminPannel/Subject.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/AdminPannel/classHead.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AdminPannel/classHead.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/AdminPannel/details_dilog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AdminPannel/details_dilog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/AdminPannel/Student_Assign_dialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AdminPannel/Student_Assign_dialog.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/AdminPannel/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AdminPannel/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/AdminPannel/subject_Profile_dialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AdminPannel/subject_Profile_dialog.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Signup.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Signup.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/profile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/profile.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/updateprofile_dilog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/updateprofile_dilog.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Navbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Navbar.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -339,7 +322,8 @@
       <workItem from="1572240041673" duration="537000" />
       <workItem from="1572240616509" duration="21019000" />
       <workItem from="1572325049732" duration="23430000" />
-      <workItem from="1572412036316" duration="22023000" />
+      <workItem from="1572412036316" duration="22289000" />
+      <workItem from="1572498649091" duration="16059000" />
     </task>
     <servers />
   </component>
