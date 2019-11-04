@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\studentResource;
+use App\Http\Resources\teacherResource;
 use App\Http\Resources\UserResource;
 use App\lmsClass_user;
 use App\User;
@@ -80,14 +81,40 @@ class ApiUserController extends Controller
     }
     public function student_user(){
 
-        $users = User::role('Student')->whereIn('status', [1, 2])->get();
+        $users = User::role('Student')->whereIn('status', [1, 2])->latest()->get();
         return studentResource::collection($users);
     }
+    public function teacher_user(){
+
+        $users = User::role('Teacher')->whereIn('status', [1, 2])->latest()->get();
+        return teacherResource::collection($users);
+    }
     public function assign_student(Request $request,$id){
+        dd($request);
         $user=User::find($id);
         $user->classHead()->sync($request->classHead);
         $user->lmsclass()->sync($request->subject);
         }
+    public function assign_teacher(Request $request,$id){
+
+        $user=User::find($id);
+        $user->lmsclass()->detach();
+        foreach ($request->subject as $subject){
+            $user->lmsclass()->attach($subject['id']);
+
+        }
+        $user->classHead()->detach();
+        foreach ($request->Selected_ClassHaed as $clasHeadId)
+        {
+            $user->classHead()->attach($clasHeadId['id']);
+
+        }
+        if($request->check ==1)
+        {
+            $user->lmsclass()->detach();
+        }
+
+    }
 
 
 }

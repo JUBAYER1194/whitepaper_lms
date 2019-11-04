@@ -46,7 +46,7 @@
             </v-tab-item>
             <v-tab-item>
                 <v-card class="grey lighten-4" flat>
-                    <AllTeacher></AllTeacher >
+                    <AllTeacher :dataH="class_head" :datafld="subjects" :data="teacher_user"  ></AllTeacher >
                 </v-card>
             </v-tab-item>
             <v-tab-item>
@@ -99,6 +99,7 @@
                 subjects:{},
                 request_user:{},
                 student_user:{},
+                teacher_user:{},
 
             }
         },
@@ -108,6 +109,7 @@
            this.getSubject();
            this.getRequest_user();
            this.getStudent_user();
+           this.getTeacher_user();
         },
 
 
@@ -131,6 +133,12 @@
             getStudent_user(){
                 axios.get('/lms/api/user/student_user')
                     .then(res => this.student_user = res.data.data)
+            },
+            getTeacher_user()
+            {
+                axios.get('/lms/api/user/teacher_user')
+                    .then(res => this.teacher_user = res.data.data)
+
             },
 
         },

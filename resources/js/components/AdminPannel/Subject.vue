@@ -86,7 +86,8 @@
                     this.datafld.splice(this.datafld.indexOf(subjectDelete), 1);
                 })
             },
-        }
+        },
+
     }
 </script>
 <style>

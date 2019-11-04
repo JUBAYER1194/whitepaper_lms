@@ -89,7 +89,8 @@
                 axios.patch(`/lms/api/class/${this.subject.id}`,this.subject)
                     .then(res =>this.dialog=false,this.$toasted.show('Subject Edited',{type:'success'}),
                     )
-            }
+            },
+
         },
     }
 </script>

@@ -32,7 +32,7 @@
 
                         >
 
-                            User information
+                            Student Information
 
                         </v-tab>
                     </v-tabs>
