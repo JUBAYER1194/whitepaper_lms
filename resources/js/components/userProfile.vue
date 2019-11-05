@@ -130,11 +130,12 @@
             </v-row>
         </v-card>
 
-
         <v-row class="d-flex">
             <v-col
                 cols="12"
-                md="4"
+                md="3"
+                v-for="classe_s in classes"
+                :key="classe_s.id"
             >
                 <v-card
                     class="mx-auto"
@@ -143,253 +144,18 @@
                 >
                     <v-list-item three-line>
                         <v-list-item-content>
-                            <div class="overline mb-4">Class</div>
+                            <div class="overline mb-4">{{classe_s.class_name}}</div>
                             <v-list-item-title class="headline mb-1">
-                                Physics
+                                {{classe_s.name}}
                             </v-list-item-title>
-                            <v-list-item-subtitle>section:10</v-list-item-subtitle>
+                            <v-list-item-subtitle>Section: {{classe_s.section}}</v-list-item-subtitle>
                         </v-list-item-content>
-
-                        <v-list-item-avatar
-                            color="#3b5998"
-                            size="80"
-                            tile
-                        ></v-list-item-avatar>
                     </v-list-item>
-
                     <v-card-actions>
-                        <v-btn href="/class" style="color: white;background-color:#3b5998">
+                        <v-btn :href="'/lms/class/'+classe_s.name" style="color: white;background-color:#3b5998">
                             go to the class
 
                         </v-btn>
-                    </v-card-actions>
-                </v-card>
-            </v-col>
-            <v-col
-                cols="12"
-                md="4"
-            >
-                <v-card
-                    class="mx-auto"
-                    max-width="344"
-                    outlined
-                >
-                    <v-list-item three-line>
-                        <v-list-item-content>
-                            <div class="overline mb-4">Class</div>
-                            <v-list-item-title class="headline mb-1">Biology</v-list-item-title>
-                            <v-list-item-subtitle>section:1</v-list-item-subtitle>
-                        </v-list-item-content>
-
-                        <v-list-item-avatar
-                            color="#3b5998"
-                            size="80"
-                            tile
-                        ></v-list-item-avatar>
-                    </v-list-item>
-
-                    <v-card-actions>
-                        <v-btn style="color: white;background-color:#3b5998">go to the class</v-btn>
-                    </v-card-actions>
-                </v-card>
-            </v-col>
-            <v-col
-                cols="12"
-                md="4"
-            >
-                <v-card
-                    class="mx-auto"
-                    max-width="344"
-                    outlined
-                >
-                    <v-list-item three-line>
-                        <v-list-item-content>
-                            <div class="overline mb-4">Class</div>
-                            <v-list-item-title class="headline mb-1">Chemistry</v-list-item-title>
-                            <v-list-item-subtitle>section:5</v-list-item-subtitle>
-                        </v-list-item-content>
-
-                        <v-list-item-avatar
-                            color="#3b5998"
-                            size="80"
-                            tile
-                        ></v-list-item-avatar>
-                    </v-list-item>
-
-                    <v-card-actions>
-                        <v-btn style="color: white;background-color:#3b5998">go to the class</v-btn>
-                    </v-card-actions>
-                </v-card>
-            </v-col>
-        </v-row>
-        <v-row class="d-flex">
-            <v-col
-                cols="12"
-                md="4"
-            >
-                <v-card
-                    class="mx-auto"
-                    max-width="344"
-                    outlined
-                >
-                    <v-list-item three-line>
-                        <v-list-item-content>
-                            <div class="overline mb-4">Class</div>
-                            <v-list-item-title class="headline mb-1">Physics</v-list-item-title>
-                            <v-list-item-subtitle>section:10</v-list-item-subtitle>
-                        </v-list-item-content>
-
-                        <v-list-item-avatar
-                            color="#3b5998"
-                            size="80"
-                            tile
-                        ></v-list-item-avatar>
-                    </v-list-item>
-
-                    <v-card-actions>
-                        <v-btn style="color: white;background-color:#3b5998">go to the class</v-btn>
-                    </v-card-actions>
-                </v-card>
-            </v-col>
-            <v-col
-                cols="12"
-                md="4"
-            >
-                <v-card
-                    class="mx-auto"
-                    max-width="344"
-                    outlined
-                >
-                    <v-list-item three-line>
-                        <v-list-item-content>
-                            <div class="overline mb-4">Class</div>
-                            <v-list-item-title class="headline mb-1">Biology</v-list-item-title>
-                            <v-list-item-subtitle>section:1</v-list-item-subtitle>
-                        </v-list-item-content>
-
-                        <v-list-item-avatar
-                            color="#3b5998"
-                            size="80"
-                            tile
-                        ></v-list-item-avatar>
-                    </v-list-item>
-
-                    <v-card-actions>
-                        <v-btn style="color: white;background-color:#3b5998">go to the class</v-btn>
-                    </v-card-actions>
-                </v-card>
-            </v-col>
-            <v-col
-                cols="12"
-                md="4"
-            >
-                <v-card
-                    class="mx-auto"
-                    max-width="344"
-                    outlined
-                >
-                    <v-list-item three-line>
-                        <v-list-item-content>
-                            <div class="overline mb-4">Class</div>
-                            <v-list-item-title class="headline mb-1">Chemistry</v-list-item-title>
-                            <v-list-item-subtitle>section:5</v-list-item-subtitle>
-                        </v-list-item-content>
-
-                        <v-list-item-avatar
-                            color="#3b5998"
-                            size="80"
-                            tile
-                        ></v-list-item-avatar>
-                    </v-list-item>
-
-                    <v-card-actions>
-                        <v-btn style="color: white;background-color:#3b5998">go to the class</v-btn>
-                    </v-card-actions>
-                </v-card>
-            </v-col>
-        </v-row>
-        <v-row class="d-flex">
-            <v-col
-                cols="12"
-                md="4"
-            >
-                <v-card
-                    class="mx-auto"
-                    max-width="344"
-                    outlined
-                >
-                    <v-list-item three-line>
-                        <v-list-item-content>
-                            <div class="overline mb-4">Class</div>
-                            <v-list-item-title class="headline mb-1">Physics</v-list-item-title>
-                            <v-list-item-subtitle>section:10</v-list-item-subtitle>
-                        </v-list-item-content>
-
-                        <v-list-item-avatar
-                            color="#3b5998"
-                            size="80"
-                            tile
-                        ></v-list-item-avatar>
-                    </v-list-item>
-
-                    <v-card-actions>
-                        <v-btn style="color: white;background-color:#3b5998">go to the class</v-btn>
-                    </v-card-actions>
-                </v-card>
-            </v-col>
-            <v-col
-                cols="12"
-                md="4"
-            >
-                <v-card
-                    class="mx-auto"
-                    max-width="344"
-                    outlined
-                >
-                    <v-list-item three-line>
-                        <v-list-item-content>
-                            <div class="overline mb-4">Class</div>
-                            <v-list-item-title class="headline mb-1">Biology</v-list-item-title>
-                            <v-list-item-subtitle>section:1</v-list-item-subtitle>
-                        </v-list-item-content>
-
-                        <v-list-item-avatar
-                            color="#3b5998"
-                            size="80"
-                            tile
-                        ></v-list-item-avatar>
-                    </v-list-item>
-
-                    <v-card-actions>
-                        <v-btn style="color: white;background-color:#3b5998">go to the class</v-btn>
-                    </v-card-actions>
-                </v-card>
-            </v-col>
-            <v-col
-                cols="12"
-                md="4"
-            >
-                <v-card
-                    class="mx-auto"
-                    max-width="344"
-                    outlined
-                >
-                    <v-list-item three-line>
-                        <v-list-item-content>
-                            <div class="overline mb-4">Class</div>
-                            <v-list-item-title class="headline mb-1">Chemistry</v-list-item-title>
-                            <v-list-item-subtitle>section:5</v-list-item-subtitle>
-                        </v-list-item-content>
-
-                        <v-list-item-avatar
-                            color="#3b5998"
-                            size="80"
-                            tile
-                        ></v-list-item-avatar>
-                    </v-list-item>
-
-                    <v-card-actions>
-                        <v-btn style="color: white;background-color:#3b5998">go to the class</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-col>
@@ -405,7 +171,7 @@
         data() {
             return {
                 form:{},
-
+                classes:{},
 
             }
         },
@@ -413,6 +179,8 @@
             this.user_id = User.id();
             axios.get(`/lms/api/information/${this.$route.params.id}`)
                 .then(res=>this.form =res.data.data)
+            axios.get(`/lms/api/auth_class/${this.$route.params.id}`)
+                .then(res=>this.classes =res.data.data)
         },
 
     }

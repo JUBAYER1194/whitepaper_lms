@@ -64,6 +64,7 @@
             </v-card-actions>
         </v-card>
         {{userId}}
+        {{cheeckingX}}
     </v-dialog>
 
 
@@ -85,24 +86,33 @@
                 class_head:null,
 
             },
+            x:0,
             item:[
                 {'id':1,'name':'Active'},
                 {'id':0,'name':'In-Active'}
             ],
         }),
+
         computed:{
             userId(){
                 this.classes.user_id=User.id();
             },
+            cheeckingX()
+            {
+                if (this.x==0){
+                    this.classes={};
+                    this.x=1;
+                }
+            },
+
 
         },
         methods:{
           create(){
               axios.post(`/lms/api/class`,this.classes)
-                  .then(res =>this.dialog=false,this.$toasted.show('Subject Created',{type:'success'}),
-                      EventBus.$emit('newSubject',this.classes)
-                  )
-          }
+                  .then(res =>EventBus.$emit('newSubject',this.classes),this.dialog=false,this.$toasted.show('Subject Created',{type:'success'}))
+                  this.x=0
+          },
         },
     }
 </script>

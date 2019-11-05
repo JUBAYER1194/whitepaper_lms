@@ -23,9 +23,12 @@
 
                  >
                      <v-avatar style="margin-left: 15%" size="100">
-                         <img class="text-lg-center" src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg">
+                         <v-img :src="'http://127.0.0.1:8000/uploads/x/x/profile/blank-profile.png'"
+                                v-if="user.image==null"></v-img>
+                         <v-img :src="'http://127.0.0.1:8000/uploads/x/x/profile/'+ user.image"
+                                v-else></v-img>
                      </v-avatar>
-                     <p style="margin-top: 10px;">Jubayer Ahmed</p>
+                     <p style="margin-top: 10px;">{{user.first_name}} {{user.last_name}}</p>
 
                  </v-flex>
 
@@ -45,16 +48,16 @@
              </v-list-item>
 
 
-             <v-list-group>
+             <v-list-group v-for="classs in classes" :key="classs.id">
                  <template v-slot:activator>
                      <v-list-item-icon>
                          <v-icon style="color: white">class</v-icon>
                      </v-list-item-icon>
-                     <v-list-item-title style="color: white;font-size: 0.8em">Class Room</v-list-item-title>
+                     <v-list-item-title style="color: white;font-size: 0.8em">{{classs.name}}</v-list-item-title>
                  </template>
-                 <v-list-item style="margin-left:20%" v-for="classs in classes" :key="classs.id">
+                 <v-list-item style="margin-left:20%" v-for="subject in classs.subject" :key="subject.id">
                      <v-list-item-title>
-                         <a :href="'/lms/class/'+classs.name" style="color:white;text-decoration: none;font-size: 120%">{{classs.name}}</a>
+                         <a :href="'/lms/class/'+subject.name" style="color:white;text-decoration: none;font-size: 120%">{{subject.name}}</a>
                      </v-list-item-title>
                      <v-list-item-icon >
                          <v-icon> menu_book</v-icon>
@@ -149,13 +152,16 @@
                 ],
                 classes: {},
                 user_id: null,
+                user:{},
 
             }
         },
         created() {
             this.user_id = User.id();
             axios.get(`/lms/api/class/${this.user_id}`)
-                .then(res => this.classes = res.data);
+                .then(res => this.classes = res.data.data);
+            axios.get(`/lms/api/information/${this.user_id}`)
+                .then(res => this.user = res.data.data);
                this.listen();
         },
 

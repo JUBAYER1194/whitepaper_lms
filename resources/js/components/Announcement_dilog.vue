@@ -32,6 +32,7 @@
         </v-dialog>
         {{user}}
         {{lmsclassid}}
+        {{cheeckingX}}
     </div>
 </template>
 
@@ -50,12 +51,20 @@
 
 
             },
+            x:0,
 
         }),
         // created(){
         //     this.listen();
         // },
         computed:{
+            cheeckingX()
+            {
+                if (this.x==0){
+                    this.announcement={};
+                    this.x=1;
+                }
+            },
             user(){
                 this.announcement.user_id=User.id();
             },
@@ -70,6 +79,7 @@
                     .then(res =>this.dialog=false,this.$toasted.show('Announcement Created',{type:'success'}),
                         EventBus.$emit('newAnn',this.announcement)
                     )
+                this.x=0
             },
 
 

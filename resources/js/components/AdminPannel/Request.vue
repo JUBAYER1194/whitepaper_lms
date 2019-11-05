@@ -1,5 +1,22 @@
 <template>
     <v-container class="grey lighten-4" style="padding-bottom:25%;margin-top: 0.5%;height: 100%">
+        <div align="right">
+            <v-text-field
+                class="my-input"
+                style="width: 30%;"
+                placeholder="Search By Name"
+                outlined
+                rounded
+                append-icon
+                v-model="search"
+            >
+                <v-tooltip slot="append" bottom>
+                    <v-icon slot="activator" color="primary" dark>search</v-icon>
+                    <span>Tooltip</span>
+                </v-tooltip>
+            </v-text-field>
+
+        </div>
     <v-simple-table
         fixed-header
         width="100%"
@@ -17,7 +34,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="(user,index) in data">
+            <tr v-for="(user,index) in filteredBlogs">
                 <td>{{index+1}}</td>
                 <td>
                     {{user.first_name}} {{user.last_name}}
@@ -46,6 +63,7 @@
         components:{Request_details_dialog,Delete_Request},
         data () {
             return {
+                search:'',
 
             }
         },
@@ -57,7 +75,7 @@
                 accepting_user(user)
                 {
                     axios.patch(`/lms/api/user/accept_user/${user.id}`)
-                        .then(res =>this.data.splice(this.data.indexOf(user), 1),this.$toasted.show('User Accepted',{type:'success'}),
+                        .then(res =>EventBus.$emit('newUser',user),this.data.splice(this.data.indexOf(user), 1),this.$toasted.show('User Accepted',{type:'success'}),
 
                         )
                 },
@@ -67,7 +85,15 @@
                         this.data.splice(this.data.indexOf(userDelete), 1);
                     })
                 },
-            }
+            },
+        computed:
+            {
+                filteredBlogs: function(){
+                    return this.data.filter((el) => {
+                        return (el.first_name.toLowerCase().match(this.search)) ||(el.first_name.toUpperCase().match(this.search));
+                    });
+                },
+            },
     }
 </script>
 <style>

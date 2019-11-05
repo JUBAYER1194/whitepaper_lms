@@ -249,6 +249,7 @@
                     .then(res =>this.dialog=false,this.$toasted.show('Event Edited',{type:'success'}),
 
                     )
+                window.location.reload()
             }
 
 

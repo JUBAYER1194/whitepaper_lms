@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ClassHead;
+use App\Http\Resources\classHeadResorce;
 use Illuminate\Http\Request;
 
 class ClassHeadController extends Controller
@@ -17,7 +18,7 @@ class ClassHeadController extends Controller
         //
 
         $class_Head=ClassHead::latest()->get();
-       return $class_Head;
+       return classHeadResorce::collection($class_Head);
 
     }
 

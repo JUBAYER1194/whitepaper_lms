@@ -1,9 +1,30 @@
 
 <template>
     <v-container class="grey lighten-4" style="padding-bottom:25%;margin-top: 0.5%">
-        <Create_subject_dialog :datah="dataH"> </Create_subject_dialog>
-        <br>
-        <br>
+        <v-row class="d-flex">
+            <v-col md="6">
+        <Create_subject_dialog  :datah="dataH"> </Create_subject_dialog>
+            </v-col>
+            <v-col md="6">
+                <div align="right">
+                    <v-text-field
+                        class="my-input"
+                        style="width: 70%;"
+                        placeholder="Search By Name"
+                        outlined
+                        rounded
+                        append-icon
+                        v-model="search"
+                    >
+                        <v-tooltip slot="append" bottom>
+                            <v-icon slot="activator" color="primary" dark>search</v-icon>
+                            <span>Tooltip</span>
+                        </v-tooltip>
+                    </v-text-field>
+
+                </div>
+            </v-col>
+        </v-row>
         <v-simple-table
             fixed-header
             width="100%"
@@ -22,7 +43,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="subject in datafld">
+                <tr v-for="subject in filteredBlogs">
                     <td style="font-size: 1rem">
                         {{subject.name}}
                     </td>
@@ -66,14 +87,19 @@
         components:{details_dilog,Create_subject_dialog,Edit_Subject_dialog,Delete_subject_dialog,subject_Profile_dialog},
         data () {
             return {
+                search:'',
+
 
             }
         },
         created() {
             this.createSubjectUpdate();
             this.deleteSubject();
+            this.listen();
         },
         methods:{
+
+
             createSubjectUpdate()
             {
                 EventBus.$on('newSubject',(subject) =>{
@@ -87,6 +113,13 @@
                 })
             },
         },
+        computed:{
+            filteredBlogs: function(){
+                return this.datafld.filter((el) => {
+                    return (el.name.toLowerCase().match(this.search)) ||(el.name.toUpperCase().match(this.search));
+                });
+            },
+        }
 
     }
 </script>

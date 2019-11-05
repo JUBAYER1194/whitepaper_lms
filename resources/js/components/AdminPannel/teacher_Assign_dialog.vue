@@ -67,7 +67,6 @@
         {{getting_subject}}
         {{User_Subject}}
         {{User_class}}
-        {{puttingdata}}
         {{makingNull}}
 
 
@@ -83,13 +82,13 @@
                 Selected_ClassHaed:null,
                 classHead: null,
                 subject: null,
-                check:0,
             },
             checkingSubject:null,
             datak:[],
             selectedSubject:{},
             subject:{},
             data_S:[],
+            x:0,
         }),
         created(){
             this.subject=this.datafld;
@@ -102,7 +101,6 @@
             {
                 if (this.form.Selected_ClassHaed==''){
                     this.form.classHead=null
-                    this.form.check=1;
 
                 }
             },

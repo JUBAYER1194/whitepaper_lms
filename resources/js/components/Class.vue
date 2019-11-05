@@ -45,7 +45,7 @@
                 </v-tab-item>
                 <v-tab-item>
                     <v-card class="grey lighten-4" flat style="padding-top:1%">
-                        <Student></Student>
+                        <Student :data1="classes.id" :data="users"></Student>
                     </v-card>
                 </v-tab-item>
                 <v-tab-item>
@@ -143,7 +143,6 @@
             getclass() {
                 axios.get(`/lms/api/class/about/${this.$route.params.name}`)
                     .then(res => this.classes = res.data.data)
-
 
             },
         },

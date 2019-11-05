@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\studentResource;
+use App\Http\Resources\SubjectResource;
 use App\Http\Resources\teacherResource;
 use App\Http\Resources\UserResource;
 use App\lmsClass_user;
@@ -90,7 +91,6 @@ class ApiUserController extends Controller
         return teacherResource::collection($users);
     }
     public function assign_student(Request $request,$id){
-        dd($request);
         $user=User::find($id);
         $user->classHead()->sync($request->classHead);
         $user->lmsclass()->sync($request->subject);
@@ -114,6 +114,15 @@ class ApiUserController extends Controller
             $user->lmsclass()->detach();
         }
 
+    }
+
+    public function authenticateUserClassSubject($id){
+        $user=User::find($id);
+        return SubjectResource::collection($user->lmsclass);
+    }
+
+    public function remove_student(Request $request,$id){
+       return $request;
     }
 
 

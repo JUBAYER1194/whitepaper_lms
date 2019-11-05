@@ -2,10 +2,30 @@
 
 <template>
     <v-container class="grey lighten-4" style="padding-bottom:25%;margin-top: 0.5%;height: 100%">
+        <v-row class="d-flex">
+            <v-col md="6">
         <head_dialog></head_dialog>
-        <br>
-        <br>
+            </v-col>
+            <v-col md="6">
+                <div align="right">
+                    <v-text-field
+                        class="my-input"
+                        style="width: 70%;"
+                        placeholder="Search By Name"
+                        outlined
+                        rounded
+                        append-icon
+                        v-model="search"
+                    >
+                        <v-tooltip slot="append" bottom>
+                            <v-icon slot="activator" color="primary" dark>search</v-icon>
+                            <span>Tooltip</span>
+                        </v-tooltip>
+                    </v-text-field>
 
+                </div>
+            </v-col>
+        </v-row>
             <v-simple-table
                 fixed-header
                 width="100%"
@@ -14,6 +34,7 @@
                 flat
 
             >
+
                 <template v-slot:default>
                     <thead>
                     <tr>
@@ -22,24 +43,24 @@
                         <th style=" font-size: 1.2rem "  colspan="2" class="text-center">Action</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr v-for="classHead in classHeads">
-                        <td style="font-size: 1rem">{{classHead.name}}</td>
+                    <tbody v-if="dataH.length">
+                    <tr v-for=" Head in filtered" v-if="Head.name !='No Class'">
+                        <td style="font-size: 1rem">{{Head.name}}</td>
                         <td class="text-center">
-                            <v-btn width="80" small v-if="classHead.status==1" depressed class="info">Active</v-btn>
+                            <v-btn width="80" small v-if="Head.status==1" depressed class="info">Active</v-btn>
                             <v-btn small v-else width="80"  depressed style="color:white;background-color:#ff531a">In-Active</v-btn>
 
                         </td>
 
                         <td class="text-center">
-                            <Edit_dialog :data="classHead"></Edit_dialog>
-                            <Delete_dialog :data="classHead"></Delete_dialog>
+                            <Edit_dialog :data="Head"></Edit_dialog>
+                            <Delete_dialog :data="Head"></Delete_dialog>
                         </td>
                     </tr>
                     </tbody>
                 </template>
             </v-simple-table>
-{{  getclassHead}}
+
     </v-container>
 
 </template>
@@ -50,13 +71,12 @@
     import Delete_dialog from "./Delete_class_head.vue";
 
     export default {
-        props:['data'],
+        props:['dataH'],
         components:{details_dilog,head_dialog,Edit_dialog,Delete_dialog},
         data () {
             return {
-                classHeads:{},
                 deleteId:null,
-
+                search:'',
             }
         },
         created()
@@ -68,19 +88,21 @@
             {
                 Createhead(){
                     EventBus.$on('class-head-created',(ann) =>{
-                        this.classHeads.unshift(ann)
+                        this.dataH.unshift(ann)
                     })
                 },
                 Deletehead(){
                     EventBus.$on('class-head-deleted',(annd) =>{
-                        this.classHeads.splice(this.classHeads.indexOf(annd), 1);
+                        this.dataH.splice(this.dataH.indexOf(annd), 1);
                     })
                 },
             },
         computed:{
-            getclassHead() {
-                this.classHeads=this.data;
-            }
+            filtered: function(){
+                return this.dataH.filter((el) => {
+                    return (el.name.toLowerCase().match(this.search)) ||(el.name.toUpperCase().match(this.search));
+                });
+            },
         }
 
 

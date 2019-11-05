@@ -163,6 +163,7 @@
         created(){
             axios.get(`/lms/api/allevent`)
                 .then(res=>this.events =res.data.data)
+            this.listen();
         },
 
         computed: {
@@ -204,12 +205,18 @@
             this.$refs.calendar.checkChange()
         },
         methods: {
+            listen(){
+                EventBus.$on('newEvent',(el) =>{
+                    this.events.unshift(el)
+                })
+            },
             deleteEvent(x){
                     axios.delete(`/lms/api/allevent/${x}`)
                         .then(res =>this.dialog=false,this.$toasted.show('Event Deleted',{type:'success'}),
 
 
                         )
+                window.location.reload()
 
             },
             viewDay ({ date }) {

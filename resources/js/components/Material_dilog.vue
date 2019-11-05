@@ -40,6 +40,7 @@
             </v-card>
         </v-dialog>
         {{user}}
+        {{cheeckingX}}
     </div>
 </template>
 
@@ -61,6 +62,7 @@
 
 
             },
+            x:0,
         }),
         methods:{
             filechanged(e){
@@ -75,9 +77,17 @@
                   .then(res =>this.dialog=false,this.$toasted.show('Material Created',{type:'success'}),
                       EventBus.$emit('newMaterial',this.material)
                   )
+                this.x=0;
             },
         },
         computed:{
+            cheeckingX()
+            {
+                if (this.x==0){
+                    this.material={};
+                    this.x=1;
+                }
+            },
             user(){
                 this.material.user_id=User.id();
                 this.material.lmsclass_id=this.data;

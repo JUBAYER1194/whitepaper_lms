@@ -170,6 +170,7 @@
             </v-card>
         </v-dialog>
         {{gettingStart_EndTime}}
+        {{cheeckingX}}
     </v-row>
 </template>
 <script>
@@ -234,6 +235,7 @@
 
 
             ],
+            x:0,
 
 
 
@@ -244,14 +246,27 @@
                 this.event.start=this.start_date+' '+this.start_time;
                 this.event.end=this.end_date+' '+this.end_time;
 
-            }
+            },
+            cheeckingX()
+            {
+                if (this.x==0){
+                    this.event={};
+                    this.start_date=null;
+                    this.start_time=null;
+                    this.end_date=null;
+                    this.end_time=null;
+                    this.x=1;
+                }
+            },
+
         },
         methods:{
             send(){
                 axios.post('/lms/api/allevent',this.event)
                     .then(res =>this.dialog=false,this.$toasted.show('Event Created',{type:'success'}),
-                        EventBus.$emit('newEvent',this.event)
+                        window.location.reload()
                     )
+                this.x=0
             }
 
 

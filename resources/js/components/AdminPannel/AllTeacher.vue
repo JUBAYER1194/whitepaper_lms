@@ -3,15 +3,22 @@
 
         <div align="right">
         <v-text-field
+            class="my-input"
             style="width: 30%;"
             placeholder="Search By Name"
             outlined
             rounded
+            append-icon
             v-model="search"
+        >
+            <v-tooltip slot="append" bottom>
+                <v-icon slot="activator" color="primary" dark>search</v-icon>
+                <span>Tooltip</span>
+            </v-tooltip>
+        </v-text-field>
 
-        ></v-text-field>
         </div>
-        <br>
+
         <v-simple-table
             fixed-header
             width="100%"
@@ -30,7 +37,7 @@
                 </tr>
                 </thead>
                 <tbody v-if="data.length">
-                <tr v-for="(teacher,index) in filteredBlogs">
+                <tr  v-for="(teacher,index) in filteredBlogs">
                     <td>{{index+1}}</td>
                     <td>
                         <v-list  class="grey lighten-4 ma-0 pa-0" subheader>
@@ -43,7 +50,7 @@
                                            v-else></v-img>
                                 </v-list-item-avatar>
                                 <v-list-item-content>
-                                    <v-list-item-title> {{teacher.first_name}} {{teacher.last_name}}</v-list-item-title>
+                                    <v-list-item-title class="text-uppercase"> {{teacher.first_name}} {{teacher.last_name}}</v-list-item-title>
                                 </v-list-item-content>
                             </v-list-item>
                         </v-list>
@@ -104,7 +111,7 @@
             {
                 filteredBlogs: function(){
                     return this.data.filter((el) => {
-                        return el.first_name.match(this.search);
+                        return (el.first_name.toLowerCase().match(this.search)) ||(el.first_name.toUpperCase().match(this.search));
                     });
                 },
                 gettingClass()
@@ -119,6 +126,8 @@
     }
 </script>
 <style>
-
+    /*.my-input input{*/
+    /*    text-transform: uppercase*/
+    /*}*/
 </style>
 

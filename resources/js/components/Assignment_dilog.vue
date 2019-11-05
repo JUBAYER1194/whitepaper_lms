@@ -58,6 +58,7 @@
         </v-dialog>
         {{gettingclass_id}}
         {{gettingUserId}}
+        {{cheeckingX}}
     </div>
 </template>
 
@@ -76,6 +77,7 @@
                     user_id:null,
                     deadline: new Date().toISOString().substr(0, 10),
                 },
+                x:0,
 
             }
         },
@@ -92,9 +94,17 @@
                     .then(res =>this.dialog=false,this.$toasted.show('Assignments Created',{type:'success'}),
                         EventBus.$emit('newAssignment',this.form)
                     )
+                this.x=0
             },
         },
         computed:{
+            cheeckingX()
+            {
+                if (this.x==0){
+                    this.form={};
+                    this.x=1;
+                }
+            },
             gettingclass_id(){
                 this.form.class_id=this.data1;
             },

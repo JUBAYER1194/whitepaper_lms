@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\ClassHead;
+use App\Http\Resources\lmsClassHeadResource;
 use App\Http\Resources\LmsclassResource;
 use App\Http\Resources\LmsuserResource;
 use App\Http\Resources\SubjectResource;
+use App\Http\Resources\UserResource;
 use App\Lmsclass;
 use App\User;
 use Illuminate\Http\Request;
@@ -65,8 +67,8 @@ class LmsclassController extends Controller
     public function show($id)
     {
         //
-        $class=User::find($id)->class;
-        return $class;
+        $class=User::find($id)->classHead;
+        return lmsClassHeadResource::collection($class);
 
     }
 
@@ -125,7 +127,7 @@ class LmsclassController extends Controller
 
     {
         $users=Lmsclass::find($id)->users;
-       return LmsuserResource::collection($users);
+       return userResource::collection($users);
 
     }
 

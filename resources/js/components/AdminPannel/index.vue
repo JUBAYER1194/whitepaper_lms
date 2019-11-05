@@ -31,7 +31,7 @@
             <v-tab-item>
                 <v-card class="grey lighten-4" flat>
 
-                    <Classhead :data="class_head"></Classhead>
+                    <Classhead :dataH="class_head"></Classhead>
                 </v-card>
             </v-tab-item>
             <v-tab-item>
@@ -41,7 +41,7 @@
             </v-tab-item>
             <v-tab-item>
                 <v-card class="grey lighten-4" flat>
-                    <All_Student :dataH="class_head" :datafld="subjects" :data="student_user"></All_Student>
+                    <All_Student :dataH="classHeadData" :datafld="subjects" :data="student_user"></All_Student>
                 </v-card>
             </v-tab-item>
             <v-tab-item>
@@ -55,7 +55,7 @@
                 </v-card>
             </v-tab-item>
         </v-tabs-items>
-
+       {{getStudentData}}
     </div>
 
 </template>
@@ -100,6 +100,7 @@
                 request_user:{},
                 student_user:{},
                 teacher_user:{},
+                classHeadData:null,
 
             }
         },
@@ -116,7 +117,7 @@
         methods: {
             getclassHead() {
                 axios.get('/lms/api/class-head')
-                    .then(res => this.class_head = res.data)
+                    .then(res => this.class_head = res.data.data)
 
 
             },
@@ -143,6 +144,10 @@
 
         },
         computed: {
+            getStudentData()
+            {
+                this.classHeadData=this.class_head;
+            }
 
 
 

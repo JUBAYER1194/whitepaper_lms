@@ -1,5 +1,22 @@
 <template>
     <v-container class="grey lighten-4" style="padding-bottom:25%;margin-top: 0.5%;height: 100%">
+        <div align="right">
+            <v-text-field
+                class="my-input"
+                style="width: 30%;"
+                placeholder="Search By Name"
+                outlined
+                rounded
+                append-icon
+                v-model="search"
+            >
+                <v-tooltip slot="append" bottom>
+                    <v-icon slot="activator" color="primary" dark>search</v-icon>
+                    <span>Tooltip</span>
+                </v-tooltip>
+            </v-text-field>
+
+        </div>
     <v-simple-table
         fixed-header
         width="100%"
@@ -19,7 +36,7 @@
             </tr>
             </thead>
             <tbody v-if="data.length">
-            <tr v-for="(student,index) in data">
+            <tr v-for="(student,index) in filteredBlogs">
                 <td>{{index+1}}</td>
                 <td>
                     <v-list  class="grey lighten-4 ma-0 pa-0" subheader>
@@ -32,12 +49,12 @@
                                        v-else></v-img>
                             </v-list-item-avatar>
                             <v-list-item-content>
-                                <v-list-item-title> {{student.first_name}} {{student.last_name}}</v-list-item-title>
+                                <v-list-item-title class="text-uppercase"> {{student.first_name}} {{student.last_name}}</v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>
                     </v-list>
                 </td>
-                <template v-if="student.class_head !=''">
+                <template v-if="student.class_head !=''|student.class_head ">
                 <td v-for="(className,index) in student.class_head" class="text-center" style="font-size: 1rem">
                      {{className.name}}
                 </td>
@@ -80,6 +97,9 @@
             return {
                 AllClass:null,
                 AllSubject:null,
+                search:'',
+                CheckingUser:null,
+
 
             }
         },
@@ -87,6 +107,7 @@
             this.deleteStudent();
         },
         methods:{
+
             changing(){
                 this.y=1;
             },
@@ -100,12 +121,10 @@
         },
         computed:
             {
-                gettingClass()
-                {
-
-                },
-                gettingSubject(){
-
+                filteredBlogs: function(){
+                    return this.data.filter((el) => {
+                        return (el.first_name.toLowerCase().match(this.search)) ||(el.first_name.toUpperCase().match(this.search));
+                    });
                 },
 
             },

@@ -4,7 +4,9 @@
 Route::get('/role','ApiRoleController@index')->name('role');
 Route::get('/information/{id}','ApiUserController@index');
 Route::get('/request_user','ApiUserController@request_user');
+Route::get('/auth_class/{id}','ApiUserController@authenticateUserClassSubject');
 Route::post('/student/assign_c_s/{id}','ApiUserController@assign_student');
+Route::delete('/unassaign_student/{id}','ApiUserController@remove_student');
 Route::post('/teacher/assign_c_s/{id}','ApiUserController@assign_teacher');
 Route::patch('/user/accept_user/{id}','ApiUserController@accept_user');
 Route::delete('/user/delete_user/{id}','ApiUserController@delete_user');

@@ -37,6 +37,7 @@
                     <v-btn style="background-color:#3b5998;color:white;text-transform: none" text @click="CreateClassHead">Save</v-btn>
                 </v-card-actions>
             </v-card>
+            {{cheeckingX}}
         </v-dialog>
 
 </template>
@@ -51,7 +52,8 @@
             form:{
                 name:null,
                 status:null,
-            }
+            },
+            x:0,
         }),
         methods:{
             CreateClassHead()
@@ -64,8 +66,19 @@
 
 
                     )
+                this.x=0
             },
 
+
+        },
+        computed:{
+            cheeckingX()
+            {
+                if (this.x==0){
+                    this.form={};
+                    this.x=1;
+                }
+            },
         }
     }
 </script>
