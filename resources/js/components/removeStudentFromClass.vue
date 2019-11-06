@@ -43,9 +43,9 @@
         },
         methods:{
             deleteClassHead(){
-                axios.delete(`/lms/api/unassaign_student/${this.data.id}`,this.data1)
+                axios.post(`/lms/api/unassaign_student/${this.data.id}/${this.data1}`)
                     .then(res =>this.dialog=false,this.$toasted.show('User Deleted',{type:'success'}),
-                        EventBus.$emit('user-deleted',this.data)
+                        EventBus.$emit('user-remove',this.data)
                     )
             }
         }

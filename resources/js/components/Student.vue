@@ -56,6 +56,16 @@
 
             }
         },
+        created() {
+            this.listen();
+        },
+        methods:{
+            listen(){
+                EventBus.$on('user-remove',(userRemove) =>{
+                    this.data.splice(this.data.indexOf(userRemove), 1);
+                })
+            },
+        }
     }
 </script>
 <style>

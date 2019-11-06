@@ -121,8 +121,9 @@ class ApiUserController extends Controller
         return SubjectResource::collection($user->lmsclass);
     }
 
-    public function remove_student(Request $request,$id){
-       return $request;
+    public function remove_student($user_id,$class_id){
+        $user=User::find($user_id);
+        $user->lmsclass()->detach($class_id);
     }
 
 

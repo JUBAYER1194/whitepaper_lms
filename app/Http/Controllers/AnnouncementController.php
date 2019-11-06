@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Announcement;
 use App\Http\Resources\AnnouncementResource;
 use App\Lmsclass;
+use App\Notifications\newaAnnouncementNotification;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-
 class AnnouncementController extends Controller
 {
     /**
@@ -49,6 +49,8 @@ class AnnouncementController extends Controller
         $ann->user_id=$request->user_id;
         $ann->lmsclass_id=$request->lmsclass_id;
         $ann->save();
+        $user=User::find($request->user_id);
+        $user->notify(new newaAnnouncementNotification($ann));
     }
 
     /**

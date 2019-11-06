@@ -69,7 +69,7 @@
                         <v-card-title>
                             <VEditDialog :data="announcement"></VEditDialog>
                             <v-spacer></v-spacer>
-                            <v-btn color="error" @click="DeleteAnnouncement(index,announcement.id)" depressed>Delete</v-btn>
+                            <deleteAnnouncementDialog :data="announcement"></deleteAnnouncementDialog>
                         </v-card-title>
                     </v-card>
                 </v-card>
@@ -85,9 +85,10 @@
 <script>
     import dilog from './Announcement_dilog.vue';
     import VEditDialog from './EditAnnouncements_dilog.vue';
+    import deleteAnnouncementDialog from "./deleteAnnouncementDialog.vue";
 
     export default {
-        components: {dilog,VEditDialog},
+        components: {dilog,VEditDialog,deleteAnnouncementDialog},
         props:['data','datas'],
         data() {
             return {
@@ -104,14 +105,12 @@
 
         },
         methods:{
-            DeleteAnnouncement(index,x){
-                axios.delete(`/lms/api/announcement/${x}`)
-                    .then(res =>this.announcements.splice(index, 1))
-
-            },
             listen(){
                 EventBus.$on('newAnn',(ann) =>{
                     this.announcements.unshift(ann)
+                })
+                EventBus.$on('ann-remove',(ann_r) =>{
+                    this.announcements.splice(this.announcements.indexOf(ann_r), 1);
                 })
             },
 

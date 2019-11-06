@@ -8,6 +8,11 @@ class Lmsclass extends Model
 {
     //
     protected $fillable=['name','section','description','user_id','class_code'];
+    public function getPathAttribute()
+
+    {
+        return "\lms\class\ $this->name";
+    }
     public function getRouteKeyName()
     {
         return 'name';

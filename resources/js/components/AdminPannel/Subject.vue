@@ -1,7 +1,7 @@
 
 <template>
     <v-container class="grey lighten-4" style="padding-bottom:25%;margin-top: 0.5%">
-        <v-row class="d-flex">
+        <v-row class="d-flex mb-0">
             <v-col md="6">
         <Create_subject_dialog  :datah="dataH"> </Create_subject_dialog>
             </v-col>

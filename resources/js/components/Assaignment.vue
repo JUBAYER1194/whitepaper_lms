@@ -76,7 +76,7 @@
                         <v-card-title>
                             <VEditDialog :data="assignment"></VEditDialog>
                             <v-spacer></v-spacer>
-                            <v-btn color="error"  depressed @click="deleteAssignment(index,assignment.id)">Delete</v-btn>
+                            <deleteAssignmentDialog :data="assignment"></deleteAssignmentDialog>
                         </v-card-title>
                     </v-card>
                 </v-card>
@@ -92,9 +92,10 @@
 <script>
     import dilog from './Assignment_dilog'
     import VEditDialog from './EditAssignments_dilog.vue'
+    import deleteAssignmentDialog from "./deleteAssignmentDialog.vue";
     export default {
         props:['Adata','Cdata'],
-        components:{dilog,VEditDialog},
+        components:{dilog,VEditDialog,deleteAssignmentDialog},
         data(){
             return {
                 assignments:{},
@@ -118,13 +119,12 @@
            },
        },
         methods:{
-            deleteAssignment(index,x){
-                axios.delete(`/lms/api/class/assignment/${x}`)
-                    .then(res =>this.assignments.splice(index, 1))
-            },
             listen(){
                 EventBus.$on('newAssignment',(an1) =>{
                     this.assignments.unshift(an1)
+                })
+                EventBus.$on('ass-remove',(ass_r) =>{
+                    this.assignments.splice(this.assignments.indexOf(ass_r), 1);
                 })
             },
         },

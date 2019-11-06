@@ -95,29 +95,8 @@
          </v-toolbar-title>
          <v-spacer></v-spacer>
 
+         <appNotification></appNotification>
 
-         <v-btn
-             icon
-             depressed
-             style="background-color:#E0E0E0;color:#757575;"
-         >
-             <v-icon>notifications</v-icon>
-         </v-btn>
-         <v-btn
-             icon
-             large
-         >
-             <v-avatar
-                 item
-                 size="32px"
-             >
-                 <v-img
-                     alt="Vuetify"
-                     src="https://cdn.vuetifyjs.com/images/logos/logo.svg"
-                 >
-                 </v-img>
-             </v-avatar>
-         </v-btn>
 
          <v-btn
              depressed
@@ -136,8 +115,10 @@
 </template>
 <script>
 
+    import appNotification from "./appNotification.vue"
     export default
     {
+        components:{appNotification},
         data(){
 
             return {

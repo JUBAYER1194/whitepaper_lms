@@ -2,7 +2,7 @@
     <div>
         <v-dialog v-model="dialog" persistent max-width="600px">
             <template v-slot:activator="{ on }">
-                <v-btn v-on="on" color="primary" depressed>Edit</v-btn>
+                <v-btn width="80" v-on="on" color="primary" depressed>Edit</v-btn>
             </template>
             <v-card>
                 <v-card-title>
