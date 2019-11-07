@@ -4,6 +4,7 @@ namespace App\Notifications;
 
 use App\Announcement;
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -32,7 +33,7 @@ class newaAnnouncementNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['database','broadcast'];
     }
 
     /**
@@ -51,9 +52,20 @@ class newaAnnouncementNotification extends Notification
     public function toArray($notifiable)
     {
         return [
+            'data'=>'you have a new announcement',
             'subject_name' => $this->ann->lmsclass->name,
             'title'=>$this->ann->title,
             'path'=> $this->ann->lmsclass->path,
         ];
     }
+    public function toBroadcast($notifiable)
+    {
+        return new BroadcastMessage([
+            'data'=>'you have a new announcement',
+            'subject_name' => $this->ann->lmsclass->name,
+            'title'=>$this->ann->title,
+            'path'=> $this->ann->lmsclass->path,
+        ]);
+    }
+
 }

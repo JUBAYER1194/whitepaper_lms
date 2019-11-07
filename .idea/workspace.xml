@@ -2,29 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03434f23-f88b-48c6-bc77-19b79d88e8b8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/lms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/lms.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Announcement.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Announcement.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AnnouncementController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AnnouncementController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ApiUserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ApiUserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MaterialController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MaterialController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Lmsclass.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Lmsclass.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Notifications/newaAnnouncementNotification.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Notifications/newaAnnouncementNotification.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/AdminPannel/Subject.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AdminPannel/Subject.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/bootstrap.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/Announcement.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Announcement.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Assaignment.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Assaignment.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/EditAnnouncements_dilog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/EditAnnouncements_dilog.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/EditMaterialdilog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/EditMaterialdilog.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Footer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Footer.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Information.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Information.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Material_dilog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Material_dilog.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Navbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Navbar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Student.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Student.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/removeStudentFromClass.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/removeStudentFromClass.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/appNotification.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/appNotification.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -187,7 +175,7 @@
     <property name="DatabaseDriversLRU" value="java.sql.Driver&#10;mysql" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../real-time-single-page-forum-app" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -336,7 +324,9 @@
       <workItem from="1572851800816" duration="8000" />
       <workItem from="1572852099876" duration="10583000" />
       <workItem from="1572928545246" duration="25538000" />
-      <workItem from="1573015738800" duration="23551000" />
+      <workItem from="1573015738800" duration="23786000" />
+      <workItem from="1573107234494" duration="7508000" />
+      <workItem from="1573121211281" duration="6998000" />
     </task>
     <servers />
   </component>

@@ -1,6 +1,7 @@
 <?php
 
-
+Route::post('notifications/{id}','NotificationController@index');
+Route::post('markAsRead/{id}','NotificationController@markAsRead');
 Route::get('/role','ApiRoleController@index')->name('role');
 Route::get('/information/{id}','ApiUserController@index');
 Route::get('/request_user','ApiUserController@request_user');

@@ -11,7 +11,7 @@ class Lmsclass extends Model
     public function getPathAttribute()
 
     {
-        return "\lms\class\ $this->name";
+        return "$this->name";
     }
     public function getRouteKeyName()
     {

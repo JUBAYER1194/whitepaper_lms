@@ -112,6 +112,10 @@
                 EventBus.$on('ann-remove',(ann_r) =>{
                     this.announcements.splice(this.announcements.indexOf(ann_r), 1);
                 })
+                Echo.private('App.User.' + User.id())
+                    .notification((notification) => {
+                        this.content.unshift(notification.ann)
+                    });
             },
 
         },
