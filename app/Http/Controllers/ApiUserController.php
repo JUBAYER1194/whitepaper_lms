@@ -10,6 +10,7 @@ use App\Http\Resources\UserResource;
 use App\Lmsclass;
 use App\Notifications\newStudentAssignNotification;
 use App\Notifications\newTeacherAssignNotification;
+use App\Notifications\newUserAcceptNotification;
 use App\User;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -76,6 +77,7 @@ class ApiUserController extends Controller
         $user=User::find($id);
         $user->status=1;
         $user->update();
+        $user->notify(new newUserAcceptNotification);
     }
 
     public function delete_user($id){

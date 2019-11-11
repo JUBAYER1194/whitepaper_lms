@@ -35,6 +35,7 @@ Vue.use(Toasted)
 Vue.component('home', require('./components/AppHome.vue').default);
 Vue.component('login', require('./components/Login.vue').default);
 Vue.component('signup', require('./components/Signup.vue').default);
+Vue.component('checkSignup',require('./components/ConfirmSignup.vue').default);
 
 
 const app = new Vue({

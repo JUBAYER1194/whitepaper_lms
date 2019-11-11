@@ -129,7 +129,7 @@
             {
                 signup() {
                     axios.post('/lms/api/auth/signup', this.form)
-                        .then(res => window.location = '/')
+                        .then(res => window.location = '/checking_signup')
                 },
                 login(){
                     window.location = '/'

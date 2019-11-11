@@ -17,14 +17,10 @@ Route::get('/dummy','DummyController@dummy');
 Route::view('/home','home');
 Route::view('/','login');
 Route::view('/signups','Signup');
+Route::view('/checking_signup','checking_signup');
 Route::view('/{any}','home');
 Route::view('/{any}/{any1}','home');
 Route::view('/{any}/{any1}/{any2}','home');
 Route::view('/{any}/{any1}/{any2}/{any3}','home');
 Auth::routes();
 
-//Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-//Route::get('/home', 'HomeController@index')->name('home');

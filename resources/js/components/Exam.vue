@@ -1007,11 +1007,13 @@
                     end_date:this.date1,
                     end_time:this.time,
                     status:1,
+                    subject_id:this.data,
+                    userId:User.id(),
 
 
                 })
                     .then(res =>this.dialog=false,this.$toasted.show('Exam Started',{type:'success'}),
-                       window.location.reload(true)
+                       //window.location.reload(true)
                     )
             },
 

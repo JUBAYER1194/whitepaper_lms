@@ -36,6 +36,11 @@ Route::Resource('allevent','AlleventController');
 Route::Resource('class/event','LmsClassEventController');
 Route::Resource('class-head','ClassHeadController');
 
+Route::post('reset-password', 'AuthController@sendPasswordResetLink');
+Route::post('reset/password', 'AuthController@callResetPassword');
+
+
+
 
 Route::group([
     'middleware' => 'api',

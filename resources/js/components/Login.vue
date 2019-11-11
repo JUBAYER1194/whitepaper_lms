@@ -49,6 +49,7 @@
                                         type="password"
                                     ></v-text-field>
                                 </v-form>
+                                <ResetPassword></ResetPassword>
                             </v-card-text>
                             <v-card-actions>
                                 <v-btn depressed style="background-color:#3b5998;color: white;text-transform: none !important;margin: 3%"  @click="signup">Sign Up</v-btn>
@@ -65,7 +66,10 @@
 </template>
 
 <script>
+    import ResetPassword from "./ResetPassword.vue";
+
     export default {
+       components:{ResetPassword},
         data ()  {
             return{
                 form:{

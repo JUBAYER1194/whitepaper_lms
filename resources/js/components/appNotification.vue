@@ -33,10 +33,15 @@
         >
 
             <v-list-item v-for="item in unread" :key="item.id">
-                <div v-if="item.type =='App\\Notifications\\newStudentAssignNotification' || 'App\\Notifications\\newTeacherAssignNotification'"  @click="readIt(item)" class="caption"> <a :href="item.path" class="blue-grey--text" style="text-decoration:none" >{{item.data}} <b>"{{item.name}}"</b>  in  {{item.title}}.</a></div>
+                <div v-if="item.type =='App\\Notifications\\newUserNotification'"  @click="readIt(item)" class="caption"> <a :href="item.path" class="blue-grey--text" style="text-decoration:none" >{{item.data}} <b>"{{item.name}} {{item.title}}"</b>.</a></div>
+                <div v-if="item.type =='App\\Notifications\\newSubjectEventNotification'"  @click="readIt(item)" class="caption"> <a :href="item.path" class="blue-grey--text" style="text-decoration:none" >{{item.data}} <b>"{{item.title}}"</b>  in {{item.name}}.</a></div>
+                <div v-if="item.type =='App\\Notifications\\newAllEventNotification'"  @click="readIt(item)" class="caption"> <a :href="item.path" class="blue-grey--text" style="text-decoration:none" >{{item.data}} <b>"{{item.title}}"</b></a></div>
+                <div v-if="item.type =='App\\Notifications\\newStudentAssignNotification'"  @click="readIt(item)" class="caption"> <a :href="item.path" class="blue-grey--text" style="text-decoration:none" >{{item.data}} <b>"{{item.name}}"</b>  in  {{item.title}}.</a></div>
+                <div v-if="item.type =='App\\Notifications\\newTeacherAssignNotification'"  @click="readIt(item)" class="caption"> <a :href="item.path" class="blue-grey--text" style="text-decoration:none" >{{item.data}} <b>"{{item.name}}"</b>  in  {{item.title}}.</a></div>
                 <div v-if="item.type=='App\\Notifications\\newaAnnouncementNotification'" @click="readIt(item)" class="caption"> <a :href="item.path" class="blue-grey--text" style="text-decoration:none" >{{item.data}} <b>"{{item.title}}"</b>  in  {{item.name}}.</a></div>
                 <div v-if="item.type=='App\\Notifications\\newAssignmentNotification'" @click="readIt(item)" class="caption"> <a :href="item.path" class="blue-grey--text" style="text-decoration:none" >{{item.data}} <b>"{{item.title}}"</b>  in  {{item.name}}</a></div>
                 <div v-if="item.type=='App\\Notifications\\newMaterialNotification'" @click="readIt(item)" class="caption"> <a :href="item.path" class="blue-grey--text" style="text-decoration:none" >{{item.data}} <b>"{{item.title}}"</b>  in  {{item.name}}</a></div>
+                <div v-if="item.type=='App\\Notifications\\newExamStartNotification'" @click="readIt(item)" class="caption"> <a :href="item.path" class="blue-grey--text" style="text-decoration:none" >{{item.data}}   <b>{{item.name}}</b> </a></div>
             </v-list-item>
             <v-divider></v-divider>
             <v-list-item v-for="item in read" :key="item.id">

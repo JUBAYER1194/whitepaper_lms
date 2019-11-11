@@ -38,16 +38,6 @@
                                 ></v-textarea>
                             </v-col>
                             <v-col cols="12" sm="6">
-                                <v-select
-                                    :items="colors"
-                                    label="Event Color*"
-                                    item-text="name"
-                                    item-value="name"
-                                    outlined
-                                    v-model="event.color"
-                                ></v-select>
-                            </v-col>
-                            <v-col cols="12" sm="6">
                                 <v-dialog
                                     ref="dialogs"
                                     v-model="modal"
@@ -153,6 +143,16 @@
                                     ></v-time-picker>
                                 </v-menu>
                             </v-col>
+                            <v-col cols="12" sm="6">
+                                <v-select
+                                    :items="colors"
+                                    label="Event Color*"
+                                    item-text="name"
+                                    item-value="name"
+                                    outlined
+                                    v-model="event.color"
+                                ></v-select>
+                            </v-col>
 
 
 
@@ -169,6 +169,7 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
+        {{gettingUserId}}
         {{gettingStart_EndTime}}
         {{cheeckingX}}
     </v-row>
@@ -187,6 +188,7 @@
                 start: null,
                 end: null,
                 color: null,
+                userId:null,
             },
             start_date:null,
             start_time:null,
@@ -241,7 +243,12 @@
 
         }),
 
+
         computed:{
+            gettingUserId(){
+                this.event.userId=User.id();
+            },
+
             gettingStart_EndTime(){
                 this.event.start=this.start_date+' '+this.start_time;
                 this.event.end=this.end_date+' '+this.end_time;
@@ -261,10 +268,11 @@
 
         },
         methods:{
+
             send(){
                 axios.post('/lms/api/allevent',this.event)
                     .then(res =>this.dialog=false,this.$toasted.show('Event Created',{type:'success'}),
-                        window.location.reload()
+                       window.location.reload()
                     )
                 this.x=0
             }

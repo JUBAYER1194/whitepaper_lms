@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Resources\LmsClassEventResource;
 use App\Lmsclass;
 use App\LmsclassEvent;
+use App\Notifications\newSubjectEventNotification;
+use App\User;
 use Illuminate\Http\Request;
 
 class LmsClassEventController extends Controller
@@ -41,6 +43,7 @@ class LmsClassEventController extends Controller
     {
         //
 
+
         $event=new LmsclassEvent();
         $event->name=$request->name;
         $event->lmsclass_id=$request->subject_id;
@@ -49,6 +52,12 @@ class LmsClassEventController extends Controller
         $event->end=$request->end;
         $event->color=$request->color;
         $event->save();
+        $users=Lmsclass::find($request->subject_id)->users;
+        foreach($users as $user) {
+            if ($user->id !== $request->userId) {
+                $user->notify(new newSubjectEventNotification($event));
+            }
+        }
     }
 
     /**

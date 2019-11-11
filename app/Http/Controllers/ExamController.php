@@ -9,8 +9,10 @@ use App\Exam;
 use App\Exam_user;
 use App\Http\Resources\QuestionResource;
 use App\Lmsclass;
+use App\Notifications\newExamStartNotification;
 use App\Question;
 use Illuminate\Http\Request;
+use Auth;
 
 class ExamController extends Controller
 {
@@ -239,6 +241,14 @@ class ExamController extends Controller
         $exam->end_time=$request->end_time;
         $exam->status=$request->status;
         $exam->update();
+        $users=Lmsclass::find($request->subject_id)->users;
+        $subject=Lmsclass::find($request->subject_id);
+        foreach($users as $user) {
+            if ($user->id !== $request->userId) {
+                $user->notify(new newExamStartNotification ($subject));
+            }
+        }
+
 
     }
 

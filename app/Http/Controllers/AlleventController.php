@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\AllEvent;
 use App\Http\Resources\AlleventResource;
+use App\Notifications\newAllEventNotification;
+use App\User;
 use Illuminate\Http\Request;
 
 class AlleventController extends Controller
@@ -47,6 +49,12 @@ class AlleventController extends Controller
         $event->end=$request->end;
         $event->color=$request->color;
         $event->save();
+        $users=User::all();
+        foreach($users as $user) {
+            if ($user->id !== $request->userId) {
+                $user->notify(new newAllEventNotification($event));
+            }
+        }
 
     }
 

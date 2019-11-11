@@ -93,6 +93,10 @@ class User extends Authenticatable implements JWTSubject
     public function classHead(){
         return $this->belongsToMany(ClassHead::class,'user_class_heads','user_id','classHead_id');
     }
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new \App\Notifications\MailResetPasswordNotification($token));
+    }
 
 
 
