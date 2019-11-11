@@ -59,6 +59,7 @@
                 option:null,
                 user_id:null,
                 lmsclass_id:null,
+                check:0,
 
 
             },
@@ -71,6 +72,7 @@
                 fileReader.onload = (e) => {
                     this.material.file=e.target.result
                 }
+                this.material.check=1;
             },
             send(){
               axios.post('/lms/api/material',this.material)

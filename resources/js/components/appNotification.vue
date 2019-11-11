@@ -5,7 +5,8 @@
         nudge-width="100"
         open-on-hover
         allow-overflow
-        max-width="210"
+        max-width="250"
+
 
     >
         <template v-slot:activator="{ on, attrs }">
@@ -26,9 +27,16 @@
             </v-btn>
         </template>
 
-        <v-list >
+        <v-list
+            style="max-height: 400px"
+            class="overflow-y-auto"
+        >
+
             <v-list-item v-for="item in unread" :key="item.id">
-                <div @click="readIt(item)" class="caption"> <a :href="item.path" class="blue-grey--text" style="text-decoration:none" >{{item.data}} <b>"{{item.title}}"</b>  in  {{item.name}}.</a></div>
+                <div v-if="item.type =='App\\Notifications\\newStudentAssignNotification' || 'App\\Notifications\\newTeacherAssignNotification'"  @click="readIt(item)" class="caption"> <a :href="item.path" class="blue-grey--text" style="text-decoration:none" >{{item.data}} <b>"{{item.name}}"</b>  in  {{item.title}}.</a></div>
+                <div v-if="item.type=='App\\Notifications\\newaAnnouncementNotification'" @click="readIt(item)" class="caption"> <a :href="item.path" class="blue-grey--text" style="text-decoration:none" >{{item.data}} <b>"{{item.title}}"</b>  in  {{item.name}}.</a></div>
+                <div v-if="item.type=='App\\Notifications\\newAssignmentNotification'" @click="readIt(item)" class="caption"> <a :href="item.path" class="blue-grey--text" style="text-decoration:none" >{{item.data}} <b>"{{item.title}}"</b>  in  {{item.name}}</a></div>
+                <div v-if="item.type=='App\\Notifications\\newMaterialNotification'" @click="readIt(item)" class="caption"> <a :href="item.path" class="blue-grey--text" style="text-decoration:none" >{{item.data}} <b>"{{item.title}}"</b>  in  {{item.name}}</a></div>
             </v-list-item>
             <v-divider></v-divider>
             <v-list-item v-for="item in read" :key="item.id">

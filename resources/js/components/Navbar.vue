@@ -35,7 +35,7 @@
              </v-layout>
              <br>
 
-             <v-list-item v-for="item in items" :key="index">
+             <v-list-item v-for="(item,index) in items" :key="item.id">
                  <v-list-item-icon>
                      <v-icon>{{item.icon}}</v-icon>
                  </v-list-item-icon>
@@ -48,14 +48,14 @@
              </v-list-item>
 
 
-             <v-list-group v-for="classs in classes" :key="classs.id">
+             <v-list-group v-for="(classs,index) in classes" :key="classs.id">
                  <template v-slot:activator>
                      <v-list-item-icon>
                          <v-icon style="color: white">class</v-icon>
                      </v-list-item-icon>
                      <v-list-item-title style="color: white;font-size: 0.8em">{{classs.name}}</v-list-item-title>
                  </template>
-                 <v-list-item style="margin-left:20%" v-for="subject in classs.subject" :key="subject.id">
+                 <v-list-item style="margin-left:20%" v-for="(subject,index) in classs.subject" :key="subject.id">
                      <v-list-item-title>
                          <a :href="'/lms/class/'+subject.name" style="color:white;text-decoration: none;font-size: 120%">{{subject.name}}</a>
                      </v-list-item-title>
@@ -126,9 +126,9 @@
                 dialog: false,
                 drawer: null,
                  items: [
-                     {icon: 'dashboard', text: 'DashBoard',to:"/lms/admin/dashboard"},
-                    {icon: 'account_circle', text: 'Profile',to:"/lms/profile"},
-                     {icon: 'calendar_today', text: 'Calendar View',to:'/lms/calender'},
+                     {id:1,icon: 'dashboard', text: 'DashBoard',to:"/lms/admin/dashboard"},
+                    {id:2,icon: 'account_circle', text: 'Profile',to:"/lms/profile"},
+                     {id:3,icon: 'calendar_today', text: 'Calendar View',to:'/lms/calender'},
 
                 ],
                 classes: {},

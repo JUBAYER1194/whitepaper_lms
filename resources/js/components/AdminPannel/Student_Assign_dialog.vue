@@ -57,6 +57,7 @@
         {{User_class}}
         {{puttingdata}}
 
+
     </v-dialog>
 
 </template>
@@ -84,6 +85,7 @@
 
 
         computed:{
+
             puttingdata()
             {
                 this.form.classHead=this.puttingclass;

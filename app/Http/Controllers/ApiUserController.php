@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\ClassHead;
 use App\Http\Resources\studentResource;
 use App\Http\Resources\SubjectResource;
 use App\Http\Resources\teacherResource;
 use App\Http\Resources\UserResource;
-use App\lmsClass_user;
+use App\Lmsclass;
+use App\Notifications\newStudentAssignNotification;
+use App\Notifications\newTeacherAssignNotification;
 use App\User;
-use App\User_classHead;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
-use Illuminate\Support\Facades\DB;
 
 class ApiUserController extends Controller
 {
@@ -23,9 +22,10 @@ class ApiUserController extends Controller
         return new UserResource($user);
 
     }
-    public function update(Request $request,$id){
+
+    public function update(Request $request, $id){
 //        \Log::info($request->all());
-            if ($request->check ==1){
+        if ($request->check ==1){
             $exploded=explode(',',$request->form['image']);
             $decoded=base64_decode($exploded[1]);
             if (str_contains($exploded[0],'jpeg'))
@@ -49,10 +49,9 @@ class ApiUserController extends Controller
             $user->address=$request->form['address'];
             $user->update();
             return response('Update',Response::HTTP_ACCEPTED);
-           //$id->update($request->except('image')+['image'=>$fileName]);
-        }
-        else
-        $user=User::find($id);
+            //$id->update($request->except('image')+['image'=>$fileName]);
+        } else
+            $user=User::find($id);
         $user->first_name=$request->form['first_name'];
         $user->last_name=$request->form['last_name'];
         $user->father_name=$request->form['father_name'];
@@ -67,50 +66,73 @@ class ApiUserController extends Controller
         //$id->update($request->except('image')+['image'=>$fileName]);
 
     }
+
     public function request_user(){
         $users=User::where('status','=',0)->get();
         return UserResource::collection($users);
     }
+
     public function accept_user($id){
-             $user=User::find($id);
-             $user->status=1;
-             $user->update();
+        $user=User::find($id);
+        $user->status=1;
+        $user->update();
     }
+
     public function delete_user($id){
         $user=User::find($id);
         $user->delete();
     }
+
     public function student_user(){
 
         $users = User::role('Student')->whereIn('status', [1, 2])->latest()->get();
         return studentResource::collection($users);
     }
+
     public function teacher_user(){
 
         $users = User::role('Teacher')->whereIn('status', [1, 2])->latest()->get();
         return teacherResource::collection($users);
     }
-    public function assign_student(Request $request,$id){
-        $user=User::find($id);
+
+    public function assign_student(Request $request, $id)
+    {
+
+        if ($request->classHead == null) {
+            $user = User::find($id);
+            $user->classHead()->detach();
+            $user->lmsclass()->detach();
+        }
+        if ($request->classHead != null){
+        $user = User::find($id);
         $user->classHead()->sync($request->classHead);
         $user->lmsclass()->sync($request->subject);
+        foreach ($request->subject as $subjects) {
+            $classHead = ClassHead::find($request->classHead);
+            $subject = Lmsclass::find($subjects);
+            $user->notify(new newStudentAssignNotification($classHead, $subject));
+
         }
-    public function assign_teacher(Request $request,$id){
+    }
+    }
+
+    public function assign_teacher(Request $request, $id){
 
         $user=User::find($id);
         $user->lmsclass()->detach();
         foreach ($request->subject as $subject){
             $user->lmsclass()->attach($subject['id']);
-
+            $subjects=Lmsclass::find($subject['id']);
+            $user->notify(new newTeacherAssignNotification($subjects));
         }
         $user->classHead()->detach();
-        foreach ($request->Selected_ClassHaed as $clasHeadId)
-        {
+        foreach ($request->Selected_ClassHaed as $clasHeadId) {
             $user->classHead()->attach($clasHeadId['id']);
 
+
+
         }
-        if($request->check ==1)
-        {
+        if($request->check ==1) {
             $user->lmsclass()->detach();
         }
 
@@ -121,7 +143,7 @@ class ApiUserController extends Controller
         return SubjectResource::collection($user->lmsclass);
     }
 
-    public function remove_student($user_id,$class_id){
+    public function remove_student($user_id, $class_id){
         $user=User::find($user_id);
         $user->lmsclass()->detach($class_id);
     }

@@ -49,9 +49,11 @@ class AnnouncementController extends Controller
         $ann->user_id=$request->user_id;
         $ann->lmsclass_id=$request->lmsclass_id;
         $ann->save();
-        $users=$ann->lmsclass->user;
-        if ($users->id !=$request->user_id) {
-            $users->notify(new newaAnnouncementNotification($ann));
+        $users=$ann->lmsclass->users;
+        foreach($users as $user) {
+            if ($user->id !== $request->user_id) {
+                $user->notify(new newaAnnouncementNotification($ann));
+            }
         }
     }
 

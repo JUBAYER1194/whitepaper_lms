@@ -32,7 +32,7 @@
                                         v-on="on"
                                     ></v-text-field>
                                 </template>
-                                <v-date-picker v-model="form.deadline" scrollable>
+                                <v-date-picker color="#3b5998" v-model="form.deadline" scrollable>
                                     <v-spacer></v-spacer>
                                     <v-btn text color="primary" @click="modal = false">Cancel</v-btn>
                                     <v-btn text color="primary" @click="$refs.dialog.save(form.deadline)">OK</v-btn>
@@ -70,6 +70,7 @@
                 dialog: false,
                 modal: false,
                 form:{
+                    check:0,
                     title:null,
                     body:null,
                     file:null,
@@ -88,6 +89,7 @@
                 fileReader.onload = (e) => {
                     this.form.file=e.target.result
                 }
+                this.form.check=1;
             },
             send(){
                 axios.post('/lms/api/class/assignment',this.form)

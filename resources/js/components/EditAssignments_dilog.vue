@@ -32,7 +32,7 @@
                                         v-on="on"
                                     ></v-text-field>
                                 </template>
-                                <v-date-picker v-model="assignment.deadline" scrollable>
+                                <v-date-picker color="#3b5998" v-model="assignment.deadline" scrollable>
                                     <v-spacer></v-spacer>
                                     <v-btn text color="primary" @click="modal = false">Cancel</v-btn>
                                     <v-btn text color="primary" @click="$refs.dialog.save(assignment.deadline)">OK</v-btn>
@@ -65,7 +65,10 @@
         props:['data'],
         data: () => ({
             dialog: false,
-            assignment:{},
+            assignment:{
+                check:0,
+            },
+
 
         }),
         computed:{
@@ -74,17 +77,19 @@
             }
         },
         methods:{
-            update(){
-                axios.patch(`/lms/api/class/assignment/${this.assignment.id}`,this.assignment)
-                    .then(res=> this.dialog=false,this.$toasted.show('Assignment Updated',{type:'success'}))
-            },
             filechanged(e){
                 var fileReader=new FileReader();
                 fileReader.readAsDataURL(e.target.files[0]);
                 fileReader.onload = (e) => {
                     this.assignment.file=e.target.result
                 }
+                this.assignment.check=1;
             },
+            update(){
+                axios.patch(`/lms/api/class/assignment/${this.assignment.id}`,this.assignment)
+                    .then(res=> this.dialog=false,this.$toasted.show('Assignment Updated',{type:'success'}))
+            },
+
         }
     }
 </script>

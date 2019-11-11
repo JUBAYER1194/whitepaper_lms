@@ -51,6 +51,26 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($this->isHttpException($exception)) {
+            if (request()->expectsJson()) {
+                switch ($exception->getStatusCode()) {
+                    case 404:
+                        return response()->json(['message' => 'Invalid request or url.'], 404);
+                        break;
+                    case '500':
+                        return response()->json(['message' => 'Server error. Please contact admin.'], 500);
+                        break;
+
+                    default:
+                        return $this->renderHttpException($exception);
+                        break;
+                }
+            }
+        } else if ($exception instanceof ModelNotFoundException) {
+            if (request()->expectsJson()) {
+                return response()->json(['message' =>$exception->getMessage()], 404);
+            }
+        }
         if($exception instanceof TokenBlacklistedException)
         {
             return response(['error'=>'Token can not be used,try to get new one'],Response::HTTP_BAD_REQUEST);

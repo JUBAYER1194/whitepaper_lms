@@ -7,7 +7,7 @@
                 grow
                 v-model="tab"
                 center-active
-                mobile-break-point
+                mobile-break-point="700"
                 show-arrows
                 slider-color="white"
                 slider-size="4"
@@ -63,6 +63,11 @@
                         <Marks :data1="classes.id" :exam2="classes.exam"   ></Marks>
                     </v-card>
                 </v-tab-item>
+                <v-tab-item>
+                    <v-card class="grey lighten-4" flat >
+                        <classCalnederView :events="events" :data1="classes.id"> </classCalnederView>
+                    </v-card>
+                </v-tab-item>
             </v-tabs-items>
 
 
@@ -70,8 +75,8 @@
         {{getuser}}
         {{getannouncement}}
         {{getassignment}}
+        {{getClassEvent}}
     </div>
-
 </template>
 <script>
     import invite_dilog from "./invite_dilog";
@@ -83,16 +88,18 @@
     import Exam from "./Exam.vue";
     import ExamAnswer from "./ExamAnswer";
     import Marks from "./Teacher_marking.vue";
+    import classCalnederView from "./classCalnederView.vue";
 
     export default {
 
-        components: {dilog, invite_dilog, Information, Announcement, Assaignment, Student, Exam,ExamAnswer,Marks},
+        components: {dilog, invite_dilog, Information, Announcement, Assaignment, Student, Exam,ExamAnswer,Marks,classCalnederView},
         data() {
             return {
                 tab: null,
                 classes: {},
-                material: {},
+                material:{},
                 users:{},
+                events:{},
                 announcements:{},
                 assaignments:{},
                 user_id:null,
@@ -122,10 +129,13 @@
 
                     },
                     {
-                      name:'Exam',
+                      name:'Exams',
                     },
                     {
                         name:'Marks',
+                    },
+                    {
+                        name:'Event',
                     }
 
                 ],
@@ -140,6 +150,9 @@
 
         },
         methods: {
+            getuserId(){
+                this.user_id=User.id();
+            },
             getclass() {
                 axios.get(`/lms/api/class/about/${this.$route.params.name}`)
                     .then(res => this.classes = res.data.data)
@@ -147,6 +160,10 @@
             },
         },
         computed: {
+            getClassEvent(){
+                axios.get(`/lms/api/class/event/${this.classes.id}`)
+                    .then(res=>this.events =res.data.data)
+            },
             getmaterial() {
                 axios.get(`/lms/api/material/${this.classes.id}`)
                     .then(res => this.material = res.data.data)
@@ -166,9 +183,7 @@
                     .then(res => this.assaignments = res.data.data);
 
             },
-            getuserId(){
-                this.user_id=User.id();
-            }
+
 
 
         },

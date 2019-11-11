@@ -11,7 +11,7 @@ class Lmsclass extends Model
     public function getPathAttribute()
 
     {
-        return "$this->name";
+        return "/lms/class/$this->name";
     }
     public function getRouteKeyName()
     {
@@ -21,7 +21,7 @@ class Lmsclass extends Model
        return  $this->belongsTo(User::class);
     }
     public function material(){
-        return $this->hasMany(Material::class)->latest();
+        return $this->hasMany(Material::class,'lmsclass_id','id')->latest();
     }
 
     public function users(){
@@ -32,8 +32,8 @@ class Lmsclass extends Model
         return $this->hasMany(Announcement::class)->latest();
 
     }
-    public function Assaignments(){
-        return $this->hasMany(Assaignment::class)->latest();
+    public function Assignments(){
+        return $this->hasMany(Assaignment::class,'lmsclass_id','id')->latest();
 
     }
 
@@ -42,6 +42,10 @@ class Lmsclass extends Model
     }
     public function head(){
         return $this->belongsTo(ClassHead::class,'classhead_id','id');
+    }
+    public function event()
+    {
+        return $this->hasMany(LmsclassEvent::class,'lmsclass_id','id');
     }
 
 }

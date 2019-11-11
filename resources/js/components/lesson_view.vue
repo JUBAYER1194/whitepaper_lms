@@ -9,7 +9,7 @@
         <v-card-title style="font-size: 180%">{{material.title}}</v-card-title>
         <v-card-text style="color: #3e2723">{{material.body}}</v-card-text>
         <v-card-actions>
-            <v-btn> <a :href="'http://localhost:8000/uploads/x/x/material/'+material.file" target="_blank"><button type="button" class="btn btn-sm">Read File</button></a></v-btn>
+            <v-btn depressed v-if="material.file"> <a :href="'http://localhost:8000/uploads/x/x/material/'+material.file" target="_blank"><button type="button" class="btn btn-sm">Read File</button></a></v-btn>
         </v-card-actions>
     </v-card>
 </template>

@@ -56,9 +56,9 @@
                         </v-icon>
                         <span class="title font-weight " style="color:darkred;">{{announcement.title}}</span>
                     </v-card-title>
-                    <v-card-subtitle style="padding-left: 10%">
+                    <v-card-actions style="padding-left: 10%">
                    {{announcement.created_at}}
-                   </v-card-subtitle>
+                   </v-card-actions>
 
 
                     <v-card-text  style="font-size:1.2em;" class="font-weight-bold">

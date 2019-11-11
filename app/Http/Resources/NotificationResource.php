@@ -20,6 +20,8 @@ class NotificationResource extends JsonResource
             'name'=>$this->data['subject_name'],
             'title'=>$this->data['title'],
             'path'=>$this->data['path'],
+            'type'=>$this->type,
+
         ];
     }
 }

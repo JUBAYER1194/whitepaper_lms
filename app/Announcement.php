@@ -12,6 +12,6 @@ class Announcement extends Model
         return $this->belongsTo(User::class);
     }
     public function lmsclass(){
-        return $this->belongsTo(Lmsclass::class);
+        return $this->belongsTo(Lmsclass::class,'lmsclass_id','id');
     }
 }

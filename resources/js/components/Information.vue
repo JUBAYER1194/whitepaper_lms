@@ -18,14 +18,14 @@
                     flat
                     grow
                     slider-size="4"
-                    mobile-break-point
+                    mobile-break-point="700"
                     show-arrows
                 >
                     <v-tab>
                         <v-icon left>info</v-icon>
                         Class Information
                     </v-tab>
-                    <v-tab @click="created">
+                    <v-tab>
                         <v-icon left>menu_book</v-icon>
                         Class Material
                     </v-tab>
@@ -50,15 +50,11 @@
                                         <td class="black--text text-capitalize">{{classes.description}}</td>
                                     </tr>
                                     <tr>
-                                        <td class="font-weight-black"> Faculty Name:</td>
+                                        <td class="font-weight-black"> Teacher's Name:</td>
                                         <td class="black--text text-capitalize" >{{classes.first_name}} {{classes.last_name}}</td>
                                     </tr>
                                     <tr>
-                                        <td class="font-weight-black">Code:</td>
-                                        <td class="black--text">{{classes.code}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="font-weight-black">Create At:</td>
+                                        <td class="font-weight-black">Created At:</td>
                                         <td class="black--text">{{classes.created_at}}</td>
                                     </tr>
                                     </tbody>
@@ -103,7 +99,7 @@
                                                     <br>
                                                     <br>
                                                     <v-list-item-title >
-                                                        <a :href="'http://127.0.0.1:8000/uploads/x/x/material/'+material.file" target="_blank"><button type="button" class="btn btn-sm">Read File</button></a>
+                                                        <a v-if="material.file" :href="'http://127.0.0.1:8000/uploads/x/x/material/'+material.file" target="_blank"><button type="button" class="btn btn-sm">Read File</button></a>
                                                     </v-list-item-title>
                                                     <br>
                                                     <br>
@@ -114,21 +110,24 @@
                                         <v-card flat>
                                             <v-row class="d-flex">
                                                 <v-col
+                                                    sm="4"
                                                     md="4"
-                                                    cols="12"
+                                                    cols="4"
                                                 >
                                                     <a style="text-decoration: none;"  :href="'/lms/class/material/'+material.id"><v-btn class="ml-3" width="70" style="color: white;background-color:#3b5998;" depressed>Click</v-btn></a>
                                                 </v-col>
                                                 <v-col
+                                                    sm="4"
                                                     md="4"
-                                                    cols="12"
+                                                    cols="4"
                                                 >
                                                     <EditMaterialdilog class="text-center" :data="material"></EditMaterialdilog>
 
                                                 </v-col>
                                                 <v-col
+                                                    sm="4"
                                                     md="4"
-                                                    cols="12"
+                                                    cols="4"
                                                 >
                                                     <deleteClassMaterialDialog  :data="material"></deleteClassMaterialDialog>
                                                 </v-col>
@@ -143,7 +142,7 @@
                     </v-tab-item>
                 </v-tabs>
         </v-card-text>
-          {{created}}
+          {{createdM}}
           {{getMaterial}}
         {{getuser}}
     </v-card>
@@ -163,32 +162,6 @@
                 classes:{},
                 materials:{},
                 x:null,
-                items: [
-                    {
-                        name: 'INFORMATION',
-                        to: '/information',
-                    },
-                    {
-                        name: 'ANNOUNCEMENTS',
-                        to: '/announcement',
-
-                    },
-                    {
-                        name: 'ASSIGNMENTS',
-                        to: '/assignment',
-
-                    },
-                    {
-                        name: 'STUDENTS',
-                        to: '/student',
-
-                    },
-                    {
-                        name: 'DISCUSSION',
-                        to: '/discussion'
-                    },
-
-                ],
                 users:{},
 
 
@@ -201,7 +174,7 @@
         },
 
         computed:{
-            created() {
+            createdM() {
                 this.classes=this.data;
             },
             getMaterial(){

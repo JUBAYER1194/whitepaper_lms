@@ -110,8 +110,9 @@
         methods:{
           create(){
               axios.post(`/lms/api/class`,this.classes)
-                  .then(res =>EventBus.$emit('newSubject',this.classes),this.dialog=false,this.$toasted.show('Subject Created',{type:'success'}))
-                  this.x=0
+                  .then(res =>this.dialog=false,this.$toasted.show('Subject Created',{type:'success'}))
+                   EventBus.$emit('newSubject',this.classes)
+                   this.x=0
           },
         },
     }

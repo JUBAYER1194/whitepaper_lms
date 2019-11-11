@@ -16,6 +16,7 @@ Route::get('/user/teacher_user','ApiUserController@teacher_user');
 Route::put('/information/{id}','ApiUserController@update');
 Route::Resource('announcement', 'AnnouncementController');
 Route::Resource('class/assignment','AssaignmentController');
+Route::get('assign/getsubject/subject','AssaignmentController@getLmsclass');
 Route::Resource('class','LmsclassController');
 Route::get('class/user/{id}','LmsclassController@user');
 Route::Resource('material','MaterialController');
@@ -32,6 +33,7 @@ Route::Post('/class/exam/question/{class}','ExamController@QuestionCreate');
 Route::Post('/class/exam/answer/{class}','ExamController@AnswerCreate');
 Route::patch('/class/exam/marks/{mark}','ExamController@Marks_update');
 Route::Resource('allevent','AlleventController');
+Route::Resource('class/event','LmsClassEventController');
 Route::Resource('class-head','ClassHeadController');
 
 

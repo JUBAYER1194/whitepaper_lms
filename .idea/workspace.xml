@@ -2,17 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03434f23-f88b-48c6-bc77-19b79d88e8b8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/lms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/lms.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Announcement.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Announcement.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Assaignment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Assaignment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Exceptions/Handler.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/Handler.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AnnouncementController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AnnouncementController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ApiUserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ApiUserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AssaignmentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AssaignmentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MaterialController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MaterialController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/NotificationResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/NotificationResource.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Lmsclass.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Lmsclass.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/LmsclassEvent.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/LmsclassEvent.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Material.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Material.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Notifications/newaAnnouncementNotification.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Notifications/newaAnnouncementNotification.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/bootstrap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/AdminPannel/Create_subject_dialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AdminPannel/Create_subject_dialog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/AdminPannel/Student_Assign_dialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AdminPannel/Student_Assign_dialog.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/Announcement.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Announcement.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Assaignment.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Assaignment.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Assignment_dilog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Assignment_dilog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Class.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Class.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/EditAssignments_dilog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/EditAssignments_dilog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Information.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Information.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Material_dilog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Material_dilog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Navbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Navbar.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/appNotification.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/appNotification.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/lesson_view.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/lesson_view.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -165,6 +185,8 @@
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
       <path value="$PROJECT_DIR$/vendor/psr/http-message" />
       <path value="$PROJECT_DIR$/vendor/intervention/image" />
+      <path value="$PROJECT_DIR$/vendor/pusher/pusher-php-server" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/sodium_compat" />
     </include_path>
   </component>
   <component name="ProjectId" id="1QYP0flzp6ATtMF1Ncte2YUOpx0" />
@@ -229,6 +251,10 @@
         </treeState>
       </serviceView>
     </option>
+  </component>
+  <component name="StructureViewFactory">
+    <option name="AUTOSCROLL_MODE" value="false" />
+    <option name="AUTOSCROLL_FROM_SOURCE" value="true" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -327,6 +353,15 @@
       <workItem from="1573015738800" duration="23786000" />
       <workItem from="1573107234494" duration="7508000" />
       <workItem from="1573121211281" duration="6998000" />
+      <workItem from="1573212960596" duration="888000" />
+      <workItem from="1573214036065" duration="76000" />
+      <workItem from="1573214240080" duration="6266000" />
+      <workItem from="1573231613561" duration="6003000" />
+      <workItem from="1573269367160" duration="2353000" />
+      <workItem from="1573312496411" duration="4430000" />
+      <workItem from="1573324589491" duration="796000" />
+      <workItem from="1573365867379" duration="6953000" />
+      <workItem from="1573373969619" duration="7278000" />
     </task>
     <servers />
   </component>

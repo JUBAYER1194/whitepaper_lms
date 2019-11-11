@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Announcement;
 use App\Assaignment;
 use App\Http\Resources\AssignmentResource;
 use App\Lmsclass;
+use App\Notifications\newAssignmentNotification;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -41,25 +43,56 @@ class AssaignmentController extends Controller
     public function store(Request $request)
     {
 
-
+        if ($request->check ==1) {
 //        $base64_encoded_string =$request->file;
-        $exploded=explode(',',$request->file);
-        $decoded=base64_decode($exploded[1]);
-        if (str_contains($exploded[0],'docx'))
-            $extension='docx';
+            $exploded = explode(',', $request->file);
+            $decoded = base64_decode($exploded[1]);
+            if (str_contains($exploded[0], 'vnd.openxmlformats-officedocument.wordprocessingml.document')) {
+                $extension = 'docx';
+            } elseif (str_contains($exploded[0], 'vnd.openxmlformats-officedocument.presentationml.presentation')) {
+                $extension = 'pptx';
+            } elseif (str_contains($exploded[0], 'msword')) {
+                $extension = 'doc';
+            } elseif (str_contains($exploded[0], 'pdf')) {
+                $extension = 'pdf';
+            } elseif (str_contains($exploded[0], 'jpeg')) {
+                $extension = 'jpeg';
+            } elseif (str_contains($exploded[0], 'png')) {
+                $extension = 'png';
+            } else
+                $extension = 'pdf';
+            $fileName = str_random() . '.' . $extension;
+            $path = public_path() . '/uploads/x/x/assignment/' . $fileName;
+            file_put_contents($path, $decoded);
+            $assignment = new Assaignment();
+            $assignment->user_id = $request->user_id;
+            $assignment->lmsclass_id = $request->class_id;
+            $assignment->title = $request->title;
+            $assignment->deadline = $request->deadline;
+            $assignment->body = $request->body;
+            $assignment->file = $fileName;
+            $assignment->save();
+            $users=$assignment->lmsclass->users;
+            foreach($users as $user) {
+                if ($user->id !== $request->user_id) {
+                    $user->notify(new newAssignmentNotification($assignment));
+                }
+            }
+        }
         else
-            $extension='pdf';
-        $fileName=str_random().'.'.$extension;
-        $path=public_path().'/uploads/x/x/assignment/'.$fileName;
-        file_put_contents($path,$decoded);
-        $assignment=new Assaignment();
-        $assignment->user_id=$request->user_id;
-        $assignment->lmsclass_id=$request->class_id;
-        $assignment->title=$request->title;
-        $assignment->deadline=$request->deadline;
-        $assignment->body=$request->body;
-        $assignment->file=$fileName;
+        $assignment = new Assaignment();
+        $assignment->user_id = $request->user_id;
+        $assignment->lmsclass_id = $request->class_id;
+        $assignment->title = $request->title;
+        $assignment->deadline = $request->deadline;
+        $assignment->body = $request->body;
         $assignment->save();
+        $users=$assignment->lmsclass->users;
+        foreach($users as $user) {
+            if ($user->id !== $request->user_id) {
+                $user->notify(new newAssignmentNotification($assignment));
+            }
+        }
         return response('Created',Response::HTTP_ACCEPTED);
     }
 
@@ -72,7 +105,7 @@ class AssaignmentController extends Controller
     public function show($id)
     {
         //
-        $ann=Lmsclass::find($id)->Assaignments;
+        $ann=Lmsclass::find($id)->Assignments;
         return AssignmentResource::collection($ann);
 
     }
@@ -98,21 +131,30 @@ class AssaignmentController extends Controller
     public function update(Request $request, $id)
     {
         //
+
 //        $base64_encoded_string =$request->file;
-        $exploded=explode(',',$request->file);
-        $decoded=base64_decode($exploded[1]);
-        if (str_contains($exploded[0],'docx'))
-            $extension='docx';
+        if ($request->check==1) {
+            $exploded = explode(',', $request->file);
+            $decoded = base64_decode($exploded[1]);
+            if (str_contains($exploded[0], 'docx'))
+                $extension = 'docx';
+            else
+                $extension = 'pdf';
+            $fileName = str_random() . '.' . $extension;
+            $path = public_path() . '/uploads/x/x/assignment/' . $fileName;
+            file_put_contents($path, $decoded);
+            $assignment = Assaignment::find($request->id);
+            $assignment->title = $request->title;
+            $assignment->deadline = $request->deadline;
+            $assignment->body = $request->body;
+            $assignment->file = $fileName;
+            $assignment->save();
+        }
         else
-            $extension='pdf';
-        $fileName=str_random().'.'.$extension;
-        $path=public_path().'/uploads/x/x/assignment/'.$fileName;
-        file_put_contents($path,$decoded);
-        $assignment=Assaignment::find($request->id);
-        $assignment->title=$request->title;
-        $assignment->deadline=$request->deadline;
-        $assignment->body=$request->body;
-        $assignment->file=$fileName;
+        $assignment = Assaignment::find($request->id);
+        $assignment->title = $request->title;
+        $assignment->deadline = $request->deadline;
+        $assignment->body = $request->body;
         $assignment->save();
         return response('Update',Response::HTTP_ACCEPTED);
     }
@@ -129,4 +171,12 @@ class AssaignmentController extends Controller
         $assignment=Assaignment::find($id);
         $assignment->delete();
     }
+
+    public function getLmsclass(){
+
+        $assi=Assaignment::find(30);
+           return $assi->lmsclass;
+       }
+
+
 }

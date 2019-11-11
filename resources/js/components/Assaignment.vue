@@ -57,15 +57,14 @@
                         </v-icon>
                         <span class="title font-weight " style="color:darkred;">Deadline: {{assignment.deadline}}</span>
                     </v-card-title>
-                    <v-card-subtitle style="padding-left: 10%">
+                    <v-card-actions style="padding-left: 10%">
                         {{assignment.created_at}}
-                    </v-card-subtitle>
+                    </v-card-actions>
                     <v-card-title>
                         {{assignment.title}}
                     </v-card-title>
                     <v-card-actions style="padding-left:5%;">
                         <a v-if="assignment.file" :href="'http://127.0.0.1:8000/uploads/x/x/assignment/'+assignment.file" target="_blank"><button type="button" class="btn btn-sm">Read File</button></a>
-                        <a v-else :href="'#'"><button type="button" class="btn btn-sm">Read File</button></a>
                     </v-card-actions>
                     <v-card-text  style="font-size:1.2em;" class="font-weight-bold">
                         "{{assignment.body}}"
