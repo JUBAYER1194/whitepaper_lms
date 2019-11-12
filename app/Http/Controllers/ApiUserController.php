@@ -149,6 +149,15 @@ class ApiUserController extends Controller
         $user=User::find($user_id);
         $user->lmsclass()->detach($class_id);
     }
+    public function assign_allStudent(Request $request)
+    {
+       foreach($request->students as $student){
+           $user=User::find($student);
+           $user->classHead()->detach();
+           $user->lmsclass()->detach();
+           $user->classHead()->attach($request->subject);
+       }
+    }
 
 
 }

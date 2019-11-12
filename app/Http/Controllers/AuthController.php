@@ -7,9 +7,8 @@ use App\User;
 use Hash;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Auth;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class AuthController extends Controller
@@ -19,8 +18,8 @@ class AuthController extends Controller
      *
      * @return void
      */
-    use ResetsPasswords;
 
+      use ResetsPasswords;
 
     public function __construct()
     {
@@ -40,27 +39,13 @@ class AuthController extends Controller
     }
     protected function resetPassword($user, $password)
     {
-        dd($user);
-        $user->password = Hash::make($password);
+
+        $user->password = $password;
         $user->save();
         event(new PasswordReset($user));
     }
 
-    public function sendPasswordResetLink(Request $request)
-    {
-        return $this->sendResetLinkEmail($request);
-    }
-    protected function sendResetLinkResponse(Request $request, $response)
-    {
-        return response()->json([
-            'message' => 'Password reset email sent.',
-            'data' => $response
-        ]);
-    }
-    protected function sendResetLinkFailedResponse(Request $request, $response)
-    {
-        return response()->json(['message' => 'Email could not be sent to this email address.']);
-    }
+
     public function login()
     {
         $credentials = request(['email', 'password']);

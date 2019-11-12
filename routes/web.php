@@ -17,6 +17,7 @@ Route::get('/dummy','DummyController@dummy');
 Route::view('/home','home');
 Route::view('/','login');
 Route::view('/signups','Signup');
+Route::get('/reset-password/{token}','AuthmailController@gettingtoken');
 Route::view('/checking_signup','checking_signup');
 Route::view('/{any}','home');
 Route::view('/{any}/{any1}','home');

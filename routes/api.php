@@ -9,6 +9,7 @@ Route::get('/auth_class/{id}','ApiUserController@authenticateUserClassSubject');
 Route::post('/student/assign_c_s/{id}','ApiUserController@assign_student');
 Route::post('/unassaign_student/{user_id}/{class_id}','ApiUserController@remove_student');
 Route::post('/teacher/assign_c_s/{id}','ApiUserController@assign_teacher');
+Route::post('/all/students/assign','ApiUserController@assign_allStudent');
 Route::patch('/user/accept_user/{id}','ApiUserController@accept_user');
 Route::delete('/user/delete_user/{id}','ApiUserController@delete_user');
 Route::get('/user/student_user','ApiUserController@student_user');
@@ -36,7 +37,8 @@ Route::Resource('allevent','AlleventController');
 Route::Resource('class/event','LmsClassEventController');
 Route::Resource('class-head','ClassHeadController');
 
-Route::post('reset-password', 'AuthController@sendPasswordResetLink');
+
+Route::post('reset-password', 'AuthmailController@sendPasswordResetLink');
 Route::post('reset/password', 'AuthController@callResetPassword');
 
 

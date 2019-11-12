@@ -9,9 +9,11 @@
         <template v-slot:default>
             <thead>
             <tr>
+
                 <th style=" font-size: 1.5rem " class="text-left font-weight-black">Name</th>
                 <th style=" font-size: 1.5rem " class="text-center font-weight-black">Profile</th>
                 <th style=" font-size: 1.5rem " class="text-center font-weight-black">Action</th>
+
             </tr>
             </thead>
             <tbody>

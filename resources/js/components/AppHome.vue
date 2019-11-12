@@ -3,7 +3,7 @@
         <v-app >
             <Navbar class="grey lighten-2" />
             <v-content  class="grey lighten-4 mx-1 mb-1">
-                <router-view></router-view>
+                <router-view/>
             </v-content>
           <f/>
 

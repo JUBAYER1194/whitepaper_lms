@@ -17,8 +17,8 @@ import AppHome from "../components/AppHome.vue";
 import Logout from "../components/Logout.vue";
 import lesson from "../components/lesson_view.vue";
 import userProfile from "../components/userProfile.vue";
-import ForgotPassword from "../components/ForgotPassword.vue";
-import ResetPasswordForm from "../components/ResetPasswordForm.vue";
+import resetPasswordWithToken from "../components/resetPasswordWithToken.vue";
+
 
 
 const routes = [
@@ -39,25 +39,14 @@ const routes = [
     { path: '/lms/home', component: AppHome,name:'home'},
     { path: '/lms/logout', component: Logout,name:'logout'},
     {
-        path: '/reset-password',
-        name: 'reset-password',
-        component: ForgotPassword,
-        meta: {
-            auth:false
-        }
-    },
-    {
         path: '/reset-password/:token',
         name: 'reset-password-form',
-        component: ResetPasswordForm,
-        meta: {
-            auth:false
-        }
+        component: resetPasswordWithToken,
     }
 
 
-
 ]
+
 
 const router = new VueRouter({
     routes, // short for `routes: routes`

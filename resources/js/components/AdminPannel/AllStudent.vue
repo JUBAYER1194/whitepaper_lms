@@ -27,8 +27,8 @@
         <template v-slot:default>
             <thead>
             <tr>
-                <th class="ma-0 pa-0" width="1"></th>
-                <th style=" font-size: 1.2rem " class="text-left font-weight-black">Name</th>
+                <th> <v-checkbox  color="#3b5998" v-model="checkAll" label="all"></v-checkbox></th>
+                <th style=" font-size: 1.2rem " class="text-center font-weight-black">Name</th>
                 <th style=" font-size: 1.2rem " class="text-center font-weight-black">Class</th>
                 <th style=" font-size: 1.2rem " class="text-center font-weight-black">Profile</th>
                 <th style=" font-size: 1.2rem " class="text-center font-weight-black">Status</th>
@@ -36,8 +36,8 @@
             </tr>
             </thead>
             <tbody v-if="data.length">
-            <tr v-for="(student,index) in filteredBlogs">
-                <td>{{index+1}}</td>
+            <tr v-for="(student,index) in students">
+                <td> <v-checkbox color="#3b5998" dense v-model="userIds" :value="student.id" :label="index+1" ></v-checkbox> </td>
                 <td>
                     <v-list  class="grey lighten-4 ma-0 pa-0" subheader>
                         <v-list-item
@@ -83,15 +83,20 @@
             </tbody>
         </template>
     </v-simple-table>
+        <br>
+        <multipleStudentAssign :data="dataH" :datas="userIds" > </multipleStudentAssign>
+
+        {{filteredBlogs}}
     </v-container>
 </template>
 <script>
+    import multipleStudentAssign from "./multipleStudentAssign.vue";
     import details_dilog from "./details_dilog.vue";
     import Student_Assign_dialog from "./Student_Assign_dialog.vue";
     import Delete_Request from "./Delete_Request.vue";
 
     export default {
-        components: {details_dilog, Student_Assign_dialog,Delete_Request},
+        components: {details_dilog, Student_Assign_dialog,Delete_Request,multipleStudentAssign},
         props: ['data','dataH','datafld'],
         data () {
             return {
@@ -99,6 +104,10 @@
                 AllSubject:null,
                 search:'',
                 CheckingUser:null,
+                selected: [],
+                allSelected: false,
+                userIds: [],
+                students:null,
 
 
             }
@@ -107,6 +116,10 @@
             this.deleteStudent();
         },
         methods:{
+
+            select: function() {
+                this.allSelected = false;
+            },
 
             changing(){
                 this.y=1;
@@ -121,8 +134,23 @@
         },
         computed:
             {
+                checkAll: {
+                    get: function () {
+                        return this.students ? this.userIds.length == this.students.length : false;
+                    },
+                    set: function (value) {
+                        var userIds = [];
+                        if (value) {
+                            this.students.forEach(function (student) {
+                                userIds.push(student.id);
+                            });
+                        }
+                        this.userIds = userIds;
+                    }
+                },
+
                 filteredBlogs: function(){
-                    return this.data.filter((el) => {
+                    this.students=this.data.filter((el) => {
                         return (el.first_name.toLowerCase().match(this.search)) ||(el.first_name.toUpperCase().match(this.search));
                     });
                 },

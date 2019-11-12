@@ -17,11 +17,11 @@
                                     outlined
                                     rounded
                                     label="Enter Your Email Address*"
-                                    required>
-
+                                    required
+                                    v-model="email"
+                                >
                                 </v-text-field>
                             </v-col>
-
                         </v-row>
                     </v-container>
                     <small>*indicates required field</small>
@@ -29,7 +29,7 @@
                 <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn depressed style="background-color:#3b5998;color: white;"  text @click="dialog = false">Close</v-btn>
-                    <v-btn depressed style="background-color:#3b5998;color: white;" text @click="dialog = false">Save</v-btn>
+                    <v-btn depressed style="background-color:#3b5998;color: white;" text @click="requestResetPassword">Save</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -38,6 +38,19 @@
     export default {
         data: () => ({
             dialog: false,
+            email: null,
+            has_error: false
         }),
+        methods: {
+            requestResetPassword() {
+                axios.post("/lms/api/reset-password", {email: this.email}).then(result => {
+                    this.response = result.data;
+                    console.log(result.data);
+                }, error => {
+                    console.error(error);
+                });
+                this.dialog=false;
+            }
+        }
     }
 </script>

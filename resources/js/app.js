@@ -20,10 +20,7 @@ window.User =User
 import  Exception from './Helpers/Exception'
 window.Exception =Exception
 window.EventBus = new Vue();
-
-
 import Toasted from 'vue-toasted';
-
 Vue.use(Toasted)
 
 
@@ -36,7 +33,7 @@ Vue.component('home', require('./components/AppHome.vue').default);
 Vue.component('login', require('./components/Login.vue').default);
 Vue.component('signup', require('./components/Signup.vue').default);
 Vue.component('checkSignup',require('./components/ConfirmSignup.vue').default);
-
+Vue.component('passwordReset',require('./components/resetPasswordWithToken.vue').default);
 
 const app = new Vue({
     el: '#app',
@@ -46,3 +43,4 @@ const app = new Vue({
         iconfont: 'mdi', // default - only for display purposes
     },
 });
+
