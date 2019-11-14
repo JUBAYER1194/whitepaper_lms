@@ -3,21 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="03434f23-f88b-48c6-bc77-19b79d88e8b8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ApiUserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ApiUserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Router/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Router/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/AdminPannel/AllStudent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AdminPannel/AllStudent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/AppHome.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AppHome.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Helpers/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Helpers/User.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Exam.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Exam.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Login.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/ResetPassword.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ResetPassword.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/ResetPasswordForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ResetPasswordForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Student.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Student.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Signup.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Signup.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -181,7 +173,7 @@
     <property name="DatabaseDriversLRU" value="java.sql.Driver&#10;mysql" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../onlineshop" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../realtimeApp" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -355,7 +347,9 @@
       <workItem from="1573365867379" duration="6953000" />
       <workItem from="1573373969619" duration="7278000" />
       <workItem from="1573450379092" duration="22084000" />
-      <workItem from="1573534098514" duration="23279000" />
+      <workItem from="1573534098514" duration="23367000" />
+      <workItem from="1573621246597" duration="23664000" />
+      <workItem from="1573707309875" duration="14587000" />
     </task>
     <servers />
   </component>
@@ -393,7 +387,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/resources/js/components/Exam.vue</url>
-          <line>979</line>
+          <line>1023</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" log-message="true" suspend="NONE" type="javascript">
@@ -433,13 +427,23 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/resources/js/components/Exam.vue</url>
-          <line>418</line>
+          <line>419</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/resources/js/components/editClassEvent.vue</url>
           <line>107</line>
           <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/resources/js/components/Exam.vue</url>
+          <line>786</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/resources/js/components/Exam.vue</url>
+          <line>822</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/app/Http/Controllers/QuestionController.php</url>

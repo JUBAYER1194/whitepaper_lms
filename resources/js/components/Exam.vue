@@ -7,6 +7,7 @@
 
             <div class="d-inline-flex">
                 <v-select
+                    @change="checkingPoll"
                     :items="exams"
                     item-text="type"
                     item-value="type"
@@ -784,7 +785,7 @@
                     ></v-textarea>
                     <v-row class="d-flex">
                         <v-col
-                            class="d-flex"
+
                             md="3"
                             cols="12"
                         >
@@ -796,9 +797,12 @@
                                 rounded
                                 v-model="poll_s.option_1"
                             ></v-textarea>
+                            <div v-for="(Apolls,index) in poll_s.Apoll" v-if="poll_s.option_1==Apolls.answer">
+                            <h3  v-if="poll_s.Apoll.length && index+1==poll_s.Apoll.length" class="text-center" style="color: #3b5998" >Chosen By: {{poll_s.Apoll.length}} students</h3>
+                            <h3 v-else class="text-center"  style="color: #3b5998">Chosen By: Not Chosen Yet</h3>
+                            </div>
                         </v-col>
                         <v-col
-                            class="d-flex"
                             md="3"
                             cols="12"
                         >
@@ -810,9 +814,14 @@
                                 rounded
                                 v-model="poll_s.option_2"
                             ></v-textarea>
+
+                            <div v-for="(Apolls,index) in poll_s.Apoll" v-if="poll_s.option_2==Apolls.answer">
+                            <h3  v-if="index+1==poll_s.Apoll.length" class="text-center" style="color: #3b5998" >Chosen By: {{poll_s.Apoll.length}} students</h3>
+                            <h3 v-if="poll_s.Apoll.length==0" class="text-center"  style="color: #3b5998">Chosen By: Not Chosen Yet</h3>
+                            </div>
                         </v-col>
                         <v-col
-                            class="d-flex"
+
                             md="3"
                             cols="12"
                         >
@@ -824,9 +833,14 @@
                                 rounded
                                 v-model="poll_s.option_3"
                             ></v-textarea>
+                            <div v-for="(Apolls,index) in poll_s.Apoll" v-if="poll_s.option_3==Apolls.answer">
+                            <h3  v-if="index+1==poll_s.Apoll.length" class="text-center" style="color: #3b5998" >Chosen By: {{poll_s.Apoll.length}} students</h3>
+                            <h3 v-if="poll_s.Apoll.length==0" class="text-center"  style="color: #3b5998">Chosen By: Not Chosen Yet</h3>
+                            </div>
                         </v-col>
+
                         <v-col
-                            class="d-flex"
+
                             md="3"
                             cols="12"
                         >
@@ -838,8 +852,16 @@
                                 rounded
                                 v-model="poll_s.option_4"
                             ></v-textarea>
+                            <div v-for="(Apolls,index) in poll_s.Apoll" v-if="poll_s.option_4==Apolls.answer">
+                            <h3  v-if="index+1==poll_s.Apoll.length" class="text-center" style="color: #3b5998" >Chosen By: {{poll_s.Apoll.length}} students</h3>
+                            <h3 v-if="poll_s.Apoll.length==0" class="text-center"  style="color: #3b5998">Chosen By: Not Chosen Yet</h3>
+                            </div>
                         </v-col>
                     </v-row>
+
+
+
+
 
                 </div>
             </div>
@@ -948,6 +970,10 @@
             examsatrtId:null,
             examn:null,
             somex:true,
+            count1:null,
+            count2:null,
+            count3:null,
+            count4:null,
         }),
         created(){
           this.listen();
@@ -977,6 +1003,24 @@
 
 
         methods: {
+            checkingPoll(){
+                this.count1=null;
+                this.count2=null;
+                this.count3=null;
+                this.count4=null;
+            },
+            checkingCount4(x,y){
+                this.count4=y+1;
+            },
+            checkingCount1(x,y){
+                this.count1=y+1;
+            },
+            checkingCount3(x,y){
+                this.count3=y+1;
+            },
+            checkingCount2(x,y){
+                this.count2=y+1;
+            },
             stopingRunningExam(id){
                 axios.patch(`/lms/api/class/exam/stop/${id}`,{
 

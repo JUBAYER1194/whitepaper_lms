@@ -39,17 +39,17 @@
         data: () => ({
             dialog: false,
             email: null,
-            has_error: false
+            has_error: false,
+            errors:{},
+
         }),
         methods: {
             requestResetPassword() {
-                axios.post("/lms/api/reset-password", {email: this.email}).then(result => {
-                    this.response = result.data;
-                    console.log(result.data);
-                }, error => {
-                    console.error(error);
-                });
-                this.dialog=false;
+                axios.post("/lms/api/reset-password", {email: this.email})
+                    .then(res =>this.dialog=false,this.$toasted.show('A Mail Will Be sent Within A Minute.Please Wait',{type:'success'}))
+                    .catch(error =>this.errors = error.response.data.errors)
+
+
             }
         }
     }

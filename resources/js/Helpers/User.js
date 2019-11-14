@@ -2,19 +2,7 @@ import Token from './Token'
 import AppStorage from './AppStorage'
 class User {
 
-login(data){
-    axios.post('/lms/api/auth/login',data)
-        .then(res => this.responseAfterLogin(res))
-        // .then(res =>{
-        //
-        //     Token.payload(res.data.access_token)
-        // })
 
-
-
-
-        .catch(error => console.log(error.response.data))
-}
     responseAfterLogin(res)
 {
     const access_token= res.data.access_token

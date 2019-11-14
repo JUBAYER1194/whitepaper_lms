@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\loginRequest;
+use App\Http\Requests\SignupRequest;
 use App\Notifications\newUserNotification;
 use App\User;
 use Hash;
@@ -46,7 +48,7 @@ class AuthController extends Controller
     }
 
 
-    public function login()
+    public function login(loginRequest $request)
     {
         $credentials = request(['email', 'password']);
 
@@ -88,16 +90,15 @@ class AuthController extends Controller
     {
         return $this->respondWithToken(auth()->refresh());
     }
-    public function signup(Request $request)
+    public function signup(SignupRequest $request)
     {
-
-       $user=new User();
+        $user=new User();
        $user->first_name=$request->first_name;
        $user->last_name=$request->last_name;
        $user->email=$request->email;
        $user->password=$request->password;
        $user->save();
-       $user->assignRole($request->role_id);
+       $user->assignRole($request->role);
        $admins=User::role('Admin')->get();
         foreach($admins as $admin) {
             $admin->notify(new newUserNotification($user));

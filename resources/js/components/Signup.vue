@@ -27,52 +27,64 @@
                             <v-card-text>
                                 <v-form @submit.prevent="signup">
                                     <v-text-field
-                                        label="First Name"
+                                        label="First Name*"
                                         name="first_name"
                                         v-model="form.first_name"
                                         prepend-icon="person"
                                         type="text"
                                     ></v-text-field>
+                                    <span class="red--text" v-if="errors.first_name">{{errors.first_name[0]}}</span>
+
                                     <v-text-field
-                                        label="Last Name"
+                                        label="Last Name*"
                                         name="last_name"
                                         v-model="form.last_name"
                                         prepend-icon="person"
                                         type="text"
                                     ></v-text-field>
+                                    <span class="red--text" v-if="errors.last_name">{{errors.last_name[0]}}</span>
+
                                     <v-text-field
-                                        label="Email"
+                                        label="Email*"
                                         name="email"
                                         v-model="form.email"
                                         prepend-icon="email"
                                         type="email"
                                     ></v-text-field>
+                                    <span class="red--text" v-if="errors.email">{{errors.email[0]}}</span>
+
                                     <v-text-field
                                         id="password"
-                                        label="Password"
+                                        label="Password*"
                                         name="password"
                                         v-model="form.password"
                                         prepend-icon="lock"
                                         type="password"
                                     ></v-text-field>
+                                    <span class="red--text" v-if="errors.password">{{errors.password[0]}}</span>
+
                                     <v-text-field
                                         id="Confirm Your password"
-                                        label="Confirm  password"
+                                        label="Confirm  password*"
                                         name="password"
                                         v-model="form.password_confirmation"
                                         prepend-icon="lock"
                                         type="password"
                                     ></v-text-field>
+                                    <span class="red--text" v-if="errors.password_confirmation">{{errors.password_confirmation[0]}}</span>
+
                                     <v-select
                                         :items="roles"
                                         item-text="name"
                                         item-value="id"
-                                        label="Select your Role"
+                                        label="Select your Role*"
                                         prepend-icon="supervisor_account"
-                                        v-model="form.role_id"
+                                        v-model="form.role"
 
                                     ></v-select>
+                                    <span class="red--text" v-if="errors.role">{{errors.role[0]}}</span>
                                 </v-form>
+                                <small>*indicates required field</small>
                             </v-card-text>
                             <v-card-actions>
                                 <v-btn depressed style="background-color:#3b5998;color: white;text-transform: none !important;margin: 3%"  @click="login">Login</v-btn>
@@ -103,7 +115,7 @@
                     last_name:null,
                     email:null,
                     password:null,
-                    role_id:null,
+                    role:null,
                     password_confirmation: null,
 
                 },
@@ -130,6 +142,7 @@
                 signup() {
                     axios.post('/lms/api/auth/signup', this.form)
                         .then(res => window.location = '/checking_signup')
+                        .catch(error =>this.errors = error.response.data.errors)
                 },
                 login(){
                     window.location = '/'

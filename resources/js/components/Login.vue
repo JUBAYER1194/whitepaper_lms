@@ -33,23 +33,27 @@
                                 <v-form
                                 >
                                     <v-text-field
-                                        label="Email"
+                                        label="Email*"
                                         name="login"
                                         prepend-icon="person"
                                         v-model="form.email"
                                         type="text"
                                     ></v-text-field>
+                                    <span class="red--text" v-if="errors.email">{{errors.email[0]}}</span>
 
                                     <v-text-field
-                                        id="password"
+                                        id="password*"
                                         label="Password"
                                         name="password"
                                         v-model="form.password"
                                         prepend-icon="lock"
                                         type="password"
                                     ></v-text-field>
+                                    <span class="red--text" v-if="errors.password">{{errors.password[0]}}</span>
                                 </v-form>
                                 <ResetPassword></ResetPassword>
+                                <small>*indicates required field</small>
+
                             </v-card-text>
                             <v-card-actions>
                                 <v-btn depressed style="background-color:#3b5998;color: white;text-transform: none !important;margin: 3%"  @click="signup">Sign Up</v-btn>
@@ -60,6 +64,7 @@
                         </v-card>
                     </v-flex>
                 </v-layout>
+
             </v-container>
 
 
@@ -67,6 +72,7 @@
 
 <script>
     import ResetPassword from "./ResetPassword.vue";
+    import User from "../Helpers/User";
 
     export default {
        components:{ResetPassword},
@@ -76,6 +82,7 @@
                     email:null,
                     password:null,
                 },
+                errors:{},
 
 
             }
@@ -90,7 +97,14 @@
         },
         methods:{
             login(){
-               User.login(this.form)
+                axios.post('/lms/api/auth/login',this.form)
+                    .then(res => User.responseAfterLogin(res))
+                    // .then(res =>{
+                    //
+                    //     Token.payload(res.data.access_token)
+                    // })
+
+                    .catch(error =>this.errors = error.response.data.errors)
 
             },
             signup(){
@@ -98,6 +112,9 @@
             }
 
         },
+        computed:{
+
+        }
     }
 
 
