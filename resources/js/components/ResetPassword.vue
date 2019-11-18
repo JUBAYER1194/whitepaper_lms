@@ -12,7 +12,7 @@
                     <v-container>
                         <v-row>
                             <v-col cols="12">
-
+                                <v-form @submit.prevent="requestResetPassword">
                                 <v-text-field
                                     outlined
                                     rounded
@@ -21,6 +21,8 @@
                                     v-model="email"
                                 >
                                 </v-text-field>
+                                    <span class="red--text" v-if="errors.email">{{errors.email[0]}}</span>
+                                </v-form>
                             </v-col>
                         </v-row>
                     </v-container>
@@ -29,7 +31,7 @@
                 <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn depressed style="background-color:#3b5998;color: white;"  text @click="dialog = false">Close</v-btn>
-                    <v-btn depressed style="background-color:#3b5998;color: white;" text @click="requestResetPassword">Save</v-btn>
+                    <v-btn type="submit" depressed style="background-color:#3b5998;color: white;" text @click="requestResetPassword">Submit</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -46,9 +48,8 @@
         methods: {
             requestResetPassword() {
                 axios.post("/lms/api/reset-password", {email: this.email})
-                    .then(res =>this.dialog=false,this.$toasted.show('A Mail Will Be sent Within A Minute.Please Wait',{type:'success'}))
-                    .catch(error =>this.errors = error.response.data.errors)
-
+                    .then(res =>(this.dialog=false,this.$toasted.show('mail has been sent to your Account',{type:'success'})))
+                    .catch(error =>this.errors = error.response.data.errors);
 
             }
         }

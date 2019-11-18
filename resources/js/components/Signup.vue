@@ -90,6 +90,7 @@
                                 <v-btn depressed style="background-color:#3b5998;color: white;text-transform: none !important;margin: 3%"  @click="login">Login</v-btn>
                                 <v-spacer></v-spacer>
                                 <v-btn
+                                    type="submit"
                                     depressed
                                     style="background-color:#3b5998;color: white;text-transform: none !important;margin: 3%"
                                     dark

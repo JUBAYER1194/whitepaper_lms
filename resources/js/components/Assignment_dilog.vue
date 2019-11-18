@@ -10,11 +10,14 @@
                 </v-card-title>
                 <v-card-text>
                     <v-container>
-                        <v-text-field v-model="form.title" label="Title:*"  required ></v-text-field>
+                        <v-form @submit.prevent="send">
+                        <v-text-field v-model="form.title" label="Title*"  required ></v-text-field>
+                            <span class="red--text" v-if="errors.title">{{errors.title[0]}}</span>
                         <v-textarea
-                            label="Description"
+                            label="Description*"
                             v-model="form.body"
                         ></v-textarea>
+                            <span class="red--text" v-if="errors.body">{{errors.body[0]}}</span>
                         <div>
                             <v-dialog
                                 ref="dialog"
@@ -26,7 +29,7 @@
                                 <template v-slot:activator="{ on }">
                                     <v-text-field
                                         v-model="form.deadline"
-                                        label="Deadline"
+                                        label="Deadline*"
                                         prepend-icon="event"
                                         readonly
                                         v-on="on"
@@ -39,20 +42,21 @@
                                 </v-date-picker>
                             </v-dialog>
                         </div>
+                            <span class="red--text" v-if="errors.deadline">{{errors.deadline[0]}}</span>
                         <div class="form-group">
                             <h4>Add File:</h4>
-                            <input type="file" @change="filechanged"   class="form-control form-control-lg" placeholder="Large form control">
+                            <input type="file" accept=".doc,.docx,.pptx,.pdf,.jpeg,.png" @change="filechanged"   class="form-control form-control-lg" placeholder="Large form control">
                         </div>
-
-
-
+                        </v-form>
                     </v-container>
-
+                    <small>*indicates required field</small>
+                    <br>
+                    <small>.doc,docx,pptx,pdf,jpeg,png are only allowed for file upload</small>
                 </v-card-text>
                 <v-card-actions>
                     <div class="flex-grow-1"></div>
                     <v-btn style="background-color:#3b5998;color:white" text @click="dialog = false">Close</v-btn>
-                    <v-btn style="background-color:#3b5998;color:white"  text @click="send">Send</v-btn>
+                    <v-btn type="submit" style="background-color:#3b5998;color:white"  text @click="send">Create</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -78,6 +82,7 @@
                     user_id:null,
                     deadline: new Date().toISOString().substr(0, 10),
                 },
+                errors:{},
                 x:0,
 
             }
@@ -93,9 +98,8 @@
             },
             send(){
                 axios.post('/lms/api/class/assignment',this.form)
-                    .then(res =>this.dialog=false,this.$toasted.show('Assignments Created',{type:'success'}),
-                        EventBus.$emit('newAssignment',this.form)
-                    )
+                    .then(res =>(this.dialog=false,this.$toasted.show('Assignments Created',{type:'success'}),EventBus.$emit('newAssignment',this.form)))
+                    .catch(error =>this.errors = error.response.data.errors)
                 this.x=0
             },
         },

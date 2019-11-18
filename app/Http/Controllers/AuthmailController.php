@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\forgetPasswordEmailSentRequest;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 class AuthmailController extends Controller
 {
     //
     use SendsPasswordResetEmails;
-    public function sendPasswordResetLink(Request $request)
+    public function sendPasswordResetLink(forgetPasswordEmailSentRequest $request)
     {
+
 
         return $this->sendResetLinkEmail($request);
     }
     protected function sendResetLinkResponse(Request $request, $response)
     {
+
         return response()->json([
             'message' => 'Password reset email sent.',
             'data' => $response

@@ -19,10 +19,10 @@ class CreateUsersTable extends Migration
             $table->string('last_name')->nullable();
             $table->string('father_name')->nullable();
             $table->string('mother_name')->nullable();
-            $table->integer('phone')->nullable();
+            $table->bigInteger('phone')->nullable();
             $table->integer('parents_contact')->nullable();
             $table->string('email')->unique();
-            $table->integer('nid')->unique()->nullable();
+            $table->bigInteger('nid')->unique()->nullable();
             $table->string('image')->nullable();
             $table->string('address')->nullable();
             $table->integer('status')->nullable()->default(0);

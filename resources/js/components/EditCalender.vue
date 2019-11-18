@@ -12,6 +12,7 @@
                 </v-card-title>
                 <v-card-text>
                     <v-container>
+                        <v-form @submit.prevent="send">
                         <v-row>
                             <v-col cols="12" sm="6">
                                 <v-text-field
@@ -19,14 +20,16 @@
                                     outlined
                                     v-model="event.name"
                                 ></v-text-field>
+                                <span class="red--text" v-if="errors.name">{{errors.name[0]}}</span>
                             </v-col>
                             <v-col cols="12" sm="6">
                                 <v-textarea
-                                    label="Event Details"
+                                    label="Event Details*"
                                     outlined
                                     rows="1"
                                     v-model="event.details"
                                 ></v-textarea>
+                                <span class="red--text" v-if="errors.details">{{errors.details[0]}}</span>
                             </v-col>
                             <v-col cols="12" sm="6">
                                 <v-dialog
@@ -45,12 +48,13 @@
                                             v-on="on"
                                         ></v-text-field>
                                     </template>
-                                    <v-date-picker v-model="start_date" scrollable>
+                                    <v-date-picker color="#3b5998" v-model="start_date" scrollable>
                                         <v-spacer></v-spacer>
                                         <v-btn text color="primary" @click="modal = false">Cancel</v-btn>
                                         <v-btn text color="primary" @click="$refs.dialogs.save(start_date)">OK</v-btn>
                                     </v-date-picker>
                                 </v-dialog>
+                                <span class="red--text" v-if="errors.start">This filed is required</span>
                             </v-col>
                             <v-col cols="12" sm="6">
                                 <v-menu
@@ -74,12 +78,14 @@
                                         ></v-text-field>
                                     </template>
                                     <v-time-picker
+                                        color="#3b5998"
                                         v-if="menu2"
                                         v-model="start_time"
                                         full-width
                                         @click:minute="$refs.menus.save(start_time)"
                                     ></v-time-picker>
                                 </v-menu>
+                                <span class="red--text" v-if="errors.start">This field is required</span>
                             </v-col>
                             <v-col cols="12" sm="6">
                                 <v-dialog
@@ -98,12 +104,13 @@
                                             v-on="on"
                                         ></v-text-field>
                                     </template>
-                                    <v-date-picker v-model="end_date" scrollable>
+                                    <v-date-picker color="#3b5998" v-model="end_date" scrollable>
                                         <v-spacer></v-spacer>
                                         <v-btn text color="primary" @click="modal2 = false">Cancel</v-btn>
                                         <v-btn text color="primary" @click="$refs.dialog.save(end_date)">OK</v-btn>
                                     </v-date-picker>
                                 </v-dialog>
+                                <span class="red--text" v-if="errors.end">This field is required</span>
                             </v-col>
                             <v-col cols="12" sm="6">
                                 <v-menu
@@ -127,12 +134,14 @@
                                         ></v-text-field>
                                     </template>
                                     <v-time-picker
+                                        color="#3b5998"
                                         v-if="menu3"
                                         v-model="end_time"
                                         full-width
                                         @click:minute="$refs.menu.save(end_time)"
                                     ></v-time-picker>
                                 </v-menu>
+                                <span class="red--text" v-if="errors.end">This field is required</span>
                             </v-col>
                             <v-col cols="12" sm="6">
                                 <v-select
@@ -143,19 +152,18 @@
                                     outlined
                                     v-model="event.color"
                                 ></v-select>
+                                <span class="red--text" v-if="errors.color">{{errors.color[0]}}</span>
                             </v-col>
 
-
-
-
                         </v-row>
+                        </v-form>
                     </v-container>
                     <small>*indicates required field</small>
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn @click="dialog = false" color="blue darken-1" text>Close</v-btn>
-                    <v-btn @click="send" color="blue darken-1" text>Save</v-btn>
+                    <v-btn style="background-color: #3b5998;color: white" @click="dialog = false"  text>Close</v-btn>
+                    <v-btn style="background-color: #3b5998;color: white" @click="send"  text>Update</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -227,7 +235,7 @@
 
 
             ],
-
+            errors:{},
 
 
         }),
@@ -245,10 +253,10 @@
         methods:{
             send(){
                 axios.patch(`/lms/api/allevent/${this.event.id}`,this.event)
-                    .then(res =>this.dialog=false,this.$toasted.show('Event Edited',{type:'success'}),
+                    .then(res =>(this.dialog=false,this.$toasted.show('Event Edited',{type:'success'}),window.location.reload()),
 
                     )
-                window.location.reload()
+                    .catch(error =>this.errors = error.response.data.errors)
             }
 
 

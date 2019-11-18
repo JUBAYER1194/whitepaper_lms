@@ -8,7 +8,6 @@
                     v-on="on"
                     rounded
 
-
                 >
                     Create Event
 
@@ -21,21 +20,27 @@
                 </v-card-title>
                 <v-card-text>
                     <v-container>
+                        <v-form @submit.prevent="send">
                         <v-row>
                             <v-col cols="12" sm="6">
+
                                 <v-text-field
                                     label="Event Name*"
                                     outlined
                                     v-model="event.name"
                                 ></v-text-field>
+
+                                <span class="red--text" v-if="errors.name">{{errors.name[0]}}</span>
+
                             </v-col>
                             <v-col cols="12" sm="6">
                                 <v-textarea
-                                    label="Event Details"
+                                    label="Event Details*"
                                     outlined
                                     rows="1"
                                     v-model="event.details"
                                 ></v-textarea>
+                                <span class="red--text" v-if="errors.details">{{errors.details[0]}}</span>
                             </v-col>
                             <v-col cols="12" sm="6">
                                 <v-dialog
@@ -47,6 +52,7 @@
                                 >
                                     <template v-slot:activator="{ on }">
                                         <v-text-field
+                                            color="#3b5998"
                                             v-model="start_date"
                                             label="Event Start Date*"
                                             prepend-icon="event"
@@ -54,12 +60,14 @@
                                             v-on="on"
                                         ></v-text-field>
                                     </template>
-                                    <v-date-picker v-model="start_date" scrollable>
+                                    <v-date-picker color="#3b5998" v-model="start_date" scrollable>
                                         <v-spacer></v-spacer>
                                         <v-btn text color="primary" @click="modal = false">Cancel</v-btn>
                                         <v-btn text color="primary" @click="$refs.dialogs.save(start_date)">OK</v-btn>
                                     </v-date-picker>
                                 </v-dialog>
+                                <span class="red--text" v-if="errors.start">This filed is required</span>
+
                             </v-col>
                             <v-col cols="12" sm="6">
                                 <v-menu
@@ -75,6 +83,7 @@
                                 >
                                     <template v-slot:activator="{ on }">
                                         <v-text-field
+                                            color="#3b5998"
                                             v-model="start_time"
                                             label="Event Start Time*"
                                             prepend-icon="access_time"
@@ -83,12 +92,14 @@
                                         ></v-text-field>
                                     </template>
                                     <v-time-picker
+                                        color="#3b5998"
                                         v-if="menu2"
                                         v-model="start_time"
                                         full-width
                                         @click:minute="$refs.menus.save(start_time)"
                                     ></v-time-picker>
                                 </v-menu>
+                                <span class="red--text" v-if="errors.start">This field is required</span>
                             </v-col>
                             <v-col cols="12" sm="6">
                                 <v-dialog
@@ -107,12 +118,13 @@
                                             v-on="on"
                                         ></v-text-field>
                                     </template>
-                                    <v-date-picker v-model="end_date" scrollable>
+                                    <v-date-picker color="#3b5998" v-model="end_date" scrollable>
                                         <v-spacer></v-spacer>
                                         <v-btn text color="primary" @click="modal2 = false">Cancel</v-btn>
                                         <v-btn text color="primary" @click="$refs.dialog.save(end_date)">OK</v-btn>
                                     </v-date-picker>
                                 </v-dialog>
+                                <span class="red--text" v-if="errors.end">This field is required</span>
                             </v-col>
                             <v-col cols="12" sm="6">
                                 <v-menu
@@ -136,12 +148,14 @@
                                         ></v-text-field>
                                     </template>
                                     <v-time-picker
+                                        color="#3b5998"
                                         v-if="menu3"
                                         v-model="end_time"
                                         full-width
                                         @click:minute="$refs.menu.save(end_time)"
                                     ></v-time-picker>
                                 </v-menu>
+                                <span class="red--text" v-if="errors.end">This field is required</span>
                             </v-col>
                             <v-col cols="12" sm="6">
                                 <v-select
@@ -152,6 +166,8 @@
                                     outlined
                                     v-model="event.color"
                                 ></v-select>
+                                <span class="red--text" v-if="errors.color">{{errors.color[0]}}</span>
+
                             </v-col>
 
 
@@ -159,13 +175,14 @@
 
 
                         </v-row>
+                        </v-form>
                     </v-container>
                     <small>*indicates required field</small>
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn style="color: white;background-color: #3b5998;" @click="dialog = false"  text>Close</v-btn>
-                    <v-btn style="color: white;background-color: #3b5998;" @click="send" text>Save</v-btn>
+                    <v-btn style="color: white;background-color: #3b5998;" @click="send" text>Create</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -241,6 +258,7 @@
 
             ],
             x:0,
+            errors:{},
 
 
 
@@ -254,8 +272,12 @@
                 this.event.subject_id=this.data;
             },
             gettingStart_EndTime(){
-                this.event.start=this.start_date+' '+this.start_time;
-                this.event.end=this.end_date+' '+this.end_time;
+                if (this.start_date !=null && this.start_time !=null) {
+                    this.event.start = this.start_date + ' ' + this.start_time;
+                }
+                if(this.end_date !=null && this.end_time !=null) {
+                    this.event.end = this.end_date + ' ' + this.end_time;
+                }
 
             },
             cheeckingX()
@@ -274,9 +296,10 @@
         methods:{
             send(){
                 axios.post('/lms/api/class/event',this.event)
-                    .then(res =>this.dialog=false,this.$toasted.show('Event Created',{type:'success'}),
-                       window.location.reload()
+                    .then(res =>(this.dialog=false,this.$toasted.show('Event Created',{type:'success'}),window.location.reload()),
+
                     )
+                    .catch(error =>this.errors = error.response.data.errors)
                 this.x=0
             }
 

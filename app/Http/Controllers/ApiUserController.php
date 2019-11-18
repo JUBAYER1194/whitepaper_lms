@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ClassHead;
+use App\Http\Requests\ProfileUpadtaeRequest;
 use App\Http\Resources\studentResource;
 use App\Http\Resources\SubjectResource;
 use App\Http\Resources\teacherResource;
@@ -24,8 +25,8 @@ class ApiUserController extends Controller
 
     }
 
-    public function update(Request $request, $id){
-//        \Log::info($request->all());
+    public function update(ProfileUpadtaeRequest $request, $id){
+
         if ($request->check ==1){
             $exploded=explode(',',$request->form['image']);
             $decoded=base64_decode($exploded[1]);

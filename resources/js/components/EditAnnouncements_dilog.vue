@@ -8,18 +8,20 @@
                 <v-card-title>
                     <h3 class="headline" style="color:#3b5998;">Edit Announcement</h3>
                 </v-card-title>
+
                 <v-card-text>
                     <v-container>
+                        <v-form @submit.prevent="update">
                         <v-text-field label="Title:*" v-model="announcement.title"  required ></v-text-field>
+                            <span class="red--text" v-if="errors.title">{{errors.title[0]}}</span>
                         <v-textarea
                             label="Description"
                             v-model="announcement.body"
                         ></v-textarea>
-
-
-
-
+                            <span class="red--text" v-if="errors.body">{{errors.body[0]}}</span>
+                        </v-form>
                     </v-container>
+                    <small>*indicates required field</small>
 
                 </v-card-text>
                 <v-card-actions>
@@ -39,6 +41,7 @@
         data: () => ({
             dialog: false,
             announcement:{},
+            errors:{},
 
         }),
         computed:{
@@ -49,7 +52,8 @@
         methods:{
             update(){
                 axios.patch(`/lms/api/announcement/${this.announcement.id}`,this.announcement)
-                    .then(res=> this.dialog=false,this.$toasted.show('Announcement Updated',{type:'success'}))
+                    .then(res=> (this.dialog=false,this.$toasted.show('Announcement Updated',{type:'success'})))
+                    .catch(error =>this.errors = error.response.data.errors)
             }
         }
     }

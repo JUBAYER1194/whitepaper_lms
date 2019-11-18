@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Announcement;
+use App\Http\Requests\AnnouncementCreateRequest;
+use App\Http\Requests\AnnouncementEditRequest;
 use App\Http\Resources\AnnouncementResource;
 use App\Lmsclass;
 use App\Notifications\newaAnnouncementNotification;
@@ -39,10 +41,9 @@ class AnnouncementController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AnnouncementCreateRequest $request)
     {
         //
-
         $ann=new Announcement();
         $ann->title=$request->title;
         $ann->body=$request->body;
@@ -89,10 +90,9 @@ class AnnouncementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AnnouncementEditRequest $request, $id)
     {
         //
-        dd($request);
         $ann=Announcement::find($id);
         $ann->title=$request->title;
         $ann->body=$request->body;

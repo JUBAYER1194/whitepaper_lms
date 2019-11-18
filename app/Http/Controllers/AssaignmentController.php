@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Announcement;
 use App\Assaignment;
+use App\Http\Requests\AssignmentCreateRequest;
+use App\Http\Requests\AssignmentEditRequest;
 use App\Http\Resources\AssignmentResource;
 use App\Lmsclass;
 use App\Notifications\newAssignmentNotification;
@@ -40,7 +42,7 @@ class AssaignmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AssignmentCreateRequest $request)
     {
 
         if ($request->check ==1) {
@@ -128,7 +130,7 @@ class AssaignmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AssignmentEditRequest $request, $id)
     {
         //
 

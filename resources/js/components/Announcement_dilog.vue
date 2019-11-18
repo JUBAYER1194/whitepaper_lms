@@ -10,23 +10,24 @@
                 </v-card-title>
                 <v-card-text>
                     <v-container>
+                        <v-form @submit.prevent="save">
                         <v-text-field label="Title:*" v-model="announcement.title"  required ></v-text-field>
+                            <span class="red--text" v-if="errors.title">{{errors.title[0]}}</span>
                         <v-textarea
-                            label="Description"
+                            label="Description*"
                             v-model="announcement.body"
                         ></v-textarea>
-
-
-
+                            <span class="red--text" v-if="errors.body">{{errors.body[0]}}</span>
+                        </v-form>
 
                     </v-container>
-
+                    <small>*indicates required field</small>
                 </v-card-text>
                 <v-card-actions>
                     <div class="flex-grow-1"></div>
                     <v-btn style="background-color:#3b5998;color:white"  text @click="dialog = false">Close</v-btn>
 
-                    <v-btn style="background-color:#3b5998;color:white" text @click="save">Save</v-btn>
+                    <v-btn type="submit" style="background-color:#3b5998;color:white" text @click="save">Create</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -51,6 +52,7 @@
 
 
             },
+            errors:{},
             x:0,
 
         }),
@@ -76,9 +78,11 @@
         methods:{
             save(){
                 axios.post('/lms/api/announcement',this.announcement)
-                    .then(res =>this.dialog=false,this.$toasted.show('Announcement Created',{type:'success'}),
-                        EventBus.$emit('newAnn',this.announcement)
-                    )
+                    .then(res =>(this.dialog=false,this.$toasted.show('Announcement Created',{type:'success'}),EventBus.$emit('newAnn',this.announcement)))
+                       .catch(error =>this.errors = error.response.data.errors)
+
+
+
                 this.x=0
             },
 

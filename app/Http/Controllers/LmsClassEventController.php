@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ClassEventCreateRequest;
+use App\Http\Requests\ClassEventEditRequest;
 use App\Http\Resources\LmsClassEventResource;
 use App\Lmsclass;
 use App\LmsclassEvent;
@@ -39,10 +41,9 @@ class LmsClassEventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ClassEventCreateRequest $request)
     {
         //
-
 
         $event=new LmsclassEvent();
         $event->name=$request->name;
@@ -92,9 +93,10 @@ class LmsClassEventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ClassEventEditRequest $request, $id)
     {
         //
+
         $event=LmsclassEvent::find($id);
         $event->name=$request->name;
         $event->lmsclass_id=$request->lmsclass_id;

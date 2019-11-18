@@ -10,11 +10,14 @@
                 </v-card-title>
                 <v-card-text>
                     <v-container>
+                        <v-form @submit.prevent="update">
                         <v-text-field v-model="assignment.title" label="Title:*"  required ></v-text-field>
+                        <span class="red--text" v-if="errors.title">{{errors.title[0]}}</span>
                         <v-textarea
                             label="Description"
                             v-model="assignment.body"
                         ></v-textarea>
+                        <span class="red--text" v-if="errors.body">{{errors.body[0]}}</span>
                         <div>
                             <v-dialog
                                 ref="dialog"
@@ -39,20 +42,23 @@
                                 </v-date-picker>
                             </v-dialog>
                         </div>
+                        <span class="red--text" v-if="errors.deadline">{{errors.deadline[0]}}</span>
                         <div class="form-group">
                             <h4>Add File:</h4>
-                            <input type="file" @change="filechanged"   class="form-control form-control-lg" placeholder="Large form control">
+                            <input type="file" @change="filechanged" accept=".doc,.docx,.pptx,.pdf,.jpeg,.png"  class="form-control form-control-lg" placeholder="Large form control">
                         </div>
 
-
+                        </v-form>
 
                     </v-container>
-
+                    <small>*indicates required field</small>
+                    <br>
+                    <small>.doc,docx,pptx,pdf,jpeg,png are only allowed for file upload</small>
                 </v-card-text>
                 <v-card-actions>
                     <div class="flex-grow-1"></div>
                     <v-btn style="background-color:#3b5998;color:white" text @click="dialog = false">Close</v-btn>
-                    <v-btn style="background-color:#3b5998;color:white"  text @click="update">Send</v-btn>
+                    <v-btn style="background-color:#3b5998;color:white"  text @click="update">Update</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -68,7 +74,7 @@
             assignment:{
                 check:0,
             },
-
+            errors:{},
 
         }),
         computed:{
@@ -87,7 +93,8 @@
             },
             update(){
                 axios.patch(`/lms/api/class/assignment/${this.assignment.id}`,this.assignment)
-                    .then(res=> this.dialog=false,this.$toasted.show('Assignment Updated',{type:'success'}))
+                    .then(res=>(this.dialog=false,this.$toasted.show('Assignment Updated',{type:'success'})))
+                    .catch(error =>this.errors = error.response.data.errors)
             },
 
         }

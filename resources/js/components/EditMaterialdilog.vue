@@ -27,7 +27,7 @@
                         ></v-textarea>
                         <div class="form-group">
                             <h4>Add File:</h4>
-                            <input type="file" @change="filechanged"   class="form-control form-control-lg" placeholder="Large form control">
+                            <input type="file" accept=".doc,.docx,.pptx,.pdf,.jpeg,.png,.wav,.mp3,.avi,.flv,.mkv,.mp4,.mpg" @change="filechanged"   class="form-control form-control-lg" placeholder="Large form control">
                         </div>
 
 

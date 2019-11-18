@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\AllEvent;
+use App\Http\Requests\AllEventCreateRequest;
+use App\Http\Requests\AllEventEditRequest;
 use App\Http\Resources\AlleventResource;
 use App\Notifications\newAllEventNotification;
 use App\User;
@@ -38,7 +40,7 @@ class AlleventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AllEventCreateRequest $request)
     {
         //
 
@@ -87,7 +89,7 @@ class AlleventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AllEventEditRequest $request, $id)
     {
 
         $event=AllEvent::find($id);

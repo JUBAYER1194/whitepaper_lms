@@ -10,26 +10,31 @@
                 </v-card-title>
                 <v-card-text>
                     <v-container>
+                        <v-form @submit.prevent="update">
                         <v-text-field label="First Name:*" v-model="form.first_name" required ></v-text-field>
+                            <span class="red--text" v-if="errors.first_name">The first name field is required</span>
                         <v-text-field label="Last Name:*" v-model="form.last_name" required ></v-text-field>
-                        <v-text-field label="Father Name:*"  v-model="form.father_name" ></v-text-field>
-                        <v-text-field label="Mother Name:*"  v-model="form.mother_name" required  ></v-text-field>
-                        <v-text-field label="Phone No:*"  required v-model="form.phone" ></v-text-field>
-                        <v-text-field label="Parents Contact No:*"  required v-model="form.parents_contact" ></v-text-field>
-                        <v-text-field label="NId No:*"  required v-model="form.nid" ></v-text-field>
+                            <span class="red--text" v-if="errors.last_name">The last name field is required</span>
+                        <v-text-field label="Father Name:"  v-model="form.father_name" ></v-text-field>
+                        <v-text-field label="Mother Name:"  v-model="form.mother_name" required  ></v-text-field>
+                        <v-text-field label="Phone No:"  required v-model="form.phone" ></v-text-field>
+                        <v-text-field label="Parents Contact No:"  required v-model="form.parents_contact" ></v-text-field>
+                        <v-text-field label="NId No:"  required v-model="form.nid" ></v-text-field>
                         <v-text-field label="Email:*"  required v-model="form.email" ></v-text-field>
-                        <v-textarea label="Address:*"  required v-model="form.address" ></v-textarea>
+                            <span class="red--text" v-if="errors.email">The Email filed is required</span>
+                        <v-textarea label="Address:"  required v-model="form.address" ></v-textarea>
                         <div class="form-group">
                             <h4>update your profile Picture:</h4>
                             <input type="file" @change="imageChanged"   class="form-control form-control-lg" placeholder="Large form control">
                         </div>
+                        </v-form>
                     </v-container>
 
                 </v-card-text>
                 <v-card-actions>
                     <div class="flex-grow-1"></div>
                     <v-btn style="background-color:#3b5998;color:white" text @click="dialog = false">Close</v-btn>
-                    <v-btn style="background-color:#3b5998;color:white"  text @click="update">Update</v-btn>
+                    <v-btn type="submit" style="background-color:#3b5998;color:white"  text @click="update">Update</v-btn>
                     {{created}}
                 </v-card-actions>
             </v-card>
@@ -52,7 +57,7 @@
             menu2: false,
             form: {},
             checking:0,
-
+            errors:{},
 
             }
 
@@ -66,7 +71,8 @@
         methods: {
             update() {
                 axios.put(`/lms/api/information/${this.form.id}`,{form:this.form,check:this.checking})
-                    .then(res => this.dialog = false,this.$toasted.show('profile Updated',{type:'success'}))
+                    .then(res => (this.dialog = false,this.$toasted.show('profile Updated',{type:'success'})))
+                    .catch(error =>this.errors = error.response.data.errors)
             },
             imageChanged(e){
                 var fileReader=new FileReader()
