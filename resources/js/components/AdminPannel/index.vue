@@ -51,6 +51,11 @@
             </v-tab-item>
             <v-tab-item>
                 <v-card class="grey lighten-4" flat>
+                    <AllAdmin  :data="admin_user"></AllAdmin >
+                </v-card>
+            </v-tab-item>
+            <v-tab-item>
+                <v-card class="grey lighten-4" flat>
                     <Request :data="request_user"></Request>
                 </v-card>
             </v-tab-item>
@@ -60,6 +65,7 @@
 
 </template>
 <script>
+    import AllAdmin from "./AllAdmin.vue";
     import All_Student from "./AllStudent.vue";
     import AllTeacher from "./AllTeacher.vue";
     import Request from "./Request.vue";
@@ -68,7 +74,7 @@
 
     export default {
 
-        components: {AllTeacher, All_Student,Request,C_lass,Classhead},
+        components: {AllTeacher, All_Student,Request,C_lass,Classhead,AllAdmin},
         data() {
             return {
                 tab: null,
@@ -89,6 +95,11 @@
 
                     },
                     {
+                        name: 'Admin',
+
+
+                    },
+                    {
                         name: 'Permission',
 
 
@@ -100,6 +111,7 @@
                 request_user:{},
                 student_user:{},
                 teacher_user:{},
+                admin_user:{},
                 classHeadData:null,
 
             }
@@ -111,6 +123,7 @@
            this.getRequest_user();
            this.getStudent_user();
            this.getTeacher_user();
+           this.getAdmin_user();
         },
 
 
@@ -139,6 +152,12 @@
             {
                 axios.get('/lms/api/user/teacher_user')
                     .then(res => this.teacher_user = res.data.data)
+
+            },
+            getAdmin_user()
+            {
+                axios.get('/lms/api/user/admin_user')
+                    .then(res => this.admin_user = res.data.data)
 
             },
 

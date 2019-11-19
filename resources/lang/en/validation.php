@@ -144,6 +144,10 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'form.first_name'=>'first_name',
+        'form.last_name'=>'last_name',
+        'form.email'=>'email'
+    ],
 
 ];

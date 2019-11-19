@@ -4,7 +4,7 @@
         max-width="290"
     >
         <template v-slot:activator="{ on }">
-            <v-btn v-on="on" small color="error my-3" width="70"  depressed >Delete</v-btn>
+            <v-btn v-on="on" small class="my-3" color="error" width="70"  depressed >Delete</v-btn>
         </template>
         <v-card>
             <v-card-title style="font-size:1em;color:darkred" >Are you sure you want to delete?</v-card-title>

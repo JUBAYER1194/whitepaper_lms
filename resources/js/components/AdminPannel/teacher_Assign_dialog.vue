@@ -2,7 +2,7 @@
 
     <v-dialog  v-model="dialog" persistent max-width="600px">
         <template v-slot:activator="{ on }">
-            <v-btn v-on="on" small width="70" color="primary mx-lg-6 my-3"  depressed >Assign</v-btn>
+            <v-btn v-on="on" class="my-3" small width="70" dark color="blue darken-1" depressed >Assign</v-btn>
         </template>
         <v-card>
             <v-card-title>
@@ -11,7 +11,7 @@
             <v-card-text>
                 <v-container>
 
-
+                    <v-form @submit.prevent="signup">
                     <v-select
                         :items="dataH"
                         chips
@@ -55,13 +55,16 @@
                         outlined
                         v-on:change="checkingButton"
                     ></v-select>
+                        <span class="red--text" v-if="errors.subject">{{errors.subject[0]}}</span>
+
+                    </v-form>
                 </v-container>
                 <small>*indicates required field</small>
             </v-card-text>
             <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn style="background-color:#3b5998;color:white" text @click="dialog = false">Close</v-btn>
-                <v-btn style="background-color:#3b5998;color:white;text-transform: none" v-if="x==1" text @click="Assign_ClassRoom">Save</v-btn>
+                <v-btn style="background-color:#3b5998;color:white;text-transform: none" v-if="x==1" text @click="Assign_ClassRoom">Assign</v-btn>
             </v-card-actions>
         </v-card>
         {{getting_subject}}
@@ -89,6 +92,7 @@
             subject:{},
             data_S:[],
             x:0,
+            errors:{},
         }),
         created(){
             this.subject=this.datafld;
@@ -134,8 +138,8 @@
             Assign_ClassRoom()
             {
                 axios.post(`/lms/api/teacher/assign_c_s/${this.data.id}`,this.form)
-                    .then(res =>this.dialog=false,this.$toasted.show('Assigned',{type:'success'}),
-                    )
+                    .then(res =>(this.dialog=false,this.$toasted.show('Assigned',{type:'success'})))
+                    .catch(error =>this.errors = error.response.data.errors)
             },
 
 

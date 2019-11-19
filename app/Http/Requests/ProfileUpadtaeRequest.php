@@ -24,9 +24,9 @@ class ProfileUpadtaeRequest extends FormRequest
     public function rules()
     {
         return [
-            'form.first_name'=>'bail|required',
-            'form.last_name'=>'bail|required',
-            'form.email'=>'bail|required|email|unique:users',
+            'first_name'=>'required|max:20',
+            'last_name'=>'required|max:20',
+            'email'=>'required|email',
         ];
     }
 }

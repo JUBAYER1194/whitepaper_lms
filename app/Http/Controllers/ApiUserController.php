@@ -27,8 +27,9 @@ class ApiUserController extends Controller
 
     public function update(ProfileUpadtaeRequest $request, $id){
 
-        if ($request->check ==1){
-            $exploded=explode(',',$request->form['image']);
+
+        if ($request->checking ==1){
+            $exploded=explode(',',$request->image);
             $decoded=base64_decode($exploded[1]);
             if (str_contains($exploded[0],'jpeg'))
                 $extension='jpg';
@@ -39,30 +40,53 @@ class ApiUserController extends Controller
             file_put_contents($path,$decoded);
 
             $user=User::find($id);
-            $user->first_name=$request->form['first_name'];
-            $user->last_name=$request->form['last_name'];
-            $user->father_name=$request->form['father_name'];
-            $user->mother_name=$request->form['mother_name'];
-            $user->phone=$request->form['phone'];
-            $user->parents_contact=$request->form['parents_contact'];
-            $user->email=$request->form['email'];
-            $user->nid=$request->form['nid'];
+            $user->first_name=$request->first_name;
+            $user->last_name=$request->last_name;
+            $user->father_name=$request->father_name;
+            $user->mother_name=$request->mother_name;
+            $user->phone=$request->phone;
+            $user->parents_contact=$request->parents_contact;
+            $user->email=$request->email;
+            $user->nid=$request->nid;
             $user->image=$fileName;
-            $user->address=$request->form['address'];
+            $user->address=$request->address;
+            if($request->role)
+            {    $roles = $user->getRoleNames();
+                if ($roles !=$request->role)
+                {
+                    $user->classHead()->detach();
+                    $user->lmsclass()->detach();
+                    $user->syncRoles($request->role);
+                }
+
+            }
             $user->update();
             return response('Update',Response::HTTP_ACCEPTED);
-            //$id->update($request->except('image')+['image'=>$fileName]);
+            //$id->update($request->except('image')+'image'=>$fileName]);
         } else
             $user=User::find($id);
-        $user->first_name=$request->form['first_name'];
-        $user->last_name=$request->form['last_name'];
-        $user->father_name=$request->form['father_name'];
-        $user->mother_name=$request->form['mother_name'];
-        $user->phone=$request->form['phone'];
-        $user->parents_contact=$request->form['parents_contact'];
-        $user->email=$request->form['email'];
-        $user->nid=$request->form['nid'];
-        $user->address=$request->form['address'];
+        $user->first_name=$request->first_name;
+        $user->last_name=$request->last_name;
+        $user->father_name=$request->father_name;
+        $user->mother_name=$request->mother_name;
+        $user->phone=$request->phone;
+        $user->parents_contact=$request->parents_contact;
+        $user->email=$request->email;
+        $user->nid=$request->nid;
+        $user->address=$request->address;
+        if($request->role)
+        {
+            $roles = $user->getRoleNames();
+            if ($roles !=$request->role)
+            {
+                $user->classHead()->detach();
+                $user->lmsclass()->detach();
+                $user->syncRoles($request->role);
+            }
+
+
+
+        }
         $user->update();
         return response('Update',Response::HTTP_ACCEPTED);
         //$id->update($request->except('image')+['image'=>$fileName]);
@@ -98,8 +122,16 @@ class ApiUserController extends Controller
         return teacherResource::collection($users);
     }
 
+    public function admin_user(){
+
+        $users = User::role('Admin')->whereIn('status', [1, 2])->latest()->get();
+        return UserResource::collection($users);
+    }
+
     public function assign_student(Request $request, $id)
     {
+
+
 
         if ($request->classHead == null) {
             $user = User::find($id);
@@ -107,9 +139,14 @@ class ApiUserController extends Controller
             $user->lmsclass()->detach();
         }
         if ($request->classHead != null){
+            $request->validate([
+                'subject' => 'required',
+            ]);
         $user = User::find($id);
-        $user->classHead()->sync($request->classHead);
-        $user->lmsclass()->sync($request->subject);
+        $user->classHead()->detach();
+        $user->lmsclass()->detach();
+        $user->classHead()->attach($request->classHead);
+        $user->lmsclass()->attach($request->subject);
         foreach ($request->subject as $subjects) {
             $classHead = ClassHead::find($request->classHead);
             $subject = Lmsclass::find($subjects);
@@ -121,23 +158,33 @@ class ApiUserController extends Controller
 
     public function assign_teacher(Request $request, $id){
 
-        $user=User::find($id);
-        $user->lmsclass()->detach();
-        foreach ($request->subject as $subject){
-            $user->lmsclass()->attach($subject['id']);
-            $subjects=Lmsclass::find($subject['id']);
-            $user->notify(new newTeacherAssignNotification($subjects));
-        }
-        $user->classHead()->detach();
-        foreach ($request->Selected_ClassHaed as $clasHeadId) {
-            $user->classHead()->attach($clasHeadId['id']);
 
-
-
-        }
-        if($request->check ==1) {
+        if ($request->Selected_ClassHaed == '') {
+            $user = User::find($id);
+            $user->classHead()->detach();
             $user->lmsclass()->detach();
         }
+        if ($request->Selected_ClassHaed != '') {
+            $request->validate([
+                'subject' => 'required',
+            ]);
+            $user=User::find($id);
+            $user->lmsclass()->detach();
+            foreach ($request->subject as $subject){
+                $user->lmsclass()->attach($subject['id']);
+                $subjects=Lmsclass::find($subject['id']);
+                $user->notify(new newTeacherAssignNotification($subjects));
+            }
+            $user->classHead()->detach();
+            foreach ($request->Selected_ClassHaed as $clasHeadId) {
+                $user->classHead()->attach($clasHeadId['id']);
+
+
+
+            }
+        }
+
+
 
     }
 

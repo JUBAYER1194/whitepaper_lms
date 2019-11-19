@@ -49,7 +49,7 @@
                                        v-else></v-img>
                             </v-list-item-avatar>
                             <v-list-item-content>
-                                <v-list-item-title class="text-uppercase"> {{student.first_name}} {{student.last_name}}</v-list-item-title>
+                                <v-list-item-title class="text-capitalize"> {{student.first_name}} {{student.last_name}}</v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>
                     </v-list>
@@ -77,6 +77,7 @@
                 </td>
                 <td class="text-center">
                     <Student_Assign_dialog :dataH="dataH" :datafld="datafld" :data="student"></Student_Assign_dialog>
+                    <userEditProfile :data="student"></userEditProfile>
                     <Delete_Request :data="student"></Delete_Request>
                 </td>
             </tr>
@@ -90,13 +91,14 @@
     </v-container>
 </template>
 <script>
+    import userEditProfile from "./userEditProfile.vue";
     import multipleStudentAssign from "./multipleStudentAssign.vue";
     import details_dilog from "./details_dilog.vue";
     import Student_Assign_dialog from "./Student_Assign_dialog.vue";
     import Delete_Request from "./Delete_Request.vue";
 
     export default {
-        components: {details_dilog, Student_Assign_dialog,Delete_Request,multipleStudentAssign},
+        components: {details_dilog, Student_Assign_dialog,Delete_Request,multipleStudentAssign,userEditProfile},
         props: ['data','dataH','datafld'],
         data () {
             return {

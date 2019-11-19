@@ -10,39 +10,46 @@
             </v-card-title>
             <v-card-text>
                 <v-container>
+                    <v-form @submit.prevent="signup">
                     <v-row>
                         <v-col cols="12" sm="12" md="6">
 
                             <v-text-field outlined rounded label="Subject Name*" v-model="classes.name" required></v-text-field>
+                            <span class="red--text" v-if="errors.name">{{errors.name[0]}}</span>
                         </v-col>
                             <v-col cols="12" sm="12" md="6">
                             <v-text-field  label="Section*" outlined rounded  required v-model="classes.section" ></v-text-field>
+                                <span class="red--text" v-if="errors.section">{{errors.section[0]}}</span>
                             </v-col>
+
                         <v-col cols="12" sm="12" md="6">
                             <v-select
                                 outlined
                                 rounded
                                 :items="item"
-                                label="Select Status"
+                                label="Select Status*"
                                 item-text="name"
                                 item-value="id"
                                 v-model="classes.status"
                             >
 
+
                             </v-select>
+                            <span class="red--text" v-if="errors.status">{{errors.status[0]}}</span>
                         </v-col>
                         <v-col cols="12" sm="12" md="6">
                             <v-select
                                 outlined
                                 rounded
                                 :items="datah"
-                                label="Select Class"
+                                label="Select Class*"
                                 item-text="name"
                                 item-value="id"
                                 v-model="classes.class_head"
                             >
 
                             </v-select>
+                            <span class="red--text" v-if="errors.class_head">you have to select a class</span>
                         </v-col>
                                 <v-col cols="12" sm="12" md="12">
                             <v-textarea
@@ -53,7 +60,7 @@
                             ></v-textarea>
                                 </v-col>
                     </v-row>
-
+                    </v-form>
                 </v-container>
 
             </v-card-text>
@@ -91,6 +98,7 @@
                 {'id':1,'name':'Active'},
                 {'id':0,'name':'In-Active'}
             ],
+            errors:{},
         }),
 
         computed:{
@@ -110,8 +118,8 @@
         methods:{
           create(){
               axios.post(`/lms/api/class`,this.classes)
-                  .then(res =>this.dialog=false,this.$toasted.show('Subject Created',{type:'success'}))
-                   EventBus.$emit('newSubject',this.classes)
+                  .then(res =>(this.dialog=false,this.$toasted.show('Subject Created',{type:'success'}),EventBus.$emit('newSubject',this.classes)))
+                  .catch(error =>this.errors = error.response.data.errors)
                    this.x=0
           },
         },

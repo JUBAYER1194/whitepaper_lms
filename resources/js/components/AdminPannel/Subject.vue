@@ -44,7 +44,7 @@
                 </thead>
                 <tbody>
                 <tr v-for="subject in filteredBlogs">
-                    <td style="font-size: 1rem">
+                    <td class="text-capitalize" style="font-size: 1rem">
                         {{subject.name}}
                     </td>
 

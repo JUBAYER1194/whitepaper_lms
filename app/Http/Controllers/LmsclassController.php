@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ClassHead;
+use App\Http\Requests\SubjectCreateRequest;
 use App\Http\Resources\lmsClassHeadResource;
 use App\Http\Resources\LmsclassResource;
 use App\Http\Resources\LmsuserResource;
@@ -44,9 +45,10 @@ class LmsclassController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SubjectCreateRequest $request)
     {
         //
+
         $class=new Lmsclass();
         $class->name=$request->name;
         $class->section=$request->section;

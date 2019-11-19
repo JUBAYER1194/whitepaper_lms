@@ -33,7 +33,7 @@
                     <th style=" font-size: 1.2rem " class="text-left font-weight-black">Name</th>
                     <th style=" font-size: 1.2rem " class="text-center font-weight-black">Profile</th>
                     <th style=" font-size: 1.2rem " class="text-center font-weight-black">Status</th>
-                    <th colspan="2" style=" font-size: 1.2rem;" class="text-center font-weight-black">Action</th>
+                    <th  style=" font-size: 1.2rem;" class="text-center font-weight-black">Action</th>
                 </tr>
                 </thead>
                 <tbody v-if="data.length">
@@ -50,7 +50,7 @@
                                            v-else></v-img>
                                 </v-list-item-avatar>
                                 <v-list-item-content>
-                                    <v-list-item-title class="text-uppercase"> {{teacher.first_name}} {{teacher.last_name}}</v-list-item-title>
+                                    <v-list-item-title class="text-capitalize"> {{teacher.first_name}} {{teacher.last_name}}</v-list-item-title>
                                 </v-list-item-content>
                             </v-list-item>
                         </v-list>
@@ -68,6 +68,7 @@
                     </td>
                     <td class="text-center">
                         <teacher_Assign_dialog :dataH="dataH" :datafld="datafld" :data="teacher"></teacher_Assign_dialog>
+                        <userEditProfile :data="teacher"></userEditProfile>
                         <Delete_Request :data="teacher"></Delete_Request>
                     </td>
                 </tr>
@@ -77,12 +78,13 @@
     </v-container>
 </template>
 <script>
+    import userEditProfile from "./userEditProfile.vue";
     import Teacher_details_dialog from './Teacher_details_dialog.vue';
     import teacher_Assign_dialog from "./teacher_Assign_dialog.vue";
     import Delete_Request from "./Delete_Request.vue";
 
     export default {
-        components: {Teacher_details_dialog, teacher_Assign_dialog,Delete_Request},
+        components: {Teacher_details_dialog, teacher_Assign_dialog,Delete_Request,userEditProfile},
         props: ['data','dataH','datafld'],
         data () {
             return {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ClassHead;
+use App\Http\Requests\ClassHeadRequest;
 use App\Http\Resources\classHeadResorce;
 use Illuminate\Http\Request;
 
@@ -38,7 +39,7 @@ class ClassHeadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ClassHeadRequest $request)
     {
         //
         $classHead=new  ClassHead();

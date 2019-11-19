@@ -10,14 +10,16 @@
                 </v-card-title>
                 <v-card-text>
                     <v-container>
+                        <v-form @submit.prevent="CreateClassHead">
                         <v-row>
                             <v-col cols="12" sm="12" md="6">
                                 <v-text-field rounded outlined label="Class Name*" v-model="form.name" required></v-text-field>
+                                <span class="red--text" v-if="errors.name">{{errors.name[0]}}</span>
                             </v-col>
                             <v-col cols="12" sm="12" md="6">
                                 <v-select
                                     :items="item"
-                                    label="Select Status"
+                                    label="Select Status*"
                                     item-text="name"
                                     item-value="id"
                                     outlined
@@ -26,15 +28,17 @@
                                 >
 
                                 </v-select>
+                                <span class="red--text" v-if="errors.status">{{errors.status[0]}}</span>
                             </v-col>
                         </v-row>
+                        </v-form>
                     </v-container>
                     <small>*indicates required field</small>
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn style="background-color:#3b5998;color:white" text @click="dialog = false">Close</v-btn>
-                    <v-btn style="background-color:#3b5998;color:white;text-transform: none" text @click="CreateClassHead">Save</v-btn>
+                    <v-btn type="submit" style="background-color:#3b5998;color:white;" text @click="CreateClassHead">Create</v-btn>
                 </v-card-actions>
             </v-card>
             {{cheeckingX}}
@@ -53,19 +57,17 @@
                 name:null,
                 status:null,
             },
+            errors:{},
             x:0,
         }),
         methods:{
             CreateClassHead()
             {
                 axios.post('/lms/api/class-head',this.form)
-                    .then(res =>this.dialog=false,this.$toasted.show('Class Created',{type:'success'}),
-                        EventBus.$emit('class-head-created',this.form),
+                    .then(res =>(this.dialog=false,this.$toasted.show('Class Created',{type:'success'}),
+                        EventBus.$emit('class-head-created',this.form)))
+                    .catch(error =>this.errors = error.response.data.errors)
 
-
-
-
-                    )
                 this.x=0
             },
 

@@ -20,7 +20,7 @@ class CreateLmsclassesTable extends Migration
             $table->string('teacher_name')->nullable();
             $table->string('name');
             $table->string('section');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->integer('status');
             $table->timestamps();
         });

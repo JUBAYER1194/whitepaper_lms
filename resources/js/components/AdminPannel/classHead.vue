@@ -45,7 +45,7 @@
                     </thead>
                     <tbody v-if="dataH.length">
                     <tr v-for=" Head in filtered" v-if="Head.name !='No Class'">
-                        <td style="font-size: 1rem">{{Head.name}}</td>
+                        <td class="text-capitalize" style="font-size: 1rem">{{Head.name}}</td>
                         <td class="text-center">
                             <v-btn width="80" small v-if="Head.status==1" depressed class="info">Active</v-btn>
                             <v-btn small v-else width="80"  depressed style="color:white;background-color:#ff531a">In-Active</v-btn>

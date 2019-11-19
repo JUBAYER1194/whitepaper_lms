@@ -2,7 +2,7 @@
 
     <v-dialog  v-model="dialog" persistent max-width="600px">
         <template v-slot:activator="{ on }">
-            <v-btn v-on="on" small width="70" color="primary mx-lg-6 my-3"  depressed >Assign</v-btn>
+            <v-btn v-on="on" class="my-3" small width="70" dark color="blue darken-1"  depressed >Assign</v-btn>
         </template>
         <v-card>
             <v-card-title>
@@ -22,6 +22,7 @@
                                 outlined
                                 rounded
                                 v-model="form.classHead"
+                                @change="trackingsubject"
                             >
 
                             </v-select>
@@ -34,16 +35,18 @@
                                 item-value="id"
                                 label="Select Subject"
                                 multiple
+                                deletable-chips
                                 rounded
                                 outlined
                             ></v-select>
+                    <span class="red--text" v-if="errors.subject">{{errors.subject[0]}}</span>
                 </v-container>
                 <small>*indicates required field</small>
             </v-card-text>
             <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn style="background-color:#3b5998;color:white" text @click="dialog = false">Close</v-btn>
-                <v-btn style="background-color:#3b5998;color:white;text-transform: none" text @click="Assign_ClassRoom">Save</v-btn>
+                <v-btn style="background-color:#3b5998;color:white;text-transform: none" text @click="Assign_ClassRoom">Assign</v-btn>
             </v-card-actions>
         </v-card>
         <div v-for="subject in checkingSubject">
@@ -76,6 +79,8 @@
             subject:{},
             puttingclass:null,
             x:0,
+            errors:{},
+
         }),
         created(){
             this.subject=this.datafld;
@@ -111,14 +116,19 @@
 
         },
         methods:{
+            trackingsubject()
+            {
+                this.form.subject=null;
+            },
             gettingcheckingsubject(id){
                 this.puttingclass=id;
             },
             Assign_ClassRoom()
             {
                 axios.post(`/lms/api/student/assign_c_s/${this.data.id}`,this.form)
-                    .then(res =>this.dialog=false,this.$toasted.show('Assigned',{type:'success'}),
+                    .then(res =>(this.dialog=false,this.$toasted.show('Assigned',{type:'success'})),
                     )
+                    .catch(error =>this.errors = error.response.data.errors)
             },
 
 

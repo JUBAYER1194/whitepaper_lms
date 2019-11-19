@@ -36,7 +36,7 @@
             <tbody>
             <tr v-for="(user,index) in filteredBlogs">
                 <td>{{index+1}}</td>
-                <td>
+                <td class="text-capitalize">
                     {{user.first_name}} {{user.last_name}}
                 </td>
                 <td >
