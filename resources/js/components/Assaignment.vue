@@ -27,7 +27,7 @@
                     Assignments
                 </h2>
                 <v-spacer></v-spacer>
-                <dilog :data1="Cdata"></dilog>
+                <dilog v-if="permission=='Admin'|| permission=='Teacher'" :data1="Cdata"></dilog>
             </v-card-title>
 
         </v-card>
@@ -71,11 +71,11 @@
                     </v-card-text>
 
                 </v-card>
-                    <v-card flat>
+                    <v-card v-if="permission=='Admin'|| permission=='Teacher'" flat>
                         <v-card-title>
                             <VEditDialog :data="assignment"></VEditDialog>
                             <v-spacer></v-spacer>
-                            <deleteAssignmentDialog :data="assignment"></deleteAssignmentDialog>
+                            <deleteAssignmentDialog  :data="assignment"></deleteAssignmentDialog>
                         </v-card-title>
                     </v-card>
                 </v-card>
@@ -99,13 +99,14 @@
             return {
                 assignments:{},
                 class_id:null,
+                permission:null,
 
 
 
             }
         },
         created() {
-
+            this.permission=User.role();
             this.listen()
 
         },

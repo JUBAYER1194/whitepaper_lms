@@ -12,9 +12,11 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
-
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
 class AuthController extends Controller
 {
+    use HasRoles;
     /**
      * Create a new AuthController instance.
      *
@@ -25,7 +27,7 @@ class AuthController extends Controller
 
     public function __construct()
     {
-       $this->middleware('JWT', ['except' => ['login','signup','sendPasswordResetLink','sendResetFailedResponse','sendResetResponse','callResetPassword','resetPassword','sendResetLinkResponse','sendResetLinkFailedResponse']]);
+       $this->middleware('JWT', ['except' => ['login','signup','sendResetFailedResponse','sendResetResponse','callResetPassword','resetPassword']]);
     }
     protected function sendResetFailedResponse(Request $request, $response)
     {
@@ -119,7 +121,9 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
+            'expires_in' => auth()->factory()->getTTL() * 60,
+            'Role'=>auth()->user()->getRoleNames()->first(),
+            'user'=>auth()->user()->id,
         ]);
     }
 }

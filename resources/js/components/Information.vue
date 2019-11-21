@@ -68,7 +68,7 @@
                                 class="mx-auto grey lighten-4"
                                 flat
                                 max-width="100%">
-                            <v-card-text style="float: right">
+                            <v-card-text v-if="permission=='Admin'|| permission=='Teacher'" style="float: right">
                                 <dilog :data="classes.id"></dilog>
                             </v-card-text>
 
@@ -120,14 +120,16 @@
                                                     sm="4"
                                                     md="4"
                                                     cols="4"
+                                                    v-if="permission=='Admin'|| permission=='Teacher'"
                                                 >
-                                                    <EditMaterialdilog class="text-center" :data="material"></EditMaterialdilog>
+                                                    <EditMaterialdilog   class="text-center" :data="material"></EditMaterialdilog>
 
                                                 </v-col>
                                                 <v-col
                                                     sm="4"
                                                     md="4"
                                                     cols="4"
+                                                    v-if="permission=='Admin'|| permission=='Teacher'"
                                                 >
                                                     <deleteClassMaterialDialog  :data="material"></deleteClassMaterialDialog>
                                                 </v-col>
@@ -163,12 +165,14 @@
                 materials:{},
                 x:null,
                 users:{},
+                permission:null,
 
 
 
             }
         },
         created(){
+                this.permission=User.role();
           this.listen();
 
         },

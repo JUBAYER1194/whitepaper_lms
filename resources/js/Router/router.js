@@ -25,7 +25,7 @@ const routes = [
 
      { path: '/lms/login', component: Login },
      { path: '/lms/signup', component: SignUp },
-    { path: '/lms/calender', component: Calender },
+    { path: '/lms/calendar', component: Calender },
     { path: '/lms/profile', component: Profile,name:'profile'},
     { path: '/lms/user_profile/:name/:id', component: userProfile,name:'userProfile'},
     { path: '/lms/class/:name', component: Class,name:'class'},

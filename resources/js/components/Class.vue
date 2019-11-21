@@ -15,14 +15,77 @@
 
             >
                 <v-tab
-                    :key="item.name"
-                    v-for="item in items"
+
                     outlined
                     tile
                     style="font-size: 100%;background-color:#3b5998;color: white;"
 
                 >
-                    {{ item.name }}
+                    INFORMATION
+                </v-tab>
+                <v-tab
+
+                    outlined
+                    tile
+                    style="font-size: 100%;background-color:#3b5998;color: white;"
+
+                >
+                    ANNOUNCEMENTS
+                </v-tab>
+                <v-tab
+
+                    outlined
+                    tile
+                    style="font-size: 100%;background-color:#3b5998;color: white;"
+
+                >
+                    ASSIGNMENTS
+                </v-tab>
+                <v-tab
+
+                    outlined
+                    tile
+                    style="font-size: 100%;background-color:#3b5998;color: white;"
+
+                >
+                    STUDENTS
+                </v-tab>
+                <v-tab
+
+                    outlined
+                    tile
+                    style="font-size: 100%;background-color:#3b5998;color: white;"
+                    v-if="permission=='Admin'|| permission=='Teacher'"
+                >
+
+                    Exam
+                </v-tab>
+                <v-tab
+
+                    outlined
+                    tile
+                    style="font-size: 100%;background-color:#3b5998;color: white;"
+                    v-if="permission=='Student'"
+                >
+                    Exam
+                </v-tab>
+                <v-tab
+
+                    outlined
+                    tile
+                    style="font-size: 100%;background-color:#3b5998;color: white;"
+                    v-if="permission=='Admin'|| permission=='Teacher'"
+                >
+                    Marks
+                </v-tab>
+                <v-tab
+
+                    outlined
+                    tile
+                    style="font-size: 100%;background-color:#3b5998;color: white;"
+
+                >
+                    Event
                 </v-tab>
             </v-tabs>
         </div>
@@ -48,17 +111,17 @@
                         <Student :data1="classes.id" :data="users"></Student>
                     </v-card>
                 </v-tab-item>
-                <v-tab-item>
+                <v-tab-item v-if="permission=='Admin'|| permission=='Teacher'" >
                     <v-card class="grey lighten-4" flat style="padding-top:1%">
                         <Exam :data="classes.id" :exam="classes.exam"   ></Exam>
                     </v-card>
                 </v-tab-item>
-                <v-tab-item>
+                <v-tab-item v-if="permission=='Student'">
                     <v-card class="grey lighten-4" flat style="padding-top:1%">
                         <ExamAnswer :data="classes.id" :exam1="classes.exam"   ></ExamAnswer>
                     </v-card>
                 </v-tab-item>
-                <v-tab-item>
+                <v-tab-item v-if="permission=='Admin'|| permission=='Teacher'" >
                     <v-card class="grey lighten-4" flat style="padding-top:1%">
                         <Marks :data1="classes.id" :exam2="classes.exam"   ></Marks>
                     </v-card>
@@ -103,47 +166,14 @@
                 announcements:{},
                 assaignments:{},
                 user_id:null,
+                permission:null,
 
-                items: [
-                    {
-                        name: 'INFORMATION',
-
-                    },
-                    {
-                        name: 'ANNOUNCEMENTS',
-
-
-                    },
-                    {
-                        name: 'ASSIGNMENTS',
-
-
-                    },
-                    {
-                        name: 'STUDENTS',
-
-
-                    },
-                    {
-                        name: 'Exam',
-
-                    },
-                    {
-                      name:'Exams',
-                    },
-                    {
-                        name:'Marks',
-                    },
-                    {
-                        name:'Event',
-                    }
-
-                ],
 
             }
         },
 
         created() {
+            this.permission=User.role();
             this.getclass();
             this.getuserId();
 

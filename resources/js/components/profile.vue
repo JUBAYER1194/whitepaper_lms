@@ -167,6 +167,7 @@
 <script>
     import dilog from "./updateprofile_dilog";
     import Class from "./Class.vue";
+    import User from "../Helpers/User";
 
     export default {
         components: {dilog, Class},
@@ -179,6 +180,7 @@
             }
         },
         created() {
+
             this.user_id = User.id();
             axios.get(`/lms/api/information/${this.user_id}`)
                 .then(res=>this.form =res.data.data)

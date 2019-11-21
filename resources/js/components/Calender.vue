@@ -31,7 +31,7 @@
 
                 </v-tab>
             </v-tabs>
-        <Dcalender> </Dcalender>
+        <Dcalender v-if="permission=='Admin'"> </Dcalender>
 
     <v-row class="fill-height">
         <v-col>
@@ -107,12 +107,12 @@
                             :color="selectedEvent.color"
                             dark
                         >
-                            <EditCalender :data="selectedEvent"></EditCalender>
+                            <EditCalender :data="selectedEvent" v-if="permission=='Admin'"></EditCalender>
 
                             <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
                             <v-spacer></v-spacer>
 
-                            <v-btn icon @click="deleteEvent(selectedEvent.id)">
+                            <v-btn v-if="permission=='Admin'" icon @click="deleteEvent(selectedEvent.id)">
                                 <v-icon >delete_outline</v-icon>
                             </v-btn>
                         </v-toolbar>
@@ -137,6 +137,7 @@
     </div>
 </template>
 <script>
+
     import Dcalender from './Calenderdilog.vue'
     import EditCalender from "./EditCalender.vue";
 
@@ -158,9 +159,11 @@
             selectedElement: null,
             selectedOpen: false,
             events: {},
+            permission:null,
         }),
 
         created(){
+            this.permission=User.role();
             axios.get(`/lms/api/allevent`)
                 .then(res=>this.events =res.data.data)
             this.listen();

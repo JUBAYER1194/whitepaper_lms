@@ -9,7 +9,10 @@ use Auth;
 
 class NotificationController extends Controller
 {
-
+    public function __construct()
+    {
+        $this->middleware('JWT');
+    }
     public function  index($id){
         $user=User::find($id);
         return [

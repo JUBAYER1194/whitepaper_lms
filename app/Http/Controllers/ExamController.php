@@ -21,6 +21,13 @@ class ExamController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('JWT');
+        $this->middleware('role:Admin|Teacher')->only('QuestionCreate','StartExam','StartExam','StopExam','EndExam','Marks_update','show');
+        $this->middleware('role:Admin|Student')->only('AnswerCreate','updating_Examuser','user_examDone','show');
+
+    }
     public function index()
     {
         //
@@ -50,10 +57,7 @@ class ExamController extends Controller
 
     }
 
-    public function QcraetiveCreate(Request $request){
-        dd($request);
 
-    }
 
     public function QuestionCreate(Request $request,$id)
     {

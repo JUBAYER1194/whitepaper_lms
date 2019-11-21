@@ -19,6 +19,14 @@ use Symfony\Component\HttpFoundation\Response;
 class ApiUserController extends Controller
 {
     //
+
+    public function __construct()
+    {
+        $this->middleware('JWT');
+        $this->middleware('role:Admin')->only('assign_allStudent','remove_student','request_user','accept_user','delete_user','student_user','teacher_user','admin_user','assign_student','assign_teacher');
+
+
+    }
     public function index($id){
         $user=User::find($id);
         return new UserResource($user);

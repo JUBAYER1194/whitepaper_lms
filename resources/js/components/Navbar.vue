@@ -35,14 +35,37 @@
              </v-layout>
              <br>
 
-             <v-list-item v-for="(item,index) in items" :key="item.id">
+             <v-list-item v-if="permission=='Admin'">
                  <v-list-item-icon>
-                     <v-icon>{{item.icon}}</v-icon>
+                     <v-icon>dashboard</v-icon>
                  </v-list-item-icon>
 
                  <v-list-item-title>
-                     <router-link :to="item.to" style="color: white;text-decoration: none;font-size: 120%">
-                         {{item.text}}
+                     <router-link to="/lms/admin/dashboard" style="color: white;text-decoration: none;font-size: 120%">
+                         Dashboard
+                     </router-link>
+                 </v-list-item-title>
+             </v-list-item>
+
+             <v-list-item>
+                 <v-list-item-icon>
+                     <v-icon>account_circle</v-icon>
+                 </v-list-item-icon>
+
+                 <v-list-item-title>
+                     <router-link to="/lms/profile" style="color: white;text-decoration: none;font-size: 120%">
+                          Profile
+                     </router-link>
+                 </v-list-item-title>
+             </v-list-item>
+             <v-list-item>
+                 <v-list-item-icon>
+                     <v-icon>calendar_today</v-icon>
+                 </v-list-item-icon>
+
+                 <v-list-item-title>
+                     <router-link to="/lms/calendar" style="color: white;text-decoration: none;font-size: 120%">
+                         Calendar View
                      </router-link>
                  </v-list-item-title>
              </v-list-item>
@@ -125,19 +148,15 @@
                 loggedIn: User.loggedIn(),
                 dialog: false,
                 drawer: null,
-                 items: [
-                     {id:1,icon: 'dashboard', text: 'DashBoard',to:"/lms/admin/dashboard"},
-                    {id:2,icon: 'account_circle', text: 'Profile',to:"/lms/profile"},
-                     {id:3,icon: 'calendar_today', text: 'Calendar View',to:'/lms/calender'},
-
-                ],
                 classes: {},
                 user_id: null,
                 user:{},
+                permission:null,
 
             }
         },
         created() {
+            this.permission=User.role();
             this.user_id = User.id();
             axios.get(`/lms/api/class/${this.user_id}`)
                 .then(res => this.classes = res.data.data);

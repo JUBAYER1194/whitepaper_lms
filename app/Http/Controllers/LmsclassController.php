@@ -20,6 +20,11 @@ class LmsclassController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('JWT');
+        $this->middleware('role:Admin')->only('index','store','update','destroy');
+    }
     public function index()
     {
         //

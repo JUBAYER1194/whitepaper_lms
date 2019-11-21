@@ -17,6 +17,11 @@ class MaterialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('JWT');
+        $this->middleware('role:Admin|Teacher')->only('store','update','destroy');
+    }
     public function index()
     {
         //

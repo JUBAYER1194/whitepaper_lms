@@ -974,6 +974,7 @@
             count2:null,
             count3:null,
             count4:null,
+            checkTimeout:0,
         }),
         created(){
           this.listen();
@@ -1169,14 +1170,15 @@
         computed: {
 
             timeout(){
-                if(this.distance<0){
+                if(this.distance<0 && this.checkTimeout== 0){
+                    this.checkTimeout=1;
                     axios.patch(`/lms/api/class/end_exam/${this.examIDs}`,{
                         exam_done:1,
 
 
                     })
                         .then(res =>this.dialog=false,this.$toasted.show('Exam Started',{type:'success'}),
-                           //window.location.reload(true)
+                           window.location.reload(true)
                         )
 
                 }

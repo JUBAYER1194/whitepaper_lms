@@ -11,7 +11,7 @@
             flat
 
         >
-            <createClassEvent :data="data1"> </createClassEvent>
+            <createClassEvent v-if="permission=='Admin'|| permission=='Teacher'" :data="data1"> </createClassEvent>
 
             <v-row class="fill-height">
                 <v-col>
@@ -87,12 +87,12 @@
                                     :color="selectedEvent.color"
                                     dark
                                 >
-                                    <editClassEvent :data="selectedEvent"></editClassEvent>
+                                    <editClassEvent v-if="permission=='Admin'|| permission=='Teacher'" :data="selectedEvent"></editClassEvent>
 
                                     <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
                                     <v-spacer></v-spacer>
 
-                                    <v-btn icon @click="deleteEvent(selectedEvent.id)">
+                                    <v-btn v-if="permission=='Admin'|| permission=='Teacher'" icon @click="deleteEvent(selectedEvent.id)">
                                         <v-icon >delete_outline</v-icon>
                                     </v-btn>
                                 </v-toolbar>
@@ -137,7 +137,12 @@
             selectedEvent: {},
             selectedElement: null,
             selectedOpen: false,
+            permission:null,
         }),
+        created()
+        {
+            this.permission=User.role();
+        },
 
 
 

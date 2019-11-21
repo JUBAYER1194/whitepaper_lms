@@ -5,14 +5,16 @@ class User {
 
     responseAfterLogin(res)
 {
+
     const access_token= res.data.access_token
     const username=res.data.user
+    const role=res.data.Role
 
     if (Token.isValid(access_token)) {
 
-
-        AppStorage.store(username,access_token)
-        window.location = '/lms/profile'
+        console.log('hello')
+        AppStorage.store(username,access_token,role)
+       window.location = '/lms/profile'
 
 
     }
@@ -42,6 +44,12 @@ name(){
         return AppStorage.getUSer()
     }
 }
+
+    role(){
+        if(this.loggedIn()){
+            return AppStorage.getRole()
+        }
+    }
 
 id(){
     if(this.loggedIn()){

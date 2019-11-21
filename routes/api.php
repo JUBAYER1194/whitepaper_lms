@@ -16,15 +16,14 @@ Route::get('/user/student_user','ApiUserController@student_user');
 Route::get('/user/teacher_user','ApiUserController@teacher_user');
 Route::get('/user/admin_user','ApiUserController@admin_user');
 Route::put('/information/{id}','ApiUserController@update');
+
 Route::Resource('announcement', 'AnnouncementController');
 Route::Resource('class/assignment','AssaignmentController');
-Route::get('assign/getsubject/subject','AssaignmentController@getLmsclass');
 Route::Resource('class','LmsclassController');
 Route::get('class/user/{id}','LmsclassController@user');
 Route::Resource('material','MaterialController');
 Route::get('material/single/{id}','MaterialController@material');
 Route::get('class/about/{name}','LmsclassController@information');
-Route::get('class/exam/{id}','LmsclassController@exam');
 Route::Resource('/class/exam/exam','ExamController');
 Route::patch('/class/exam/{exam}','ExamController@StartExam');
 Route::patch('/class/exam/stop/{exam}','ExamController@StopExam');

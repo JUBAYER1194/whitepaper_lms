@@ -25,7 +25,7 @@
                     Announcements
                 </h2>
              <v-spacer></v-spacer>
-                <dilog style="text-align: right" :data="lmsclass_id"></dilog>
+                <dilog  v-if="permission=='Admin'|| permission=='Teacher'" style="text-align: right" :data="lmsclass_id"></dilog>
             </v-card-title>
 
             </v-card>
@@ -65,8 +65,8 @@
                         "{{announcement.body}}"
                     </v-card-text>
                 </v-card>
-                    <v-card flat>
-                        <v-card-title>
+                    <v-card   v-if="permission=='Admin'|| permission=='Teacher'" flat>
+                        <v-card-title >
                             <VEditDialog :data="announcement"></VEditDialog>
                             <v-spacer></v-spacer>
                             <deleteAnnouncementDialog :data="announcement"></deleteAnnouncementDialog>
@@ -95,12 +95,13 @@
                 announcements: {},
                 user_id:null,
                 lmsclass_id:null,
+                permission:null,
 
 
             }
         },
         created() {
-
+            this.permission=User.role();
             this.listen()
 
         },

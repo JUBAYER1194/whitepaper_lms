@@ -12,7 +12,7 @@
 
                 <th style=" font-size: 1.5rem " class="text-left font-weight-black">Name</th>
                 <th style=" font-size: 1.5rem " class="text-center font-weight-black">Profile</th>
-                <th style=" font-size: 1.5rem " class="text-center font-weight-black">Action</th>
+                <th  v-if="permission=='Admin'" style=" font-size: 1.5rem " class="text-center font-weight-black">Action</th>
 
             </tr>
             </thead>
@@ -38,7 +38,7 @@
                     <details_dilog :data="student"></details_dilog>
                 </td>
 
-                <td class="text-center">
+                <td v-if="permission=='Admin'"  class="text-center">
                     <removeStudentFromClass :data1="data1" :data="student"></removeStudentFromClass>
                 </td>
             </tr>
@@ -55,10 +55,11 @@
         components:{details_dilog,removeStudentFromClass},
         data () {
             return {
-
+                permission:null,
             }
         },
         created() {
+            this.permission=User.role();
             this.listen();
         },
         methods:{

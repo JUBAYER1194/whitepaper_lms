@@ -17,6 +17,12 @@ class AlleventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('role:Admin')->only('store',' update','destroy');
+
+        $this->middleware('JWT');
+    }
     public function index()
     {
         //

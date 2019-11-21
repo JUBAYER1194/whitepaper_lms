@@ -14,6 +14,12 @@ class ClassHeadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('JWT');
+        $this->middleware('role:Admin')->only('index','show','store',' update','destroy');
+
+    }
     public function index()
     {
         //

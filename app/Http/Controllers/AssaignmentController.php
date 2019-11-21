@@ -20,6 +20,11 @@ class AssaignmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('JWT');
+        $this->middleware('role:Admin|Teacher')->only('store','update','destroy');
+    }
     public function index()
     {
         //
@@ -174,11 +179,7 @@ class AssaignmentController extends Controller
         $assignment->delete();
     }
 
-    public function getLmsclass(){
 
-        $assi=Assaignment::find(30);
-           return $assi->lmsclass;
-       }
 
 
 }

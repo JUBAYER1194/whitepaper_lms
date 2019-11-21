@@ -32,7 +32,7 @@
 
                         >
 
-                            Teacher Information
+                            {{data.role}} Information
 
                         </v-tab>
                     </v-tabs>

@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 class AuthmailController extends Controller
 {
     //
+
     use SendsPasswordResetEmails;
     public function sendPasswordResetLink(forgetPasswordEmailSentRequest $request)
     {

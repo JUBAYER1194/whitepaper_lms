@@ -788,6 +788,7 @@
         computed: {
             submitAnswer_distance(){
                 if (this.distance<0 && this.checking_distance==true){
+                    this.checking_distance=false;
                     this.updating_Examuser();
                     axios.post(`/lms/api/class/exam/answer/${this.data}`,{
                         form:this.question_id,
@@ -800,7 +801,7 @@
                         start_exam_id:this.startExam_id,
 
                     })
-                        .then(res =>this.checking_distance=false,this.$toasted.show('Exam Done',{type:'success'}),
+                        .then(res =>this.$toasted.show('Exam Done',{type:'success'}),
                             window.location.reload(true)
 
 
