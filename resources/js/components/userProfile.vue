@@ -27,7 +27,7 @@
 
                 >
 
-                    profile information
+                    {{form.role}} information
 
                 </v-tab>
             </v-tabs>

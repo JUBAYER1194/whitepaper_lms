@@ -32,7 +32,9 @@
                 <th style=" font-size: 1.2rem " class="text-center font-weight-black">Class</th>
                 <th style=" font-size: 1.2rem " class="text-center font-weight-black">Profile</th>
                 <th style=" font-size: 1.2rem " class="text-center font-weight-black">Status</th>
-                <th colspan="2" style=" font-size: 1.2rem;" class="text-center font-weight-black">Action</th>
+                <th  style=" font-size: 1.2rem;" class="text-center font-weight-black">Action</th>
+                <th  style=" font-size: 1.2rem;" class="text-center font-weight-black">Last Login Ip</th>
+                <th colspan="2" style=" font-size: 1.2rem;" class="text-center font-weight-black">Last Login Time</th>
             </tr>
             </thead>
             <tbody v-if="data.length">
@@ -79,6 +81,18 @@
                     <Student_Assign_dialog :dataH="dataH" :datafld="datafld" :data="student"></Student_Assign_dialog>
                     <userEditProfile :data="student"></userEditProfile>
                     <Delete_Request :data="student"></Delete_Request>
+                </td>
+                <td class="text-center" v-if="student.login_ip!=null">
+                    {{student.login_ip}}
+                </td>
+                <td class="text-center" v-if="student.login_ip==null">
+                    Not logged In Yet
+                </td>
+                <td class="text-center" v-if="student.login_time!=null" >
+                    {{student.login_time}}
+                </td>
+                <td class="text-center" v-if="student.login_time==null" >
+                    Not logged In Yet
                 </td>
             </tr>
             </tbody>

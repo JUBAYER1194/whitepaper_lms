@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 use App\Http\Requests\loginRequest;
 use App\Http\Requests\SignupRequest;
 use App\Notifications\newUserNotification;
@@ -52,13 +56,18 @@ class AuthController extends Controller
 
     public function login(loginRequest $request)
     {
+
         $credentials = request(['email', 'password']);
 
         if (! $token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['errors' => ['wrong'=>'This Password Does not match']], 401);
         }
+        $users = DB::table('users')->where('email', '=', $request->email)->first();
+         if($users->status !=1){
+             return response()->json(['errors' => ['status'=>'You have not accepted yet']], 401);
+         }
 
-        return $this->respondWithToken($token);
+        return $this->respondWithToken($token,$request);
     }
 
     /**
@@ -116,14 +125,20 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    protected function respondWithToken($token)
+    protected function respondWithToken($token,$request)
     {
+        auth()->user()->update([
+            'last_login_at' => Carbon::now()->toDateTimeString(),
+            'last_login_ip' => $request->getClientIp()
+        ]);
+        $lmsclass=auth()->user()->lmsclass();
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60,
             'Role'=>auth()->user()->getRoleNames()->first(),
-            'user'=>auth()->user()->id,
+            'user'=> $lmsclass,
+
         ]);
     }
 }

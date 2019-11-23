@@ -4,7 +4,24 @@
             max-width="290"
         >
             <template v-slot:activator="{ on }">
-                <v-btn class="error my-3" depressed small v-on="on" width="80">Delete</v-btn>
+                <v-badge
+                    v-model="show"
+                    color="error"
+                    overlap
+                    class="my-3"
+                >
+                    <template v-slot:badge>
+                        <span>Delete</span>
+                    </template>
+
+                    <v-icon
+                        v-on="on"   dark  color="error" width="70"
+                        large
+                        @mouseover="show = true"
+                        @mouseout="show = false"
+                    >delete</v-icon>
+
+                </v-badge>
             </template>
             <v-card>
                 <v-card-title style="font-size:1em;color:darkred" >Are you sure you want to delete?</v-card-title>
@@ -39,6 +56,7 @@
         data () {
             return {
                 dialog: false,
+                show:false,
             }
         },
         methods:{

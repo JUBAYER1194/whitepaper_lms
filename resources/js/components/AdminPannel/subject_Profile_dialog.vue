@@ -72,8 +72,12 @@
 
                 <v-card-actions>
                     <div class="flex-grow-1"></div>
-                    <v-btn  style="background-color:#3b5998;color:white" text @click="dialog = false">Close</v-btn>
-                    <v-btn style="background-color:#3b5998;color:white;text-transform: none"  text @click="dialog = false">Enter Class Room</v-btn>
+                    <v-btn  style="margin-right:3%;background-color:#3b5998;color:white;text-transform: none" text @click="dialog = false">Close</v-btn>
+                    <a :href="'/lms/class/'+data.name"
+                       style="color:white;text-decoration: none;">
+                        <v-btn style="background-color:#3b5998;color:white;text-transform: none" text>Enter Class Room
+                        </v-btn>
+                    </a>
                 </v-card-actions>
             </v-card>
         </v-dialog>

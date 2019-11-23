@@ -95,7 +95,7 @@
         created() {
             this.createSubjectUpdate();
             this.deleteSubject();
-            this.listen();
+        
         },
         methods:{
 

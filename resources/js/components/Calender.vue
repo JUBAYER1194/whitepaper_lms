@@ -161,6 +161,16 @@
             events: {},
             permission:null,
         }),
+        beforeRouteEnter (to, from, next) {
+            if (User.loggedIn()){
+                next();
+            }
+            else
+            {
+                next('/')
+            }
+        },
+
 
         created(){
             this.permission=User.role();

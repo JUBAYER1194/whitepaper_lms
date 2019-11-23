@@ -25,9 +25,11 @@ class LmsclassController extends Controller
         $this->middleware('JWT');
         $this->middleware('role:Admin')->only('index','store','update','destroy');
     }
+
     public function index()
     {
         //
+
 
         $subject=Lmsclass::all();
         return SubjectResource::collection($subject);
@@ -74,6 +76,7 @@ class LmsclassController extends Controller
     public function show($id)
     {
         //
+
         $class=User::find($id)->classHead;
         return lmsClassHeadResource::collection($class);
 

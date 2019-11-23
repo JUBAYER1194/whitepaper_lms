@@ -71,6 +71,7 @@
     import Request from "./Request.vue";
     import C_lass from "./Subject.vue";
     import Classhead from "./classHead.vue"
+    import User from "../../Helpers/User";
 
     export default {
 
@@ -114,6 +115,15 @@
                 admin_user:{},
                 classHeadData:null,
 
+            }
+        },
+        beforeRouteEnter (to, from, next) {
+            if (User.loggedIn() && User.role()=='Admin'){
+                next();
+            }
+            else
+            {
+                next('/')
             }
         },
         created()

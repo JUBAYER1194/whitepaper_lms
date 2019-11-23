@@ -179,12 +179,20 @@ class ApiUserController extends Controller
             $user=User::find($id);
             $user->lmsclass()->detach();
             foreach ($request->subject as $subject){
-                $user->lmsclass()->attach($subject['id']);
                 $subjects=Lmsclass::find($subject['id']);
+               foreach($subjects->users as $usert)
+               {
+                   if ($usert->getRoleNames()->first()=='Teacher'){
+
+                       $subjects->users()->detach($usert->id);
+                   }
+               }
+                $user->lmsclass()->attach($subject['id']);
                 $user->notify(new newTeacherAssignNotification($subjects));
             }
             $user->classHead()->detach();
             foreach ($request->Selected_ClassHaed as $clasHeadId) {
+
                 $user->classHead()->attach($clasHeadId['id']);
 
 

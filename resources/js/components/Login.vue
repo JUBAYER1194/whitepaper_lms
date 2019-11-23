@@ -42,16 +42,20 @@
                                     <span class="red--text" v-if="errors.email">{{errors.email[0]}}</span>
 
                                     <v-text-field
-                                        id="password*"
-                                        label="Password"
+                                        id="password"
+                                        label="Password*"
                                         name="password"
                                         v-model="form.password"
                                         prepend-icon="lock"
                                         type="password"
                                     ></v-text-field>
                                     <span class="red--text" v-if="errors.password">{{errors.password[0]}}</span>
+
                                 </v-form>
+                                <span class="red--text" v-if="errors.wrong" > {{errors.wrong}} </span>
+                                <span class="red--text" v-if="errors.status" > {{errors.status}} </span>
                                 <ResetPassword></ResetPassword>
+
                                 <small>*indicates required field</small>
 
                             </v-card-text>
@@ -82,7 +86,8 @@
                     email:null,
                     password:null,
                 },
-                errors:{},
+                errors:'',
+
 
 
             }
@@ -105,6 +110,7 @@
                     // })
 
                     .catch(error =>this.errors = error.response.data.errors)
+
 
             },
             signup(){

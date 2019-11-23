@@ -64,13 +64,19 @@
             CreateClassHead()
             {
                 axios.post('/lms/api/class-head',this.form)
-                    .then(res =>(this.dialog=false,this.$toasted.show('Class Created',{type:'success'}),
-                        EventBus.$emit('class-head-created',this.form)))
+                    .then(res =>
+                            this.dialog = false,
+                            EventBus.$emit('class-head-created', this.form),
+                            this.$toasted.show('Class Created', {type: 'success'}),
+                           this.x=0
+
+                    )
+
+
                     .catch(error =>this.errors = error.response.data.errors)
 
-                this.x=0
-            },
 
+            },
 
         },
         computed:{
@@ -78,6 +84,7 @@
             {
                 if (this.x==0){
                     this.form={};
+                    this.errors = {};
                     this.x=1;
                 }
             },

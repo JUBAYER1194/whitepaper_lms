@@ -34,6 +34,8 @@
                     <th style=" font-size: 1.2rem " class="text-center font-weight-black">Profile</th>
                     <th style=" font-size: 1.2rem " class="text-center font-weight-black">Status</th>
                     <th  style=" font-size: 1.2rem;" class="text-center font-weight-black">Action</th>
+                    <th  style=" font-size: 1.2rem;" class="text-center font-weight-black">Last Login Ip</th>
+                    <th  style=" font-size: 1.2rem;" class="text-center font-weight-black">Last Login Time</th>
                 </tr>
                 </thead>
                 <tbody v-if="data.length">
@@ -70,6 +72,18 @@
                         <teacher_Assign_dialog :dataH="dataH" :datafld="datafld" :data="teacher"></teacher_Assign_dialog>
                         <userEditProfile :data="teacher"></userEditProfile>
                         <Delete_Request :data="teacher"></Delete_Request>
+                    </td>
+                    <td class="text-center" v-if="teacher.login_ip!=null">
+                        {{teacher.login_ip}}
+                    </td>
+                    <td class="text-center" v-if="teacher.login_ip==null">
+                        Not logged In Yet
+                    </td>
+                    <td class="text-center" v-if="teacher.login_time!=null" >
+                        {{teacher.login_time}}
+                    </td>
+                    <td class="text-center" v-if="teacher.login_time==null" >
+                        Not logged In Yet
                     </td>
                 </tr>
                 </tbody>

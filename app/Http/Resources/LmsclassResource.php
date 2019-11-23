@@ -16,7 +16,9 @@ class LmsclassResource extends JsonResource
     {
         return [
             'id'=>$this->id,
+            'status'=>$this->status,
             'classHead_id'=>$this->classhead_id,
+            'classHead_status'=>$this->head->status,
             'name'=>$this->name,
             'section'=>$this->section,
             'description'=>$this->description,

@@ -44,7 +44,7 @@
                 </td>
 
                 <td class="text-center ">
-                    <v-btn small  width="70"   class="primary mx-lg-6 my-3" @click="accepting_user(user)"  depressed >Accept</v-btn>
+                    <Accept_user :user="user"></Accept_user>
                     <Delete_Request :data="user"></Delete_Request>
                 </td>
             </tr>
@@ -57,32 +57,34 @@
 <script>
     import Request_details_dialog from "./Request_details_dialog.vue";
     import Delete_Request from "./Delete_Request.vue";
+    import Accept_user from "./Accept_user.vue";
 
     export default {
         props:['data'],
-        components:{Request_details_dialog,Delete_Request},
+        components:{Request_details_dialog,Delete_Request,Accept_user},
         data () {
             return {
                 search:'',
+                show:false,
 
             }
         },
         created(){
             this.not_Accepting_user();
+            this.accepted();
         },
         methods:
             {
-                accepting_user(user)
-                {
-                    axios.patch(`/lms/api/user/accept_user/${user.id}`)
-                        .then(res =>EventBus.$emit('newUser',user),this.data.splice(this.data.indexOf(user), 1),this.$toasted.show('User Accepted',{type:'success'}),
 
-                        )
-                },
                 not_Accepting_user()
                 {
                     EventBus.$on('user-deleted',(userDelete) =>{
                         this.data.splice(this.data.indexOf(userDelete), 1);
+                    })
+                },
+                accepted(){
+                    EventBus.$on('newUser',(user) =>{
+                        this.data.splice(this.data.indexOf(user), 1);
                     })
                 },
             },

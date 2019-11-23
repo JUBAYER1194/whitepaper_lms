@@ -42,7 +42,8 @@ const routes = [
         path: '/reset-password/:token',
         name: 'reset-password-form',
         component: resetPasswordWithToken,
-    }
+    },
+    {path:'*',redirect:'/lms/login'},
 
 
 ]

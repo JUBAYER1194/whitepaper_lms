@@ -11,9 +11,9 @@
 |
 */
 
+//vue router
 
 
-Route::get('/dummy','DummyController@dummy');
 Route::view('/home','home');
 Route::view('/','login');
 Route::view('/signups','Signup');

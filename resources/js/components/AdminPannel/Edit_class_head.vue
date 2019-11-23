@@ -2,7 +2,21 @@
 
         <v-dialog  v-model="dialog" persistent max-width="600px">
             <template v-slot:activator="{ on }">
-                <v-btn class="primary mx-lg-6 my-3" depressed small v-on="on" width="80">Edit</v-btn>
+                <v-badge
+                    v-model="show"
+                    color="primary"
+                    overlap
+                >
+                    <template v-slot:badge>
+                        <span>Edit</span>
+                    </template>
+                    <v-icon
+                        v-on="on" class="mx-lg-6 my-3"  dark  color="primary" width="70"
+                        large
+                        @mouseover="show = true"
+                        @mouseout="show = false"
+                    >edit</v-icon>
+                </v-badge>
             </template>
             <v-card>
                 <v-card-title>
@@ -45,6 +59,7 @@
         props:['data'],
         data: () => ({
             dialog: false,
+            show:false,
             item:[
                 {'id':1,'name':'Active'},
                 {'id':0,'name':'In-Active'}

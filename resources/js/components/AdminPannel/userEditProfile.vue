@@ -2,7 +2,21 @@
 
         <v-dialog v-model="dialog" persistent max-width="600px">
             <template v-slot:activator="{ on }">
-                <v-btn v-on="on" class="my-3" small dark  color="primary" width="70"  depressed >Edit</v-btn>
+                <v-badge
+                    v-model="show"
+                    color="primary"
+                    overlap
+                >
+                    <template v-slot:badge>
+                        <span>Edit</span>
+                    </template>
+                    <v-icon
+                        v-on="on" class="my-3"  dark  color="primary" width="70"
+                        large
+                        @mouseover="show = true"
+                        @mouseout="show = false"
+                    >edit</v-icon>
+                </v-badge>
             </template>
             <v-card>
                 <v-card-title>
@@ -58,7 +72,7 @@
         data (){
             return {
 
-
+                show: false,
                 dialog: false,
                 date: new Date().toISOString().substr(0, 10),
                 menu: false,

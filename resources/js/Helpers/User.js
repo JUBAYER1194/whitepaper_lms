@@ -51,6 +51,13 @@ name(){
         }
     }
 
+
+    Lmsclass(){
+        if(this.loggedIn()){
+            return AppStorage.getLmsclass()
+        }
+    }
+
 id(){
     if(this.loggedIn()){
         const payload = Token.payload(AppStorage.getToken())

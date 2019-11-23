@@ -176,11 +176,21 @@
                 form:{},
                 user_id:0,
                 classes:{},
+                userclass:{},
 
             }
         },
+        beforeRouteEnter (to, from, next) {
+            if (User.loggedIn()){
+                next();
+            }
+            else
+            {
+                next('/')
+            }
+        },
         created() {
-
+            this.userclass=User.name();
             this.user_id = User.id();
             axios.get(`/lms/api/information/${this.user_id}`)
                 .then(res=>this.form =res.data.data)

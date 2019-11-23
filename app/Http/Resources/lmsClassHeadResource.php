@@ -20,6 +20,7 @@ class lmsClassHeadResource extends JsonResource
                 'name'=>$this->name,
                 'status'=>$this->status,
                 'subject'=>SubjectResource::collection($this->Lms_class),
+                'auth_subject'=>SubjectIdResource::collection(auth()->user()->lmsclass),
             ];
     }
 }

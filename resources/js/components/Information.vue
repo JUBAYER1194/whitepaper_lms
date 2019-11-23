@@ -6,11 +6,17 @@
 
     >
         <v-img
-            class="white--text"
+            class="white--text align-end "
             height="300px"
             :src="'http://127.0.0.1:8000/uploads/x/x/profile/study.jpeg'"
         >
-            <v-card-title class="align-end fill-height">{{classes.name}}</v-card-title>
+
+
+                <h3 class="ml-3">{{classes.name}}</h3>
+
+            <div class="ml-3" v-for="(teacher,index) in dat" v-if="teacher.role =='Teacher'">
+                <h4 class="white--text text-capitalize" >{{teacher.first_name}} {{teacher.last_name}}</h4>
+            </div>
         </v-img>
 
         <v-card-text>
@@ -49,9 +55,9 @@
                                         <td class="font-weight-black">Description:</td>
                                         <td class="black--text text-capitalize">{{classes.description}}</td>
                                     </tr>
-                                    <tr>
+                                    <tr v-for="(teacher,index) in dat" v-if="teacher.role =='Teacher'">
                                         <td class="font-weight-black"> Teacher's Name:</td>
-                                        <td class="black--text text-capitalize" >{{classes.first_name}} {{classes.last_name}}</td>
+                                        <td class="black--text text-capitalize" >{{teacher.first_name}} {{teacher.last_name}}</td>
                                     </tr>
                                     <tr>
                                         <td class="font-weight-black">Created At:</td>

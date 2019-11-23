@@ -28,6 +28,8 @@ class teacherResource extends JsonResource
             'image'=>$this->image,
             'address'=>$this->address,
             'Status'=>$this->status,
+            'login_time'=>$this->last_login_at,
+            'login_ip'=>$this->last_login_ip,
             'role'=>$this->getRoleNames()->first(),
             'subject_id'=>SubjectIdResource::collection($this->lmsclass),
             'class_head'=>classHeadResorce::collection($this->classHead),

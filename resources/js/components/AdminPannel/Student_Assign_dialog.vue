@@ -2,7 +2,23 @@
 
     <v-dialog  v-model="dialog" persistent max-width="600px">
         <template v-slot:activator="{ on }">
-            <v-btn v-on="on" class="my-3" small width="70" dark color="blue darken-1"  depressed >Assign</v-btn>
+            <v-badge
+                v-model="show"
+                color="blue darken-1"
+                overlap
+            >
+                <template v-slot:badge>
+                    <span>Assign</span>
+                </template>
+
+                <v-icon
+                    v-on="on" class="my-3"  dark  color="blue darken-1" width="70"
+                    large
+                    @mouseover="show = true"
+                    @mouseout="show = false"
+                >assignment_turned_in</v-icon>
+
+            </v-badge>
         </template>
         <v-card>
             <v-card-title>
@@ -73,6 +89,7 @@
                 classHead: null,
                 subject: null,
             },
+            show: false,
             checkingSubject:null,
             datak:[],
             selectedSubject:{},

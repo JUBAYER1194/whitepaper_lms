@@ -76,7 +76,7 @@
                                     <v-select
                                         :items="roles"
                                         item-text="name"
-                                        item-value="id"
+                                        item-value="name"
                                         label="Select your Role*"
                                         prepend-icon="supervisor_account"
                                         v-model="form.role"

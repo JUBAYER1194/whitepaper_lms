@@ -139,6 +139,9 @@
         {{getannouncement}}
         {{getassignment}}
         {{getClassEvent}}
+        {{redirect}}
+        {{redirect2}}
+
     </div>
 </template>
 <script>
@@ -152,36 +155,59 @@
     import ExamAnswer from "./ExamAnswer";
     import Marks from "./Teacher_marking.vue";
     import classCalnederView from "./classCalnederView.vue";
+    import User from "../Helpers/User";
 
     export default {
 
-        components: {dilog, invite_dilog, Information, Announcement, Assaignment, Student, Exam,ExamAnswer,Marks,classCalnederView},
+        components: {
+            dilog,
+            invite_dilog,
+            Information,
+            Announcement,
+            Assaignment,
+            Student,
+            Exam,
+            ExamAnswer,
+            Marks,
+            classCalnederView
+        },
         data() {
             return {
                 tab: null,
                 classes: {},
-                material:{},
-                users:{},
-                events:{},
-                announcements:{},
-                assaignments:{},
-                user_id:null,
-                permission:null,
+                material: {},
+                users: {},
+                events: {},
+                announcements: {},
+                assaignments: {},
+                user_id: null,
+                permission: null,
+                xy:0,
+                yz:0,
+
 
 
             }
         },
-
+        beforeRouteEnter(to, from, next) {
+            if (User.loggedIn()) {
+                next();
+            } else {
+                next('/')
+            }
+        },
         created() {
-            this.permission=User.role();
+            this.permission = User.role();
             this.getclass();
             this.getuserId();
 
 
         },
+
+
         methods: {
-            getuserId(){
-                this.user_id=User.id();
+            getuserId() {
+                this.user_id = User.id();
             },
             getclass() {
                 axios.get(`/lms/api/class/about/${this.$route.params.name}`)
@@ -190,34 +216,62 @@
             },
         },
         computed: {
-            getClassEvent(){
+            redirect2() {
+                if (User.role() != 'Admin') {
+                    if (this.classes.status == 0 || this.classes.classHead_status == 0) {
+                        this.$router.push({name: 'profile'})
+
+                    }
+
+                }
+            },
+
+
+            redirect() {
+                if (User.role() != 'Admin') {
+                    this.users.filter((el) => {
+                        if (el.id != this.user_id) {
+                            this.xy = 1;
+                        }
+
+                    });
+                    this.yz = 1;
+                    if (this.xy == 0 && this.yz == 1) {
+
+                        this.$router.push({name: 'profile'})
+                    }
+                }
+            },
+
+
+            getClassEvent() {
                 axios.get(`/lms/api/class/event/${this.classes.id}`)
-                    .then(res=>this.events =res.data.data)
+                    .then(res => this.events = res.data.data)
             },
             getmaterial() {
                 axios.get(`/lms/api/material/${this.classes.id}`)
                     .then(res => this.material = res.data.data)
             },
-            getuser(){
+            getuser() {
                 axios.get(`/lms/api/class/user/${this.classes.id}`)
                     .then(res => this.users = res.data.data)
 
             },
-            getannouncement(){
+            getannouncement() {
                 axios.get(`/lms/api/announcement/${this.classes.id}`)
                     .then(res => this.announcements = res.data.data);
 
             },
-            getassignment(){
+            getassignment() {
                 axios.get(`/lms/api/class/assignment/${this.classes.id}`)
                     .then(res => this.assaignments = res.data.data);
 
             },
 
 
-
         },
     }
+
 </script>
 <style>
     /* Helper classes */

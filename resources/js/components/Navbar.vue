@@ -71,21 +71,25 @@
              </v-list-item>
 
 
-             <v-list-group v-for="(classs,index) in classes" :key="classs.id">
+             <v-list-group v-for="(classs,index) in classes" v-if="classs.status==1" :key="classs.id">
                  <template v-slot:activator>
                      <v-list-item-icon>
                          <v-icon style="color: white">class</v-icon>
                      </v-list-item-icon>
                      <v-list-item-title style="color: white;font-size: 0.8em">{{classs.name}}</v-list-item-title>
                  </template>
-                 <v-list-item style="margin-left:20%" v-for="(subject,index) in classs.subject" :key="subject.id">
+                 <div v-for="(auth_subject,index) in classs.auth_subject">
+                 <v-list-item style="margin-left:20%" v-for="(subject,index) in classs.subject" v-if="subject.status==1 && auth_subject==subject.id" :key="subject.id">
+
                      <v-list-item-title>
                          <a :href="'/lms/class/'+subject.name" style="color:white;text-decoration: none;font-size: 120%">{{subject.name}}</a>
                      </v-list-item-title>
+
                      <v-list-item-icon >
                          <v-icon> menu_book</v-icon>
                      </v-list-item-icon>
                  </v-list-item>
+                 </div>
              </v-list-group>
 
          </v-list>

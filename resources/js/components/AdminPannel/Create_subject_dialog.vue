@@ -67,7 +67,7 @@
             <v-card-actions>
                 <div class="flex-grow-1"></div>
                 <v-btn style="background-color:#3b5998;color:white" text @click="dialog = false">Close</v-btn>
-                <v-btn style="background-color:#3b5998;color:white"  text @click="create">Save</v-btn>
+                <v-btn style="background-color:#3b5998;color:white"  text @click="created">Save</v-btn>
             </v-card-actions>
         </v-card>
         {{userId}}
@@ -88,7 +88,6 @@
                 name:null,
                 section:null,
                 description:null,
-                status:null,
                 user_id:null,
                 class_head:null,
 
@@ -98,7 +97,7 @@
                 {'id':1,'name':'Active'},
                 {'id':0,'name':'In-Active'}
             ],
-            errors:{},
+            errors:'',
         }),
 
         computed:{
@@ -116,10 +115,15 @@
 
         },
         methods:{
-          create(){
+          created(){
               axios.post(`/lms/api/class`,this.classes)
-                  .then(res =>(this.dialog=false,this.$toasted.show('Subject Created',{type:'success'}),EventBus.$emit('newSubject',this.classes)))
+                  .then(res =>(this.dialog=false,this.$toasted.show('Subject Created',{type:'success'})))
                   .catch(error =>this.errors = error.response.data.errors)
+                if (this.errors=='')
+              {
+                  EventBus.$emit('newSubject',this.classes)
+                }
+
                    this.x=0
           },
         },
