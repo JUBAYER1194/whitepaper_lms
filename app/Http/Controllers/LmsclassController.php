@@ -56,13 +56,14 @@ class LmsclassController extends Controller
     {
         //
 
+
         $class=new Lmsclass();
         $class->name=$request->name;
         $class->section=$request->section;
         $class->user_id=$request->user_id;
         $class->status=$request->status;
         $class->description=$request->description;
-        $class->classhead_id=$request->class_head;
+        $class->classhead_id=$request->class_head['id'];
         $class->save();
 
     }
@@ -100,7 +101,7 @@ class LmsclassController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SubjectCreateRequest $request, $id)
     {
         //
 

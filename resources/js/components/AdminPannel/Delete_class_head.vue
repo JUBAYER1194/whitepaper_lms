@@ -65,6 +65,7 @@
                     .then(res =>this.dialog=false,this.$toasted.show('Class Deleted',{type:'success'}),
                         EventBus.$emit('class-head-deleted',this.data)
                     )
+
             }
         }
     }

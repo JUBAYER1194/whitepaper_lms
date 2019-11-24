@@ -36,6 +36,7 @@ Route::patch('/class/exam/marks/{mark}','ExamController@Marks_update');
 Route::Resource('allevent','AlleventController');
 Route::Resource('class/event','LmsClassEventController');
 Route::Resource('class-head','ClassHeadController');
+Route::post('/user/class-head/{id}','ClassHeadController@detachingUser');
 
 
 Route::post('reset-password', 'AuthmailController@sendPasswordResetLink');

@@ -133,14 +133,14 @@
                 </v-tab-item>
             </v-tabs-items>
 
-
+        {{redirect2}}
        {{getmaterial}}
         {{getuser}}
         {{getannouncement}}
         {{getassignment}}
         {{getClassEvent}}
         {{redirect}}
-        {{redirect2}}
+
 
     </div>
 </template>
@@ -216,34 +216,27 @@
             },
         },
         computed: {
-            redirect2() {
-                if (User.role() != 'Admin') {
-                    if (this.classes.status == 0 || this.classes.classHead_status == 0) {
-                        this.$router.push({name: 'profile'})
-
-                    }
-
-                }
-            },
-
 
             redirect() {
                 if (User.role() != 'Admin') {
                     this.users.filter((el) => {
-                        if (el.id != this.user_id) {
+                        if (el.id == this.user_id) {
                             this.xy = 1;
                         }
-
                     });
-                    this.yz = 1;
-                    if (this.xy == 0 && this.yz == 1) {
-
+                    this.yz = 2;
+                    if (this.xy != 1 && this.yz == 2) {
                         this.$router.push({name: 'profile'})
                     }
                 }
             },
-
-
+            redirect2() {
+                if (User.role() != 'Admin') {
+                    if (this.classes.status == 0 || this.classes.classHead_status == 0) {
+                        this.$router.push({name: 'profile'})
+                    }
+                }
+            },
             getClassEvent() {
                 axios.get(`/lms/api/class/event/${this.classes.id}`)
                     .then(res => this.events = res.data.data)

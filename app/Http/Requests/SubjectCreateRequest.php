@@ -27,7 +27,7 @@ class SubjectCreateRequest extends FormRequest
             'name'=>'required|max:30',
             'section'=>'required',
              'status'=>'required',
-            'class_head'=>'required',
+            'class_id'=>'required',
 
         ];
     }

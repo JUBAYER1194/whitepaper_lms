@@ -13,10 +13,12 @@
 
                         <v-select
                             :items="items"
-                            label="Select Material"
-                            v-model="material.option"
+                            label="Select Material*"
+                            v-model="material.options"
                         ></v-select>
+                        <span class="red--text" v-if="errors.options">{{errors.options[0]}}</span>
                         <v-text-field label="Enter title*"  v-model="material.title" required ></v-text-field>
+                        <span class="red--text" v-if="errors.title">{{errors.title[0]}}</span>
 
                         <v-textarea
                             label="Description"
@@ -30,7 +32,7 @@
 
 
                     </v-container>
-
+                    <small>*indicates required field</small>
                 </v-card-text>
                 <v-card-actions>
                     <div class="flex-grow-1"></div>
@@ -56,7 +58,7 @@
                 title:null,
                 body:null,
                 file:null,
-                option:null,
+                options:null,
                 user_id:null,
                 lmsclass_id:null,
                 check:0,
@@ -64,6 +66,7 @@
 
             },
             x:0,
+            errors:{},
         }),
         methods:{
             filechanged(e){
@@ -76,10 +79,17 @@
             },
             send(){
               axios.post('/lms/api/material',this.material)
-                  .then(res =>this.dialog=false,this.$toasted.show('Material Created',{type:'success'}),
-                      EventBus.$emit('newMaterial',this.material)
+                  .then(res =>
+                      this.dialog=false,
+                      EventBus.$emit('newMaterial',this.material),
+                      this.$toasted.show('Material Created',{type:'success'}),
+                      this.errors='',
+                      this.x=0,
+
                   )
-                this.x=0;
+                  .catch(error =>this.errors = error.response.data.errors)
+
+
             },
         },
         computed:{

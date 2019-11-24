@@ -98,9 +98,15 @@
             },
             send(){
                 axios.post('/lms/api/class/assignment',this.form)
-                    .then(res =>(this.dialog=false,this.$toasted.show('Assignments Created',{type:'success'}),EventBus.$emit('newAssignment',this.form)))
+                    .then(res =>
+                        this.dialog=false,
+                        this.$toasted.show('Assignments Created',{type:'success'}),
+                        EventBus.$emit('newAssignment',this.form),
+                        this.errors='',
+                        this.x=0
+                    )
                     .catch(error =>this.errors = error.response.data.errors)
-                this.x=0
+
             },
         },
         computed:{

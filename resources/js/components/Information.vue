@@ -96,7 +96,7 @@
                                         >
                                             <v-list-item three-line>
                                                 <v-list-item-content>
-                                                    <div class="overline mb-4">{{material.option}}</div>
+                                                    <div class="overline mb-4">{{material.options}}</div>
                                                     <v-list-item-title class="headline mb-1">{{material.title}}
                                                     </v-list-item-title>
                                                     <br>

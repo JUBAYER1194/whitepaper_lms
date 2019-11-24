@@ -28,9 +28,13 @@
                         <v-col cols="12" sm="12" md="6">
 
                             <v-text-field outlined rounded label="Subject Name*" v-model="subject.name" required></v-text-field>
+                            <span class="red--text" v-if="errors.name">{{errors.name[0]}}</span>
+
                         </v-col>
                         <v-col cols="12" sm="12" md="6">
                             <v-text-field  label="Section*" outlined rounded  required v-model="subject.section" ></v-text-field>
+                            <span class="red--text" v-if="errors.section">{{errors.section[0]}}</span>
+
                         </v-col>
                         <v-col cols="12" sm="12" md="6">
                             <v-select
@@ -44,6 +48,8 @@
                             >
 
                             </v-select>
+                            <span class="red--text" v-if="errors.status">{{errors.status[0]}}</span>
+
                         </v-col>
                         <v-col cols="12" sm="12" md="6">
                             <v-select
@@ -57,6 +63,8 @@
                             >
 
                             </v-select>
+                            <span class="red--text" v-if="errors.class_head">you have to select a class</span>
+
                         </v-col>
                         <v-col cols="12" sm="12" md="12">
                             <v-textarea
@@ -94,6 +102,7 @@
                 {'id':0,'name':'In-Active'}
             ],
             show:false,
+            errors:'',
         }),
         computed:{
 
@@ -102,8 +111,12 @@
         methods:{
             EditSubject(){
                 axios.patch(`/lms/api/class/${this.subject.id}`,this.subject)
-                    .then(res =>this.dialog=false,this.$toasted.show('Subject Edited',{type:'success'}),
+                    .then(res =>this.dialog=false,
+                        this.$toasted.show('Subject Edited',{type:'success'}),
+                        this.errors='',
+
                     )
+                    .catch(error =>this.errors = error.response.data.errors)
             },
 
         },

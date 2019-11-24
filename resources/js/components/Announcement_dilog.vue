@@ -78,12 +78,19 @@
         methods:{
             save(){
                 axios.post('/lms/api/announcement',this.announcement)
-                    .then(res =>(this.dialog=false,this.$toasted.show('Announcement Created',{type:'success'}),EventBus.$emit('newAnn',this.announcement)))
+                    .then(res =>
+                        this.dialog=false,
+                        this.$toasted.show('Announcement Created',{type:'success'}),
+                        EventBus.$emit('newAnn',this.announcement),
+                        this.errors='',
+                        this.x=0
+                    )
+
                        .catch(error =>this.errors = error.response.data.errors)
 
 
 
-                this.x=0
+
             },
 
 

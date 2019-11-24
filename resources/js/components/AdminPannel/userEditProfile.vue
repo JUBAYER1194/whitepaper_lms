@@ -98,7 +98,10 @@
         methods: {
             update() {
                 axios.put(`/lms/api/information/${this.form.id}`,this.form)
-                    .then(res => (this.dialog = false,this.$toasted.show('profile Updated',{type:'success'})))
+                    .then(res => this.dialog = false,
+                          this.$toasted.show('profile Updated',{type:'success'}),
+                          this.errors=''
+                    )
                     .catch(error =>this.errors = error.response.data.errors)
             },
             imageChanged(e){

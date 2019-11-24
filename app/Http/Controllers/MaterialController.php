@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateMaterialRequest;
 use App\Http\Resources\MaterialResource;
 use App\Lmsclass;
 use App\Material;
@@ -45,9 +46,10 @@ class MaterialController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateMaterialRequest $request)
     {
         //
+
 
         if ($request->check==1) {
             $exploded = explode(',', $request->file);
@@ -88,7 +90,7 @@ class MaterialController extends Controller
             $material->title=$request->title;
             $material->user_id=$request->user_id;
             $material->lmsclass_id=$request->lmsclass_id;
-            $material->option=$request->option;
+            $material->option=$request->options;
             $material->body=$request->body;
             $material->file=$fileName;
             $material->save();
@@ -105,7 +107,7 @@ class MaterialController extends Controller
         $material->title=$request->title;
         $material->user_id=$request->user_id;
         $material->lmsclass_id=$request->lmsclass_id;
-        $material->option=$request->option;
+        $material->option=$request->options;
         $material->body=$request->body;
         $material->save();
         $users=$material->lmsclass->users;

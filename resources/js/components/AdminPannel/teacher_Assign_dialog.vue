@@ -121,6 +121,7 @@
             makingNull()
             {
                 if (this.form.Selected_ClassHaed==''){
+                    this.form.Selected_ClassHaed=null;
                     this.form.classHead=null
 
                 }
@@ -155,7 +156,10 @@
             Assign_ClassRoom()
             {
                 axios.post(`/lms/api/teacher/assign_c_s/${this.data.id}`,this.form)
-                    .then(res =>(this.dialog=false,this.$toasted.show('Assigned',{type:'success'})))
+                    .then(res =>this.dialog=false,
+                        this.$toasted.show('Assigned',{type:'success'}),
+                        this.errors='',
+                    )
                     .catch(error =>this.errors = error.response.data.errors)
             },
 

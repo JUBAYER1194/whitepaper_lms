@@ -93,7 +93,10 @@
             },
             update(){
                 axios.patch(`/lms/api/class/assignment/${this.assignment.id}`,this.assignment)
-                    .then(res=>(this.dialog=false,this.$toasted.show('Assignment Updated',{type:'success'})))
+                    .then(res=>this.dialog=false,
+                        this.$toasted.show('Assignment Updated',{type:'success'}),
+                        this.errors='',
+                    )
                     .catch(error =>this.errors = error.response.data.errors)
             },
 

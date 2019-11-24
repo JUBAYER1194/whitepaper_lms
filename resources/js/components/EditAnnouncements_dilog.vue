@@ -52,7 +52,10 @@
         methods:{
             update(){
                 axios.patch(`/lms/api/announcement/${this.announcement.id}`,this.announcement)
-                    .then(res=> (this.dialog=false,this.$toasted.show('Announcement Updated',{type:'success'})))
+                    .then(res=>this.dialog=false,
+                        this.$toasted.show('Announcement Updated',{type:'success'}),
+                        this.errors='',
+                    )
                     .catch(error =>this.errors = error.response.data.errors)
             }
         }

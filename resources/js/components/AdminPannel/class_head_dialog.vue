@@ -68,7 +68,9 @@
                             this.dialog = false,
                             EventBus.$emit('class-head-created', this.form),
                             this.$toasted.show('Class Created', {type: 'success'}),
-                           this.x=0
+                            this.errors='',
+                            this.x=0,
+
 
                     )
 
@@ -84,7 +86,6 @@
             {
                 if (this.x==0){
                     this.form={};
-                    this.errors = {};
                     this.x=1;
                 }
             },

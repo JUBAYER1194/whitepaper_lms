@@ -24,7 +24,9 @@ class SubjectResource extends JsonResource
             'section'=>$this->section,
             'description'=>$this->description,
             'status'=>$this->status,
-            'teacher_name'=>$this->teacher_name,
+            'teacher_name'=>UserResource::collection($this->users),
+
+
         ];
     }
 }

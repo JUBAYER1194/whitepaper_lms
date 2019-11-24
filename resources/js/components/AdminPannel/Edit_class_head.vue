@@ -27,6 +27,7 @@
                         <v-row>
                             <v-col cols="12" sm="12" md="6">
                                 <v-text-field rounded outlined label="Class Name*" v-model="data.name" required></v-text-field>
+                                <span class="red--text" v-if="errors.name">{{errors.name[0]}}</span>
                             </v-col>
                             <v-col cols="12" sm="12" md="6">
                                 <v-select
@@ -40,6 +41,7 @@
                                 >
 
                                 </v-select>
+                                <span class="red--text" v-if="errors.status">{{errors.status[0]}}</span>
                             </v-col>
                         </v-row>
                     </v-container>
@@ -67,14 +69,17 @@
             form:{
                 name:null,
                 status:null,
-            }
+            },
+            errors:{}
         }),
         methods:{
             CreateClassHead()
             {
                 axios.patch(`/lms/api/class-head/${this.data.id}`,this.data)
                     .then(res =>this.dialog=false,this.$toasted.show('Class Edited',{type:'success'}),
+                        this.errors='',
                     )
+                    .catch(error =>this.errors = error.response.data.errors)
             },
 
         },

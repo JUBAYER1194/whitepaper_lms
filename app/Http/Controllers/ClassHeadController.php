@@ -83,7 +83,7 @@ class ClassHeadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ClassHeadRequest $request, $id)
     {
         //
         $EChead=ClassHead::find($id);
@@ -102,6 +102,7 @@ class ClassHeadController extends Controller
     public function destroy($id)
     {
         $DChead=ClassHead::find($id);
+        $DChead->Lms_class()->delete();
         $DChead->delete();
     }
 }

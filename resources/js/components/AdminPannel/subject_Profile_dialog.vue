@@ -51,9 +51,9 @@
                                         <td class="font-weight-black">Section:</td>
                                         <td class="black--text text-capitalize">{{data.section}}</td>
                                     </tr>
-                                    <tr>
+                                    <tr class="ml-3" v-for="(teacher,index) in data.teacher_name" v-if="teacher.role =='Teacher'">
                                         <td class="font-weight-black">Teacher's Name:</td>
-                                        <td v-if="data.teacher_name!=null" class="black--text text-capitalize">{{data.teacher_name}}</td>
+                                        <td v-if="teacher.first_name !=null" class="black--text text-capitalize">{{teacher.first_name}} {{teacher.last_name}}</td>
                                         <td v-else class="black--text text-capitalize">Not Assigned yet</td>
 
                                     </tr>

@@ -45,6 +45,7 @@
                                 label="Select Class*"
                                 item-text="name"
                                 item-value="id"
+                                return-object
                                 v-model="classes.class_head"
                             >
 
@@ -72,6 +73,8 @@
         </v-card>
         {{userId}}
         {{cheeckingX}}
+        {{checking}}
+        {{againChecking}}
     </v-dialog>
 
 
@@ -89,9 +92,14 @@
                 section:null,
                 description:null,
                 user_id:null,
-                class_head:null,
-
+                class_head:{
+                    id:null,
+                },
+                class_name:null,
             },
+            check:null,
+            y:0,
+
             x:0,
             item:[
                 {'id':1,'name':'Active'},
@@ -101,6 +109,19 @@
         }),
 
         computed:{
+            checking()
+            {
+                this.check=this.classes.class_head;
+                if (this.check !=null){
+                    this.y=1;
+                }
+            },
+            againChecking(){
+                if (this.y == 1){
+                    this.classes.class_name=this.check.name;
+                    this.y=2;
+                }
+            },
             userId(){
                 this.classes.user_id=User.id();
             },
@@ -113,18 +134,19 @@
             },
 
 
+
         },
         methods:{
           created(){
               axios.post(`/lms/api/class`,this.classes)
-                  .then(res =>(this.dialog=false,this.$toasted.show('Subject Created',{type:'success'})))
+                  .then(res =>this.dialog=false,
+                      EventBus.$emit('newSubject',this.classes),
+                      this.$toasted.show('Subject Created',{type:'success'}),
+                      this.x=0,
+                  )
                   .catch(error =>this.errors = error.response.data.errors)
-                if (this.errors=='')
-              {
-                  EventBus.$emit('newSubject',this.classes)
-                }
 
-                   this.x=0
+
           },
         },
     }

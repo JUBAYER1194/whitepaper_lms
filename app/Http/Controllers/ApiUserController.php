@@ -167,7 +167,8 @@ class ApiUserController extends Controller
     public function assign_teacher(Request $request, $id){
 
 
-        if ($request->Selected_ClassHaed == '') {
+        if ($request->Selected_ClassHaed == null) {
+
             $user = User::find($id);
             $user->classHead()->detach();
             $user->lmsclass()->detach();
